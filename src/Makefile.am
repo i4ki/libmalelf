@@ -1,0 +1,22 @@
+CFLAGS_LANGUAGE=-std=c99 -pedantic
+CFLAGS_WARNS=-Wall -Wextra -Werror
+CFLAGS_INCLUDES=-Iinclude
+
+AM_CFLAGS=	-ggdb -fPIC -O2 $(CFLAGS_LANGUAGE) \
+		$(CFLAGS_WARNS) \
+		$(CFLAGS_INCLUDES)
+
+lib_LTLIBRARIES=libmalelf.la
+
+libmalelf_la_SOURCES =  binary.c \
+			error.c \
+			util.c
+
+
+libmalelf_la_LDFLAGS = -version-info 1:0:0
+libmalelf_la_LIBADD=
+
+library_includedir=$(includedir)/malelf
+library_include_HEADERS	=	include/malelf/binary.h \
+				include/malelf/error.h \
+				include/malelf/util.h
