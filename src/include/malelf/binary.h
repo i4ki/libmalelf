@@ -59,7 +59,7 @@ extern _i32 malelf_binary_set_phdr(MalelfPhdr *phdr, MalelfBinary *bin);
  *  \return MALELF_SUCCESS if shdr was successful set, 
  *          otherwise returns MALELF_ERROR.
  */
-extern _i32 malelf_binary_set_shdr(MalelfPhdr *phdr, MalelfBinary *bin);
+extern _i32 malelf_binary_set_shdr(MalelfShdr *shdr, MalelfBinary *bin);
 
 
 /* GETTERS */

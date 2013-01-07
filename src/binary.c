@@ -37,20 +37,18 @@ inline _i32 malelf_binary_get_arch(MalelfBinary *bin)
 
         bin->class = bin->mem[EI_CLASS];
 
-        if (ELFCLASS32 == bin->class) {
-                return MALELF_ELF32;
-        } else if (ELFCLASS64 == bin->class) {
-                return MALELF_ELF64;
+        switch (bin->class) {
+        case MALELF_ELF32: return MALELF_ELF32;
+        case MALELF_ELF64: return MALELF_ELF64;
+        default: return MALELF_ELFNONE;
         }
-
+        
         return MALELF_ELFNONE;
 }
 
 _i32 malelf_binary_set_ehdr(MalelfEhdr *ehdr, MalelfBinary *bin)
 {
-        if (MALELF_SUCCESS != malelf_binary_check_elf_magic(bin)) {
-                return MALELF_ERROR;
-        }
+        assert(MALELF_SUCCESS == malelf_binary_check_elf_magic(bin));
 
         bin->class = malelf_binary_get_arch(bin);
 
@@ -109,21 +107,54 @@ _i32 malelf_binary_set_phdr(MalelfPhdr *phdr, MalelfBinary *bin)
 	return MALELF_SUCCESS;
 }
 
+_i32 malelf_binary_set_shdr(MalelfShdr *shdr, MalelfBinary *bin)
+{
+        MalelfEhdr *ehdr;
+
+	ehdr = malelf_binary_get_ehdr(bin);
+        
+	assert(NULL != bin && NULL != ehdr);
+
+	switch (bin->class) {
+	case MALELF_ELFNONE: 
+		return MALELF_ERROR; 
+		break;
+	case MALELF_ELF32: 
+		shdr->sh32 = (Elf32_Shdr *) (bin->mem + ehdr->eh32->e_shoff);
+		break;
+	case MALELF_ELF64: 
+		shdr->sh64 = (Elf64_Shdr *) (bin->mem + ehdr->eh64->e_shoff);
+		break;
+	}
+
+	return MALELF_SUCCESS;
+}
 
 _i32 malelf_binary_map(MalelfBinary *bin)
 {
+        _i32 error = MALELF_SUCCESS;
+        
         assert(NULL != bin && NULL != bin->mem);
 
-        if (MALELF_SUCCESS != malelf_binary_set_ehdr(bin->elf.ehdr, bin)) {
+        error = malelf_binary_set_ehdr(bin->elf.ehdr, bin);
+        
+        if (MALELF_SUCCESS != error) {
+                return error;
+        }
+
+        error = malelf_binary_set_phdr(bin->elf.phdr, bin);
+        if (MALELF_SUCCESS != error ) {
                 return MALELF_ERROR;
         }
 
-        if (MALELF_SUCCESS != malelf_binary_set_phdr(bin->elf.phdr, bin)) {
-                return MALELF_ERROR;
+        error = malelf_binary_set_shdr(bin->elf.shdr, bin);
+        if (MALELF_SUCCESS != error) {
+                return error;
         }
 
         assert(NULL != bin->elf.ehdr);
         assert(NULL != bin->elf.phdr);
+        assert(NULL != bin->elf.shdr);
 
         return MALELF_SUCCESS;
 }
@@ -198,6 +229,7 @@ _i32 malelf_binary_open_generic(const char *fname,
                         return MALELF_EALLOC;
                 }
 
+                /* read the file byte by byte */
                 while ((n = read(bin->fd, bin->mem + i, 1)) > 0 &&
                        i++);
 
