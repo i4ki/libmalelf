@@ -2,13 +2,19 @@
 #define TYPES_H
 
 #include <stdint.h>
+#include <sys/types.h>
 
 typedef uint8_t _u8;
 typedef uint16_t _u16;
 typedef uint32_t _u32;
-
 typedef int8_t _i8;
 typedef int16_t _i16;
 typedef int32_t _i32;
+
+typedef struct {
+    _u8 is_header;
+    _u8 is_pht;
+    _u8 is_sht;
+} malelf_dissect_opt;
 
 #endif

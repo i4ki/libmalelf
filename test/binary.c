@@ -14,15 +14,6 @@ typedef uint16_t _u16;
 typedef uint32_t _u32;
 
 typedef struct {
-        union {
-                Elf32_Ehdr *eh32;
-                Elf64_Ehdr *eh64;
-        };
-
-        unsigned int class;
-} malelfEhdrT;
-
-typedef struct {
         Elf32_Ehdr ehdr;
         _u8 align[12];
         _u8 class;
@@ -111,7 +102,7 @@ int main(int argc, char **argv) {
                 }
                 case ELFCLASS64: {
                         malelfEhdr64 *eh64 = (malelfEhdr64 *) &ehdr;
-                        printf("[!] entry point: %08x\n", eh64->ehdr.e_entry);
+                        printf("[!] entry point: %08x\n", (_u32) eh64->ehdr.e_entry);
                         break;
                 }
                 default:
