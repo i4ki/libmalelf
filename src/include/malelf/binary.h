@@ -108,12 +108,12 @@ extern _i32 malelf_binary_map(MalelfBinary *bin);
 extern inline _i32 malelf_binary_check_elf_magic(MalelfBinary *binary);
 
 
-extern _i32 malelf_binary_open_generic(const char *fname,
-                                       MalelfBinary *binary,
-                                       _u8 alloc_type);
+extern _i32 malelf_binary_open(const char *fname,
+                               MalelfBinary *binary,
+                               _u8 alloc_type);
 
 
-extern _i32 malelf_binary_open(const char *fname, MalelfBinary *binary);
+extern _i32 malelf_binary_open_mmap(const char *fname, MalelfBinary *binary);
 
 
 extern _i32 malelf_binary_open_malloc(const char *fname, MalelfBinary *binary);

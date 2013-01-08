@@ -174,19 +174,19 @@ inline _i32 malelf_binary_check_elf_magic(MalelfBinary *bin)
         return valid;
 }
 
-_i32 malelf_binary_open(const char *fname, MalelfBinary *bin)
+_i32 malelf_binary_open_mmap(const char *fname, MalelfBinary *bin)
 {
-        return malelf_binary_open_generic(fname, bin, MALELF_ALLOC_MMAP);
+        return malelf_binary_open(fname, bin, MALELF_ALLOC_MMAP);
 }
 
 _i32 malelf_binary_open_malloc(const char* fname, MalelfBinary *bin)
 {
-        return malelf_binary_open_generic(fname, bin, MALELF_ALLOC_MALLOC);
+        return malelf_binary_open(fname, bin, MALELF_ALLOC_MALLOC);
 }
 
-_i32 malelf_binary_open_generic(const char *fname,
-                                MalelfBinary *bin,
-                                _u8 alloc_type)
+_i32 malelf_binary_open(const char *fname,
+                        MalelfBinary *bin,
+                        _u8 alloc_type)
 {
         struct stat st_info;
         
