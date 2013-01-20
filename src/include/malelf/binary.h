@@ -10,9 +10,9 @@
 #include "phdr.h"
 
 typedef struct {
-        MalelfEhdr *ehdr;    /* ELF Header */
-        MalelfPhdr *phdr;    /* Elf Program Headers */
-        MalelfShdr *shdr;    /* Elf Section Headers */
+        MalelfEhdr ehdr;    /* ELF Header */
+        MalelfPhdr phdr;    /* Elf Program Headers */
+        MalelfShdr shdr;    /* Elf Section Headers */
 } MalelfFormat;
 
 typedef struct {
@@ -26,40 +26,54 @@ typedef struct {
 } MalelfBinary;
 
 
+/*! Initialize MalelfBinary objetc. This method must be called.
+ *
+ *  \param bin a valid malelfbinary object.
+ *
+ */
+extern void malelf_binary_init(MalelfBinary *bin);
+
+
 /* SETTERS */
 
 
-/*! Stores the address ELF Header from binary file.
+/*! stores the address elf header from binary file.
  *
- *  \param ehdr MalelfEhdr object will store the ELF Header address.
- *  \param bin A valid MalelfBinary object.
+ *  \param bin a valid malelfbinary object.
  *
- *  \return MALELF_SUCCESS if ehdr was successful set, 
- *          otherwise returns MALELF_ERROR.
+ *  \return malelf_success if ehdr was successful set, 
+ *          otherwise returns malelf_error.
  */
-extern _i32 malelf_binary_set_ehdr(MalelfEhdr *ehdr, MalelfBinary *bin);
+extern _i32 malelf_binary_set_ehdr(MalelfBinary *bin);
 
 
 /*! Stores the address Program Header Table from binary file.
  *
- *  \param phdr MalelfPhdr object will store the Program Header Table address.
  *  \param bin A valid MalelfBinary object.
  *
  *  \return MALELF_SUCCESS if phdr was successful set, 
  *          otherwise returns MALELF_ERROR.
  */
-extern _i32 malelf_binary_set_phdr(MalelfPhdr *phdr, MalelfBinary *bin);
+extern _i32 malelf_binary_set_phdr(MalelfBinary *bin);
 
 
 /*! Stores the address Section Header Table from binary file.
  *
- *  \param ehdr MalelfShdr object will store the Section Header Table address.
  *  \param bin A valid MalelfBinary object.
  *
  *  \return MALELF_SUCCESS if shdr was successful set, 
  *          otherwise returns MALELF_ERROR.
  */
-extern _i32 malelf_binary_set_shdr(MalelfShdr *shdr, MalelfBinary *bin);
+extern _i32 malelf_binary_set_shdr(MalelfBinary *bin);
+
+
+/*! Set the alloc type.
+ *
+ *  \param bin A valid MalelfBinary object.
+ *  \alloc_type How the binary will be loaded. 
+ *              (MALELF_ALLOC_MMAP or MALELF_ALLOC_MALLOC)
+ */
+extern void malelf_binary_set_alloc_type(MalelfBinary *bin, _u8 alloc_type);
 
 
 /* GETTERS */
@@ -79,44 +93,84 @@ extern inline _i32 malelf_binary_get_arch(MalelfBinary *bin);
  *
  *  \param bin A valid MalelfBinary object.
  *
- *  \return A valid pointer to a MalelfEhdr, or NULL if some error ocurred.
+ *  \return A valid MalelfEhdr.
  */
-extern MalelfEhdr *malelf_binary_get_ehdr(MalelfBinary *bin);
+extern MalelfEhdr malelf_binary_get_ehdr(MalelfBinary *bin);
 
 
 /*! Get Program Header Table.
  *
  *  \param bin A valid MalelfBinary object.
  *
- *  \return A valid pointer to a MalelfPhdr, or NULL if some error ocurred.
+ *  \return A valid MalelfPhdr.
  */
-extern MalelfPhdr *malelf_binary_get_phdr(MalelfBinary *bin);
+extern MalelfPhdr malelf_binary_get_phdr(MalelfBinary *bin);
 
 
 /*! Get Section Header Table.
  *
  *  \param bin A valid MalelfBinary object.
  *
- *  \return A valid pointer to a MalelfShdr, or NULL if some error ocurred.
+ *  \return A valid MalelfShdr.
  */
-extern MalelfShdr *malelf_binary_get_shdr(MalelfBinary *bin);
+extern MalelfShdr malelf_binary_get_shdr(MalelfBinary *bin);
 
 
-extern _i32 malelf_binary_map(MalelfBinary *bin);
+/*! Get alloc type.
+ *
+ *  \param bin A valid MalelfBinary object.
+ *
+ *  \return The alloc type (default: MALELF_ALLOC_MMAP).
+ */
+extern _u8 malelf_binary_get_alloc_type(MalelfBinary *bin);
 
 
-extern inline _i32 malelf_binary_check_elf_magic(MalelfBinary *binary);
+/*! Load binary file.
+ *
+ *  \param bin A valid MalelfBinary object.
+ *  \param fname Binary file name.
+ *
+ *  \return The malelf status.
+ */
+extern _i32 malelf_binary_open(const char *fname, MalelfBinary *binary);
 
 
-extern _i32 malelf_binary_open(const char *fname,
-                               MalelfBinary *binary,
-                               _u8 alloc_type);
-
-
+/*! Load binary file using mmap.
+ *
+ *  \param bin A valid MalelfBinary object.
+ *  \param fname Binary file name.
+ *
+ *  \return The malelf status.
+ */
 extern _i32 malelf_binary_open_mmap(const char *fname, MalelfBinary *binary);
 
 
+/*! Load binary file using malloc.
+ *
+ *  \param bin A valid MalelfBinary object.
+ *  \param fname Binary file name.
+ *
+ *  \return The malelf status.
+ */
 extern _i32 malelf_binary_open_malloc(const char *fname, MalelfBinary *binary);
 
 
-#endif
+/*! Load Ehdr, Phdr and Shdr.
+ *
+ *  \param bin A valid MalelfBinary object.
+ *
+ *  \return The malelf status (MALELF_SUCCESS or MALELF_ERROR).
+ */
+extern _i32 malelf_binary_map(MalelfBinary *bin);
+
+
+/*! Check ELf magic.
+ *
+ *  \param bin A valid MalelfBinary object.
+ *
+ *  \return The malelf status (MALELF_SUCCESS or MALELF_ENOT_ELF).
+ */
+extern inline _i32 malelf_binary_check_elf_magic(MalelfBinary *binary);
+
+
+#endif /* MALELF_BINARY_H */

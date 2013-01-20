@@ -46,7 +46,7 @@ inline _i32 malelf_binary_get_arch(MalelfBinary *bin)
         return MALELF_ELFNONE;
 }
 
-_i32 malelf_binary_set_ehdr(MalelfEhdr *ehdr, MalelfBinary *bin)
+_i32 malelf_binary_set_ehdr(MalelfBinary *bin)
 {
         assert(MALELF_SUCCESS == malelf_binary_check_elf_magic(bin));
 
@@ -54,10 +54,10 @@ _i32 malelf_binary_set_ehdr(MalelfEhdr *ehdr, MalelfBinary *bin)
 
         switch (bin->class) {
         case MALELF_ELF32:
-                ehdr->eh32 = (Elf32_Ehdr *) bin->mem;
+                bin->elf.ehdr.eh32 = (Elf32_Ehdr *) bin->mem;
                 break;
         case MALELF_ELF64:
-                ehdr->eh64 = (Elf64_Ehdr *) bin->mem;
+                bin->elf.ehdr.eh64 = (Elf64_Ehdr *) bin->mem;
                 break;
         default:
                 return MALELF_ERROR;
@@ -66,64 +66,64 @@ _i32 malelf_binary_set_ehdr(MalelfEhdr *ehdr, MalelfBinary *bin)
         return MALELF_SUCCESS;
 }
 
-MalelfEhdr *malelf_binary_get_ehdr(MalelfBinary *bin)
+MalelfEhdr malelf_binary_get_ehdr(MalelfBinary *bin)
 {
-        assert(NULL != bin && NULL != bin->elf.ehdr);
+        assert(NULL != bin);
 	return bin->elf.ehdr;	
 }
 
-MalelfPhdr *malelf_binary_get_phdr(MalelfBinary *bin)
+MalelfPhdr malelf_binary_get_phdr(MalelfBinary *bin)
 {
-        assert(NULL != bin && NULL != bin->elf.phdr);
+        assert(NULL != bin);
 	return bin->elf.phdr;	
 }
 
-MalelfShdr *malelf_binary_get_shdr(MalelfBinary *bin)
+MalelfShdr malelf_binary_get_shdr(MalelfBinary *bin)
 {
-        assert(NULL != bin && NULL != bin->elf.shdr);
+        assert(NULL != bin);
         return bin->elf.shdr;
 }
 
-_i32 malelf_binary_set_phdr(MalelfPhdr *phdr, MalelfBinary *bin)
+_i32 malelf_binary_set_phdr(MalelfBinary *bin)
 {
-        MalelfEhdr *ehdr;
+        MalelfEhdr ehdr;
 
 	ehdr = malelf_binary_get_ehdr(bin);
         
-	assert(NULL != bin && NULL != ehdr);
+	assert(NULL != bin);
 
 	switch (bin->class) {
 	case MALELF_ELFNONE: 
 		return MALELF_ERROR; 
 		break;
 	case MALELF_ELF32: 
-		phdr->ph32 = (Elf32_Phdr *) (bin->mem + ehdr->eh32->e_phoff);
+		bin->elf.phdr.ph32 = (Elf32_Phdr *) (bin->mem + ehdr.eh32->e_phoff);
 		break;
 	case MALELF_ELF64: 
-		phdr->ph64 = (Elf64_Phdr *) (bin->mem + ehdr->eh64->e_phoff);
+		bin->elf.phdr.ph64 = (Elf64_Phdr *) (bin->mem + ehdr.eh64->e_phoff);
 		break;
 	}
 
 	return MALELF_SUCCESS;
 }
 
-_i32 malelf_binary_set_shdr(MalelfShdr *shdr, MalelfBinary *bin)
+_i32 malelf_binary_set_shdr(MalelfBinary *bin)
 {
-        MalelfEhdr *ehdr;
+        MalelfEhdr ehdr;
 
 	ehdr = malelf_binary_get_ehdr(bin);
         
-	assert(NULL != bin && NULL != ehdr);
+	assert(NULL != bin);
 
 	switch (bin->class) {
 	case MALELF_ELFNONE: 
 		return MALELF_ERROR; 
 		break;
 	case MALELF_ELF32: 
-		shdr->sh32 = (Elf32_Shdr *) (bin->mem + ehdr->eh32->e_shoff);
+		bin->elf.shdr.sh32 = (Elf32_Shdr *) (bin->mem + ehdr.eh32->e_shoff);
 		break;
 	case MALELF_ELF64: 
-		shdr->sh64 = (Elf64_Shdr *) (bin->mem + ehdr->eh64->e_shoff);
+		bin->elf.shdr.sh64 = (Elf64_Shdr *) (bin->mem + ehdr.eh64->e_shoff);
 		break;
 	}
 
@@ -136,25 +136,21 @@ _i32 malelf_binary_map(MalelfBinary *bin)
         
         assert(NULL != bin && NULL != bin->mem);
 
-        error = malelf_binary_set_ehdr(bin->elf.ehdr, bin);
+        error = malelf_binary_set_ehdr(bin);
         
         if (MALELF_SUCCESS != error) {
                 return error;
         }
 
-        error = malelf_binary_set_phdr(bin->elf.phdr, bin);
+        error = malelf_binary_set_phdr(bin);
         if (MALELF_SUCCESS != error ) {
                 return MALELF_ERROR;
         }
 
-        error = malelf_binary_set_shdr(bin->elf.shdr, bin);
+        error = malelf_binary_set_shdr(bin);
         if (MALELF_SUCCESS != error) {
                 return error;
         }
-
-        assert(NULL != bin->elf.ehdr);
-        assert(NULL != bin->elf.phdr);
-        assert(NULL != bin->elf.shdr);
 
         return MALELF_SUCCESS;
 }
@@ -174,19 +170,44 @@ inline _i32 malelf_binary_check_elf_magic(MalelfBinary *bin)
         return valid;
 }
 
+_u8 malelf_binary_get_alloc_type(MalelfBinary *bin)
+{
+        assert(bin != NULL);
+        return bin->alloc_type;
+}
+
+void malelf_binary_init(MalelfBinary *bin)
+{
+        bin->fname = NULL;
+        bin->fd = -1;
+        bin->mem = NULL;
+        bin->size = 0;
+        bin->elf.ehdr.eh32 = NULL;
+        bin->elf.phdr.ph32 = NULL;
+        bin->elf.shdr.sh32 = NULL;
+        bin->alloc_type = MALELF_ALLOC_MMAP;
+        bin->class = MALELF_ELFNONE;
+}
+
+void malelf_binary_set_alloc_type(MalelfBinary *bin, _u8 alloc_type)
+{
+        assert(bin != NULL);
+        bin->alloc_type = alloc_type;
+}
+
 _i32 malelf_binary_open_mmap(const char *fname, MalelfBinary *bin)
 {
-        return malelf_binary_open(fname, bin, MALELF_ALLOC_MMAP);
+        malelf_binary_set_alloc_type(bin, MALELF_ALLOC_MMAP);
+        return malelf_binary_open(fname, bin);
 }
 
 _i32 malelf_binary_open_malloc(const char* fname, MalelfBinary *bin)
 {
-        return malelf_binary_open(fname, bin, MALELF_ALLOC_MALLOC);
+        malelf_binary_set_alloc_type(bin, MALELF_ALLOC_MALLOC);
+        return malelf_binary_open(fname, bin);
 }
 
-_i32 malelf_binary_open(const char *fname,
-                        MalelfBinary *bin,
-                        _u8 alloc_type)
+_i32 malelf_binary_open(const char *fname, MalelfBinary *bin)
 {
         struct stat st_info;
         
@@ -209,19 +230,17 @@ _i32 malelf_binary_open(const char *fname,
 
         bin->size = st_info.st_size;
 
-        if (MALELF_ALLOC_MMAP == alloc_type) {
+        if (MALELF_ALLOC_MMAP == bin->alloc_type) {
                 bin->mem = mmap(0,
                                 st_info.st_size,
                                 PROT_READ|PROT_WRITE,
                                 MAP_PRIVATE,
                                 bin->fd,
                                 0);
-                if (bin->mem == MAP_FAILED) {
+                if (MAP_FAILED == bin->mem) {
                         return errno;
                 }
-                
-                bin->alloc_type = MALELF_ALLOC_MMAP;
-        } else if (MALELF_ALLOC_MALLOC == alloc_type) {
+        } else if (MALELF_ALLOC_MALLOC == bin->alloc_type) {
                 _i16 n = 0;
                 _u32 i = 0; 
                 bin->mem = malloc(st_info.st_size * sizeof(_u8));
