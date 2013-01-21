@@ -144,7 +144,7 @@ _i32 malelf_binary_map(MalelfBinary *bin)
 
         error = malelf_binary_set_phdr(bin);
         if (MALELF_SUCCESS != error ) {
-                return MALELF_ERROR;
+                return error;
         }
 
         error = malelf_binary_set_shdr(bin);

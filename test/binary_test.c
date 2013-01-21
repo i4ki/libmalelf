@@ -13,12 +13,14 @@ static void malelf_binary_open_TEST(void)
 
        malelf_binary_init(&bin);
 
-       result = malelf_binary_open("/bin/ls", &bin);
+       result = malelf_binary_open("test/uninfected", &bin);
        CU_ASSERT(result == MALELF_SUCCESS);
        result = malelf_binary_close(&bin);
        CU_ASSERT(result == MALELF_SUCCESS);
 
-       result = malelf_binary_open("/wrong/path/ls", &bin);
+       malelf_binary_init(&bin);
+       
+       result = malelf_binary_open("/wrong/path/uninfected", &bin);
        CU_ASSERT(result == MALELF_ENOENT);
        result = malelf_binary_close(&bin);
        CU_ASSERT(result == MALELF_SUCCESS);
