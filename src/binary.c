@@ -192,7 +192,10 @@ void malelf_binary_init(MalelfBinary *bin)
 void malelf_binary_set_alloc_type(MalelfBinary *bin, _u8 alloc_type)
 {
         assert(bin != NULL);
-        bin->alloc_type = alloc_type;
+        if ((MALELF_ALLOC_MMAP == alloc_type) ||
+            (MALELF_ALLOC_MALLOC == alloc_type)) {
+                bin->alloc_type = alloc_type;
+        }
 }
 
 _i32 malelf_binary_open_mmap(const char *fname, MalelfBinary *bin)
@@ -207,12 +210,9 @@ _i32 malelf_binary_open_malloc(const char* fname, MalelfBinary *bin)
         return malelf_binary_open(fname, bin);
 }
 
-_i32 malelf_binary_open(const char *fname, MalelfBinary *bin)
+static _i32 _malelf_binary_verify_file(const char*fname, MalelfBinary *bin)
 {
         struct stat st_info;
-        
-        assert(fname != NULL);
-        assert(bin != NULL);
 
         bin->fd = open(fname, O_RDONLY);
 
@@ -229,31 +229,62 @@ _i32 malelf_binary_open(const char *fname, MalelfBinary *bin)
         }
 
         bin->size = st_info.st_size;
+        return MALELF_SUCCESS;
+}
+
+static _i32 _malelf_binary_mmap_load(MalelfBinary *bin)
+{
+
+        bin->mem = mmap(0,
+                        bin->size,
+                        PROT_READ|PROT_WRITE,
+                        MAP_PRIVATE,
+                        bin->fd,
+                        0);
+       if (MAP_FAILED == bin->mem) {
+               return errno;
+       }
+
+       return MALELF_SUCCESS;
+}
+
+static _i32 _malelf_binary_malloc_load(MalelfBinary *bin)
+{
+        _i16 n = 0;
+        _u32 i = 0; 
+        bin->mem = malloc(bin->size * sizeof(_u8));
+        if (NULL == bin->mem) {
+                return MALELF_EALLOC;
+        }
+
+        /* read the file byte by byte */
+        while ((n = read(bin->fd, bin->mem + i, 1)) > 0 && i++);
+
+        if (-1 == n) {
+                return errno;
+        }
+        return MALELF_SUCCESS;
+}
+
+_i32 malelf_binary_open(const char *fname, MalelfBinary *bin)
+{
+        assert(fname != NULL);
+        assert(bin != NULL);
+       
+        _i32 result = _malelf_binary_verify_file(fname, bin);        
+        if (MALELF_SUCCESS != result) {
+                return result;
+        }
 
         if (MALELF_ALLOC_MMAP == bin->alloc_type) {
-                bin->mem = mmap(0,
-                                st_info.st_size,
-                                PROT_READ|PROT_WRITE,
-                                MAP_PRIVATE,
-                                bin->fd,
-                                0);
-                if (MAP_FAILED == bin->mem) {
-                        return errno;
+                result = _malelf_binary_mmap_load(bin);
+                if (MALELF_SUCCESS != result) {
+                        return result;
                 }
         } else if (MALELF_ALLOC_MALLOC == bin->alloc_type) {
-                _i16 n = 0;
-                _u32 i = 0; 
-                bin->mem = malloc(st_info.st_size * sizeof(_u8));
-                if (NULL == bin->mem) {
-                        return MALELF_EALLOC;
-                }
-
-                /* read the file byte by byte */
-                while ((n = read(bin->fd, bin->mem + i, 1)) > 0 &&
-                       i++);
-
-                if (-1 == n) {
-                        return errno;
+                result = _malelf_binary_malloc_load(bin);
+                if (MALELF_SUCCESS != result) {
+                        return result;
                 }
         } else {
                 return MALELF_EALLOC;
@@ -266,3 +297,19 @@ _i32 malelf_binary_open(const char *fname, MalelfBinary *bin)
         return MALELF_SUCCESS;
 }
 
+_i32 malelf_binary_close(MalelfBinary *bin)
+{
+        assert(bin != NULL);
+        
+        close(bin->fd);
+  
+        if (MALELF_ALLOC_MALLOC == bin->alloc_type) {
+                free(bin->mem);
+        } else if (MALELF_ALLOC_MMAP == bin->alloc_type){
+                munmap(bin->mem, bin->size);
+        } else {
+                return MALELF_ERROR;
+        }
+        
+        return MALELF_SUCCESS;
+}

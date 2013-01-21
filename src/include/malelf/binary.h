@@ -34,6 +34,13 @@ typedef struct {
 extern void malelf_binary_init(MalelfBinary *bin);
 
 
+/*!  Clean MalelfBinary objetc. This method must be called.
+ *
+ *  \param bin a valid malelfbinary object.
+ *
+ */
+extern _i32 malelf_binary_close(MalelfBinary *bin);
+
 /* SETTERS */
 
 
