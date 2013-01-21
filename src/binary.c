@@ -258,7 +258,7 @@ static _i32 _malelf_binary_malloc_load(MalelfBinary *bin)
         }
 
         /* read the file byte by byte */
-        while ((n = read(bin->fd, bin->mem + i, 1)) > 0 && i++);
+        while ((n = read(bin->fd, bin->mem + i, 1)) > 0 && ++i);
 
         if (-1 == n) {
                 return errno;
