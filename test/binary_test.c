@@ -85,11 +85,32 @@ static void malelf_binary_open_malloc_TEST(void)
        CU_ASSERT(result == MALELF_SUCCESS);
 
        malelf_binary_init(&bin);
+       malelf_binary_set_alloc_type(&bin, MALELF_ALLOC_MALLOC);
        
        result = malelf_binary_open("/wrong/path/uninfected", &bin);
        CU_ASSERT(result == MALELF_ENOENT);
+       CU_ASSERT(NULL == bin.fname);
+       CU_ASSERT(bin.fd == -1);
+       CU_ASSERT(NULL == bin.mem);
+       CU_ASSERT(bin.size == 0);
+       CU_ASSERT(NULL == bin.elf.ehdr.eh32);
+       CU_ASSERT(NULL == bin.elf.phdr.ph32);
+       CU_ASSERT(NULL == bin.elf.shdr.sh32);
+       CU_ASSERT(bin.alloc_type == MALELF_ALLOC_MALLOC);
+       CU_ASSERT(bin.class == MALELF_ELFNONE);
+
        result = malelf_binary_close(&bin);
-       CU_ASSERT(result == MALELF_EINVAL);
+       CU_ASSERT(result == MALELF_SUCCESS);
+
+       CU_ASSERT(NULL == bin.fname);
+       CU_ASSERT(bin.fd == -1);
+       CU_ASSERT(NULL == bin.mem);
+       CU_ASSERT(bin.size == 0);
+       CU_ASSERT(NULL == bin.elf.ehdr.eh32);
+       CU_ASSERT(NULL == bin.elf.phdr.ph32);
+       CU_ASSERT(NULL == bin.elf.shdr.sh32);
+       CU_ASSERT(bin.alloc_type == MALELF_ALLOC_NONE);
+       CU_ASSERT(bin.class == MALELF_ELFNONE);
 }
 
 

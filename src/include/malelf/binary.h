@@ -56,14 +56,14 @@ extern void malelf_binary_set_alloc_type(MalelfBinary *bin, _u8 alloc_type);
 /* GETTERS */
 
 
-/*! Get the arch type from binary file.
+/*! Get the architecture class type from binary file.
  *
  *  \param bin A valid MalelfBinary object.
  *
  *  \return MALELF_ELF32 for arch 32 bits, MALELF_ELF32 for arch 64 bits or
  *          MALELF_ELFNONE for error.
  */
-extern inline _i32 malelf_binary_get_arch(MalelfBinary *bin);
+extern inline _i32 malelf_binary_get_class(MalelfBinary *bin);
 
 
 /*! Get ELF Header.

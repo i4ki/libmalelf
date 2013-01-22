@@ -15,19 +15,7 @@
 #include <malelf/binary.h>
 #include <malelf/defines.h>
 
-inline _u8 malelf_binary_is32(MalelfBinary *bin)
-{
-        assert(NULL != bin && NULL != bin->mem);
-        return bin->mem[EI_CLASS] == MALELF_ELF32;
-}
-
-inline _u8 malelf_binary_is64(MalelfBinary *bin)
-{
-        assert(NULL != bin && NULL != bin->mem);
-        return bin->mem[EI_CLASS] == MALELF_ELF64;
-}
-
-inline _i32 malelf_binary_get_arch(MalelfBinary *bin)
+inline _i32 malelf_binary_get_class(MalelfBinary *bin)
 {
         assert(NULL != bin && NULL != bin->mem);
         
@@ -68,7 +56,7 @@ static _i32 _malelf_binary_map_ehdr(MalelfBinary *bin)
 {
         assert(MALELF_SUCCESS == malelf_binary_check_elf_magic(bin));
 
-        bin->class = malelf_binary_get_arch(bin);
+        bin->class = malelf_binary_get_class(bin);
 
         switch (bin->class) {
         case MALELF_ELF32:
@@ -321,19 +309,22 @@ static void _malelf_binary_cleanup(MalelfBinary *bin)
 
 _i32 malelf_binary_close(MalelfBinary *bin)
 {
+        _u8 error = MALELF_SUCCESS;
         assert(bin != NULL);
         
         close(bin->fd);
   
         if (MALELF_ALLOC_MALLOC == bin->alloc_type) {
-                free(bin->mem);
+                if (NULL != bin->mem) {
+                        free(bin->mem);
+                }
         } else if (MALELF_ALLOC_MMAP == bin->alloc_type) {
                 if (-1 == munmap(bin->mem, bin->size)) {
-                        return errno;
+                        error = errno;
                 }
         }
 
         _malelf_binary_cleanup(bin);
         
-        return MALELF_SUCCESS;
+        return error;
 }
