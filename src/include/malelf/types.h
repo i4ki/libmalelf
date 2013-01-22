@@ -11,10 +11,4 @@ typedef int8_t _i8;
 typedef int16_t _i16;
 typedef int32_t _i32;
 
-typedef struct {
-    _u8 is_header;
-    _u8 is_pht;
-    _u8 is_sht;
-} malelf_dissect_opt;
-
 #endif

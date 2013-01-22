@@ -40,7 +40,8 @@ AC_CHECK_FUNCS([bzero getaddrinfo inet_ntoa memset socket munmap])
 
 AC_CONFIG_FILES([     Makefile \
                       src/Makefile \
-                      test/Makefile])
+                      test/Makefile \
+                      test/bintest/Makefile])
 
 
 AC_OUTPUT

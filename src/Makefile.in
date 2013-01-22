@@ -39,7 +39,10 @@ subdir = src
 DIST_COMMON = $(library_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/configure.ac
+am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -71,7 +74,8 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(library_includedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libmalelf_la_DEPENDENCIES =
-am_libmalelf_la_OBJECTS = binary.lo error.lo util.lo
+am_libmalelf_la_OBJECTS = binary.lo ehdr.lo phdr.lo shdr.lo error.lo \
+	util.lo
 libmalelf_la_OBJECTS = $(am_libmalelf_la_OBJECTS)
 libmalelf_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
@@ -218,6 +222,9 @@ AM_CFLAGS = -ggdb -fPIC -O2 $(CFLAGS_LANGUAGE) \
 
 lib_LTLIBRARIES = libmalelf.la
 libmalelf_la_SOURCES = binary.c \
+			ehdr.c \
+			phdr.c \
+			shdr.c \
 			error.c \
 			util.c
 
@@ -225,8 +232,11 @@ libmalelf_la_LDFLAGS = -version-info 1:0:0
 libmalelf_la_LIBADD = 
 library_includedir = $(includedir)/malelf
 library_include_HEADERS = include/malelf/binary.h \
+				include/malelf/ehdr.h \
+				include/malelf/phdr.h \
+				include/malelf/shdr.h \
 				include/malelf/error.h \
-				include/malelf/util.h
+				include/malelf/util.h 
 
 all: all-am
 
@@ -303,7 +313,10 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/binary.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ehdr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/error.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/phdr.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/shdr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/util.Plo@am__quote@
 
 .c.o:

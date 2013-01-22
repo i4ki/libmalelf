@@ -197,19 +197,19 @@ void malelf_binary_set_alloc_type(MalelfBinary *bin, _u8 alloc_type)
         }
 }
 
-_i32 malelf_binary_open_mmap(const char *fname, MalelfBinary *bin)
+_i32 malelf_binary_open_mmap(char *fname, MalelfBinary *bin)
 {
         malelf_binary_set_alloc_type(bin, MALELF_ALLOC_MMAP);
         return malelf_binary_open(fname, bin);
 }
 
-_i32 malelf_binary_open_malloc(const char* fname, MalelfBinary *bin)
+_i32 malelf_binary_open_malloc(char* fname, MalelfBinary *bin)
 {
         malelf_binary_set_alloc_type(bin, MALELF_ALLOC_MALLOC);
         return malelf_binary_open(fname, bin);
 }
 
-static _i32 _malelf_binary_verify_file(const char*fname, MalelfBinary *bin)
+static _i32 _malelf_binary_verify_file(char*fname, MalelfBinary *bin)
 {
         struct stat st_info;
 
@@ -265,7 +265,7 @@ static _i32 _malelf_binary_malloc_load(MalelfBinary *bin)
         return MALELF_SUCCESS;
 }
 
-_i32 malelf_binary_open(const char *fname, MalelfBinary *bin)
+_i32 malelf_binary_open(char *fname, MalelfBinary *bin)
 {
         assert(fname != NULL);
         assert(bin != NULL);
@@ -274,6 +274,8 @@ _i32 malelf_binary_open(const char *fname, MalelfBinary *bin)
         if (MALELF_SUCCESS != result) {
                 return result;
         }
+
+        bin->fname = fname;
 
         if (MALELF_ALLOC_MMAP == bin->alloc_type) {
                 result = _malelf_binary_mmap_load(bin);
@@ -302,6 +304,21 @@ _i32 malelf_binary_open(const char *fname, MalelfBinary *bin)
         return result;
 }
 
+static void _malelf_binary_cleanup(MalelfBinary *bin)
+{
+        assert(bin != NULL);
+
+        bin->fname = NULL;
+        bin->fd = -1;
+        bin->mem = NULL;
+        bin->size = 0;
+        bin->elf.ehdr.eh32 = NULL;
+        bin->elf.phdr.ph32 = NULL;
+        bin->elf.shdr.sh32 = NULL;
+        bin->alloc_type = MALELF_ALLOC_NONE;
+        bin->class = MALELF_ELFNONE;        
+}
+
 _i32 malelf_binary_close(MalelfBinary *bin)
 {
         assert(bin != NULL);
@@ -310,11 +327,13 @@ _i32 malelf_binary_close(MalelfBinary *bin)
   
         if (MALELF_ALLOC_MALLOC == bin->alloc_type) {
                 free(bin->mem);
-        } else if (MALELF_ALLOC_MMAP == bin->alloc_type){
-                munmap(bin->mem, bin->size);
-        } else {
-                return MALELF_ERROR;
+        } else if (MALELF_ALLOC_MMAP == bin->alloc_type) {
+                if (-1 == munmap(bin->mem, bin->size)) {
+                        return errno;
+                }
         }
+
+        _malelf_binary_cleanup(bin);
         
         return MALELF_SUCCESS;
 }

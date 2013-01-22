@@ -1,10 +1,15 @@
-TESTS = binary
+SUBDIRS = bintest
 
-check_PROGRAMS = binary
+TESTS = main_test
 
-bin_PROGRAMS = binary
+check_PROGRAMS = main_test
 
-AM_CFLAGS = -Wall -Werror -ggdb
+bin_PROGRAMS = main_test
 
-binary_SOURCES = binary.c
+AM_CFLAGS = 	-Wall -Werror -ggdb \
+		-I../src/include
+
+LDADD=-L../src/.libs -lmalelf -lcunit
+
+main_test_SOURCES = binary_test.c main_test.c
 

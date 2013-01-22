@@ -13,17 +13,51 @@ static void malelf_binary_open_mmap_TEST(void)
 
        malelf_binary_init(&bin);
 
-       result = malelf_binary_open("test/uninfected", &bin);
-       CU_ASSERT(result == MALELF_SUCCESS);
-       result = malelf_binary_close(&bin);
-       CU_ASSERT(result == MALELF_SUCCESS);
+       result = malelf_binary_open("bintest/uninfected", &bin);
 
-       malelf_binary_init(&bin);
+       CU_ASSERT(result == MALELF_SUCCESS);
+       CU_ASSERT(NULL != bin.fname);
+       CU_ASSERT(bin.fd > 2);
+       CU_ASSERT(NULL != bin.mem);
+       CU_ASSERT(bin.size > 0);
+       CU_ASSERT(NULL != bin.elf.ehdr.eh32);
+       CU_ASSERT(NULL != &bin.elf.phdr.ph32);
+       CU_ASSERT(NULL != &bin.elf.shdr.sh32);
+       CU_ASSERT(bin.alloc_type == MALELF_ALLOC_MMAP);
+       CU_ASSERT(bin.class == MALELF_ELF32 ||
+                 bin.class == MALELF_ELF64);
+       result = malelf_binary_close(&bin);
+
+       CU_ASSERT(result == MALELF_SUCCESS);
+       CU_ASSERT(NULL == bin.fname);
+       CU_ASSERT(bin.fd == -1);
+       CU_ASSERT(NULL == bin.mem);
+       CU_ASSERT(bin.size == 0);
+       CU_ASSERT(NULL == bin.elf.ehdr.eh32);
+       CU_ASSERT(NULL == bin.elf.phdr.ph32);
+       CU_ASSERT(NULL == bin.elf.shdr.sh32);
+       CU_ASSERT(bin.alloc_type == MALELF_ALLOC_NONE);
+       CU_ASSERT(bin.class == MALELF_ELFNONE);
        
+       malelf_binary_init(&bin);
+
+       /* Should failed */
        result = malelf_binary_open("/wrong/path/uninfected", &bin);
        CU_ASSERT(result == MALELF_ENOENT);
+       CU_ASSERT(NULL == bin.fname);
+       CU_ASSERT(bin.fd == -1);
+       CU_ASSERT(NULL == bin.mem);
+       CU_ASSERT(bin.size == 0);
+       CU_ASSERT(NULL == bin.elf.ehdr.eh32);
+       CU_ASSERT(NULL == bin.elf.phdr.ph32);
+       CU_ASSERT(NULL == bin.elf.shdr.sh32);
+       CU_ASSERT(bin.alloc_type == MALELF_ALLOC_MMAP);
+       CU_ASSERT(bin.class == MALELF_ELFNONE);
+       
        result = malelf_binary_close(&bin);
-       CU_ASSERT(result == MALELF_SUCCESS);
+
+       /* munmap on a non allocated memory area. */
+       CU_ASSERT(result == MALELF_EINVAL);
 }
 
 static void malelf_binary_open_malloc_TEST(void)
@@ -34,8 +68,19 @@ static void malelf_binary_open_malloc_TEST(void)
        malelf_binary_init(&bin);
        malelf_binary_set_alloc_type(&bin, MALELF_ALLOC_MALLOC);
 
-       result = malelf_binary_open("test/uninfected", &bin);
+       result = malelf_binary_open("bintest/uninfected", &bin);
        CU_ASSERT(result == MALELF_SUCCESS);
+       CU_ASSERT(NULL != bin.fname);
+       CU_ASSERT(bin.fd > 2);
+       CU_ASSERT(NULL != bin.mem);
+       CU_ASSERT(bin.size > 0);
+       CU_ASSERT(NULL != bin.elf.ehdr.eh32);
+       CU_ASSERT(NULL != bin.elf.phdr.ph32);
+       CU_ASSERT(NULL != bin.elf.shdr.sh32);
+       CU_ASSERT(bin.alloc_type == MALELF_ALLOC_MALLOC);
+       CU_ASSERT(bin.class == MALELF_ELF32 ||
+                 bin.class == MALELF_ELF64);
+       
        result = malelf_binary_close(&bin);
        CU_ASSERT(result == MALELF_SUCCESS);
 
@@ -44,7 +89,7 @@ static void malelf_binary_open_malloc_TEST(void)
        result = malelf_binary_open("/wrong/path/uninfected", &bin);
        CU_ASSERT(result == MALELF_ENOENT);
        result = malelf_binary_close(&bin);
-       CU_ASSERT(result == MALELF_SUCCESS);
+       CU_ASSERT(result == MALELF_EINVAL);
 }
 
 

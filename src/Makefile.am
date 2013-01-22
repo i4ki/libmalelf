@@ -9,6 +9,9 @@ AM_CFLAGS=	-ggdb -fPIC -O2 $(CFLAGS_LANGUAGE) \
 lib_LTLIBRARIES=libmalelf.la
 
 libmalelf_la_SOURCES =  binary.c \
+			ehdr.c \
+			phdr.c \
+			shdr.c \
 			error.c \
 			util.c
 
@@ -18,5 +21,8 @@ libmalelf_la_LIBADD=
 
 library_includedir=$(includedir)/malelf
 library_include_HEADERS	=	include/malelf/binary.h \
+				include/malelf/ehdr.h \
+				include/malelf/phdr.h \
+				include/malelf/shdr.h \
 				include/malelf/error.h \
-				include/malelf/util.h
+				include/malelf/util.h 

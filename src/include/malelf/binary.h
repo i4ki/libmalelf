@@ -16,7 +16,7 @@ typedef struct {
 } MalelfFormat;
 
 typedef struct {
-        _u8 *fname;          /* Binary filename */
+        char *fname;          /* Binary filename */
         _i32 fd;             /* Binary file descriptor */
         _u8* mem;            /* Binary content */
         _u32 size;           /* Binary size */
@@ -109,7 +109,7 @@ extern _u8 malelf_binary_get_alloc_type(MalelfBinary *bin);
  *
  *  \return The malelf status.
  */
-extern _i32 malelf_binary_open(const char *fname, MalelfBinary *binary);
+extern _i32 malelf_binary_open(char *fname, MalelfBinary *binary);
 
 
 /*! Load binary file using mmap.
@@ -119,7 +119,7 @@ extern _i32 malelf_binary_open(const char *fname, MalelfBinary *binary);
  *
  *  \return The malelf status.
  */
-extern _i32 malelf_binary_open_mmap(const char *fname, MalelfBinary *binary);
+extern _i32 malelf_binary_open_mmap(char *fname, MalelfBinary *binary);
 
 
 /*! Load binary file using malloc.
@@ -129,7 +129,7 @@ extern _i32 malelf_binary_open_mmap(const char *fname, MalelfBinary *binary);
  *
  *  \return The malelf status.
  */
-extern _i32 malelf_binary_open_malloc(const char *fname, MalelfBinary *binary);
+extern _i32 malelf_binary_open_malloc(char *fname, MalelfBinary *binary);
 
 
 /*! Load Ehdr, Phdr and Shdr.

@@ -18,7 +18,8 @@
 #define MALELF_ELFNONE ELFCLASSNONE
 
 /* System-function used to allocate buffer */
-#define MALELF_ALLOC_MMAP 0
-#define MALELF_ALLOC_MALLOC 1
+#define MALELF_ALLOC_NONE 0
+#define MALELF_ALLOC_MMAP 1
+#define MALELF_ALLOC_MALLOC 2
 
 #endif /* MALELF_DEFINES_H */
