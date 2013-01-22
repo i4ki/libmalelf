@@ -296,7 +296,7 @@ _i32 malelf_binary_open(const char *fname, MalelfBinary *bin)
 
         result = malelf_binary_map(bin);
         if (MALELF_SUCCESS != result) {
-                return MALELF_ERROR;
+                return result;
         }
 
         return result;
