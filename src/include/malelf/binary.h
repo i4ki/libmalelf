@@ -44,36 +44,6 @@ extern _i32 malelf_binary_close(MalelfBinary *bin);
 /* SETTERS */
 
 
-/*! stores the address elf header from binary file.
- *
- *  \param bin a valid malelfbinary object.
- *
- *  \return malelf_success if ehdr was successful set, 
- *          otherwise returns malelf_error.
- */
-extern _i32 malelf_binary_set_ehdr(MalelfBinary *bin);
-
-
-/*! Stores the address Program Header Table from binary file.
- *
- *  \param bin A valid MalelfBinary object.
- *
- *  \return MALELF_SUCCESS if phdr was successful set, 
- *          otherwise returns MALELF_ERROR.
- */
-extern _i32 malelf_binary_set_phdr(MalelfBinary *bin);
-
-
-/*! Stores the address Section Header Table from binary file.
- *
- *  \param bin A valid MalelfBinary object.
- *
- *  \return MALELF_SUCCESS if shdr was successful set, 
- *          otherwise returns MALELF_ERROR.
- */
-extern _i32 malelf_binary_set_shdr(MalelfBinary *bin);
-
-
 /*! Set the alloc type.
  *
  *  \param bin A valid MalelfBinary object.

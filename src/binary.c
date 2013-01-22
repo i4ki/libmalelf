@@ -46,7 +46,7 @@ inline _i32 malelf_binary_get_arch(MalelfBinary *bin)
         return MALELF_ELFNONE;
 }
 
-_i32 malelf_binary_set_ehdr(MalelfBinary *bin)
+static _i32 _malelf_binary_map_ehdr(MalelfBinary *bin)
 {
         assert(MALELF_SUCCESS == malelf_binary_check_elf_magic(bin));
 
@@ -84,7 +84,7 @@ MalelfShdr malelf_binary_get_shdr(MalelfBinary *bin)
         return bin->elf.shdr;
 }
 
-_i32 malelf_binary_set_phdr(MalelfBinary *bin)
+static _i32 _malelf_binary_map_phdr(MalelfBinary *bin)
 {
         MalelfEhdr ehdr;
 
@@ -107,7 +107,7 @@ _i32 malelf_binary_set_phdr(MalelfBinary *bin)
 	return MALELF_SUCCESS;
 }
 
-_i32 malelf_binary_set_shdr(MalelfBinary *bin)
+static _i32 _malelf_binary_map_shdr(MalelfBinary *bin)
 {
         MalelfEhdr ehdr;
 
@@ -136,17 +136,17 @@ _i32 malelf_binary_map(MalelfBinary *bin)
         
         assert(NULL != bin && NULL != bin->mem);
 
-        error = malelf_binary_set_ehdr(bin);
+        error = _malelf_binary_map_ehdr(bin);
         if (MALELF_SUCCESS != error) {
                 return error;
         }
 
-        error = malelf_binary_set_phdr(bin);
+        error = _malelf_binary_map_phdr(bin);
         if (MALELF_SUCCESS != error ) {
                 return error;
         }
 
-        error = malelf_binary_set_shdr(bin);
+        error = _malelf_binary_map_shdr(bin);
         if (MALELF_SUCCESS != error) {
                 return error;
         }
