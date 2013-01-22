@@ -137,7 +137,6 @@ _i32 malelf_binary_map(MalelfBinary *bin)
         assert(NULL != bin && NULL != bin->mem);
 
         error = malelf_binary_set_ehdr(bin);
-        
         if (MALELF_SUCCESS != error) {
                 return error;
         }
@@ -290,11 +289,17 @@ _i32 malelf_binary_open(const char *fname, MalelfBinary *bin)
                 return MALELF_EALLOC;
         }
 
-        if (MALELF_SUCCESS == malelf_binary_check_elf_magic(bin)) {
-                malelf_binary_map(bin);
+        result = malelf_binary_check_elf_magic(bin);
+        if (MALELF_SUCCESS != result) {
+                return result;      
         }
 
-        return MALELF_SUCCESS;
+        result = malelf_binary_map(bin);
+        if (MALELF_SUCCESS != result) {
+                return MALELF_ERROR;
+        }
+
+        return result;
 }
 
 _i32 malelf_binary_close(MalelfBinary *bin)
