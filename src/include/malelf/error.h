@@ -53,8 +53,10 @@ typedef enum {
   MALELF_EINV_OFFSET_ENTRY = 47,
   MALELF_EDISAS = 48,
   MALELF_EEMPTY_FILE = 49,
+  MALELF_EEHDR_OVERFLOW = 50,
+  MALELF_EINVALID_CLASS = 51,
 
-  MALELF_LAST_ERROR = 50
+  MALELF_LAST_ERROR = 52
 } malelf_status;
 
 #define malelf_perror(code) _malelf_perror(code, __FUNCTION__, __FILE__, __LINE__)

@@ -13,8 +13,10 @@ const char* malelf_strerr[] = {
     "Binary has suspect section names",
     "Missing magic bytes in malware",
     "Invalid offset for returned entry point in malware",
-    "Disassembly error."
-    
+    "Disassembly error.",
+    "The file is empty",
+    "The buffer tried to set on MalelfEhdr is bigger than the ElfX_Ehdr structure.",
+    "Invalid ELF Class"    
 };
 
 const char* malelf_strerror(int code) {

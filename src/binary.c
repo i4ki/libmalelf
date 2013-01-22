@@ -46,6 +46,24 @@ inline _i32 malelf_binary_get_arch(MalelfBinary *bin)
         return MALELF_ELFNONE;
 }
 
+MalelfEhdr malelf_binary_get_ehdr(MalelfBinary *bin)
+{
+        assert(NULL != bin);
+	return bin->elf.ehdr;	
+}
+
+MalelfPhdr malelf_binary_get_phdr(MalelfBinary *bin)
+{
+        assert(NULL != bin);
+	return bin->elf.phdr;	
+}
+
+MalelfShdr malelf_binary_get_shdr(MalelfBinary *bin)
+{
+        assert(NULL != bin);
+        return bin->elf.shdr;
+}
+
 static _i32 _malelf_binary_map_ehdr(MalelfBinary *bin)
 {
         assert(MALELF_SUCCESS == malelf_binary_check_elf_magic(bin));
@@ -64,24 +82,6 @@ static _i32 _malelf_binary_map_ehdr(MalelfBinary *bin)
         }
 
         return MALELF_SUCCESS;
-}
-
-MalelfEhdr malelf_binary_get_ehdr(MalelfBinary *bin)
-{
-        assert(NULL != bin);
-	return bin->elf.ehdr;	
-}
-
-MalelfPhdr malelf_binary_get_phdr(MalelfBinary *bin)
-{
-        assert(NULL != bin);
-	return bin->elf.phdr;	
-}
-
-MalelfShdr malelf_binary_get_shdr(MalelfBinary *bin)
-{
-        assert(NULL != bin);
-        return bin->elf.shdr;
 }
 
 static _i32 _malelf_binary_map_phdr(MalelfBinary *bin)

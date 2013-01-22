@@ -21,9 +21,7 @@ typedef union {
         Elf64_Ehdr *eh64;    /*!< 64-bits ELF Header */
 } MalelfEhdr;
 
-
-
-
+extern _i32 malelf_ehdr_set(MalelfEhdr *ehdr, _u8 class, _u8 *mem, _u32 size);
 
 MALELF_END_DECLS
 
