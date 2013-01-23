@@ -215,23 +215,73 @@ _i32 malelf_ehdr_get_machine(MalelfEhdr *ehdr,
 }
 
 
+_i32 malelf_ehdr_get_entry(MalelfEhdr *ehdr, _u8 class, _u32 *entry)
+{
+        switch(class) {
+        case MALELF_ELF32: 
+                if (NULL == ehdr->eh32) {
+                        return MALELF_ERROR;
+                }
+                *entry = ehdr->eh32->e_entry;
+                return MALELF_SUCCESS;
+                break;
 
+        case MALELF_ELF64:
+                if (NULL == ehdr->eh64) {
+                        return MALELF_ERROR;
+                }
+                *entry = ehdr->eh64->e_entry;
+                return MALELF_SUCCESS;
+                break;
+        }
+        return MALELF_ERROR;
+}
 
+_i32 malelf_ehdr_get_phoff(MalelfEhdr *ehdr, _u8 class, _u32 *phoff)
+{
+        switch(class) {
+        case MALELF_ELF32: 
+                if (NULL == ehdr->eh32) {
+                        return MALELF_ERROR;
+                }
+                *phoff = ehdr->eh32->e_phoff;
+                return MALELF_SUCCESS;
+                break;
+
+        case MALELF_ELF64:
+                if (NULL == ehdr->eh64) {
+                        return MALELF_ERROR;
+                }
+                *phoff = ehdr->eh64->e_phoff;
+                return MALELF_SUCCESS;
+                break;
+        }
+        return MALELF_ERROR;
+}
+
+_i32 malelf_ehdr_get_shoff(MalelfEhdr *ehdr, _u8 class, _u32 *shoff)
+{
+        switch(class) {
+        case MALELF_ELF32: 
+                if (NULL == ehdr->eh32) {
+                        return MALELF_ERROR;
+                }
+                *shoff = ehdr->eh32->e_shoff;
+                return MALELF_SUCCESS;
+                break;
+
+        case MALELF_ELF64:
+                if (NULL == ehdr->eh64) {
+                        return MALELF_ERROR;
+                }
+                *shoff = ehdr->eh64->e_shoff;
+                return MALELF_SUCCESS;
+                break;
+        }
+        return MALELF_ERROR;
+}
 
 /*
-_u8 malelf_ehdr_get_entry_point(MalelfEhdr *ehdr)
-{
-}
-
-
-_u8 malelf_ehdr_get_phoff(MalelfEhdr *ehdr)
-{
-}
-
-_u8 malelf_ehdr_get_shoff(MalelfEhdr *ehdr)
-{
-}
-
 _i32 malelf_ehdr_get_flags(MalelfEhdr *ehdr)
 {
 }

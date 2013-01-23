@@ -51,11 +51,11 @@ extern _i32 malelf_ehdr_get_version(MalelfEhdr *ehdr,
                                     _u8 class, 
                                     MalelfEhdrVersion *version);
 
-/*
-extern _u8 malelf_ehdr_get_entry_point(MalelfEhdr *ehdr);
-extern _u8 malelf_ehdr_get_phoff(MalelfEhdr *ehdr);
-extern _u8 malelf_ehdr_get_shoff(MalelfEhdr *ehdr);
-*/
+extern _i32 malelf_ehdr_get_shoff(MalelfEhdr *ehdr, _u8 class, _u32 *shoff);
+
+extern _i32 malelf_ehdr_get_phoff(MalelfEhdr *ehdr, _u8 class, _u32 *pshoff);
+
+extern _i32 malelf_ehdr_get_entry(MalelfEhdr *ehdr, _u8 class, _u32 *entry);
 
 extern _i32 malelf_ehdr_set(MalelfEhdr* ehdr, _u8 class, _u8 *mem, _u32 size);
 
