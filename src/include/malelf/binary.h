@@ -86,47 +86,52 @@ extern void malelf_binary_set_alloc_type(MalelfBinary *bin, _u8 alloc_type);
 /*! Get the architecture class type from binary file.
  *
  *  \param bin A valid MalelfBinary object.
+ *  \param class Architeture class of binary saved.
  *
- *  \return MALELF_ELF32 for arch 32 bits, MALELF_ELF32 for arch 64 bits or
- *          MALELF_ELFNONE for error.
+ *  \return MALELF_SUCCESS if class was successful saved, otherwise
+ *          MALELF_ERROR.
  */
-extern inline _i32 malelf_binary_get_class(MalelfBinary *bin);
+extern inline _i32 malelf_binary_get_class(MalelfBinary *bin, _u8 *class);
 
 
 /*! Get ELF Header.
  *
  *  \param bin A valid MalelfBinary object.
+ *  \param ehdr Saved ELF Header of the binary.
  *
- *  \return A valid MalelfEhdr.
+ *  \return MALELF_SUCCESS if MalelfEhdr was successful saved.
  */
-extern MalelfEhdr malelf_binary_get_ehdr(MalelfBinary *bin);
+extern _u32 malelf_binary_get_ehdr(MalelfBinary *bin, MalelfEhdr *ehdr);
 
 
 /*! Get Program Header Table.
  *
  *  \param bin A valid MalelfBinary object.
+ *  \param phdr Saved Program Header of the binary.
  *
- *  \return A valid MalelfPhdr.
+ *  \return MALELF_SUCCESS if MalelfPhdr was successful saved.
  */
-extern MalelfPhdr malelf_binary_get_phdr(MalelfBinary *bin);
+extern _u32 malelf_binary_get_phdr(MalelfBinary *bin, MalelfPhdr *phdr);
 
 
 /*! Get Section Header Table.
  *
  *  \param bin A valid MalelfBinary object.
+ *  \param shdr Saved Section Header of the binary.
  *
- *  \return A valid MalelfShdr.
+ *  \return MALELF_SUCCESS if MalelfShdr was successful saved.
  */
-extern MalelfShdr malelf_binary_get_shdr(MalelfBinary *bin);
+extern _u32 malelf_binary_get_shdr(MalelfBinary *bin, MalelfShdr *shdr);
 
 
 /*! Get alloc type.
  *
  *  \param bin A valid MalelfBinary object.
+ *  \param alloc_type Saved alloc_type.
  *
- *  \return The alloc type (default: MALELF_ALLOC_MMAP).
+ *  \return MALELF_SUCCESS if alloc_type was successful saved.
  */
-extern _u8 malelf_binary_get_alloc_type(MalelfBinary *bin);
+extern _u32 malelf_binary_get_alloc_type(MalelfBinary *bin, _u8 *alloc_type);
 
 
 /*! Load binary file.
@@ -165,7 +170,7 @@ extern _i32 malelf_binary_open_malloc(char *fname, MalelfBinary *binary);
  *
  *  \return The malelf status (MALELF_SUCCESS or MALELF_ERROR).
  */
-extern _i32 malelf_binary_map(MalelfBinary *bin);
+extern _u32 malelf_binary_map(MalelfBinary *bin);
 
 
 /*! Check ELf magic.
