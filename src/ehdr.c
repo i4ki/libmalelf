@@ -451,3 +451,27 @@ _i32 malelf_ehdr_set(MalelfEhdr* ehdr, _u8 class, _u8 *mem, _u32 size)
         return MALELF_SUCCESS;
 }
 
+_i32 malelf_ehdr_get_flags(MalelfEhdr *ehdr, _u8 class, _u32 *flags)
+{
+        assert(NULL != ehdr);
+
+        switch(class) {
+        case MALELF_ELF32: {
+                if (NULL == ehdr->eh32) {
+                        return MALELF_ERROR;
+                }
+                *flags = ehdr->eh32->e_flags;
+                return MALELF_SUCCESS;
+        } break;
+
+        case MALELF_ELF64: {
+                if (NULL == ehdr->eh64) {
+                        return MALELF_ERROR;
+                }
+                *flags = ehdr->eh64->e_flags;
+                return MALELF_SUCCESS;
+        } break;
+        }
+        return MALELF_ERROR;
+}
+

@@ -247,6 +247,18 @@ extern _i32 malelf_ehdr_get_shstrndx(MalelfEhdr *ehdr,
                                      _u8 class, 
                                      _u32 *shstrndx);
 
+
+/*! Get e_flags member from ELF Header Table.
+ *  
+ *  \param ehdr Valid ELF Header Table object.
+ *  \param class The binary architeture class.
+ *  \param flags Saved e_flags from ELF Header Table.
+ *
+ *  \return MALELF_SUCCESS if flags was successful saved, 
+ *          otherwise returns MALELF_ERROR.  
+ */
+extern _i32 malelf_ehdr_get_flags(MalelfEhdr *ehdr, _u8 class, _u32 *flags);
+
 MALELF_END_DECLS
 
 
