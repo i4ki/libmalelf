@@ -42,48 +42,52 @@
 #include <malelf/binary.h>
 #include <malelf/defines.h>
 
-inline _i32 malelf_binary_get_class(MalelfBinary *bin)
+inline _i32 malelf_binary_get_class(MalelfBinary *bin, _u8 *class)
 {
         assert(NULL != bin && NULL != bin->mem);
-        
+
         if (MALELF_SUCCESS != malelf_binary_check_elf_magic(bin)) {
                 return MALELF_ERROR;
         }
 
-        bin->class = bin->mem[EI_CLASS];
-
         switch (bin->class) {
-        case MALELF_ELF32: return MALELF_ELF32;
-        case MALELF_ELF64: return MALELF_ELF64;
-        default: return MALELF_ELFNONE;
+        case MALELF_ELF32:
+                *class = MALELF_ELF32;
+                break;
+        case MALELF_ELF64:
+                *class = MALELF_ELF64;
+                break;
+        default:
+                *class = MALELF_ELFNONE;
         }
-        
-        return MALELF_ELFNONE;
+
+        return MALELF_SUCCESS;
 }
 
-MalelfEhdr malelf_binary_get_ehdr(MalelfBinary *bin)
+_u32 malelf_binary_get_ehdr(MalelfBinary *bin, MalelfEhdr *ehdr)
 {
-        assert(NULL != bin);
-	return bin->elf.ehdr;	
+        assert(NULL != bin && NULL != ehdr);
+        *ehdr = bin->elf.ehdr;
+        return MALELF_SUCCESS;
 }
 
-MalelfPhdr malelf_binary_get_phdr(MalelfBinary *bin)
+_u32 malelf_binary_get_phdr(MalelfBinary *bin, MalelfPhdr *phdr)
 {
-        assert(NULL != bin);
-	return bin->elf.phdr;	
+        assert(NULL != bin && NULL != phdr);
+        *phdr = bin->elf.phdr;
+        return MALELF_SUCCESS;
 }
 
-MalelfShdr malelf_binary_get_shdr(MalelfBinary *bin)
+_u32 malelf_binary_get_shdr(MalelfBinary *bin, MalelfShdr *shdr)
 {
-        assert(NULL != bin);
-        return bin->elf.shdr;
+        assert(NULL != bin && NULL != shdr);
+        *shdr = bin->elf.shdr;
+        return MALELF_SUCCESS;
 }
 
 static _i32 _malelf_binary_map_ehdr(MalelfBinary *bin)
 {
         assert(MALELF_SUCCESS == malelf_binary_check_elf_magic(bin));
-
-        bin->class = malelf_binary_get_class(bin);
 
         switch (bin->class) {
         case MALELF_ELF32:
@@ -102,10 +106,14 @@ static _i32 _malelf_binary_map_ehdr(MalelfBinary *bin)
 static _i32 _malelf_binary_map_phdr(MalelfBinary *bin)
 {
         MalelfEhdr ehdr;
+        _u32 result;
 
-	ehdr = malelf_binary_get_ehdr(bin);
-        
 	assert(NULL != bin);
+
+	result = malelf_binary_get_ehdr(bin, &ehdr);
+        if (MALELF_SUCCESS != result) {
+                return MALELF_ERROR;
+        }        
 
 	switch (bin->class) {
 	case MALELF_ELFNONE: 
@@ -125,10 +133,14 @@ static _i32 _malelf_binary_map_phdr(MalelfBinary *bin)
 static _i32 _malelf_binary_map_shdr(MalelfBinary *bin)
 {
         MalelfEhdr ehdr;
+        _u32 result;
 
-	ehdr = malelf_binary_get_ehdr(bin);
-        
 	assert(NULL != bin);
+
+	result = malelf_binary_get_ehdr(bin, &ehdr);
+        if (MALELF_SUCCESS != result) {
+                return MALELF_ERROR;
+        }        
 
 	switch (bin->class) {
 	case MALELF_ELFNONE: 
@@ -145,11 +157,13 @@ static _i32 _malelf_binary_map_shdr(MalelfBinary *bin)
 	return MALELF_SUCCESS;
 }
 
-_i32 malelf_binary_map(MalelfBinary *bin)
+_u32 malelf_binary_map(MalelfBinary *bin)
 {
         _i32 error = MALELF_SUCCESS;
         
         assert(NULL != bin && NULL != bin->mem);
+
+        bin->class = bin->mem[EI_CLASS]; 
 
         error = _malelf_binary_map_ehdr(bin);
         if (MALELF_SUCCESS != error) {
@@ -184,10 +198,11 @@ inline _i32 malelf_binary_check_elf_magic(MalelfBinary *bin)
         return valid;
 }
 
-_u8 malelf_binary_get_alloc_type(MalelfBinary *bin)
+_u32 malelf_binary_get_alloc_type(MalelfBinary *bin, _u8 *alloc_type)
 {
         assert(bin != NULL);
-        return bin->alloc_type;
+        *alloc_type = bin->alloc_type;
+        return MALELF_SUCCESS;
 }
 
 void malelf_binary_init(MalelfBinary *bin)
