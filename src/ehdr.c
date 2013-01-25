@@ -9,6 +9,7 @@
 #include <assert.h>
 #include <elf.h>
 
+#include <malelf/defines.h>
 #include <malelf/types.h>
 #include <malelf/error.h>
 #include <malelf/ehdr.h>
@@ -43,26 +44,13 @@ static MalelfEhdrMachine _me_machine[] = {
 
 static _i32 _malelf_ehdr_get_machine(MalelfEhdr *ehdr, _u8 class, _u8 *machine)
 {
+        int error = MALELF_SUCCESS;
+        
         assert(NULL != ehdr);
-         
-        switch(class) {
-        case MALELF_ELF32: {
-                if (NULL == ehdr->eh32) {
-                        return MALELF_ERROR;
-                }
-                *machine = ehdr->eh32->e_machine;
-                return MALELF_SUCCESS;
-        } break;
 
-        case MALELF_ELF64: {
-                if (NULL == ehdr->eh64) {
-                        return MALELF_ERROR;
-                }
-                *machine = ehdr->eh64->e_machine;
-                return MALELF_SUCCESS;
-        } break;
-        }
-        return MALELF_ERROR;
+        *machine = MALELF_HDR(ehdr, class, e_machine, error);
+
+        return error;
 }
 
 
