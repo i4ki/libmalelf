@@ -22,4 +22,13 @@
 #define MALELF_ALLOC_MMAP 1
 #define MALELF_ALLOC_MALLOC 2
 
+#define MALELF_HDR(hdr, class, field, error)  \
+        ((class == MALELF_ELF32) ?      \
+                (hdr->h32->field) : \
+        ((class == MALELF_ELF64) ? \
+                (hdr->h64->field) : (error = MALELF_ERROR)))
+
+#define MALELF_ELF(bin, hdr, field, error)                    \
+  MALELF_HDR(bin->elf.hdr, bin->class, field, error)
+
 #endif /* MALELF_DEFINES_H */
