@@ -1,5 +1,5 @@
-#ifndef __FB_USER_TEST__
-#define __FB_USER_TEST__
+#ifndef __BINARY_TEST__
+#define __BINARY_TEST__
 
 #include "../src/include/malelf/defines.h"
 #include "../src/include/malelf/binary.h"
@@ -15,4 +15,4 @@ extern CU_ErrorCode binary_get_test_suite(CU_pSuite *rsuite);
 MALELF_END_DECLS
 
 
-#endif
+#endif /* __BINARY_TEST__ */
