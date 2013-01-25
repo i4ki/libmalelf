@@ -87,10 +87,10 @@ static _i32 _malelf_binary_map_ehdr(MalelfBinary *bin)
 
         switch (bin->class) {
         case MALELF_ELF32:
-                bin->elf.ehdr.eh32 = (Elf32_Ehdr *) bin->mem;
+                bin->elf.ehdr.h32 = (Elf32_Ehdr *) bin->mem;
                 break;
         case MALELF_ELF64:
-                bin->elf.ehdr.eh64 = (Elf64_Ehdr *) bin->mem;
+                bin->elf.ehdr.h64 = (Elf64_Ehdr *) bin->mem;
                 break;
         default:
                 return MALELF_ERROR;
@@ -112,10 +112,10 @@ static _i32 _malelf_binary_map_phdr(MalelfBinary *bin)
 		return MALELF_ERROR; 
 		break;
 	case MALELF_ELF32: 
-		bin->elf.phdr.ph32 = (Elf32_Phdr *) (bin->mem + ehdr.eh32->e_phoff);
+		bin->elf.phdr.h32 = (Elf32_Phdr *) (bin->mem + ehdr.h32->e_phoff);
 		break;
 	case MALELF_ELF64: 
-		bin->elf.phdr.ph64 = (Elf64_Phdr *) (bin->mem + ehdr.eh64->e_phoff);
+		bin->elf.phdr.h64 = (Elf64_Phdr *) (bin->mem + ehdr.h64->e_phoff);
 		break;
 	}
 
@@ -135,10 +135,10 @@ static _i32 _malelf_binary_map_shdr(MalelfBinary *bin)
 		return MALELF_ERROR; 
 		break;
 	case MALELF_ELF32: 
-		bin->elf.shdr.sh32 = (Elf32_Shdr *) (bin->mem + ehdr.eh32->e_shoff);
+		bin->elf.shdr.h32 = (Elf32_Shdr *) (bin->mem + ehdr.h32->e_shoff);
 		break;
 	case MALELF_ELF64: 
-		bin->elf.shdr.sh64 = (Elf64_Shdr *) (bin->mem + ehdr.eh64->e_shoff);
+		bin->elf.shdr.h64 = (Elf64_Shdr *) (bin->mem + ehdr.h64->e_shoff);
 		break;
 	}
 
@@ -196,9 +196,9 @@ void malelf_binary_init(MalelfBinary *bin)
         bin->fd = -1;
         bin->mem = NULL;
         bin->size = 0;
-        bin->elf.ehdr.eh32 = NULL;
-        bin->elf.phdr.ph32 = NULL;
-        bin->elf.shdr.sh32 = NULL;
+        bin->elf.ehdr.h32 = NULL;
+        bin->elf.phdr.h32 = NULL;
+        bin->elf.shdr.h32 = NULL;
         bin->alloc_type = MALELF_ALLOC_MMAP;
         bin->class = MALELF_ELFNONE;
 }
@@ -327,9 +327,9 @@ static void _malelf_binary_cleanup(MalelfBinary *bin)
         bin->fd = -1;
         bin->mem = NULL;
         bin->size = 0;
-        bin->elf.ehdr.eh32 = NULL;
-        bin->elf.phdr.ph32 = NULL;
-        bin->elf.shdr.sh32 = NULL;
+        bin->elf.ehdr.h32 = NULL;
+        bin->elf.phdr.h32 = NULL;
+        bin->elf.shdr.h32 = NULL;
         bin->alloc_type = MALELF_ALLOC_NONE;
         bin->class = MALELF_ELFNONE;        
 }

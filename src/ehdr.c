@@ -84,81 +84,65 @@ static _i32 _malelf_ehdr_get_machine(MalelfEhdr *ehdr, _u8 class, _u8 *machine)
 
 static _i32 _malelf_ehdr_get_type(MalelfEhdr *ehdr, _u8 class, _u16 *type)
 {
+        int error = MALELF_SUCCESS;
         assert(NULL != ehdr);
-         
-        switch(class) {
-        case MALELF_ELF32:
-                if (NULL == ehdr->eh32) {
-                        return MALELF_ERROR;
-                }
-                *type = ehdr->eh32->e_type;
-                return MALELF_SUCCESS;
-                break;
 
-        case MALELF_ELF64:
-                if (NULL == ehdr->eh64) {
-                        return MALELF_ERROR;
-                }
-                *type = ehdr->eh64->e_type;
-                return MALELF_SUCCESS;
-                break;
-        }
-        return MALELF_ERROR;
+        *type = MALELF_HDR(ehdr, class, e_type, error);
+         
+        return error;
 }
 
 static _i32 _malelf_ehdr_get_version(MalelfEhdr *ehdr, _u8 class, _u8 *version)
 {
+        int error = MALELF_SUCCESS;
         assert(NULL != ehdr);
-         
-        switch(class) {
-        case MALELF_ELF32: {
-                if (NULL == ehdr->eh32) {
-                        return MALELF_ERROR;
-                }
-                *version = ehdr->eh32->e_version;
-                return MALELF_SUCCESS;
-        } break;
 
-        case MALELF_ELF64: {
-                if (NULL == ehdr->eh64) {
-                        return MALELF_ERROR;
-                }
-                *version = ehdr->eh64->e_version;
-                return MALELF_SUCCESS;
-        } break;
-        }
-        return MALELF_ERROR;
+        *version = MALELF_HDR(ehdr, class, e_version, error);
+
+        return error;
 }
 
 _i32 malelf_ehdr_get_version(MalelfEhdr *ehdr, 
                              _u8 class, 
                              MalelfEhdrVersion *me_version)
 {
+        int error = MALELF_SUCCESS;
         _u8 version;
 
-        if (MALELF_SUCCESS != _malelf_ehdr_get_version(ehdr, class, &version)) {
-                return MALELF_ERROR;
+        error = _malelf_ehdr_get_version(ehdr, class, &version);
+
+        if (MALELF_SUCCESS != error) {
+                return error;
         }
+
         switch(version) {
         case EV_NONE: 
                 *me_version = _me_version[0];
                 break; 
         case EV_CURRENT: 
                 *me_version = _me_version[1];
-                break; 
+                break;
+        default:
+                error = MALELF_ERROR;
         }
-        return MALELF_SUCCESS;
+        
+        return error;
 }
 
 _i32 malelf_ehdr_get_type (MalelfEhdr *ehdr, 
                            _u8 class, 
                            MalelfEhdrType *me_type)
 {
+        int error = MALELF_SUCCESS;
         _u16 type;
 
-        if (MALELF_SUCCESS != _malelf_ehdr_get_type(ehdr, class, &type)) {
-                return MALELF_ERROR;
+        error = _malelf_ehdr_get_type(ehdr, class, &type);
+
+        if (MALELF_SUCCESS != error) {
+                me_type = NULL;
+                return error;
         }
+        
         switch(type) {
         case ET_NONE: 
                 *me_type = _me_type[0];
@@ -181,8 +165,12 @@ _i32 malelf_ehdr_get_type (MalelfEhdr *ehdr,
         case ET_HIPROC: 
                 *me_type = _me_type[6];
                 break;
+        default:
+                me_type = NULL;
+                error = MALELF_ERROR;
         }
-        return MALELF_SUCCESS;
+        
+        return error;
 }
 
 
@@ -191,13 +179,13 @@ _i32 malelf_ehdr_get_machine(MalelfEhdr *ehdr,
                              _u8 class, 
                              MalelfEhdrMachine *me_machine)
 {
-
+        int error = MALELF_SUCCESS;
         _u8 machine;
 
-        if (MALELF_SUCCESS != _malelf_ehdr_get_machine(ehdr, 
-                                                       class, 
-                                                       &machine)) {
-                return MALELF_ERROR;
+        error = _malelf_ehdr_get_machine(ehdr, class, &machine);
+
+        if (MALELF_SUCCESS != error) {
+                return error;
         }
 
         switch(machine) {
@@ -225,75 +213,39 @@ _i32 malelf_ehdr_get_machine(MalelfEhdr *ehdr,
         case EM_MIPS:
                 *me_machine = _me_machine[7];
                 break;
+        default:
+                me_machine = NULL;
+                error = MALELF_ERROR;
         }
-        return MALELF_SUCCESS;
+        return error;
 }
 
 
 _i32 malelf_ehdr_get_entry(MalelfEhdr *ehdr, _u8 class, _u32 *entry)
 {
-        switch(class) {
-        case MALELF_ELF32: 
-                if (NULL == ehdr->eh32) {
-                        return MALELF_ERROR;
-                }
-                *entry = ehdr->eh32->e_entry;
-                return MALELF_SUCCESS;
-                break;
+        int error = MALELF_SUCCESS;
 
-        case MALELF_ELF64:
-                if (NULL == ehdr->eh64) {
-                        return MALELF_ERROR;
-                }
-                *entry = ehdr->eh64->e_entry;
-                return MALELF_SUCCESS;
-                break;
-        }
-        return MALELF_ERROR;
+        *entry = MALELF_HDR(ehdr, class, e_entry, error);
+
+        return error;
 }
 
 _i32 malelf_ehdr_get_phoff(MalelfEhdr *ehdr, _u8 class, _u32 *phoff)
 {
-        switch(class) {
-        case MALELF_ELF32: 
-                if (NULL == ehdr->eh32) {
-                        return MALELF_ERROR;
-                }
-                *phoff = ehdr->eh32->e_phoff;
-                return MALELF_SUCCESS;
-                break;
+        int error = MALELF_SUCCESS;
 
-        case MALELF_ELF64:
-                if (NULL == ehdr->eh64) {
-                        return MALELF_ERROR;
-                }
-                *phoff = ehdr->eh64->e_phoff;
-                return MALELF_SUCCESS;
-                break;
-        }
-        return MALELF_ERROR;
+        *phoff = MALELF_HDR(ehdr, class, e_phoff, error);
+
+        return error;
 }
 
 _i32 malelf_ehdr_get_shoff(MalelfEhdr *ehdr, _u8 class, _u32 *shoff)
 {
-        switch(class) {
-        case MALELF_ELF32: 
-                if (NULL == ehdr->eh32) {
-                        return MALELF_ERROR;
-                }
-                *shoff = ehdr->eh32->e_shoff;
-                return MALELF_SUCCESS;
-                break;
+        int error = MALELF_SUCCESS;
 
-        case MALELF_ELF64:
-                if (NULL == ehdr->eh64) {
-                        return MALELF_ERROR;
-                }
-                *shoff = ehdr->eh64->e_shoff;
-                return MALELF_SUCCESS;
-                break;
-        }
-        return MALELF_ERROR;
+        *shoff = MALELF_HDR(ehdr, class, e_shoff, error);
+
+        return error;
 }
 
 /*
@@ -304,139 +256,66 @@ _i32 malelf_ehdr_get_flags(MalelfEhdr *ehdr)
 
 _i32 malelf_ehdr_get_ehsize(MalelfEhdr *ehdr, _u8 class, _u32 *size)
 {
-        switch(class) {
-        case MALELF_ELF32: 
-                if (NULL == ehdr->eh32) {
-                        return MALELF_ERROR;
-                }
-                *size = ehdr->eh32->e_ehsize;
-                return MALELF_SUCCESS;
-             break;
+        int error = MALELF_SUCCESS;
 
-        case MALELF_ELF64:
-                if (NULL == ehdr->eh64) {
-                        return MALELF_ERROR;
-                }
-                *size = ehdr->eh64->e_ehsize;
-                return MALELF_SUCCESS;
-             break;
-        }
-        return MALELF_ERROR;
+        *size = MALELF_HDR(ehdr, class, e_ehsize, error);
+
+        return error;
 }
 
 
 _i32 malelf_ehdr_get_phentsize(MalelfEhdr *ehdr, _u8 class, _u32 *phentsize)
 {
-        switch(class) {
-        case MALELF_ELF32: 
-                if (NULL == ehdr->eh32) {
-                        return MALELF_ERROR;
-                }
-                *phentsize = ehdr->eh32->e_phentsize;
-                return MALELF_SUCCESS;
-             break;
+        int error = MALELF_SUCCESS;
 
-        case MALELF_ELF64:
-                if (NULL == ehdr->eh64) {
-                        return MALELF_ERROR;
-                }
-                *phentsize = ehdr->eh64->e_phentsize;
-                return MALELF_SUCCESS;
-             break;
-        }
-        return MALELF_ERROR;
+        *phentsize = MALELF_HDR(ehdr, class, e_phentsize, error);
+
+        return error;
 }
 
 
 _i32 malelf_ehdr_get_phnum(MalelfEhdr *ehdr, _u8 class, _u32 *phnum)
 {
-        switch(class) {
-        case MALELF_ELF32: 
-                if (NULL == ehdr->eh32) {
-                        return MALELF_ERROR;
-                }
-                *phnum = ehdr->eh32->e_phnum;
-                return MALELF_SUCCESS;
-             break;
+        int error = MALELF_SUCCESS;
 
-        case MALELF_ELF64:
-                if (NULL == ehdr->eh64) {
-                        return MALELF_ERROR;
-                }
-                *phnum = ehdr->eh64->e_phnum;
-                return MALELF_SUCCESS;
-             break;
-        }
-        return MALELF_ERROR;
+        assert(ehdr != NULL);
+
+        *phnum = MALELF_HDR(ehdr, class, e_phnum, error);
+
+        return MALELF_SUCCESS;
 }
 
 
 _i32 malelf_ehdr_get_shentsize(MalelfEhdr *ehdr, _u8 class, _u32 *shentsize)
 {
-        switch(class) {
-        case MALELF_ELF32: 
-                if (NULL == ehdr->eh32) {
-                        return MALELF_ERROR;
-                }
-                *shentsize = ehdr->eh32->e_shentsize;
-                return MALELF_SUCCESS;
-             break;
+        int error = MALELF_SUCCESS;
+        assert(NULL != ehdr);
 
-        case MALELF_ELF64:
-                if (NULL == ehdr->eh64) {
-                        return MALELF_ERROR;
-                }
-                *shentsize = ehdr->eh64->e_shentsize;
-                return MALELF_SUCCESS;
-             break;
-        }
-        return MALELF_ERROR;
+        *shentsize = MALELF_HDR(ehdr, class, e_shentsize, error);
+
+        return error;
 }
 
 
 _i32 malelf_ehdr_get_shnum(MalelfEhdr *ehdr, _u8 class, _u32 *shnum)
 {
-        switch(class) {
-        case MALELF_ELF32: 
-                if (NULL == ehdr->eh32) {
-                        return MALELF_ERROR;
-                }
-                *shnum = ehdr->eh32->e_shnum;
-                return MALELF_SUCCESS;
-             break;
+        int error = MALELF_SUCCESS;
+        assert(NULL != ehdr);
 
-        case MALELF_ELF64:
-                if (NULL == ehdr->eh64) {
-                        return MALELF_ERROR;
-                }
-                *shnum = ehdr->eh64->e_shnum;
-                return MALELF_SUCCESS;
-             break;
-        }
-        return MALELF_ERROR;
+        *shnum = MALELF_HDR(ehdr, class, e_shnum, error);
+
+        return error;
 }
 
 
 _i32 malelf_ehdr_get_shstrndx(MalelfEhdr *ehdr, _u8 class, _u32 *shstrndx)
 {
-        switch(class) {
-        case MALELF_ELF32: 
-                if (NULL == ehdr->eh32) {
-                        return MALELF_ERROR;
-                }
-                *shstrndx = ehdr->eh32->e_shstrndx;
-                return MALELF_SUCCESS;
-             break;
+        int error = MALELF_SUCCESS;
+        assert(NULL != ehdr);
 
-        case MALELF_ELF64:
-                if (NULL == ehdr->eh64) {
-                        return MALELF_ERROR;
-                }
-                *shstrndx = ehdr->eh64->e_shstrndx;
-                return MALELF_SUCCESS;
-             break;
-        }
-        return MALELF_ERROR;
+        *shstrndx = MALELF_HDR(ehdr, class, e_shstrndx, error);
+
+        return error;
 }
 
 _i32 malelf_ehdr_set(MalelfEhdr* ehdr, _u8 class, _u8 *mem, _u32 size) 
@@ -450,14 +329,14 @@ _i32 malelf_ehdr_set(MalelfEhdr* ehdr, _u8 class, _u8 *mem, _u32 size)
                         return MALELF_EEHDR_OVERFLOW;
                 }
 
-                memcpy(ehdr->eh32, mem, size);
+                memcpy(ehdr->h32, mem, size);
                 break;
         case MALELF_ELF64:
                 if (size > sizeof(Elf64_Ehdr)) {
                         return MALELF_EEHDR_OVERFLOW;
                 }
 
-                memcpy(ehdr->eh64, mem, size);
+                memcpy(ehdr->h64, mem, size);
                 break;
         default:
                 return MALELF_EINVALID_CLASS;
@@ -468,25 +347,11 @@ _i32 malelf_ehdr_set(MalelfEhdr* ehdr, _u8 class, _u8 *mem, _u32 size)
 
 _i32 malelf_ehdr_get_flags(MalelfEhdr *ehdr, _u8 class, _u32 *flags)
 {
+        int error = MALELF_SUCCESS;
         assert(NULL != ehdr);
 
-        switch(class) {
-        case MALELF_ELF32: {
-                if (NULL == ehdr->eh32) {
-                        return MALELF_ERROR;
-                }
-                *flags = ehdr->eh32->e_flags;
-                return MALELF_SUCCESS;
-        } break;
+        *flags = MALELF_HDR(ehdr, class, e_flags, error);
 
-        case MALELF_ELF64: {
-                if (NULL == ehdr->eh64) {
-                        return MALELF_ERROR;
-                }
-                *flags = ehdr->eh64->e_flags;
-                return MALELF_SUCCESS;
-        } break;
-        }
-        return MALELF_ERROR;
+        return error;
 }
 
