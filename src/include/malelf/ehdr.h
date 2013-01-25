@@ -17,8 +17,8 @@ MALELF_BEGIN_DECLS
  *
  */
 typedef union {
-        Elf32_Ehdr *eh32;    /*!< 32-bits ELF Header */
-        Elf64_Ehdr *eh64;    /*!< 64-bits ELF Header */
+        Elf32_Ehdr *h32;    /*!< 32-bits ELF Header */
+        Elf64_Ehdr *h64;    /*!< 64-bits ELF Header */
 } MalelfEhdr;
 
 typedef struct {
