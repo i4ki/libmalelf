@@ -1,4 +1,4 @@
-AC_PREREQ([2.68])
+#AC_PREREQ([2.68])
 AC_INIT([libmalelf], [1.0], [natel@secplus.com.br])
 
 AC_MSG_RESULT([Welcome to AutoHELL])
@@ -10,12 +10,25 @@ AC_CONFIG_SRCDIR([src/binary.c])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])
 
-HAVE_TESTS=true
+HAVE_TESTS="yes"
 dnl Enable unit-tests
 AC_ARG_ENABLE([tests],
     AS_HELP_STRING([--enable-tests], [Enable Malelficus Unit Tests]))
 
-AS_IF([test "x$enable_tests" = "xyes"], [HAVE_TESTS=true], [HAVE_TESTS=false])
+with_cunit_dir=
+AC_ARG_WITH([cunit-dir],
+            [AS_HELP_STRING([--with-cunit-dir],
+              [Use this CUnit prefix directory @<:@default=/usr@:>@])],
+            [],
+            [])
+
+if test "$with_cunit_dir" != ""; then
+   extra_includes="$with_cunit_dir"
+fi
+
+AC_SUBST(extra_includes)
+
+AS_IF([test "x$enable_tests" = "xyes"], [HAVE_TESTS=yes], [HAVE_TESTS=no])
 
 # Checks for programs.
 AC_PROG_CC
@@ -24,7 +37,35 @@ AC_CHECK_PROG([HAVE_NASM], [nasm], [true], [false])
 # Checks for libraries.
 
 # Checks for header files.
-AC_CHECK_HEADERS([fcntl.h stdlib.h string.h unistd.h elf.h])
+AC_CHECK_HEADERS([  fcntl.h \
+		    stdlib.h \
+		    string.h \
+		    unistd.h \
+		    elf.h \
+		    CUnit/CUnit.h])
+
+if test "x$HAVE_TESTS" = "xyes"; then
+   if test "x$ac_cv_header_CUnit_CUnit_h" = "xno"; then
+      if test "$with_cunit_dir" != ""; then
+      	 AC_MSG_ERROR(["CUnit headers not found at $with_cunit_dir/include/CUnit/CUnit.h"])
+      fi
+      AC_MSG_ERROR([CUnit headers not found... 
+     if installed, please use --with-cunit-prefix=/dir
+     To install the CUnit on debian based distros use: 
+         sudo apt-get install libcunit1-dev
+
+     If you doesn't want run tests, remove the --enable-tests...])
+   fi
+fi
+
+INCLUDE_TESTS=
+AC_SUBST(HAVE_TESTS)
+
+if test "x$HAVE_TESTS" = "xyes"; then
+   INCLUDE_TESTS=test
+fi
+
+AC_SUBST([INCLUDE_TESTS])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_TYPE_SIZE_T
@@ -93,7 +134,7 @@ AC_MSG_RESULT([
 0011                                                                        0100
 0101 Configuration:                                                         0110])
 
-if test "x$HAVE_TESTS" = "xtrue"; then
+if test "x$HAVE_TESTS" = "xyes"; then
    AC_MSG_RESULT([0111    Unit tests: enabled                                                 1000])
 else
    AC_MSG_RESULT([0111    Unit tests: disabled (use ./configure --enable-tests to enable      1000])
@@ -102,7 +143,7 @@ fi
 if test "x$HAVE_NASM" = "xtrue"; then
    AC_MSG_RESULT([1001    NASM: installed                                                     1010])
 else
-   AC_MSG_RESULT([1001    NASM: not installed... you need install nasm.                       1010])
+   AC_MSG_RESULT([1001    NASM: not installed... required to run tests                        1010])
 fi
 
 AC_MSG_RESULT([1011                                                                        1100])
