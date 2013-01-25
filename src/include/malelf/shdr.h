@@ -16,8 +16,8 @@ MALELF_BEGIN_DECLS
  *
  */
 typedef union {
-        Elf32_Shdr *sh32;    /*!< 32-bits ELF Section Headers */
-        Elf64_Shdr *sh64;    /*!< 64-bits ELF Section Headers */
+        Elf32_Shdr *h32;    /*!< 32-bits ELF Section Headers */
+        Elf64_Shdr *h64;    /*!< 64-bits ELF Section Headers */
 } MalelfShdr;
 
 
