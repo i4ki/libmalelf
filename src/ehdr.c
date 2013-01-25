@@ -1,3 +1,30 @@
+/* 
+ * The malelf library was written in pure C, with the objective to 
+ * provide a quick and easy way a set functions for programmers to 
+ * manipulate ELF files. With libmalelf can dissect and infect ELF 
+ * files. Evil using this library is the responsibility of the programmer.
+ *
+ * Author: Tiago Natel de Moura <tiago4orion@gmail.com>
+ *
+ * Contributor: Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
+ *              Paulo Leonardo Benatto <benatto@gmail.com>
+ *
+ * Copyright 2012, 2013 by Tiago Natel de Moura. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
@@ -437,5 +464,29 @@ _i32 malelf_ehdr_set(MalelfEhdr* ehdr, _u8 class, _u8 *mem, _u32 size)
         }
 
         return MALELF_SUCCESS;
+}
+
+_i32 malelf_ehdr_get_flags(MalelfEhdr *ehdr, _u8 class, _u32 *flags)
+{
+        assert(NULL != ehdr);
+
+        switch(class) {
+        case MALELF_ELF32: {
+                if (NULL == ehdr->eh32) {
+                        return MALELF_ERROR;
+                }
+                *flags = ehdr->eh32->e_flags;
+                return MALELF_SUCCESS;
+        } break;
+
+        case MALELF_ELF64: {
+                if (NULL == ehdr->eh64) {
+                        return MALELF_ERROR;
+                }
+                *flags = ehdr->eh64->e_flags;
+                return MALELF_SUCCESS;
+        } break;
+        }
+        return MALELF_ERROR;
 }
 
