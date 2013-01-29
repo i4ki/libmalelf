@@ -248,12 +248,6 @@ _i32 malelf_ehdr_get_shoff(MalelfEhdr *ehdr, _u8 class, _u32 *shoff)
         return error;
 }
 
-/*
-_i32 malelf_ehdr_get_flags(MalelfEhdr *ehdr)
-{
-}
-*/
-
 _i32 malelf_ehdr_get_ehsize(MalelfEhdr *ehdr, _u8 class, _u32 *size)
 {
         int error = MALELF_SUCCESS;
