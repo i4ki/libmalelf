@@ -375,7 +375,7 @@ _i32 malelf_binary_close(MalelfBinary *bin)
  * Functions to get other informations of ELF
  */
 
-_u32 _malelf_binary_get_segment_32(_u32 segment_idx,
+static _u32 _malelf_binary_get_segment_32(_u32 segment_idx,
 				   MalelfBinary *bin,
 				   MalelfSegment *segment)
 {
@@ -403,7 +403,7 @@ _u32 _malelf_binary_get_segment_32(_u32 segment_idx,
 	return MALELF_SUCCESS;
 }
 
-_u32 _malelf_binary_get_segment_64(_u32 segment_idx,
+static _u32 _malelf_binary_get_segment_64(_u32 segment_idx,
 				  MalelfBinary *bin,
 				  MalelfSegment *segment) 
 {
@@ -451,6 +451,239 @@ _u32 malelf_binary_get_segment(_u32 segment_idx,
 		error = _malelf_binary_get_segment_64(segment_idx,
 						      bin,
 						      segment);
+		break;
+	default:
+		error = MALELF_EINVALID_CLASS;
+	}
+
+	return error;
+}
+
+inline char* _malelf_binary_get_section_name(_u32 section_idx, 
+					     MalelfBinary *bin)
+{
+	int error = MALELF_SUCCESS;
+	MalelfShdr ushdr;
+	Elf32_Shdr *shdr32;
+	Elf64_Shdr *shdr64;
+
+	error = malelf_binary_get_shdr(bin, &ushdr);
+
+	if (error != MALELF_SUCCESS) {
+		return NULL;
+	}
+
+	switch (bin->class) {
+	case MALELF_ELF32: {
+		shdr32 = ushdr.h32;
+		shdr32 += section_idx;
+		
+		return (char *)(bin->mem + 
+			bin->elf.shdr.h32[bin->elf.ehdr.h32->e_shstrndx].sh_offset + 
+			shdr32->sh_name);
+	}
+	case MALELF_ELF64: {
+		shdr64 = ushdr.h64;
+		shdr64 += section_idx;
+
+		return (char *)(bin->mem + 
+			bin->elf.shdr.h64[bin->elf.ehdr.h64->e_shstrndx].sh_offset + 
+			shdr64->sh_name);
+	}
+	default:
+		return NULL;
+	}
+
+	return NULL;	
+}
+
+_u32 malelf_binary_get_section_name(_u32 section_idx, 
+				    MalelfBinary *bin,
+				    char **name)
+{
+	char *n = _malelf_binary_get_section_name(section_idx, bin);
+	*name = n;
+	return (*name == NULL) ? MALELF_ERROR : MALELF_SUCCESS;
+}
+
+static _u32 _malelf_binary_get_section32(_u32 section_idx,
+					 MalelfBinary *bin,
+					 MalelfSection *section)
+{
+	int error = MALELF_SUCCESS;
+	Elf32_Shdr *shdr32;
+
+	MalelfShdr ushdr;
+
+	error = malelf_binary_get_shdr(bin, &ushdr);
+
+	if (error != MALELF_SUCCESS) {
+		return error;
+	}
+
+	shdr32 = ushdr.h32;
+
+	shdr32 += section_idx;
+
+	section->name = _malelf_binary_get_section_name(section_idx, bin);
+	section->offset = shdr32->sh_offset;
+	section->size = shdr32->sh_size;
+	section->shdr = &ushdr;
+	
+	return MALELF_SUCCESS;
+}
+
+static _u32 _malelf_binary_get_section64(_u32 section_idx,
+					 MalelfBinary *bin,
+					 MalelfSection *section)
+{
+	int error = MALELF_SUCCESS;
+	Elf64_Shdr *shdr64;
+	MalelfShdr ushdr;
+
+	error = malelf_binary_get_shdr(bin, &ushdr);
+
+	if (error != MALELF_SUCCESS) {
+		return error;
+	}
+
+	shdr64 = ushdr.h64;
+
+	shdr64 += section_idx;
+
+	section->name = _malelf_binary_get_section_name(section_idx, bin);
+	section->offset = shdr64->sh_offset;
+	section->size = shdr64->sh_size;
+	
+	return MALELF_SUCCESS;
+}
+
+_u32 malelf_binary_get_section(_u32 section_idx, 
+			       MalelfBinary *bin, 
+			       MalelfSection *section)
+{
+	int error = MALELF_SUCCESS;
+
+	assert(NULL != bin && NULL != bin->mem);
+
+	switch (bin->class) {
+	case MALELF_ELF32:
+		error = _malelf_binary_get_section32(section_idx, bin, section);
+		break;
+	case MALELF_ELF64:
+		error = _malelf_binary_get_section64(section_idx, bin, section);
+		break;
+	default:
+		error = MALELF_EINVALID_CLASS;
+	}
+
+	return error;
+}
+
+static _u32 _malelf_binary_get_section_by_name32(const char *name,
+						 MalelfBinary *bin,
+						 MalelfSection *section)
+{
+	int error = MALELF_SUCCESS;
+	MalelfShdr ushdr;
+	MalelfEhdr uehdr;
+	Elf32_Shdr *sections;
+	Elf32_Ehdr *ehdr;
+	_u32 i = 0;
+
+	error = malelf_binary_get_shdr(bin, &ushdr);
+	if (error != MALELF_SUCCESS) {
+		return error;
+	}
+
+	sections = ushdr.h32;
+
+	error = malelf_binary_get_ehdr(bin, &uehdr);
+	if (error != MALELF_SUCCESS) {
+		return error;
+	}
+
+	ehdr = uehdr.h32;
+
+	/* if the section is not found returns error */
+	error = MALELF_ERROR;
+
+	for (i = 0; i < ehdr->e_shnum; i++) {
+		Elf32_Shdr *s = &sections[i];
+		if (s->sh_type == SHT_NULL)
+			continue;
+
+		char *section_name = _malelf_binary_get_section_name(i, bin);
+		if (section_name != NULL && !strcmp(name, section_name)) {
+			return _malelf_binary_get_section32(i, bin, section);
+			
+		}
+	}
+	
+	return error;
+}
+
+_u32 _malelf_binary_get_section_by_name64(const char *name, 
+					MalelfBinary *bin,
+					MalelfSection *section)
+{
+	int error = MALELF_SUCCESS;
+	MalelfShdr ushdr;
+	MalelfEhdr uehdr;
+	Elf64_Shdr *sections;
+	Elf64_Ehdr *ehdr;
+	_u32 i = 0;
+
+	error = malelf_binary_get_shdr(bin, &ushdr);
+	if (error != MALELF_SUCCESS) {
+		return error;
+	}
+
+	sections = ushdr.h64;
+
+	error = malelf_binary_get_ehdr(bin, &uehdr);
+	if (error != MALELF_SUCCESS) {
+		return error;
+	}
+
+	ehdr = uehdr.h64;
+
+	/* if the section is not found returns error */
+	error = MALELF_ERROR;
+
+	for (i = 0; i < ehdr->e_shnum; i++) {
+		Elf64_Shdr *s = &sections[i];
+		if (s->sh_type == SHT_NULL)
+			continue;
+
+		char *section_name = _malelf_binary_get_section_name(i, bin);
+		if (section_name != NULL && !strcmp(name, section_name)) {
+			return _malelf_binary_get_section64(i, bin, section);
+			
+		}
+	}
+	
+	return error;	
+}
+
+_u32 malelf_binary_get_section_by_name(const char *name, 
+				       MalelfBinary *bin,
+				       MalelfSection *section)
+{
+	int error = MALELF_SUCCESS;
+	assert(NULL != name && NULL != bin && NULL != bin->mem);
+
+
+	switch (bin->class) {
+	case MALELF_ELF32:
+		error = _malelf_binary_get_section_by_name32(name, 
+							   bin,
+							   section);
+		break;
+	case MALELF_ELF64:
+		error = _malelf_binary_get_section_by_name64(name,
+							     bin,
+							     section);
 		break;
 	default:
 		error = MALELF_EINVALID_CLASS;

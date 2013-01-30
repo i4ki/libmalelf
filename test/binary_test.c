@@ -113,6 +113,58 @@ static void malelf_binary_open_malloc_TEST(void)
        CU_ASSERT(bin.class == MALELF_ELFNONE);
 }
 
+static void malelf_binary_get_section_name_TEST()
+{
+       MalelfBinary bin;
+       _i32 result;
+       char *name = NULL;
+
+       malelf_binary_init(&bin);
+
+       result = malelf_binary_open("bintest/uninfected", &bin);
+
+       CU_ASSERT(result == MALELF_SUCCESS);
+       CU_ASSERT(NULL != bin.fname);
+
+       result = malelf_binary_get_section_name(1, &bin, &name);
+       CU_ASSERT(MALELF_SUCCESS == result);
+
+       CU_ASSERT_STRING_EQUAL(".interp", name);
+
+       result = malelf_binary_get_section_name(2, &bin, &name);
+       CU_ASSERT(MALELF_SUCCESS == result);
+       CU_ASSERT_STRING_EQUAL(".note.ABI-tag", name);
+
+       result = malelf_binary_get_section_name(12, &bin, &name);
+       CU_ASSERT(MALELF_SUCCESS == result);
+       CU_ASSERT_STRING_EQUAL(".init", name);	
+
+       malelf_binary_close(&bin);
+}
+
+static void malelf_binary_get_section_TEST()
+{
+       MalelfBinary bin;
+       _i32 result;
+       MalelfSection section;
+
+       malelf_binary_init(&bin);
+
+       result = malelf_binary_open("bintest/uninfected", &bin);
+
+       CU_ASSERT(result == MALELF_SUCCESS);
+       CU_ASSERT(NULL != bin.fname);
+
+       result = malelf_binary_get_section(1, &bin, &section);
+       CU_ASSERT(MALELF_SUCCESS == result);
+       CU_ASSERT_STRING_EQUAL(section.name, ".interp");
+       CU_ASSERT(section.offset == 0x134);
+       CU_ASSERT(section.size == 0x13);
+       CU_ASSERT(section.shdr != NULL);
+
+       malelf_binary_close(&bin);
+}
+
 
 CU_ErrorCode binary_get_test_suite(CU_pSuite *rsuite)
 {
@@ -133,7 +185,13 @@ CU_ErrorCode binary_get_test_suite(CU_pSuite *rsuite)
                                 malelf_binary_open_mmap_TEST)) ||
             (NULL == CU_add_test(suite,
                                 "malelf_binary_open_malloc_TEST",
-                                malelf_binary_open_malloc_TEST))) {
+				 malelf_binary_open_malloc_TEST)) ||
+	    (NULL == CU_add_test(suite, 
+                                "malelf_binary_get_section_name_TEST", 
+                                malelf_binary_get_section_name_TEST)) ||
+            (NULL == CU_add_test(suite, 
+                                "malelf_binary_get_section_TEST", 
+                                malelf_binary_get_section_TEST))) {
 	        *rsuite = NULL;
 	        return CU_get_error();
 	}

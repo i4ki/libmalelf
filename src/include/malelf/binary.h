@@ -185,6 +185,14 @@ extern _u32 malelf_binary_get_segment(_u32 idx,
 				      MalelfBinary *bin, 
 				      MalelfSegment *segment);
 
+extern _u32 malelf_binary_get_section_name(_u32 idx,
+					   MalelfBinary *bin,
+					   char **name);
+
+extern _u32 malelf_binary_get_section(_u32 idx, 
+				      MalelfBinary *bin,
+				      MalelfSection *section);
+					   
 
 
 #endif /* MALELF_BINARY_H */

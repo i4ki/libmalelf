@@ -25,37 +25,35 @@
  *
  */
 
-#ifndef MALELF_SHDR_H
-#define MALELF_SHDR_H
+#include <stdlib.h>
+#include <string.h>
+#include <sys/types.h>
+#include <assert.h>
 
 #include <elf.h>
 
-#include "types.h"
+#include <malelf/types.h>
+#include <malelf/error.h>
+#include <malelf/binary.h>
+#include <malelf/defines.h>
+#include <malelf/shellcode.h>
 
-MALELF_BEGIN_DECLS
+_u32 malelf_shellcode_dump(MalelfBinary *bin)
+{
+	assert(NULL != bin && NULL != bin->mem && bin->size > 0);
 
-/*!
- * \file phdr.h
- * \brief A class used to control the section header table.
- *
- * The MalelfShdr union is an opaque data type. It
- * should only be accessed via the following functions. 
- *
- */
-typedef union {
-        Elf32_Shdr *h32;    /*!< 32-bits ELF Section Headers */
-        Elf64_Shdr *h64;    /*!< 64-bits ELF Section Headers */
-} MalelfShdr;
+	return malelf_util_dump(bin->mem, bin->size);
+}
 
-typedef struct {
-	char *name;
-	_u16 type;
-	_u32 offset;
-	_u32 size;
-	MalelfShdr *shdr;
-} MalelfSection;
+_u32 malelf_shellcode_get_c_string(FILE *fp, MalelfBinary *bin)
+{
+	_u32 i;
+	assert(NULL != bin && NULL != bin->mem && bin->size > 0);
 
-MALELF_END_DECLS
+	for (i = 0; i < bin->size; i++) {
+		fprintf(fp, "\\x%02x", bin->mem[i]);
+	}
 
+	return MALELF_SUCCESS;
+}
 
-#endif /* MALELF_PHDR_H */
