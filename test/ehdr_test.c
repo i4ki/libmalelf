@@ -94,7 +94,7 @@ CU_ErrorCode ehdr_get_test_suite(CU_pSuite *rsuite)
 	}
 
 	if (NULL == CU_add_test(suite, 
-                                "malelf_ehdr_get_version_TEST", 
+                                "malelf_ehdr_TEST", 
                                 malelf_ehdr_TEST)) {
 	        *rsuite = NULL;
 	        return CU_get_error();
