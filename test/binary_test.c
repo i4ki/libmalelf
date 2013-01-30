@@ -162,6 +162,20 @@ static void malelf_binary_get_section_TEST()
        CU_ASSERT(section.size == 0x13);
        CU_ASSERT(section.shdr != NULL);
 
+       result = malelf_binary_get_section(2, &bin, &section);
+       CU_ASSERT(MALELF_SUCCESS == result);
+       CU_ASSERT_STRING_EQUAL(section.name, ".note.ABI-tag");
+       CU_ASSERT(section.offset == 0x148);
+       CU_ASSERT(section.size == 0x20);
+       CU_ASSERT(section.shdr != NULL);
+
+       result = malelf_binary_get_section(14, &bin, &section);
+       CU_ASSERT(MALELF_SUCCESS == result);
+       CU_ASSERT_STRING_EQUAL(section.name, ".text");
+       CU_ASSERT(section.offset == 0x320);
+       CU_ASSERT(section.size == 0x170);
+       CU_ASSERT(section.shdr != NULL);
+
        malelf_binary_close(&bin);
 }
 
