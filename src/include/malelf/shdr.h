@@ -47,9 +47,10 @@ typedef union {
         Elf64_Shdr *h64;    /*!< 64-bits ELF Section Headers */
 } MalelfShdr;
 
-
-
-
+typedef struct {
+	char *name;
+	MalelfShdr *shdr;
+} MalelfSection;
 
 MALELF_END_DECLS
 

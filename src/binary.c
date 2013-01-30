@@ -42,7 +42,7 @@
 #include <malelf/binary.h>
 #include <malelf/defines.h>
 
-inline _i32 malelf_binary_get_class(MalelfBinary *bin, _u8 *class)
+_u32 malelf_binary_get_class(MalelfBinary *bin, _u8 *class)
 {
         assert(NULL != bin && NULL != bin->mem);
 
@@ -183,7 +183,7 @@ _u32 malelf_binary_map(MalelfBinary *bin)
         return MALELF_SUCCESS;
 }
 
-inline _i32 malelf_binary_check_elf_magic(MalelfBinary *bin)
+_u32 malelf_binary_check_elf_magic(MalelfBinary *bin)
 {
         _u8 valid = MALELF_SUCCESS;
         
@@ -370,3 +370,92 @@ _i32 malelf_binary_close(MalelfBinary *bin)
         
         return error;
 }
+
+/**
+ * Functions to get other informations of ELF
+ */
+
+_u32 _malelf_binary_get_segment_32(_u32 segment_idx,
+				   MalelfBinary *bin,
+				   MalelfSegment *segment)
+{
+	MalelfPhdr uphdr;
+	Elf32_Phdr *phdr32;
+	int error = MALELF_SUCCESS;
+
+	assert(bin != NULL && bin->mem != NULL);
+	
+	error = malelf_binary_get_phdr(bin, &uphdr);
+	if (error != MALELF_SUCCESS) {
+		return error;
+	}
+
+	phdr32 = uphdr.h32;
+
+	phdr32 += segment_idx;
+
+	segment->class = bin->class;
+	segment->index = segment_idx;
+	segment->size = phdr32->p_filesz;
+	segment->mem = bin->mem + phdr32->p_offset;
+	segment->phdr = &uphdr;
+
+	return MALELF_SUCCESS;
+}
+
+_u32 _malelf_binary_get_segment_64(_u32 segment_idx,
+				  MalelfBinary *bin,
+				  MalelfSegment *segment) 
+{
+	MalelfPhdr uphdr;
+	Elf64_Phdr *phdr64;
+	int error = MALELF_SUCCESS;
+
+	assert(bin != NULL && bin->mem != NULL);
+	
+	error = malelf_binary_get_phdr(bin, &uphdr);
+	if (error != MALELF_SUCCESS) {
+		return error;
+	}
+
+	phdr64 = uphdr.h64;
+
+	phdr64 += segment_idx;
+
+	segment->class = bin->class;
+	segment->index = segment_idx;
+	segment->size = phdr64->p_filesz;
+	segment->mem = bin->mem + phdr64->p_offset;
+	segment->phdr = &uphdr;
+
+	return MALELF_SUCCESS;
+}
+
+_u32 malelf_binary_get_segment(_u32 segment_idx, 
+			       MalelfBinary *bin, 
+			       MalelfSegment *segment)
+{
+	int error = MALELF_SUCCESS;
+
+	assert(NULL != bin);
+	assert(NULL != bin->mem);
+
+	switch (bin->class) {
+	case MALELF_ELF32:
+		error = _malelf_binary_get_segment_32(segment_idx, 
+						      bin, 
+						      segment);
+		
+		break;
+	case MALELF_ELF64:
+		error = _malelf_binary_get_segment_64(segment_idx,
+						      bin,
+						      segment);
+		break;
+	default:
+		error = MALELF_EINVALID_CLASS;
+	}
+
+	return error;
+}
+

@@ -51,7 +51,7 @@ int malelf_log(FILE* fd,
 
         memset(outbuf, '\0', MAX_LOG_BUFFER);
         memset(n_format, '\0', MAX_LOG_BUFFER);
-        strncpy(n_format, prefix, strlen(prefix));
+        strncpy(n_format, prefix, MAX_LOG_BUFFER);
         strncat(n_format, format, MAX_LOG_BUFFER - strlen(n_format));
   
         i = vsprintf(outbuf, n_format, args);
@@ -61,6 +61,7 @@ int malelf_log(FILE* fd,
                 va_end(args);
                 return i;
         } else {
+		va_end(args);
                 return  -1;
         }
 }
@@ -125,4 +126,36 @@ void* malelf_realloc(void* pointer, _u32 new_size)
         }
 
         return pointer;
+}
+
+_u32 malelf_util_dump(_u8 *mem, _u32 size)
+{
+	_u8 byte;
+	_u32 i, j;
+
+	for (i = 0; i < size; i++) {
+		byte = mem[i];
+		malelf_say("%02x ", mem[i]);
+		if (((i % 16) == 15) || (i == size - 1)) {
+			for (j = 0; j < (15 - (i % 16)); j++) {
+				malelf_say("   ");
+			}
+
+			malelf_say("| ");
+
+			for (j = (i - (i % 16)); j <= i; j++) {
+				byte = mem[j];
+				if ((byte > 31) && (byte < 127)) {
+					/* ascii char */
+					malelf_say("%c", byte);
+				} else {
+					malelf_say(".");
+				}
+			}
+
+			malelf_say("\n");
+		}
+	}
+
+	return MALELF_SUCCESS;
 }

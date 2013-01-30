@@ -47,7 +47,13 @@ typedef union {
         Elf64_Phdr *h64;    /*!< 64-bits ELF Program Headers */
 } MalelfPhdr;
 
-
+typedef struct {
+	_u8 class;
+	_u32 index;
+	_u8 *mem;
+	_u32 size;
+	MalelfPhdr *phdr;
+} MalelfSegment;
 
 
 MALELF_END_DECLS

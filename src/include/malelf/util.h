@@ -56,5 +56,10 @@ extern int malelf_warn(const char* format, ...);
 extern void* malelf_malloc(_u32 size);
 extern void* malelf_realloc(void* pointer, _u32 new_size);
 
+/*! Dumps the raw memory in hex
+ *
+ */
+extern _u32 malelf_util_dump(_u8 *mem, _u32 size);
+
 #endif
 

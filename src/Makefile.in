@@ -75,7 +75,7 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libmalelf_la_DEPENDENCIES =
 am_libmalelf_la_OBJECTS = binary.lo ehdr.lo phdr.lo shdr.lo error.lo \
-	util.lo
+	util.lo shellcode.lo
 libmalelf_la_OBJECTS = $(am_libmalelf_la_OBJECTS)
 libmalelf_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
@@ -229,7 +229,8 @@ libmalelf_la_SOURCES = binary.c \
 			phdr.c \
 			shdr.c \
 			error.c \
-			util.c
+			util.c \
+			shellcode.c
 
 libmalelf_la_LDFLAGS = -version-info 1:0:0
 libmalelf_la_LIBADD = 
@@ -238,8 +239,11 @@ library_include_HEADERS = include/malelf/binary.h \
 				include/malelf/ehdr.h \
 				include/malelf/phdr.h \
 				include/malelf/shdr.h \
+				include/malelf/defines.h \
 				include/malelf/error.h \
-				include/malelf/util.h 
+				include/malelf/types.h \
+				include/malelf/util.h \
+				include/malelf/shellcode.h
 
 all: all-am
 
@@ -320,6 +324,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/error.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/phdr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/shdr.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/shellcode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/util.Plo@am__quote@
 
 .c.o:

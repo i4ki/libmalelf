@@ -41,7 +41,7 @@ static void malelf_binary_open_mmap_TEST(void)
        
        malelf_binary_init(&bin);
 
-       /* Should failed */
+       /* Should fail */
        result = malelf_binary_open("/wrong/path/uninfected", &bin);
        CU_ASSERT(result == MALELF_ENOENT);
        CU_ASSERT(NULL == bin.fname);

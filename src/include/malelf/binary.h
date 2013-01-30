@@ -91,7 +91,7 @@ extern void malelf_binary_set_alloc_type(MalelfBinary *bin, _u8 alloc_type);
  *  \return MALELF_SUCCESS if class was successful saved, otherwise
  *          MALELF_ERROR.
  */
-extern inline _i32 malelf_binary_get_class(MalelfBinary *bin, _u8 *class);
+extern _u32 malelf_binary_get_class(MalelfBinary *bin, _u8 *class);
 
 
 /*! Get ELF Header.
@@ -179,7 +179,12 @@ extern _u32 malelf_binary_map(MalelfBinary *bin);
  *
  *  \return The malelf status (MALELF_SUCCESS or MALELF_ENOT_ELF).
  */
-extern inline _i32 malelf_binary_check_elf_magic(MalelfBinary *binary);
+extern _u32 malelf_binary_check_elf_magic(MalelfBinary *binary);
+
+extern _u32 malelf_binary_get_segment(_u32 idx, 
+				      MalelfBinary *bin, 
+				      MalelfSegment *segment);
+
 
 
 #endif /* MALELF_BINARY_H */

@@ -13,7 +13,8 @@ libmalelf_la_SOURCES =  binary.c \
 			phdr.c \
 			shdr.c \
 			error.c \
-			util.c
+			util.c \
+			shellcode.c
 
 
 libmalelf_la_LDFLAGS = -version-info 1:0:0
@@ -24,5 +25,8 @@ library_include_HEADERS	=	include/malelf/binary.h \
 				include/malelf/ehdr.h \
 				include/malelf/phdr.h \
 				include/malelf/shdr.h \
+				include/malelf/defines.h \
 				include/malelf/error.h \
-				include/malelf/util.h 
+				include/malelf/types.h \
+				include/malelf/util.h \
+				include/malelf/shellcode.h

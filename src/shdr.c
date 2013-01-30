@@ -42,5 +42,3 @@
 #include <malelf/shdr.h>
 
 
-
-
