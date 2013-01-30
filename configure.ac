@@ -26,6 +26,24 @@ if test "$with_cunit_dir" != ""; then
    extra_includes="$with_cunit_dir"
 fi
 
+with_libxml2_prefix=/usr
+
+
+AC_ARG_WITH([libxml2-dir],
+	[AS_HELP_STRING([--with-libxml2-prefix],
+	  [Use this libxml2 prefix directory @<:@default=/usr@:>])],
+        [],
+	[])
+
+with_libxml2_includes="$with_libxml2_prefix/include/libxml2"
+with_libxml2_libpath="$with_libxml2_prefix/lib"
+
+extra_includes="$extra_includes:$with_libxml2_prefix"
+LIBXML_INCLUDES="$with_libxml2_includes"
+LIBXML_LIBPATH="$with_libxml2_libpath"
+
+AC_SUBST(LIBXML_INCLUDES)
+AC_SUBST(LIBXML_LIBPATH)
 AC_SUBST(extra_includes)
 
 AS_IF([test "x$enable_tests" = "xyes"], [HAVE_TESTS=yes], [HAVE_TESTS=no])
@@ -36,13 +54,21 @@ AC_CHECK_PROG([HAVE_NASM], [nasm], [true], [false])
 
 # Checks for libraries.
 
+CFLAGS_BK=$CFLAGS
+CFLAGS="$CFLAGS -I$with_libxml2_includes"
+CPPFLAGS_BK=$CPPFLAGS
+CPPFLAGS="$CPPFLAGS -I$with_libxml2_includes"
 # Checks for header files.
 AC_CHECK_HEADERS([  fcntl.h \
 		    stdlib.h \
 		    string.h \
 		    unistd.h \
 		    elf.h \
-		    CUnit/CUnit.h])
+		    CUnit/CUnit.h \
+		    libxml/xmlwriter.h])
+
+CFLAGS="$CFLAGS_BK"
+CPPFLAGS="$CPPFLAGS_BK"
 
 if test "x$HAVE_TESTS" = "xyes"; then
    if test "x$ac_cv_header_CUnit_CUnit_h" = "xno"; then
@@ -56,6 +82,13 @@ if test "x$HAVE_TESTS" = "xyes"; then
 
      If you doesn't want run tests, remove the --enable-tests...])
    fi
+fi
+
+if test "x$ac_cv_header_libxml_xmlwriter_h" = "xno"; then
+   AC_MSG_ERROR([libxml2 headers not found at $with_libxml2_includes/libxml/xmlwriter.h
+    To install the libxml2 on debian based distros use:
+        sudo apt-get install libxml2-dev
+    If the library is already installed, use --with-libxml2-prefix=/dir])   
 fi
 
 INCLUDE_TESTS=
