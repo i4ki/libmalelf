@@ -43,8 +43,8 @@ MALELF_BEGIN_DECLS
  *
  */
 typedef enum {
-MALELF_OUTPUT_XML,
-MALELF_OUTPUT_TEXT
+        MALELF_OUTPUT_XML,
+        MALELF_OUTPUT_TEXT
 } MalelfOutputFormat;
 
 
@@ -52,9 +52,9 @@ MALELF_OUTPUT_TEXT
  *
  */
 typedef struct {
-char *fname;
-xmlTextWriterPtr writer;
-_u8 format;
+        char *fname;
+        xmlTextWriterPtr writer;
+        _u8 format;
 } MalelfReport;
 
 
@@ -86,7 +86,7 @@ _u32 malelf_report_shdr(MalelfReport *report, MalelfShdr *shdr);
  */
 _u32 malelf_report_binary(MalelfReport *report, MalelfBinary *binary);
 
-
+_u32 malelf_report_close(MalelfReport *report);
 
 
 MALELF_END_DECLS
