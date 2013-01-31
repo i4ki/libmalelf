@@ -19,63 +19,61 @@ static void malelf_ehdr_TEST(void)
 
         result = malelf_binary_get_ehdr(&bin, &ehdr);
         CU_ASSERT(result == MALELF_SUCCESS);
-        CU_ASSERT(NULL != ehdr.h32);
+        CU_ASSERT(NULL != ehdr.uehdr.h32);
 
-        _u8 class;
-        result = malelf_binary_get_class(&bin, &class);
         CU_ASSERT(result == MALELF_SUCCESS);
-        CU_ASSERT(class == MALELF_ELF32 || class == MALELF_ELF64);
+        CU_ASSERT(ehdr.class == MALELF_ELF32 || ehdr.class == MALELF_ELF64);
 
         MalelfEhdrType me_type;
-        result = malelf_ehdr_get_type(&ehdr, class, &me_type);
+        result = malelf_ehdr_get_type(&ehdr, &me_type);
         CU_ASSERT(result == MALELF_SUCCESS);
 
         MalelfEhdrVersion me_version;
-        result = malelf_ehdr_get_version(&ehdr, class, &me_version);
+        result = malelf_ehdr_get_version(&ehdr, &me_version);
         CU_ASSERT(result == MALELF_SUCCESS);
         
         MalelfEhdrMachine me_machine;
-        result = malelf_ehdr_get_machine(&ehdr, class, &me_machine);
+        result = malelf_ehdr_get_machine(&ehdr, &me_machine);
         CU_ASSERT(result == MALELF_SUCCESS);
 
         _u32 shoff;
-        result = malelf_ehdr_get_shoff(&ehdr, class, &shoff);
+        result = malelf_ehdr_get_shoff(&ehdr, &shoff);
         CU_ASSERT(result == MALELF_SUCCESS);
         
         _u32 phoff;
-        result = malelf_ehdr_get_phoff(&ehdr, class, &phoff);
+        result = malelf_ehdr_get_phoff(&ehdr, &phoff);
         CU_ASSERT(result == MALELF_SUCCESS);
         
         _u32 entry;
-        result = malelf_ehdr_get_phoff(&ehdr, class, &entry);
+        result = malelf_ehdr_get_phoff(&ehdr, &entry);
         CU_ASSERT(result == MALELF_SUCCESS);
 
         _u32 ehsize;
-        result =  malelf_ehdr_get_ehsize(&ehdr, class, &ehsize);
+        result =  malelf_ehdr_get_ehsize(&ehdr, &ehsize);
         CU_ASSERT(result == MALELF_SUCCESS);
         
         _u32 phentsize;  
-        result = malelf_ehdr_get_phentsize(&ehdr, class, &phentsize);
+        result = malelf_ehdr_get_phentsize(&ehdr, &phentsize);
         CU_ASSERT(result == MALELF_SUCCESS);
 
         _u32 phnum;
-        result = malelf_ehdr_get_phnum(&ehdr, class, &phnum);
+        result = malelf_ehdr_get_phnum(&ehdr, &phnum);
         CU_ASSERT(result == MALELF_SUCCESS);
 
         _u32 shnum;
-        result = malelf_ehdr_get_shnum(&ehdr, class, &shnum);
+        result = malelf_ehdr_get_shnum(&ehdr, &shnum);
         CU_ASSERT(result == MALELF_SUCCESS);
         
         _u32 shentsize;
-        result = malelf_ehdr_get_shentsize(&ehdr, class, &shentsize);
+        result = malelf_ehdr_get_shentsize(&ehdr, &shentsize);
         CU_ASSERT(result == MALELF_SUCCESS);
 
         _u32 shstrndx;
-        result = malelf_ehdr_get_shstrndx(&ehdr, class, &shstrndx);
+        result = malelf_ehdr_get_shstrndx(&ehdr, &shstrndx);
         CU_ASSERT(result == MALELF_SUCCESS);
 
         _u32 flags;
-        result = malelf_ehdr_get_flags(&ehdr, class, &flags);
+        result = malelf_ehdr_get_flags(&ehdr, &flags);
         CU_ASSERT(result == MALELF_SUCCESS);
 }
 

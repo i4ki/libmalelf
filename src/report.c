@@ -81,7 +81,6 @@ _u32 malelf_report_shdr(MalelfReport *report, MalelfShdr *shdr)
 
 _u32 malelf_report_ehdr(MalelfReport *report, MalelfEhdr *ehdr)
 {
-        UNUSED(ehdr);
         _i32 error = 0;
         assert(NULL != ehdr);
         assert(NULL != report);
