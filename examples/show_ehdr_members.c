@@ -29,16 +29,15 @@ int main()
     	malelf_binary_open("/bin/ls", &binary);
  
         result = malelf_binary_get_ehdr(&binary, &ehdr);
-        result = malelf_binary_get_class(&binary, &class);
-        result = malelf_ehdr_get_version(&ehdr, class, &me_version);        
-        result = malelf_ehdr_get_type(&ehdr, class, &me_type);        
-        result = malelf_ehdr_get_machine(&ehdr, class, &me_machine);        
-        result = malelf_ehdr_get_ehsize(&ehdr, class, &size);        
-        result = malelf_ehdr_get_phentsize(&ehdr, class, &phentsize);        
-        result = malelf_ehdr_get_shentsize(&ehdr, class, &shentsize);        
-        result = malelf_ehdr_get_shnum(&ehdr, class, &shnum);        
-        result = malelf_ehdr_get_phnum(&ehdr, class, &phnum);        
-        result = malelf_ehdr_get_shstrndx(&ehdr, class, &shstrndx);        
+        result = malelf_ehdr_get_version(&ehdr, &me_version);        
+        result = malelf_ehdr_get_type(&ehdr, &me_type);        
+        result = malelf_ehdr_get_machine(&ehdr, &me_machine);        
+        result = malelf_ehdr_get_ehsize(&ehdr, &size);        
+        result = malelf_ehdr_get_phentsize(&ehdr, &phentsize);        
+        result = malelf_ehdr_get_shentsize(&ehdr, &shentsize);        
+        result = malelf_ehdr_get_shnum(&ehdr, &shnum);        
+        result = malelf_ehdr_get_phnum(&ehdr, &phnum);        
+        result = malelf_ehdr_get_shstrndx(&ehdr, &shstrndx);        
 
         printf("Version Name: %d\n", me_version.name);        
         printf("Version Value: %d\n", me_version.value);        
