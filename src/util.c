@@ -128,6 +128,7 @@ void* malelf_realloc(void* pointer, _u32 new_size)
         return pointer;
 }
 
+/* dump ripped from `hacking - the art of exploitation - joe` */
 _u32 malelf_util_dump(_u8 *mem, _u32 size)
 {
 	_u8 byte;
@@ -158,4 +159,28 @@ _u32 malelf_util_dump(_u8 *mem, _u32 size)
 	}
 
 	return MALELF_SUCCESS;
+}
+
+_u32 malelf_write(int fd, _u8 *mem, _u32 size) 
+{
+	int error = MALELF_SUCCESS;
+	_u32 bytes_saved = 0;
+	_u8 tries = 0;
+
+	while (bytes_saved < size) {
+		if (write(fd, mem + bytes_saved, 1) <= 0) {
+			tries++;
+		} else {
+			tries  = 0;
+			bytes_saved++;
+		}
+
+		if (tries == 3) {
+			/* IO problems? */
+			error = MALELF_ERROR;
+			break;
+		}
+	}
+
+	return error;
 }

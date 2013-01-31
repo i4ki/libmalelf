@@ -61,5 +61,7 @@ extern void* malelf_realloc(void* pointer, _u32 new_size);
  */
 extern _u32 malelf_util_dump(_u8 *mem, _u32 size);
 
+extern _u32 malelf_write(int fd, _u8 *mem, _u32 size);
+
 #endif
 

@@ -1,5 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
 
 #include <CUnit/Basic.h>
 #include <CUnit/CUnit.h>
@@ -179,6 +183,29 @@ static void malelf_binary_get_section_TEST()
        malelf_binary_close(&bin);
 }
 
+void malelf_binary_write_TEST()
+{
+	int error = MALELF_SUCCESS;
+	MalelfBinary bin;
+	struct stat st_info;
+
+	malelf_binary_init(&bin);
+
+	error = malelf_binary_open("bintest/uninfected", &bin);
+	CU_ASSERT(MALELF_SUCCESS == error);
+	malelf_perror(error);
+
+	error = malelf_binary_write(&bin, "bintest/uninfected_copy");
+	CU_ASSERT(MALELF_SUCCESS == error);
+	
+	CU_ASSERT(0 == stat("bintest/uninfected_copy", &st_info));
+	CU_ASSERT(st_info.st_size > 0);
+	CU_ASSERT(st_info.st_size == bin.size);
+
+	malelf_binary_close(&bin);
+//	unlink("bintest/uninfected_copy");
+}
+
 
 CU_ErrorCode binary_get_test_suite(CU_pSuite *rsuite)
 {
@@ -205,7 +232,10 @@ CU_ErrorCode binary_get_test_suite(CU_pSuite *rsuite)
                                 malelf_binary_get_section_name_TEST)) ||
             (NULL == CU_add_test(suite, 
                                 "malelf_binary_get_section_TEST", 
-                                malelf_binary_get_section_TEST))) {
+                                malelf_binary_get_section_TEST)) ||
+            (NULL == CU_add_test(suite, 
+                                "malelf_binary_write_TEST", 
+                                malelf_binary_write_TEST))) {
 	        *rsuite = NULL;
 	        return CU_get_error();
 	}

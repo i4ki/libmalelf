@@ -1,3 +1,4 @@
+
 /* 
  * The malelf library was written in pure C, with the objective to 
  * provide a quick and easy way a set functions for programmers to 
@@ -690,5 +691,102 @@ _u32 malelf_binary_get_section_by_name(const char *name,
 	}
 
 	return error;
+}
+
+static _u32 malelf_binary_write32(MalelfBinary *bin, const char *fname)
+{
+	int error = MALELF_SUCCESS;
+	MalelfEhdr uehdr;
+	MalelfPhdr uphdr;
+	MalelfShdr ushdr;
+	Elf32_Ehdr *ehdr;
+	Elf32_Phdr *phdr;
+	Elf32_Shdr **shdr;
+
+	struct stat st_info;
+	char *bkpfile;
+
+	assert(NULL != bin);
+
+	if (NULL != fname) {
+		bin->fname = (char *)fname;
+	}
+
+	close(bin->fd);
+
+	if (0 == stat(bin->fname, &st_info)) {
+		/* file exists, backuping... */
+		bkpfile = tmpnam(NULL);
+		error = rename(bin->fname, bkpfile);
+	}
+
+	bin->fd = open(bin->fname, O_RDWR|O_CREAT|O_TRUNC, 0755);
+	if (bin->fd == -1) {
+		return errno;
+	}
+
+	error = malelf_binary_get_ehdr(bin, &uehdr);
+	if (MALELF_SUCCESS != error) {
+		return error;
+	}
+
+	error = malelf_binary_get_phdr(bin, &uphdr);
+	if (MALELF_SUCCESS != error) {
+		return error;
+	}
+
+	error = malelf_binary_get_shdr(bin, &ushdr);
+	if (MALELF_SUCCESS != error) {
+		return error;
+	}
+
+	ehdr = uehdr.h32;
+	phdr = uphdr.h32;
+	shdr = &(ushdr.h32);
+
+	error = malelf_write(bin->fd, (_u8 *) ehdr, sizeof (Elf32_Ehdr));
+	if (MALELF_SUCCESS != error) {
+		return error;
+	}
+
+	error = malelf_write(bin->fd, (_u8 *) phdr, sizeof (Elf32_Phdr) * ehdr->e_phnum);
+	if (MALELF_SUCCESS != error) {
+		return error;
+	}
+
+	error = malelf_write(bin->fd, (_u8 *) bin->mem + 
+			     (sizeof(Elf32_Ehdr) + 
+			      (ehdr->e_phentsize * ehdr->e_phnum)),
+		shdr[0]->sh_offset - (sizeof(Elf32_Ehdr) + 
+			      (ehdr->e_phentsize * ehdr->e_phnum)));
+
+	if (MALELF_SUCCESS != error) {
+		return error;
+	}
+
+	error = malelf_write(bin->fd, (_u8 *) shdr, sizeof (Elf32_Shdr) * ehdr->e_shnum);
+	if (MALELF_SUCCESS != error) {
+		return error;
+	}
+
+	return error;	
+}
+
+_u32 malelf_binary_write(MalelfBinary *bin, const char *fname)
+{
+	_u32 error = MALELF_SUCCESS;
+
+	switch (bin->class) {
+	case MALELF_ELF32:
+		error = malelf_binary_write32(bin, fname);
+		break;
+	case MALELF_ELF64:
+		error = malelf_binary_write32(bin, fname);
+		break;
+	default:
+		error = MALELF_EINVALID_CLASS;
+	}
+
+	return error;	
 }
 

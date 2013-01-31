@@ -192,6 +192,8 @@ extern _u32 malelf_binary_get_section_name(_u32 idx,
 extern _u32 malelf_binary_get_section(_u32 idx, 
 				      MalelfBinary *bin,
 				      MalelfSection *section);
+
+extern _u32 malelf_binary_write(MalelfBinary *bin, const char *fname);
 					   
 
 
