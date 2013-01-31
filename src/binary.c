@@ -101,6 +101,7 @@ static _i32 _malelf_binary_map_ehdr(MalelfBinary *bin)
                 return MALELF_ERROR;
         }
 
+        bin->elf.ehdr.class = bin->class;
         return MALELF_SUCCESS;
 }
 
@@ -127,7 +128,8 @@ static _i32 _malelf_binary_map_phdr(MalelfBinary *bin)
 		bin->elf.phdr.h64 = (Elf64_Phdr *) (bin->mem + ehdr.h64->e_phoff);
 		break;
 	}
-
+       
+        bin->elf.phdr.class = bin->class;
 	return MALELF_SUCCESS;
 }
 
@@ -154,7 +156,7 @@ static _i32 _malelf_binary_map_shdr(MalelfBinary *bin)
 		bin->elf.shdr.h64 = (Elf64_Shdr *) (bin->mem + ehdr.h64->e_shoff);
 		break;
 	}
-
+        bin->elf.shdr.class = bin->class;
 	return MALELF_SUCCESS;
 }
 

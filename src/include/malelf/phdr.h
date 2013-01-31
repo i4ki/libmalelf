@@ -45,6 +45,7 @@ MALELF_BEGIN_DECLS
 typedef union {
         Elf32_Phdr *h32;    /*!< 32-bits ELF Program Headers */
         Elf64_Phdr *h64;    /*!< 64-bits ELF Program Headers */
+        _u8 class;          /*!< Architeture class */
 } MalelfPhdr;
 
 typedef struct {
