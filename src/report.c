@@ -82,24 +82,85 @@ _u32 malelf_report_shdr(MalelfReport *report, MalelfShdr *shdr)
 _u32 malelf_report_ehdr(MalelfReport *report, MalelfEhdr *ehdr)
 {
         _i32 error = 0;
+
         assert(NULL != ehdr);
         assert(NULL != report);
         assert(NULL != report->writer);
 
         error = xmlTextWriterStartElement(report->writer, (const xmlChar *)"MalelfEhdr");
+
+        MalelfEhdrType me_type;
+        malelf_ehdr_get_type(ehdr, &me_type);        
+        error = xmlTextWriterWriteFormatElement(report->writer, 
+                                                (const xmlChar *)"type", 
+                                                "%d", me_type.value);
+
+        MalelfEhdrMachine me_machine;
+        malelf_ehdr_get_machine(ehdr, &me_machine);        
+        error = xmlTextWriterWriteFormatElement(report->writer, 
+                                                (const xmlChar *)"machine", 
+                                                "%d", me_machine.value);
+
+
+        MalelfEhdrVersion me_version;
+        malelf_ehdr_get_version(ehdr, &me_version);        
+        error = xmlTextWriterWriteFormatElement(report->writer, 
+                                                (const xmlChar *)"version", 
+                                                "%d", me_version.value);
+
+        _u32 entry;
+        malelf_ehdr_get_entry(ehdr, &entry);        
+        error = xmlTextWriterWriteFormatElement(report->writer, 
+                                                (const xmlChar *)"entry", 
+                                               "0x%08x", entry);
+
+        _u32 phoff;
+        malelf_ehdr_get_phoff(ehdr, &phoff);        
+        error = xmlTextWriterWriteFormatElement(report->writer, 
+                                                (const xmlChar *)"phoff", 
+                                                "0x%08x", phoff);
         
-        error = xmlTextWriterWriteFormatElement(report->writer, (const xmlChar *)"type", "%d", 1);
-        error = xmlTextWriterWriteFormatElement(report->writer, (const xmlChar *)"machine", "%d", 1);
-        error = xmlTextWriterWriteFormatElement(report->writer, (const xmlChar *)"version", "%d", 1);
-        error = xmlTextWriterWriteFormatElement(report->writer, (const xmlChar *)"entry", "%d", 1);
-        error = xmlTextWriterWriteFormatElement(report->writer, (const xmlChar *)"phoff", "%d", 1);
-        error = xmlTextWriterWriteFormatElement(report->writer, (const xmlChar *)"shoff", "%d", 1);
-        error = xmlTextWriterWriteFormatElement(report->writer, (const xmlChar *)"flags", "%d", 1);
-        error = xmlTextWriterWriteFormatElement(report->writer, (const xmlChar *)"phentsize", "%d", 1);
-        error = xmlTextWriterWriteFormatElement(report->writer, (const xmlChar *)"phnum", "%d", 1);
-        error = xmlTextWriterWriteFormatElement(report->writer, (const xmlChar *)"shentsize", "%d", 1);
-        error = xmlTextWriterWriteFormatElement(report->writer, (const xmlChar *)"shnum", "%d",  1);
-        error = xmlTextWriterWriteFormatElement(report->writer, (const xmlChar *)"shstrndx", "%d", 1);
+        _u32 shoff;
+        malelf_ehdr_get_shoff(ehdr, &shoff);        
+        error = xmlTextWriterWriteFormatElement(report->writer, 
+                                                (const xmlChar *)"shoff", 
+                                                "0x%08x", shoff);
+        
+        _u32 flags;
+        malelf_ehdr_get_flags(ehdr, &flags);        
+        error = xmlTextWriterWriteFormatElement(report->writer, 
+                                                (const xmlChar *)"flags", 
+                                                "%d", flags);
+
+        _u32 phentsize;
+        malelf_ehdr_get_phentsize(ehdr, &phentsize);        
+        error = xmlTextWriterWriteFormatElement(report->writer, 
+                                                (const xmlChar *)"phentsize", 
+                                                "%d", phentsize);
+
+        _u32 phnum;
+        malelf_ehdr_get_phnum(ehdr, &phnum);        
+        error = xmlTextWriterWriteFormatElement(report->writer, 
+                                                (const xmlChar *)"phnum", 
+                                                "%d", phnum);
+
+        _u32 shentsize;
+        malelf_ehdr_get_shentsize(ehdr, &shentsize);        
+        error = xmlTextWriterWriteFormatElement(report->writer, 
+                                                (const xmlChar *)"shentsize", 
+                                                "%d", shentsize);
+
+        _u32 shnum;
+        malelf_ehdr_get_shnum(ehdr, &shnum);        
+        error = xmlTextWriterWriteFormatElement(report->writer, 
+                                                (const xmlChar *)"shnum", 
+                                                "%d",  shnum);
+
+        _u32 shstrndx;
+        malelf_ehdr_get_shstrndx(ehdr, &shstrndx);        
+        error = xmlTextWriterWriteFormatElement(report->writer, 
+                                                (const xmlChar *)"shstrndx", 
+                                                "%d", shstrndx);
 
         if (-1 == error) {
                 return MALELF_ERROR;
