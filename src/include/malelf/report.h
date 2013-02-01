@@ -67,13 +67,13 @@ _u32 malelf_report_open(MalelfReport *report, const char *fname, _u8 format);
 /*!
  *
  */
-_u32 malelf_report_ehdr(MalelfReport *report, MalelfEhdr *ehdr);
+_u32 malelf_report_ehdr(MalelfReport *report, MalelfBinary *bin);
 
 
 /*!
  *
  */
-_u32 malelf_report_phdr(MalelfReport *report, MalelfPhdr *phdr);
+_u32 malelf_report_phdr(MalelfReport *report, MalelfBinary *bin);
 
 /*!
  *

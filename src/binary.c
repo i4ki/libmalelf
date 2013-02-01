@@ -122,10 +122,10 @@ static _i32 _malelf_binary_map_phdr(MalelfBinary *bin)
 		return MALELF_ERROR; 
 		break;
 	case MALELF_ELF32: 
-		bin->elf.phdr.h32 = (Elf32_Phdr *) (bin->mem + ehdr.uehdr.h32->e_phoff);
+		bin->elf.phdr.uphdr.h32 = (Elf32_Phdr *) (bin->mem + ehdr.uehdr.h32->e_phoff);
 		break;
 	case MALELF_ELF64: 
-		bin->elf.phdr.h64 = (Elf64_Phdr *) (bin->mem + ehdr.uehdr.h64->e_phoff);
+		bin->elf.phdr.uphdr.h64 = (Elf64_Phdr *) (bin->mem + ehdr.uehdr.h64->e_phoff);
 		break;
 	}
        
@@ -156,7 +156,6 @@ static _i32 _malelf_binary_map_shdr(MalelfBinary *bin)
 		bin->elf.shdr.h64 = (Elf64_Shdr *) (bin->mem + ehdr.uehdr.h64->e_shoff);
 		break;
 	}
-        bin->elf.shdr.class = bin->class;
 	return MALELF_SUCCESS;
 }
 
@@ -215,7 +214,7 @@ void malelf_binary_init(MalelfBinary *bin)
         bin->mem = NULL;
         bin->size = 0;
         bin->elf.ehdr.uehdr.h32 = NULL;
-        bin->elf.phdr.h32 = NULL;
+        bin->elf.phdr.uphdr.h32 = NULL;
         bin->elf.shdr.h32 = NULL;
         bin->alloc_type = MALELF_ALLOC_MMAP;
         bin->class = MALELF_ELFNONE;
@@ -346,7 +345,7 @@ static void _malelf_binary_cleanup(MalelfBinary *bin)
         bin->mem = NULL;
         bin->size = 0;
         bin->elf.ehdr.uehdr.h32 = NULL;
-        bin->elf.phdr.h32 = NULL;
+        bin->elf.phdr.uphdr.h32 = NULL;
         bin->elf.shdr.h32 = NULL;
         bin->alloc_type = MALELF_ALLOC_NONE;
         bin->class = MALELF_ELFNONE;        
@@ -382,18 +381,18 @@ static _u32 _malelf_binary_get_segment_32(_u32 segment_idx,
 				   MalelfBinary *bin,
 				   MalelfSegment *segment)
 {
-	MalelfPhdr uphdr;
+	MalelfPhdr stphdr;
 	Elf32_Phdr *phdr32;
 	int error = MALELF_SUCCESS;
 
 	assert(bin != NULL && bin->mem != NULL);
 	
-	error = malelf_binary_get_phdr(bin, &uphdr);
+	error = malelf_binary_get_phdr(bin, &stphdr);
 	if (error != MALELF_SUCCESS) {
 		return error;
 	}
 
-	phdr32 = uphdr.h32;
+	phdr32 = stphdr.uphdr.h32;
 
 	phdr32 += segment_idx;
 
@@ -401,7 +400,7 @@ static _u32 _malelf_binary_get_segment_32(_u32 segment_idx,
 	segment->index = segment_idx;
 	segment->size = phdr32->p_filesz;
 	segment->mem = bin->mem + phdr32->p_offset;
-	segment->phdr = &uphdr;
+	segment->phdr = &stphdr;
 
 	return MALELF_SUCCESS;
 }
@@ -410,18 +409,18 @@ static _u32 _malelf_binary_get_segment_64(_u32 segment_idx,
 				  MalelfBinary *bin,
 				  MalelfSegment *segment) 
 {
-	MalelfPhdr uphdr;
+	MalelfPhdr stphdr;
 	Elf64_Phdr *phdr64;
 	int error = MALELF_SUCCESS;
 
 	assert(bin != NULL && bin->mem != NULL);
 	
-	error = malelf_binary_get_phdr(bin, &uphdr);
+	error = malelf_binary_get_phdr(bin, &stphdr);
 	if (error != MALELF_SUCCESS) {
 		return error;
 	}
 
-	phdr64 = uphdr.h64;
+	phdr64 = stphdr.uphdr.h64;
 
 	phdr64 += segment_idx;
 
@@ -429,7 +428,7 @@ static _u32 _malelf_binary_get_segment_64(_u32 segment_idx,
 	segment->index = segment_idx;
 	segment->size = phdr64->p_filesz;
 	segment->mem = bin->mem + phdr64->p_offset;
-	segment->phdr = &uphdr;
+	segment->phdr = &stphdr;
 
 	return MALELF_SUCCESS;
 }
@@ -699,7 +698,7 @@ static _u32 malelf_binary_write32(MalelfBinary *bin, const char *fname)
 {
 	int error = MALELF_SUCCESS;
 	MalelfEhdr stehdr;
-	MalelfPhdr uphdr;
+	MalelfPhdr stphdr;
 	MalelfShdr ushdr;
 	Elf32_Ehdr *ehdr;
 	Elf32_Phdr *phdr;
@@ -732,7 +731,7 @@ static _u32 malelf_binary_write32(MalelfBinary *bin, const char *fname)
 		return error;
 	}
 
-	error = malelf_binary_get_phdr(bin, &uphdr);
+	error = malelf_binary_get_phdr(bin, &stphdr);
 	if (MALELF_SUCCESS != error) {
 		return error;
 	}
@@ -743,7 +742,7 @@ static _u32 malelf_binary_write32(MalelfBinary *bin, const char *fname)
 	}
 
 	ehdr = stehdr.uehdr.h32;
-	phdr = uphdr.h32;
+	phdr = stphdr.uphdr.h32;
 	shdr = &(ushdr.h32);
 
 	error = malelf_write(bin->fd, (_u8 *) ehdr, sizeof (Elf32_Ehdr));

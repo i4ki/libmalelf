@@ -45,8 +45,12 @@ MALELF_BEGIN_DECLS
 typedef union {
         Elf32_Phdr *h32;    /*!< 32-bits ELF Program Headers */
         Elf64_Phdr *h64;    /*!< 64-bits ELF Program Headers */
+} MalelfUPhdr;
+
+typedef struct {
+        MalelfUPhdr uphdr;
         _u8 class;          /*!< Architeture class */
-} MalelfPhdr;
+}MalelfPhdr;
 
 typedef struct {
 	_u8 class;
@@ -56,6 +60,7 @@ typedef struct {
 	MalelfPhdr *phdr;
 } MalelfSegment;
 
+_u32 malelf_phdr_get_type(MalelfPhdr *phdr, _u32 *type);
 
 MALELF_END_DECLS
 

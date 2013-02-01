@@ -43,4 +43,14 @@
 
 
 
+_u32 malelf_phdr_get_type(MalelfPhdr *phdr, _u32 *type)
+{
+        int error = MALELF_SUCCESS;
+        assert(NULL != phdr);
+
+        *type = MALELF_HDR(phdr, uphdr, p_type, error);
+
+        return error;
+}
+
 
