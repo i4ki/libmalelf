@@ -54,7 +54,7 @@ typedef union {
 } MalelfUEhdr;
 
 typedef struct {
-        MalelfUEhdr uehdr;   
+        MalelfUEhdr uhdr;   
         _u8 class;          /*!< Architeture class */
 }MalelfEhdr;
 

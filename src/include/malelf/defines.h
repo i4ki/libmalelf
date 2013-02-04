@@ -49,7 +49,7 @@
 #define MALELF_ALLOC_MMAP 1
 #define MALELF_ALLOC_MALLOC 2
 
-#define MALELF_HDR(hdr, uhdr, field, error)  \
+#define MALELF_HDR(hdr, field, error)  \
         (((hdr)->class == MALELF_ELF32) ?      \
 	        ((hdr)->uhdr.h32->field) :		\
         (((hdr)->class == MALELF_ELF64) ? \

@@ -19,7 +19,7 @@ static void malelf_ehdr_TEST(void)
 
         result = malelf_binary_get_ehdr(&bin, &ehdr);
         CU_ASSERT(result == MALELF_SUCCESS);
-        CU_ASSERT(NULL != ehdr.uehdr.h32);
+        CU_ASSERT(NULL != ehdr.uhdr.h32);
 
         CU_ASSERT(result == MALELF_SUCCESS);
         CU_ASSERT(ehdr.class == MALELF_ELF32 || ehdr.class == MALELF_ELF64);

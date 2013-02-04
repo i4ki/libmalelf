@@ -176,10 +176,43 @@ _u32 malelf_report_ehdr(MalelfReport *report, MalelfBinary *bin)
         return MALELF_SUCCESS;
 }
 
+static _u32 _malelf_report_phdr(MalelfReport *report, 
+                                MalelfBinary *bin, 
+                                _u32 index)
+{ 
+        Elf32_Phdr *phdr;
+        MalelfPhdr me_phdr;
+        _i32 error;
+
+        assert(NULL != bin);
+        assert(NULL != report);
+        assert(NULL != report->writer);
+
+        malelf_binary_get_phdr(bin, &me_phdr);
+
+        phdr = me_phdr.uhdr.h32 + index;
+
+        error = xmlTextWriterStartElement(report->writer, 
+                                          (const xmlChar *)"MalelfPhdr");
+        
+        error = xmlTextWriterWriteFormatElement(report->writer, 
+                                                (const xmlChar *)"type", 
+                                                "%d", phdr->p_type);
+        
+        if (-1 == error) {
+                return MALELF_ERROR;
+        }
+        xmlTextWriterEndElement(report->writer);
+        return MALELF_SUCCESS;
+}
+
 _u32 malelf_report_phdr(MalelfReport *report, MalelfBinary *bin)
 {
         _i32 error = 0;
+        _u32 phnum;
         MalelfPhdr phdr;
+        MalelfEhdr ehdr;
+        _u32 i;
 
         UNUSED(phdr);
         UNUSED(report);
@@ -190,13 +223,14 @@ _u32 malelf_report_phdr(MalelfReport *report, MalelfBinary *bin)
         assert(NULL != report->writer);
 
         malelf_binary_get_phdr(bin, &phdr);
+        malelf_binary_get_ehdr(bin, &ehdr);
+        malelf_ehdr_get_phnum(&ehdr, &phnum);
 
-        error = xmlTextWriterStartElement(report->writer, (const xmlChar *)"MalelfPhdr");
-        error = xmlTextWriterWriteFormatElement(report->writer, 
-                                                (const xmlChar *)"type", 
-                                                "%d", /*phdr->h32->p_type*/0);
-        xmlTextWriterEndElement(report->writer);
-        
+        printf("%d\n", phnum);
+        for (i = 0; i < phnum; i++) {
+                _malelf_report_phdr(report, bin, i); 
+        }
+       
         return MALELF_SUCCESS;
 }
 
