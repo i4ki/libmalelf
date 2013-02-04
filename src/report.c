@@ -180,25 +180,67 @@ static _u32 _malelf_report_phdr(MalelfReport *report,
                                 MalelfBinary *bin, 
                                 _u32 index)
 { 
-        Elf32_Phdr *phdr;
-        MalelfPhdr me_phdr;
+        MalelfPhdr phdr;
         _i32 error;
 
         assert(NULL != bin);
         assert(NULL != report);
         assert(NULL != report->writer);
 
-        malelf_binary_get_phdr(bin, &me_phdr);
+        malelf_binary_get_phdr(bin, &phdr);
 
-        phdr = me_phdr.uhdr.h32 + index;
 
         error = xmlTextWriterStartElement(report->writer, 
                                           (const xmlChar *)"MalelfPhdr");
-        
+
+        _u32 type;
+        malelf_phdr_get_type(&phdr, &type, index);        
         error = xmlTextWriterWriteFormatElement(report->writer, 
                                                 (const xmlChar *)"type", 
-                                                "%d", phdr->p_type);
+                                                "%d", type);
         
+        _u32 offset;
+        malelf_phdr_get_offset(&phdr, &offset, index);        
+        error = xmlTextWriterWriteFormatElement(report->writer, 
+                                                (const xmlChar *)"offset", 
+                                                "0x%08x", offset);
+
+        _u32 vaddr;
+        malelf_phdr_get_vaddr(&phdr, &vaddr, index);        
+        error = xmlTextWriterWriteFormatElement(report->writer, 
+                                                (const xmlChar *)"vaddr", 
+                                                "0x%08x", vaddr);
+
+        _u32 paddr;
+        malelf_phdr_get_paddr(&phdr, &paddr, index);        
+        error = xmlTextWriterWriteFormatElement(report->writer, 
+                                                (const xmlChar *)"paddr", 
+                                                "0x%08x", paddr);
+
+        _u32 filesz;
+        malelf_phdr_get_filesz(&phdr, &filesz, index);        
+        error = xmlTextWriterWriteFormatElement(report->writer, 
+                                                (const xmlChar *)"filesz", 
+                                                "%d", filesz);
+        
+        _u32 memsz;
+        malelf_phdr_get_memsz(&phdr, &memsz, index);        
+        error = xmlTextWriterWriteFormatElement(report->writer, 
+                                                (const xmlChar *)"memsz", 
+                                                "%d", memsz);
+
+        _u32 flags;
+        malelf_phdr_get_flags(&phdr, &flags, index);        
+        error = xmlTextWriterWriteFormatElement(report->writer, 
+                                                (const xmlChar *)"flags", 
+                                                "%d", flags);
+
+        _u32 align;
+        malelf_phdr_get_align(&phdr, &align, index);        
+        error = xmlTextWriterWriteFormatElement(report->writer, 
+                                                (const xmlChar *)"align", 
+                                                "%d", align);
+
         if (-1 == error) {
                 return MALELF_ERROR;
         }
@@ -208,7 +250,6 @@ static _u32 _malelf_report_phdr(MalelfReport *report,
 
 _u32 malelf_report_phdr(MalelfReport *report, MalelfBinary *bin)
 {
-        _i32 error = 0;
         _u32 phnum;
         MalelfPhdr phdr;
         MalelfEhdr ehdr;
@@ -216,7 +257,6 @@ _u32 malelf_report_phdr(MalelfReport *report, MalelfBinary *bin)
 
         UNUSED(phdr);
         UNUSED(report);
-        UNUSED(error);
 
         assert(NULL != bin);
         assert(NULL != report);

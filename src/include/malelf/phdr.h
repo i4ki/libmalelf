@@ -60,7 +60,21 @@ typedef struct {
 	MalelfPhdr *phdr;
 } MalelfSegment;
 
-_u32 malelf_phdr_get_type(MalelfPhdr *phdr, _u32 *type);
+_u32 malelf_phdr_get_type(MalelfPhdr *phdr, _u32 *type, _u32 index);
+
+_u32 malelf_phdr_get_offset(MalelfPhdr *phdr, _u32 *offset, _u32 index);
+
+_u32 malelf_phdr_get_vaddr(MalelfPhdr *phdr, _u32 *vaddr, _u32 index);
+
+_u32 malelf_phdr_get_paddr(MalelfPhdr *phdr, _u32 *paddr, _u32 index);
+
+_u32 malelf_phdr_get_filesz(MalelfPhdr *phdr, _u32 *filesz, _u32 index);
+
+_u32 malelf_phdr_get_memsz(MalelfPhdr *phdr, _u32 *memsz, _u32 index);
+
+_u32 malelf_phdr_get_flags(MalelfPhdr *phdr, _u32 *flags, _u32 index);
+
+_u32 malelf_phdr_get_align(MalelfPhdr *phdr, _u32 *align, _u32 index);
 
 MALELF_END_DECLS
 
