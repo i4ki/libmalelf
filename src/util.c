@@ -33,6 +33,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <errno.h>
 
 #include <malelf/util.h>
 #include <malelf/error.h>
@@ -101,7 +102,7 @@ int malelf_warn(const char* format, ...)
         return malelf_log(stderr, "[!] ", format, args);
 }
 
-void* malelf_malloc(_u32 size)
+void *malelf_malloc(_u32 size)
 {
         void *mem = malloc(size);
         if (mem != NULL) {
@@ -112,7 +113,7 @@ void* malelf_malloc(_u32 size)
         }
 }
 
-void* malelf_realloc(void* pointer, _u32 new_size)
+void *malelf_realloc(void* pointer, _u32 new_size)
 {
         if (pointer == NULL) {
                 pointer = malelf_malloc(new_size);
@@ -177,7 +178,7 @@ _u32 malelf_write(int fd, _u8 *mem, _u32 size)
 
 		if (tries == 3) {
 			/* IO problems? */
-			error = MALELF_ERROR;
+			error = errno;
 			break;
 		}
 	}

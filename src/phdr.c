@@ -48,9 +48,17 @@ _u32 malelf_phdr_get_type(MalelfPhdr *phdr, _u32 *type)
         int error = MALELF_SUCCESS;
         assert(NULL != phdr);
 
-        *type = MALELF_HDR(phdr, uphdr, p_type, error);
+        *type = MALELF_ELF_FIELD(phdr, p_type, error);
 
         return error;
 }
 
+_u32 malelf_phdr_dump(Elf32_Phdr *p)
+{
+	malelf_success("p_type: %u\n", p->p_type);
+	malelf_success("p_offset: 0x%08x\n", p->p_offset);
+	malelf_success("p_vaddr: 0x%08x\n", p->p_vaddr);
 
+	malelf_success("Dump:\n");
+	return malelf_util_dump((_u8 *) p, sizeof (Elf32_Phdr));
+}

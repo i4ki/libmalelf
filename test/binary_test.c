@@ -24,9 +24,9 @@ static void malelf_binary_open_mmap_TEST(void)
        CU_ASSERT(bin.fd > 2);
        CU_ASSERT(NULL != bin.mem);
        CU_ASSERT(bin.size > 0);
-       CU_ASSERT(NULL != bin.elf.ehdr.uehdr.h32);
-       CU_ASSERT(NULL != &bin.elf.phdr.uphdr.h32);
-       CU_ASSERT(NULL != &bin.elf.shdr.h32);
+       CU_ASSERT(NULL != bin.elf.ehdr.uhdr.h32);
+       CU_ASSERT(NULL != &bin.elf.phdr.uhdr.h32);
+       CU_ASSERT(NULL != &bin.elf.shdr.uhdr.h32);
        CU_ASSERT(bin.alloc_type == MALELF_ALLOC_MMAP);
        CU_ASSERT(bin.class == MALELF_ELF32 ||
                  bin.class == MALELF_ELF64);
@@ -37,9 +37,9 @@ static void malelf_binary_open_mmap_TEST(void)
        CU_ASSERT(bin.fd == -1);
        CU_ASSERT(NULL == bin.mem);
        CU_ASSERT(bin.size == 0);
-       CU_ASSERT(NULL == bin.elf.ehdr.uehdr.h32);
-       CU_ASSERT(NULL == bin.elf.phdr.uphdr.h32);
-       CU_ASSERT(NULL == bin.elf.shdr.h32);
+       CU_ASSERT(NULL == bin.elf.ehdr.uhdr.h32);
+       CU_ASSERT(NULL == bin.elf.phdr.uhdr.h32);
+       CU_ASSERT(NULL == bin.elf.shdr.uhdr.h32);
        CU_ASSERT(bin.alloc_type == MALELF_ALLOC_NONE);
        CU_ASSERT(bin.class == MALELF_ELFNONE);
        
@@ -52,9 +52,9 @@ static void malelf_binary_open_mmap_TEST(void)
        CU_ASSERT(bin.fd == -1);
        CU_ASSERT(NULL == bin.mem);
        CU_ASSERT(bin.size == 0);
-       CU_ASSERT(NULL == bin.elf.ehdr.uehdr.h32);
-       CU_ASSERT(NULL == bin.elf.phdr.uphdr.h32);
-       CU_ASSERT(NULL == bin.elf.shdr.h32);
+       CU_ASSERT(NULL == bin.elf.ehdr.uhdr.h32);
+       CU_ASSERT(NULL == bin.elf.phdr.uhdr.h32);
+       CU_ASSERT(NULL == bin.elf.shdr.uhdr.h32);
        CU_ASSERT(bin.alloc_type == MALELF_ALLOC_MMAP);
        CU_ASSERT(bin.class == MALELF_ELFNONE);
        
@@ -78,9 +78,9 @@ static void malelf_binary_open_malloc_TEST(void)
        CU_ASSERT(bin.fd > 2);
        CU_ASSERT(NULL != bin.mem);
        CU_ASSERT(bin.size > 0);
-       CU_ASSERT(NULL != bin.elf.ehdr.uehdr.h32);
-       CU_ASSERT(NULL != bin.elf.phdr.uphdr.h32);
-       CU_ASSERT(NULL != bin.elf.shdr.h32);
+       CU_ASSERT(NULL != bin.elf.ehdr.uhdr.h32);
+       CU_ASSERT(NULL != bin.elf.phdr.uhdr.h32);
+       CU_ASSERT(NULL != bin.elf.shdr.uhdr.h32);
        CU_ASSERT(bin.alloc_type == MALELF_ALLOC_MALLOC);
        CU_ASSERT(bin.class == MALELF_ELF32 ||
                  bin.class == MALELF_ELF64);
@@ -97,9 +97,9 @@ static void malelf_binary_open_malloc_TEST(void)
        CU_ASSERT(bin.fd == -1);
        CU_ASSERT(NULL == bin.mem);
        CU_ASSERT(bin.size == 0);
-       CU_ASSERT(NULL == bin.elf.ehdr.uehdr.h32);
-       CU_ASSERT(NULL == bin.elf.phdr.uphdr.h32);
-       CU_ASSERT(NULL == bin.elf.shdr.h32);
+       CU_ASSERT(NULL == bin.elf.ehdr.uhdr.h32);
+       CU_ASSERT(NULL == bin.elf.phdr.uhdr.h32);
+       CU_ASSERT(NULL == bin.elf.shdr.uhdr.h32);
        CU_ASSERT(bin.alloc_type == MALELF_ALLOC_MALLOC);
        CU_ASSERT(bin.class == MALELF_ELFNONE);
 
@@ -110,9 +110,9 @@ static void malelf_binary_open_malloc_TEST(void)
        CU_ASSERT(bin.fd == -1);
        CU_ASSERT(NULL == bin.mem);
        CU_ASSERT(bin.size == 0);
-       CU_ASSERT(NULL == bin.elf.ehdr.uehdr.h32);
-       CU_ASSERT(NULL == bin.elf.phdr.uphdr.h32);
-       CU_ASSERT(NULL == bin.elf.shdr.h32);
+       CU_ASSERT(NULL == bin.elf.ehdr.uhdr.h32);
+       CU_ASSERT(NULL == bin.elf.phdr.uhdr.h32);
+       CU_ASSERT(NULL == bin.elf.shdr.uhdr.h32);
        CU_ASSERT(bin.alloc_type == MALELF_ALLOC_NONE);
        CU_ASSERT(bin.class == MALELF_ELFNONE);
 }
@@ -193,7 +193,6 @@ void malelf_binary_write_TEST()
 
 	error = malelf_binary_open("bintest/uninfected", &bin);
 	CU_ASSERT(MALELF_SUCCESS == error);
-	malelf_perror(error);
 
 	error = malelf_binary_write(&bin, "bintest/uninfected_copy");
 	CU_ASSERT(MALELF_SUCCESS == error);
@@ -203,7 +202,7 @@ void malelf_binary_write_TEST()
 	CU_ASSERT(st_info.st_size == bin.size);
 
 	malelf_binary_close(&bin);
-//	unlink("bintest/uninfected_copy");
+	unlink("bintest/uninfected_copy");
 }
 
 

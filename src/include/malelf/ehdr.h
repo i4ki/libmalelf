@@ -48,13 +48,12 @@ MALELF_BEGIN_DECLS
  *  prefer, there is getters to access the class members.
  *
  */
-typedef union {
-        Elf32_Ehdr *h32;    /*!< 32-bits ELF Header */
-        Elf64_Ehdr *h64;    /*!< 64-bits ELF Header */
-} MalelfUEhdr;
 
 typedef struct {
-        MalelfUEhdr uehdr;   
+	union {
+		Elf32_Ehdr *h32;    /*!< 32-bits ELF Header */
+		Elf64_Ehdr *h64;    /*!< 64-bits ELF Header */
+	} uhdr;
         _u8 class;          /*!< Architeture class */
 }MalelfEhdr;
 
@@ -242,6 +241,8 @@ extern _i32 malelf_ehdr_get_shstrndx(MalelfEhdr *ehdr,
  *          otherwise returns MALELF_ERROR.  
  */
 extern _i32 malelf_ehdr_get_flags(MalelfEhdr *ehdr, _u32 *flags);
+
+extern _u32 malelf_ehdr_set_entry(MalelfEhdr *ehdr, _u32 new_entry);
 
 MALELF_END_DECLS
 

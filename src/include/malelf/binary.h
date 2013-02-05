@@ -44,6 +44,8 @@ typedef struct {
 
 typedef struct {
         char *fname;          /* Binary filename */
+	char *bkpfile;       /* Filename of backup'ed file in case of 
+                                write operations */
         _i32 fd;             /* Binary file descriptor */
         _u8* mem;            /* Binary content */
         _u32 size;           /* Binary size */
@@ -194,6 +196,9 @@ extern _u32 malelf_binary_get_section(_u32 idx,
 				      MalelfSection *section);
 
 extern _u32 malelf_binary_write(MalelfBinary *bin, const char *fname);
+
+extern _u32 malelf_binary_create_elf_exec32(MalelfBinary *bin);
+extern _u32 malelf_binary_add_phdr32(MalelfBinary *bin, Elf32_Phdr *new_phdr);
 					   
 
 

@@ -42,9 +42,12 @@ MALELF_BEGIN_DECLS
  * should only be accessed via the following functions. 
  *
  */
-typedef union {
-        Elf32_Shdr *h32;    /*!< 32-bits ELF Section Headers */
-        Elf64_Shdr *h64;    /*!< 64-bits ELF Section Headers */
+typedef struct {
+	union {
+		Elf32_Shdr *h32;    /*!< 32-bits ELF Section Headers */
+		Elf64_Shdr *h64;    /*!< 64-bits ELF Section Headers */
+	} uhdr;
+	_u8 class;
 } MalelfShdr;
 
 typedef struct {
