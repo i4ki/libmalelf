@@ -232,16 +232,13 @@ _i32 malelf_ehdr_get_phoff(MalelfEhdr *ehdr, _u32 *phoff)
         int error = MALELF_SUCCESS;
 
         *phoff = MALELF_ELF_FIELD(ehdr, e_phoff, error);
-
         return error;
 }
 
 _i32 malelf_ehdr_get_shoff(MalelfEhdr *ehdr, _u32 *shoff)
 {
         int error = MALELF_SUCCESS;
-
         *shoff = MALELF_ELF_FIELD(ehdr, e_shoff, error);
-
         return error;
 }
 
@@ -250,7 +247,6 @@ _i32 malelf_ehdr_get_ehsize(MalelfEhdr *ehdr, _u32 *size)
         int error = MALELF_SUCCESS;
 
         *size = MALELF_ELF_FIELD(ehdr, e_ehsize, error);
-
         return error;
 }
 
@@ -258,9 +254,7 @@ _i32 malelf_ehdr_get_ehsize(MalelfEhdr *ehdr, _u32 *size)
 _i32 malelf_ehdr_get_phentsize(MalelfEhdr *ehdr, _u32 *phentsize)
 {
         int error = MALELF_SUCCESS;
-
         *phentsize = MALELF_ELF_FIELD(ehdr, e_phentsize, error);
-
         return error;
 }
 
@@ -268,11 +262,8 @@ _i32 malelf_ehdr_get_phentsize(MalelfEhdr *ehdr, _u32 *phentsize)
 _i32 malelf_ehdr_get_phnum(MalelfEhdr *ehdr, _u32 *phnum)
 {
         int error = MALELF_SUCCESS;
-
         assert(ehdr != NULL);
-
         *phnum = MALELF_ELF_FIELD(ehdr, e_phnum, error);
-
         return MALELF_SUCCESS;
 }
 
@@ -283,7 +274,6 @@ _i32 malelf_ehdr_get_shentsize(MalelfEhdr *ehdr, _u32 *shentsize)
         assert(NULL != ehdr);
 
         *shentsize = MALELF_ELF_FIELD(ehdr, e_shentsize, error);
-
         return error;
 }
 
@@ -294,7 +284,6 @@ _i32 malelf_ehdr_get_shnum(MalelfEhdr *ehdr, _u32 *shnum)
         assert(NULL != ehdr);
 
         *shnum = MALELF_ELF_FIELD(ehdr, e_shnum, error);
-
         return error;
 }
 
@@ -315,7 +304,6 @@ _i32 malelf_ehdr_get_flags(MalelfEhdr *ehdr, _u32 *flags)
         assert(NULL != ehdr);
 
         *flags = MALELF_ELF_FIELD(ehdr, e_flags, error);
-
         return error;
 }
 

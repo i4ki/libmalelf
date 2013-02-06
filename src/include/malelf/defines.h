@@ -66,7 +66,4 @@
         (((hdr)->class == MALELF_ELF64) ? \
 	        ((hdr)->uhdr.h64->field) : (error = MALELF_EINVALID_CLASS) && NULL))
 
-#define MALELF_ELF(bin, hdr, field, error)                    \
-  MALELF_HDR((&(bin)->elf.hdr), (bin)->class, field, error)
-
 #endif /* MALELF_DEFINES_H */

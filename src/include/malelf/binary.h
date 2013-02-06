@@ -37,19 +37,15 @@
 #include "phdr.h"
 
 typedef struct {
-        MalelfEhdr ehdr;    /* ELF Header */
-        MalelfPhdr phdr;    /* Elf Program Headers */
-        MalelfShdr shdr;    /* Elf Section Headers */
-} MalelfFormat;
-
-typedef struct {
         char *fname;          /* Binary filename */
 	char *bkpfile;       /* Filename of backup'ed file in case of 
                                 write operations */
         _i32 fd;             /* Binary file descriptor */
         _u8* mem;            /* Binary content */
         _u32 size;           /* Binary size */
-        MalelfFormat elf;    /* ELF Information */
+        MalelfEhdr ehdr;    /* ELF Header */
+        MalelfPhdr phdr;    /* Elf Program Headers */
+        MalelfShdr shdr;    /* Elf Section Headers */
         _u8 alloc_type;      /* System function used to allocate memory */
 	_u32 class;
 } MalelfBinary;
