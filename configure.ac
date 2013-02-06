@@ -3,6 +3,7 @@ AC_INIT([libmalelf], [1.0], [natel@secplus.com.br])
 
 AC_MSG_RESULT([Welcome to AutoHELL])
 AM_INIT_AUTOMAKE
+AM_PROG_AS
 
 dnl need libtool for libmalelf
 LT_INIT
@@ -115,7 +116,8 @@ AC_CHECK_FUNCS([bzero getaddrinfo inet_ntoa memset socket munmap])
 AC_CONFIG_FILES([     Makefile \
                       src/Makefile \
                       test/Makefile \
-                      test/bintest/Makefile])
+                      test/bintest/Makefile \
+		      examples/Makefile])
 
 
 AC_OUTPUT

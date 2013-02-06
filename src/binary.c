@@ -124,10 +124,12 @@ static _i32 _malelf_binary_map_phdr(MalelfBinary *bin)
 		return MALELF_ERROR; 
 		break;
 	case MALELF_ELF32: 
-		bin->phdr.uhdr.h32 = (Elf32_Phdr *) (bin->mem + ehdr.uhdr.h32->e_phoff);
+		bin->phdr.uhdr.h32 = (Elf32_Phdr *) 
+		  (bin->mem + ehdr.uhdr.h32->e_phoff);
 		break;
 	case MALELF_ELF64: 
-		bin->phdr.uhdr.h64 = (Elf64_Phdr *) (bin->mem + ehdr.uhdr.h64->e_phoff);
+		bin->phdr.uhdr.h64 = (Elf64_Phdr *) 
+		  (bin->mem + ehdr.uhdr.h64->e_phoff);
 		break;
 	}
        
@@ -149,10 +151,12 @@ static _i32 _malelf_binary_map_shdr(MalelfBinary *bin)
 
 	switch (bin->class) {
 	case MALELF_ELF32: 
-		bin->shdr.uhdr.h32 = (Elf32_Shdr *) (bin->mem + ehdr.uhdr.h32->e_shoff);
+		bin->shdr.uhdr.h32 = (Elf32_Shdr *) 
+		  (bin->mem + ehdr.uhdr.h32->e_shoff);
 		break;
 	case MALELF_ELF64: 
-		bin->shdr.uhdr.h64 = (Elf64_Shdr *) (bin->mem + ehdr.uhdr.h64->e_shoff);
+		bin->shdr.uhdr.h64 = (Elf64_Shdr *) 
+		  (bin->mem + ehdr.uhdr.h64->e_shoff);
 		break;
 	default: 
 		return MALELF_ERROR;
@@ -948,17 +952,14 @@ _u32 malelf_binary_add_phdr32(MalelfBinary *bin, Elf32_Phdr *new_phdr)
 
 		/* allocate space for two program headers, 
 		   the first is PT_NULL */
-		printf("OLD size = %u, NEW size = %u\n",
-		       bin->size,
-		       bin->size + 
-		       sizeof(Elf32_Phdr) * 2);
 		bin->mem = malelf_realloc(bin->mem, 
 					  bin->size + 
 					  sizeof(Elf32_Phdr) * 2);
 		if (bin->mem == NULL) {
 			return MALELF_EALLOC;
 		}
-		
+
+		/* The first PHT is filled by NULL */
 		phdr.p_type = PT_NULL;
 		phdr.p_offset = 0x00;
 		phdr.p_vaddr = 0x00;
@@ -987,10 +988,6 @@ _u32 malelf_binary_add_phdr32(MalelfBinary *bin, Elf32_Phdr *new_phdr)
 
 		bin->size += sizeof(Elf32_Phdr);
 	}
-
-	printf("bin->size = %u and size = %u\n", bin->size,
-	       ehdr->e_phoff + 
-	       (sizeof (Elf32_Phdr) * ehdr->e_phnum));
 
 	memcpy(bin->mem + ehdr->e_phoff + 
 	       (sizeof (Elf32_Phdr) * ehdr->e_phnum),

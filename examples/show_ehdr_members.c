@@ -14,7 +14,6 @@ int main()
         MalelfEhdrMachine me_machine;
         MalelfEhdrVersion me_version;
 
-        _u8 class;
         _i32 result;
         _u32 size;
         _u32 phentsize;

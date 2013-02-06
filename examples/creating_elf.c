@@ -60,6 +60,7 @@ int main(int argc, char **argv)
 	phdr.p_paddr = phdr.p_vaddr;
 	phdr.p_filesz = st_info.st_size;
 	phdr.p_memsz = phdr.p_filesz;
+	phdr.p_flags = PF_X;
 
 	error = malelf_binary_add_phdr32(&bin, &phdr);
 
@@ -73,7 +74,7 @@ int main(int argc, char **argv)
 
 	memcpy(bin.mem + phdr.p_offset, text_data, st_info.st_size);
 
-	malelf_ehdr_set_entry(&bin.elf.ehdr, phdr.p_vaddr);
+	malelf_ehdr_set_entry(&bin.ehdr, phdr.p_vaddr);
 
 	error = malelf_binary_write(&bin, "./new_elf");
 
