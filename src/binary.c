@@ -162,6 +162,8 @@ static _i32 _malelf_binary_map_shdr(MalelfBinary *bin)
 		return MALELF_ERROR;
 	}
 
+	bin->shdr.class = bin->class;
+
 	return MALELF_SUCCESS;
 }
 

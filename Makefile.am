@@ -1,3 +1,3 @@
 ACLOCAL_AMFLAGS=-I m4
 
-SUBDIRS = src $(INCLUDE_TESTS) examples
+SUBDIRS = src examples $(INCLUDE_TESTS)
