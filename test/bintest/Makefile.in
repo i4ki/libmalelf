@@ -225,7 +225,7 @@ SUFFIXES = .asm
 uninfected_SOURCES = uninfected.c
 uninfected_asm_SOURCES = uninfected_asm.asm
 AM_CFLAGS = -Wall -Wextra -Werror
-uninfected_asm_LINK = cp uninfected_asm.o uninfected_asm.bin; echo 
+uninfected_asm_LINK = ld -o uninfected_asm
 all: all-am
 
 .SUFFIXES:
@@ -556,9 +556,6 @@ uninstall-am: uninstall-binPROGRAMS
 
 .asm.o:
 	nasm -f elf $< -o $@
-
-#%.o: %.s
-#	$(CCAS) $(CCASFLAGS) -o $@ $<
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

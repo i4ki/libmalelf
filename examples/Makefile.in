@@ -15,6 +15,9 @@
 
 @SET_MAKE@
 
+###########################################################################
+# Some rules for building asm files:
+
 VPATH = @srcdir@
 am__make_dryrun = \
   { \
@@ -102,9 +105,6 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-CCASCOMPILE = $(CCAS) $(AM_CCASFLAGS) $(CCASFLAGS)
-LTCCASCOMPILE = $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=compile $(CCAS) $(AM_CCASFLAGS) $(CCASFLAGS)
 SOURCES = $(creating_elf_SOURCES) $(get_section_names_SOURCES) \
 	$(show_ehdr_members_SOURCES) $(text_section_SOURCES) \
 	$(writing_binaries_SOURCES)
@@ -127,7 +127,7 @@ AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
 CC = @CC@
-CCAS = nasm
+CCAS = @CCAS@
 CCASDEPMODE = @CCASDEPMODE@
 CCASFLAGS = @CCASFLAGS@
 CCDEPMODE = @CCDEPMODE@
@@ -241,7 +241,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-AM_CCASFLAGS = -f bin
+SUFFIXES = .asm
 
 # hack to force automake to don't link the assembled binary
 text_section_LINK = @cp text_section.o text_section.bin; \
@@ -251,13 +251,13 @@ writing_binaries_SOURCES = writing_binaries.c
 creating_elf_SOURCES = creating_elf.c
 get_section_names_SOURCES = get_section_names.c
 show_ehdr_members_SOURCES = show_ehdr_members.c
-text_section_SOURCES = text_section.s
+text_section_SOURCES = text_section.asm
 AM_CFLAGS = -Wall -Wextra -Werror -I../src/include
 LDADD = -L../src/.libs -lmalelf
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .lo .o .obj .s
+.SUFFIXES: .asm .c .lo .o .obj
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -381,15 +381,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
-
-.s.o:
-	$(CCASCOMPILE) -c -o $@ $<
-
-.s.obj:
-	$(CCASCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
-
-.s.lo:
-	$(LTCCASCOMPILE) -c -o $@ $<
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -603,8 +594,8 @@ uninstall-am: uninstall-binPROGRAMS
 	uninstall-binPROGRAMS
 
 
-%.o: %.s
-	$(CCAS) $(CCASFLAGS) -o $@ $<
+.asm.o:
+	nasm -f bin $< -o $@
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

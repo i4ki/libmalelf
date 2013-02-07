@@ -13,7 +13,5 @@ uninfected_SOURCES = uninfected.c
 uninfected_asm_SOURCES = uninfected_asm.asm
 
 AM_CFLAGS = -Wall -Wextra -Werror
-uninfected_asm_LINK = cp uninfected_asm.o uninfected_asm.bin; echo 
+uninfected_asm_LINK = ld -o uninfected_asm
 
-#%.o: %.s
-#	$(CCAS) $(CCASFLAGS) -o $@ $<
