@@ -45,12 +45,14 @@ MALELF_BEGIN_DECLS
  * should only be accessed via the following functions. 
  *
  */
+typedef union {
+        Elf32_Shdr *h32;    /*!< 32-bits ELF Section Headers */
+        Elf64_Shdr *h64;    /*!< 64-bits ELF Section Headers */
+} MalelfUShdr;
+
 typedef struct {
-	union {
-		Elf32_Shdr *h32;    /*!< 32-bits ELF Section Headers */
-		Elf64_Shdr *h64;    /*!< 64-bits ELF Section Headers */
-	} uhdr;
-	_u8 class;
+    MalelfUShdr uhdr;
+    _u8 class;
 } MalelfShdr;
 
 typedef struct {
@@ -60,6 +62,17 @@ typedef struct {
 	_u32 size;
 	MalelfShdr *shdr;
 } MalelfSection;
+
+extern _u32 malelf_shdr_get_name(MalelfShdr *shdr, _u32 *name, _u32 index);
+extern _u32 malelf_shdr_get_type(MalelfShdr *shdr, _u32 *type, _u32 index);
+extern _u32 malelf_shdr_get_flags(MalelfShdr *shdr, _u32 *flags, _u32 index);
+extern _u32 malelf_shdr_get_addr(MalelfShdr *shdr, _u32 *addr, _u32 index);
+extern _u32 malelf_shdr_get_offset(MalelfShdr *shdr, _u32 *offset, _u32 index);
+extern _u32 malelf_shdr_get_size(MalelfShdr *shdr, _u32 *size, _u32 index);
+extern _u32 malelf_shdr_get_link(MalelfShdr *shdr, _u32 *link, _u32 index);
+extern _u32 malelf_shdr_get_info(MalelfShdr *shdr, _u32 *info, _u32 index);
+extern _u32 malelf_shdr_get_addralign(MalelfShdr *shdr, _u32 *addralign, _u32 index);
+extern _u32 malelf_shdr_get_entsize(MalelfShdr *shdr, _u32 *entsize, _u32 index);
 
 MALELF_END_DECLS
 
