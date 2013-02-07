@@ -34,8 +34,11 @@
 
 MALELF_BEGIN_DECLS
 
+#define MALELF_PHDR_SIZE(class) \
+	((class == MALELF_ELF32) ? sizeof(Elf32_Phdr) : sizeof(Elf64_Phdr))
+
 /*!
- * \file phdr.h
+ * \File phdr.h
  * \brief A class used to control the program headers.
  *
  * The MalelfPhdr union is an opaque data type. It
@@ -52,9 +55,11 @@ typedef struct {
 }MalelfPhdr;
 
 typedef struct {
+	_u32 type;
 	_u8 class;
 	_u32 index;
 	_u8 *mem;
+	_u32 offset;
 	_u32 size;
 	MalelfPhdr *phdr;
 } MalelfSegment;

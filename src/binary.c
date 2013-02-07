@@ -406,9 +406,11 @@ static _u32 _malelf_binary_get_segment_32(_u32 segment_idx,
 
 	phdr32 += segment_idx;
 
+	segment->type = phdr32->p_type;
 	segment->class = bin->class;
 	segment->index = segment_idx;
 	segment->size = phdr32->p_filesz;
+	segment->offset = phdr32->p_offset;
 	segment->mem = bin->mem + phdr32->p_offset;
 	segment->phdr = &stphdr;
 
@@ -434,8 +436,10 @@ static _u32 _malelf_binary_get_segment_64(_u32 segment_idx,
 
 	phdr64 += segment_idx;
 
+	segment->type = phdr64->p_type;
 	segment->class = bin->class;
 	segment->index = segment_idx;
+	segment->offset = phdr64->p_offset;
 	segment->size = phdr64->p_filesz;
 	segment->mem = bin->mem + phdr64->p_offset;
 	segment->phdr = &stphdr;
@@ -702,16 +706,329 @@ _u32 malelf_binary_get_section_by_name(const char *name,
 	return error;
 }
 
-_u32 malelf_binary_write32(MalelfBinary *bin, const char *fname)
+_u32 malelf_binary_write_ehdr(MalelfBinary *bin)
+{
+	_u32 error = MALELF_SUCCESS;
+
+	switch (bin->class) {
+	case MALELF_ELF32:
+		error = malelf_write(bin->fd, bin->mem, sizeof (Elf32_Ehdr));
+		break;
+	case MALELF_ELF64:
+		error = malelf_write(bin->fd, bin->mem, sizeof (Elf64_Ehdr));
+		break;
+	default:
+		error = MALELF_EINVALID_CLASS;
+	}
+
+	return error;
+}
+
+inline _u32 _malelf_binary_write_phdr32(MalelfBinary *bin)
+{
+	Elf32_Ehdr *ehdr = (Elf32_Ehdr *) MALELF_ELF_DATA(&bin->ehdr);
+	Elf32_Phdr *phdr = (Elf32_Phdr *) MALELF_ELF_DATA(&bin->phdr);
+	_u32 i = 0, error = MALELF_SUCCESS;
+
+	lseek(bin->fd, ehdr->e_phoff, SEEK_SET);
+	
+	/* Writing PHDR's */
+	for (i = 0; i < ehdr->e_phnum; i++) {
+		Elf32_Phdr *p = phdr + i;
+		error = malelf_write(bin->fd, (_u8*) p, sizeof (Elf32_Phdr));
+
+		if (MALELF_SUCCESS != error) {
+			return error;
+		}
+	}
+
+	return error;
+}
+
+inline _u32 _malelf_binary_write_phdr64(MalelfBinary *bin)
+{
+	Elf64_Ehdr *ehdr = (Elf64_Ehdr *) MALELF_ELF_DATA(&bin->ehdr);
+	Elf64_Phdr *phdr = (Elf64_Phdr *) MALELF_ELF_DATA(&bin->phdr);
+	_u32 i = 0, error = MALELF_SUCCESS;
+
+	lseek(bin->fd, ehdr->e_phoff, SEEK_SET);
+	
+	/* Writing PHDR's */
+	for (i = 0; i < ehdr->e_phnum; i++) {
+		Elf64_Phdr *p = phdr + i;
+		error = malelf_write(bin->fd, (_u8*) p, sizeof (Elf64_Phdr));
+
+		if (MALELF_SUCCESS != error) {
+			return error;
+		}
+	}
+
+	return error;
+}
+
+
+_u32 malelf_binary_write_phdr(MalelfBinary *bin)
+{
+	_u32 error = MALELF_SUCCESS;
+
+	switch (bin->class) {
+	case MALELF_ELF32:
+		error = _malelf_binary_write_phdr32(bin);
+		break;
+	case MALELF_ELF64:
+		error = _malelf_binary_write_phdr64(bin);
+		break;
+	default:
+		error = MALELF_EINVALID_CLASS;
+	}
+
+	return error;
+}
+
+inline _u32 _malelf_binary_write_shdr32(MalelfBinary *bin)
+{
+	_u32 error = MALELF_SUCCESS;
+	_u32 i, ehdr_shnum, ehdr_shoff;
+	Elf32_Shdr *shdr = MALELF_ELF_DATA(&bin->shdr);
+
+	assert(NULL != shdr);
+
+	if ((error = malelf_ehdr_get_shnum(&bin->ehdr, 
+					   &ehdr_shnum)) != MALELF_SUCCESS ||
+	    (error = malelf_ehdr_get_shoff(&bin->ehdr,
+					   &ehdr_shoff)) != MALELF_SUCCESS) {
+		return error;
+	}
+
+	lseek(bin->fd, ehdr_shoff, SEEK_SET);
+
+	for (i = 0; i < ehdr_shnum; i++) {			
+		Elf32_Shdr *s = shdr + i;
+		error = malelf_write(bin->fd, 
+				     (_u8 *) s, 
+				     sizeof(Elf32_Shdr));
+		if (MALELF_SUCCESS != error) {
+			return error;
+		}
+	}
+
+	return error;
+}
+
+inline _u32 _malelf_binary_write_shdr64(MalelfBinary *bin)
+{
+	_u32 error = MALELF_SUCCESS;
+	_u32 i, ehdr_shnum, ehdr_shoff;
+	Elf64_Shdr *shdr = MALELF_ELF_DATA(&bin->shdr);
+
+	assert(NULL != shdr);
+
+	if ((error = malelf_ehdr_get_shnum(&bin->ehdr, 
+					   &ehdr_shnum)) != MALELF_SUCCESS ||
+	    (error = malelf_ehdr_get_shoff(&bin->ehdr,
+					   &ehdr_shoff)) != MALELF_SUCCESS) {
+		return error;
+	}
+
+	lseek(bin->fd, ehdr_shoff, SEEK_SET);
+
+	for (i = 0; i < ehdr_shnum; i++) {			
+		Elf64_Shdr *s = shdr + i;
+		error = malelf_write(bin->fd, 
+				     (_u8 *) s, 
+				     sizeof(Elf64_Shdr));
+		if (MALELF_SUCCESS != error) {
+			return error;
+		}
+	}
+
+	return error;
+}
+
+_u32 malelf_binary_write_shdr(MalelfBinary *bin)
+{
+	_u32 error = MALELF_SUCCESS;
+
+	switch (bin->class) {
+	case MALELF_ELF32:
+		error = _malelf_binary_write_shdr32(bin);
+		break;
+	case MALELF_ELF64:
+		error = _malelf_binary_write_shdr64(bin);
+		break;
+	default:
+		error = MALELF_EINVALID_CLASS;
+	}
+
+	return error;
+}
+
+/**
+ * Write a MalelfBinary file on disk,
+ *
+ * The algorithm is:
+ * 1- Create the file with the length of bin->size (zero'ed);
+ * 2- Seek to the begin and write EHDR;
+ * 3- Seek to the ehdr->e_phoff and write all phts;
+ * 4- If the binary has SHDR:
+ *     1- For all shts, write the section content to disk;
+ * 5- Else, if the binary has PHDR:
+ *     1- For all phts, write the segment content to disk;
+ * 6- Seek to ehdr->e_shoff (if not zero);
+ * 7- Write the SHT;
+ * 8- Write everything between SHT and bin->size;
+ */
+_u32 _malelf_binary_write(MalelfBinary *bin)
+{
+	_u32 error = MALELF_SUCCESS;
+	_u32 i;
+	_u32 ehdr_shnum; 
+	_u32 ehdr_shoff;
+	_u32 ehdr_phoff;
+	_u32 ehdr_phnum;
+	_u8 phdr_size;
+
+        /* We're expecting that bin->size have the correct size of the
+           binary to write. If not, this approuch will not work ...
+           Here, we truncate the binary to the specified length and then
+           we seek to the position to write the data. */           
+	error = ftruncate(bin->fd, bin->size);
+
+	lseek(bin->fd, 0, SEEK_SET);
+
+	/* Writing EHDR */
+	error = malelf_binary_write_ehdr(bin);
+
+	if (MALELF_SUCCESS != error) {
+		return error;
+	}
+
+	error = malelf_binary_write_phdr(bin);
+
+	if (error != MALELF_SUCCESS) {
+		return error;
+	}
+
+	if ((error = malelf_ehdr_get_shnum(&bin->ehdr, 
+					   &ehdr_shnum)) != MALELF_SUCCESS ||
+	    (error = malelf_ehdr_get_shoff(&bin->ehdr,
+					   &ehdr_shoff)) != MALELF_SUCCESS ||
+	    (error = malelf_ehdr_get_phoff(&bin->ehdr,
+					   &ehdr_phoff)) != MALELF_SUCCESS ||
+	    (error = malelf_ehdr_get_phnum(&bin->ehdr, 
+					   &ehdr_phnum)) != MALELF_SUCCESS) {
+		return error;
+	}
+
+	phdr_size = MALELF_PHDR_SIZE(bin->class);
+
+	/* PHDR and SHDR are'nt always required.
+	   Executable file doesn't need a SHT ...
+	   Relocatable file doesn't need a PHT ...
+
+	   This function allows the write of partial MalelfBinary objects
+	   created by malelf_binary_create_elf_* functions.
+	
+	   Binaries written in assembly could'nt have a SHT.
+	   The section header table can be ommited for size performance. 
+	   Only EHDR and PHT is required to ET_EXEC binaries.
+        */
+
+        /* Testing if the binary have SHT */
+	if (ehdr_shnum != 0 && 
+	    ehdr_shoff > (ehdr_phoff + (phdr_size * ehdr_phnum)) &&
+	    ehdr_shoff < bin->size) {
+		/* Writing sections */
+		for (i = 0; i < ehdr_shnum; i++) {
+			MalelfSection section;
+
+			error = malelf_binary_get_section(i, bin, &section);
+			
+			if (MALELF_SUCCESS != error) {
+				return error;
+			}
+
+			if (section.type == SHT_NULL || section.size == 0) {
+				/* skipping SHT_NULL */
+				continue;
+			}
+
+			lseek(bin->fd, section.offset, SEEK_SET);
+
+			error = malelf_write(bin->fd, 
+					     bin->mem + section.offset, 
+					     section.size);
+
+			if (MALELF_SUCCESS != error) {
+				return error;
+			}		
+		}
+
+		/* Writing SHT */
+		error = malelf_binary_write_shdr(bin);
+
+		if (MALELF_SUCCESS != error) {
+			return error;
+		}
+
+		_u32 sht_end = ehdr_shoff + 
+			MALELF_SHDR_SIZE(bin->class) * ehdr_shnum;
+
+		/* writing the remaining data (virus ?) */
+		if ((sht_end + 1) < bin->size) {
+			error = malelf_write(bin->fd,
+					     bin->mem + sht_end,
+					     (bin->size - (sht_end + 1)));
+
+			if (MALELF_SUCCESS != error) {
+				return error;
+			}
+		}
+		    
+	} else {
+		_u32 last_offset = 0;
+		_u32 last_size = 0;
+		/* writing binary content using the program headers */
+		for (i = 0; i < ehdr_phnum; i++) {
+			MalelfSegment segment;
+
+			error = malelf_binary_get_segment(i, bin, &segment);
+
+			if (segment.type == PT_NULL)
+				continue;
+
+			last_offset = segment.offset;
+			last_size = segment.size;
+
+			lseek(bin->fd, segment.offset, SEEK_SET);
+			error = malelf_write(bin->fd,
+					     bin->mem + segment.offset,
+					     segment.size);
+
+			if (MALELF_SUCCESS != error) {
+				return error;
+			}
+		}
+
+		if (last_offset > 0 && 
+		    (last_offset + last_size + 1) < bin->size) {
+			_u32 last_segment_end = last_offset + last_size;
+			error = malelf_write(bin->fd,
+					     bin->mem + last_segment_end,
+					     bin->size - (last_segment_end + 1));
+
+			if (MALELF_SUCCESS != error) {
+				return error;
+			}
+		}
+	}
+
+	return error;	
+}
+
+_u32 malelf_binary_write(MalelfBinary *bin, const char *fname)
 {
 	int error = MALELF_SUCCESS;
-	MalelfEhdr stehdr;
-	MalelfPhdr stphdr;
-	MalelfShdr stshdr;
-	Elf32_Ehdr *ehdr;
-	Elf32_Phdr *phdr;
-	Elf32_Shdr *shdr;
-	int i;
 
 	struct stat st_info;
 	char *bkpfile;
@@ -740,149 +1057,7 @@ _u32 malelf_binary_write32(MalelfBinary *bin, const char *fname)
 		return errno;
 	}
 
-	error = malelf_binary_get_ehdr(bin, &stehdr);
-	if (MALELF_SUCCESS != error) {
-		return error;
-	}
-
-	error = malelf_binary_get_phdr(bin, &stphdr);
-	if (MALELF_SUCCESS != error) {
-		return error;
-	}
-
-	error = malelf_binary_get_shdr(bin, &stshdr);
-
-	if (MALELF_SUCCESS != error) {
-		return error;
-	}
-
-	/* PHDR and SHDR are'nt always required.
-	   Executable file doesn't need a SHT ...
-	   Relocatable file doesn't need a PHT ...
-
-	   This function allows the write of partial MalelfBinary objects
-	   created by malelf_binary_create_elf_* functions.
-	   
-	   assert(NULL != stphdr.uhdr.h32);
-	   assert(NULL != stshdr.uhdr.h32);
-	*/
-
-	ehdr = (Elf32_Ehdr *) stehdr.uhdr.h32;
-	phdr = (Elf32_Phdr *) stphdr.uhdr.h32;
-	shdr = (Elf32_Shdr *) stshdr.uhdr.h32;
-
-	/* required to minimal ELF */
-	assert(NULL != ehdr);
-
-	/* Some binaries does'nt have the Section Header Table.
-	   Binaries written in assembly could'nt have a SHT.
-	   The section header table can be ommited for size performance. 
-	   Only PHT is required to ET_EXEC binaries.
-	   
-	   assert(NULL != phdr);
-	   assert(NULL != shdr); 
-        */
-
-        /* We're expecting that bin->size have the correct size of the
-           binary to write. If not, this approuch will not work ...
-           Here, we truncate the binary to the specified length and then
-           we seek to the position to write the data. */           
-	error = ftruncate(bin->fd, bin->size);
-
-	lseek(bin->fd, 0, SEEK_SET);
-
-	/* Writing EHDR */
-	error = malelf_write(bin->fd, bin->mem, sizeof (Elf32_Ehdr));
-
-	if (MALELF_SUCCESS != error) {
-		return error;
-	}
-
-	lseek(bin->fd, ehdr->e_phoff, SEEK_SET);
-	
-	/* Writing PHDR's */
-	for (i = 0; i < ehdr->e_phnum; i++) {
-		Elf32_Phdr *p = phdr + i;
-		error = malelf_write(bin->fd, (_u8*) p, sizeof (Elf32_Phdr));
-
-		if (MALELF_SUCCESS != error) {
-			return error;
-		}
-	}
-
-        /* Testing if the binary have SHT */
-	if (ehdr->e_shnum != 0 && 
-	    ehdr->e_shoff > (ehdr->e_phoff + 
-			     (sizeof(Elf32_Phdr) * ehdr->e_phnum)) &&
-	    ehdr->e_shoff < bin->size) {
-		/* Writing sections */
-		for (i = 0; i < ehdr->e_shnum; i++) {
-			Elf32_Shdr *s = shdr + i;
-			if (s->sh_type == SHT_NULL || s->sh_size == 0) {
-				/* skipping SHT_NULL */
-				continue;
-			}
-
-			lseek(bin->fd, s->sh_offset, SEEK_SET);
-
-			error = malelf_write(bin->fd, 
-					     bin->mem + s->sh_offset, 
-					     s->sh_size);
-			if (MALELF_SUCCESS != error) {
-				return error;
-			}		
-		}
-
-		lseek(bin->fd, ehdr->e_shoff, SEEK_SET);
-
-		/* Writing SHT */
-		for (i = 0; i < ehdr->e_shnum; i++) {
-			Elf32_Shdr *s = shdr + i;
-			error = malelf_write(bin->fd, 
-					     (_u8 *) s, 
-					     sizeof(Elf32_Shdr));
-			if (MALELF_SUCCESS != error) {
-				return error;
-			}
-		}
-	} else {
-		
-		/* writing binary content using the program headers */
-		for (i = 0; i < ehdr->e_phnum; i++) {
-			Elf32_Phdr *p = phdr + i;
-			if (p->p_type == PT_NULL)
-				continue;
-
-			lseek(bin->fd, p->p_offset, SEEK_SET);
-			error = malelf_write(bin->fd,
-					     bin->mem + p->p_offset,
-					     p->p_filesz);
-
-			if (MALELF_SUCCESS != error) {
-				return error;
-			}
-		}
-	}
-
-	return error;
-}
-
-_u32 malelf_binary_write(MalelfBinary *bin, const char *fname)
-{
-	_u32 error = MALELF_SUCCESS;
-
-	switch (bin->class) {
-	case MALELF_ELF32:
-		error = malelf_binary_write32(bin, fname);
-		break;
-	case MALELF_ELF64:
-		error = malelf_binary_write32(bin, fname);
-		break;
-	default:
-		error = MALELF_EINVALID_CLASS;
-	}
-
-	return error;	
+	return _malelf_binary_write(bin);
 }
 
 _u32 malelf_binary_create_elf_exec32(MalelfBinary *bin) 

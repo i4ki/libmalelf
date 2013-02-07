@@ -34,6 +34,9 @@
 
 MALELF_BEGIN_DECLS
 
+#define MALELF_SHDR_SIZE(class) \
+	((class == MALELF_ELF32) ? sizeof (Elf32_Shdr) : sizeof (Elf64_Shdr))
+
 /*!
  * \file phdr.h
  * \brief A class used to control the section header table.

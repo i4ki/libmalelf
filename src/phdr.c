@@ -42,7 +42,6 @@
 #include <malelf/phdr.h>
 
 
-
 _u32 malelf_phdr_get_type(MalelfPhdr *phdr, _u32 *type, _u32 index)
 {
         Elf32_Phdr *phdr32;
