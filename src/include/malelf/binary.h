@@ -194,6 +194,8 @@ extern _u32 malelf_binary_get_section(_u32 idx,
 extern _u32 malelf_binary_write(MalelfBinary *bin, const char *fname);
 
 extern _u32 malelf_binary_create_elf_exec32(MalelfBinary *bin);
+extern _u32 malelf_binary_create_elf_exec64(MalelfBinary *bin);
+extern _u32 malelf_binary_create_elf_exec(MalelfBinary *bin, _u8 class);
 extern _u32 malelf_binary_add_phdr32(MalelfBinary *bin, Elf32_Phdr *new_phdr);
 					   
 

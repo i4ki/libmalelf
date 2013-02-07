@@ -46,6 +46,7 @@
 #include <sys/mman.h>
 #include <elf.h>
 
+#include <malelf/defines.h>
 #include <malelf/binary.h>
 #include <malelf/error.h>
 #include <malelf/util.h>
@@ -84,7 +85,7 @@ int main(int argc, char **argv)
 	}
 
 	malelf_binary_init(&bin);
-	error = malelf_binary_create_elf_exec32(&bin);
+	error = malelf_binary_create_elf_exec(&bin, MALELF_ELF32);
 	
 	if (MALELF_SUCCESS != error) {
 		malelf_perror(error);

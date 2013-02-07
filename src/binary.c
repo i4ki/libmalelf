@@ -818,7 +818,8 @@ inline _u32 _malelf_binary_write_shdr32(MalelfBinary *bin)
 inline _u32 _malelf_binary_write_shdr64(MalelfBinary *bin)
 {
 	_u32 error = MALELF_SUCCESS;
-	_u32 i, ehdr_shnum, ehdr_shoff;
+	_u32 i;
+	_u32 ehdr_shnum, ehdr_shoff;
 	Elf64_Shdr *shdr = MALELF_ELF_DATA(&bin->shdr);
 
 	assert(NULL != shdr);
@@ -974,7 +975,7 @@ _u32 _malelf_binary_write(MalelfBinary *bin)
 		_u32 sht_end = ehdr_shoff + 
 			MALELF_SHDR_SIZE(bin->class) * ehdr_shnum;
 
-		/* writing the remaining data (virus ?) */
+		/* writing the remaining data (or virus ?) */
 		if ((sht_end + 1) < bin->size) {
 			error = malelf_write(bin->fd,
 					     bin->mem + sht_end,
@@ -1112,6 +1113,72 @@ _u32 malelf_binary_create_elf_exec32(MalelfBinary *bin)
 	return error;
 }
 
+_u32 malelf_binary_create_elf_exec64(MalelfBinary *bin)
+{
+	_u32 error = MALELF_SUCCESS;
+	Elf64_Ehdr *ehdr;
+
+	bin->mem = malelf_malloc(sizeof (Elf64_Ehdr));
+	if (!bin->mem) {
+		return MALELF_EALLOC;
+	}
+
+	bin->alloc_type = MALELF_ALLOC_MALLOC;
+	bin->size = sizeof (Elf64_Ehdr);
+	bin->class = MALELF_ELF64;
+
+	ehdr = (Elf64_Ehdr *) bin->mem;
+	ehdr->e_ident[0] = ELFMAG0;
+	ehdr->e_ident[1] = ELFMAG1;
+	ehdr->e_ident[2] = ELFMAG2;
+	ehdr->e_ident[3] = ELFMAG3;
+	ehdr->e_ident[4] = ELFCLASS64;
+	ehdr->e_ident[5] = ELFDATA2LSB;
+	ehdr->e_ident[6] = EV_CURRENT;
+	ehdr->e_ident[7] = ELFOSABI_LINUX;
+	ehdr->e_ident[8] = 0;
+	ehdr->e_ident[9] = 0;
+	ehdr->e_ident[10] = 0;
+	ehdr->e_ident[11] = 0;
+	ehdr->e_ident[12] = 0;
+	ehdr->e_ident[13] = 0;
+	ehdr->e_ident[14] = 0;
+	ehdr->e_ident[15] = 0;
+
+	/* executable file */
+	ehdr->e_type = ET_EXEC;
+	ehdr->e_machine = EM_386;
+	ehdr->e_version = EV_CURRENT;
+	ehdr->e_entry = 0x00;
+	ehdr->e_phoff = 0x00;
+	ehdr->e_shoff = 0x00;
+	ehdr->e_flags = 0x00;
+	ehdr->e_ehsize = sizeof (Elf64_Ehdr);
+	ehdr->e_phentsize = 0x00;
+	ehdr->e_phnum = 0x00;
+	ehdr->e_shentsize = 0x00;
+	ehdr->e_shnum = 0x00;
+	ehdr->e_shstrndx = SHN_UNDEF;
+
+	_malelf_binary_map_ehdr(bin);
+
+	return error;
+}
+
+_u32 malelf_binary_create_elf_exec(MalelfBinary *bin, _u8 class) 
+{
+	switch (class) {
+	case MALELF_ELF32:
+		return malelf_binary_create_elf_exec32(bin);
+		break;
+	case MALELF_ELF64:
+		return malelf_binary_create_elf_exec64(bin);
+		break;
+	}
+
+	return MALELF_EINVALID_CLASS;
+}
+
 _u32 malelf_binary_add_phdr32(MalelfBinary *bin, Elf32_Phdr *new_phdr)
 {
 	Elf32_Ehdr *ehdr;
@@ -1120,7 +1187,7 @@ _u32 malelf_binary_add_phdr32(MalelfBinary *bin, Elf32_Phdr *new_phdr)
 	assert(NULL != bin->ehdr.uhdr.h32);
 	assert(NULL != new_phdr);
 
-	ehdr = bin->ehdr.uhdr.h32;
+	ehdr = MALELF_ELF_DATA(&bin->ehdr);
 	
 	if (ehdr->e_phoff == 0 && ehdr->e_phnum == 0) {
 		Elf32_Phdr phdr;
