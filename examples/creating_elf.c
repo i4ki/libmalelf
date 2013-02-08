@@ -4,7 +4,8 @@
  * simply to understand the ELF format.
  * 
  * This example could be used to create a tiny ELF binary that execute your
- * shellcode/payload.
+ * shellcode/payload. This example contains a NOTE segment too for demo of 
+ * how to create more than one segment.
  *
  * ;; shellcode.asm
  * 
@@ -54,7 +55,7 @@
 int main(int argc, char **argv) 
 {
 	MalelfBinary bin;
-	Elf32_Phdr phdr;
+	Elf32_Phdr phdr_load, phdr_note;
 	_u32 error;
 	int fd;
 	struct stat st_info;
@@ -92,16 +93,17 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-	phdr.p_type = PT_LOAD;
-	phdr.p_offset = sizeof (Elf32_Ehdr) + sizeof (Elf32_Phdr) * 2;
-	phdr.p_vaddr = 0x08048000 + phdr.p_offset;
-	phdr.p_paddr = phdr.p_vaddr;
-	phdr.p_filesz = st_info.st_size;
-	phdr.p_memsz = phdr.p_filesz;
-	phdr.p_flags = PF_X;
-	phdr.p_align = 0;
+	/* First, configure your executable (PT_LOAD) segment */
+	phdr_load.p_type = PT_LOAD;
+	phdr_load.p_offset = sizeof (Elf32_Ehdr) + sizeof (Elf32_Phdr) * 3;
+	phdr_load.p_vaddr = 0x08048000 + phdr_load.p_offset;
+	phdr_load.p_paddr = phdr_load.p_vaddr;
+	phdr_load.p_filesz = st_info.st_size;
+	phdr_load.p_memsz = phdr_load.p_filesz;
+	phdr_load.p_flags = PF_X;
+	phdr_load.p_align = 0;
 
-	error = malelf_binary_add_phdr32(&bin, &phdr);
+	error = malelf_binary_add_phdr32(&bin, &phdr_load);
 
 	if (MALELF_SUCCESS != error) {
 		malelf_perror(error);
@@ -109,11 +111,35 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-	bin.mem = malelf_realloc(bin.mem, phdr.p_offset + st_info.st_size);
+	/* content of NOTE segment */
+	const char * message = "generated libmalelf";
 
-	memcpy(bin.mem + phdr.p_offset, text_data, st_info.st_size);
+	phdr_note.p_type = PT_NOTE;
+	phdr_note.p_offset = phdr_load.p_offset + st_info.st_size;
+	phdr_note.p_vaddr = 0x08048000 + phdr_load.p_offset + st_info.st_size;
+	phdr_note.p_paddr = phdr_note.p_vaddr;
+	phdr_note.p_filesz = strlen(message);
+	phdr_note.p_memsz = phdr_note.p_filesz;
+	phdr_note.p_flags = PF_R | PF_W;
+	phdr_note.p_align = 0;
 
-	malelf_ehdr_set_entry(&bin.ehdr, phdr.p_vaddr);
+	error = malelf_binary_add_phdr32(&bin, &phdr_note);
+
+	if (MALELF_SUCCESS != error) {
+		malelf_perror(error);
+		malelf_binary_close(&bin);
+		return 1;
+	}
+
+	/* copying text segment */
+	bin.mem = malelf_realloc(bin.mem, phdr_load.p_offset + st_info.st_size);
+	memcpy(bin.mem + phdr_load.p_offset, text_data, st_info.st_size);
+
+	/* copying note segment */
+	bin.mem = malelf_realloc(bin.mem, phdr_note.p_offset + phdr_note.p_filesz);
+	memcpy(bin.mem + phdr_note.p_offset, message, phdr_note.p_filesz);
+
+	malelf_ehdr_set_entry(&bin.ehdr, phdr_load.p_vaddr);
 
 	error = malelf_binary_write(&bin, argv[2]);
 

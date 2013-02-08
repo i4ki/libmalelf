@@ -1204,6 +1204,7 @@ _u32 malelf_binary_add_phdr32(MalelfBinary *bin, Elf32_Phdr *new_phdr)
 		}
 
 		/* The first PHT is filled by NULL */
+
 		phdr.p_type = PT_NULL;
 		phdr.p_offset = 0x00;
 		phdr.p_vaddr = 0x00;
