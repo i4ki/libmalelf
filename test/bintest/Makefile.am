@@ -4,7 +4,7 @@
 SUFFIXES = .asm
 
 .asm.o:
-	nasm -f elf $< -o $@
+	nasm -f $(ELF_FORMAT) $< -o $@
 ###########################################################################
 
 bin_PROGRAMS = uninfected uninfected_asm

@@ -1,5 +1,6 @@
 #AC_PREREQ([2.68])
 AC_INIT([libmalelf], [1.0], [natel@secplus.com.br])
+AC_CANONICAL_SYSTEM
 
 AC_MSG_RESULT([Welcome to AutoHELL])
 AM_INIT_AUTOMAKE
@@ -113,6 +114,50 @@ AC_FUNC_REALLOC
 AC_FUNC_MMAP
 AC_CHECK_FUNCS([bzero getaddrinfo inet_ntoa memset socket munmap])
 
+# architecture choice
+TARGET_ARCH=
+ARCH=
+ELF_FORMAT=
+
+if test "x$target_cpu" = "x";
+then
+	TARGET_ARCH="$host_cpu"
+else
+	TARGET_ARCH="$target_cpu"
+fi
+
+case $TARGET_ARCH in
+     x86_64|amd64|*64) ARCH=64;;
+     i386|i486|i586|i686|i*86) ARCH=32;;
+esac
+
+if test "x$ARCH" = "x";
+then
+	AC_MSG_ERROR([Invalid target architecure ($TARGET_ARCH).
+	Valid architecure are:
+	      - i386
+	      - i486
+	      - i586
+	      - i686
+	      - x86_64
+	      - amd64
+])
+fi
+
+if test "x$ARCH" = "x32";
+then
+	ELF_FORMAT="elf32"
+elif test "x$ARCH" = "x64";
+then
+	ELF_FORMAT="elf64";
+else
+	AC_MSG_ERROR([Invalid architecture ($ARCH)])
+fi
+
+AC_SUBST([ARCH])
+AC_SUBST([ELF_FORMAT])
+AC_SUBST([TARGET_ARCH])
+
 AC_CONFIG_FILES([     Makefile \
                       src/Makefile \
                       test/Makefile \
@@ -180,6 +225,9 @@ if test "x$HAVE_NASM" = "xtrue"; then
 else
    AC_MSG_RESULT([1001    NASM: not installed... required to run tests                        1010])
 fi
-
-AC_MSG_RESULT([1011                                                                        1100])
+   AC_MSG_RESULT([10111100110111101111000000010010001100100010101100111100010011010101111001101111])
+   AC_MSG_RESULT([        Build configuration])
+   AC_MSG_RESULT([            TARGET_CPU: $target_cpu])
+   AC_MSG_RESULT([            HOST_CPU: $host_cpu])
+   AC_MSG_RESULT([            ELF_FORMAT: $ELF_FORMAT])
 
