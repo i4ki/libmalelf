@@ -54,6 +54,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+target_triplet = @target@
 bin_PROGRAMS = uninfected$(EXEEXT) uninfected_asm$(EXEEXT)
 subdir = test/bintest
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
@@ -102,6 +103,7 @@ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
 AR = @AR@
+ARCH = @ARCH@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -124,6 +126,7 @@ ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
+ELF_FORMAT = @ELF_FORMAT@
 EXEEXT = @EXEEXT@
 FGREP = @FGREP@
 GREP = @GREP@
@@ -167,6 +170,7 @@ SED = @SED@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
+TARGET_ARCH = @TARGET_ARCH@
 VERSION = @VERSION@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
@@ -217,7 +221,11 @@ sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
 sysconfdir = @sysconfdir@
+target = @target@
 target_alias = @target_alias@
+target_cpu = @target_cpu@
+target_os = @target_os@
+target_vendor = @target_vendor@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
@@ -555,7 +563,7 @@ uninstall-am: uninstall-binPROGRAMS
 
 
 .asm.o:
-	nasm -f elf $< -o $@
+	nasm -f $(ELF_FORMAT) $< -o $@
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
