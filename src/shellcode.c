@@ -42,7 +42,7 @@ _u32 malelf_shellcode_dump(MalelfBinary *bin)
 {
 	assert(NULL != bin && NULL != bin->mem && bin->size > 0);
 
-	return malelf_util_dump(bin->mem, bin->size);
+	return malelf_dump(bin->mem, bin->size);
 }
 
 _u32 malelf_shellcode_get_c_string(FILE *fp, MalelfBinary *bin)

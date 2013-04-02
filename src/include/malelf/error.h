@@ -30,6 +30,10 @@
 
 #include "util.h"
 
+
+MALELF_BEGIN_DECLS
+
+
 #define MAX_MSG_ERROR 255
 
 typedef enum {
@@ -86,13 +90,33 @@ typedef enum {
   MALELF_LAST_ERROR = 52
 } malelf_status;
 
-#define malelf_perror(code) _malelf_perror(code, __FUNCTION__, __FILE__, __LINE__)
-#define malelf_fatal(code) do {malelf_perror(code); LOG_ERROR("Aborting...\n"); exit(code); } while(0)
 
-extern void _malelf_perror(int code,
-                           const char* func,
-                           const char* file,
-                           int line);
+#define MALELF_PERROR(code)\
+    __malelf_perror(code, __FUNCTION__, __FILE__, __LINE__)
+
+#define MALELF_FATAL(code)\
+    do {\
+        MALELF_PERROR(code);\
+        LOG_ERROR("Aborting...\n");\
+        exit(code);\
+    } while(0)
+
+
+/* Private method */
+extern void __malelf_perror(int code,
+                            const char* func,
+                            const char* file,
+                            int line);
+
+/*! Get string error.
+ * 
+ * \param code Error code.
+ * 
+ * \return String error.
+ */
 extern const char* malelf_strerror(int code);
+
+
+MALELF_BEGIN_DECLS
 
 #endif

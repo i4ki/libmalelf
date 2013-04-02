@@ -32,11 +32,10 @@
 #include <stdarg.h>
 #include "types.h"
 
+MALELF_BEGIN_DECLS
+
 #define MAX_LOG_BUFFER 1024
 
-/**
- * Macros
- */
 #define LOG_RAW malelf_say
 #define SAY if(!malelf_quiet_mode) malelf_say
 #define LOG LOG_RAW
@@ -47,21 +46,71 @@
 
 #define MALELF_UNUSED(var) (void*)var
 
-extern int malelf_log(FILE *fd, const char* prefix, const char* format, va_list args);
+
+/*
+ *
+ */
+extern int malelf_log(FILE *fd, 
+                      const char* prefix, 
+                      const char* format, 
+                      va_list args);
+
+
+/*
+ *
+ */
 extern int malelf_print(FILE *fd, const char* format, ...);
+
+
+/*
+ *
+ */
 extern int malelf_say(const char* format, ...);
+
+
+/*
+ *
+ */
 extern int malelf_success(const char* format, ...);
+
+
+/*
+ *
+ */
 extern int malelf_error(const char* format, ...);
+
+
+/*
+ *
+ */
 extern int malelf_warn(const char* format, ...);
+
+
+/*
+ *
+ */
 extern void* malelf_malloc(_u32 size);
+
+
+/*
+ *
+ */
 extern void* malelf_realloc(void* pointer, _u32 new_size);
+
 
 /*! Dumps the raw memory in hex
  *
  */
-extern _u32 malelf_util_dump(_u8 *mem, _u32 size);
+extern _u32 malelf_dump(_u8 *mem, _u32 size);
 
+
+/*
+ *
+ */
 extern _u32 malelf_write(int fd, _u8 *mem, _u32 size);
+
+
+MALELF_END_DECLS
 
 #endif
 

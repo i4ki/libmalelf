@@ -23,25 +23,25 @@ int main(int argc, char **argv) {
 	malelf_binary_init(&bin);
 	error = malelf_binary_open(ifname, &bin);
 	if (MALELF_SUCCESS != error) {
-		malelf_perror(error);
+		MALELF_PERROR(error);
 		return 1;
 	}
 
 	error = malelf_binary_get_ehdr(&bin, &ehdr);
 	if (MALELF_SUCCESS != error) {
-		malelf_perror(error);
+		MALELF_PERROR(error);
 		return 1;
 	}
 
 	error = malelf_ehdr_set_entry(&ehdr, new_entry);
 	if (MALELF_SUCCESS != error) {
-		malelf_perror(error);
+		MALELF_PERROR(error);
 		return 1;
 		}
 
 	error = malelf_binary_write(&bin, ofname);
 	if (MALELF_SUCCESS != error) {
-		malelf_perror(error);
+		MALELF_PERROR(error);
 		return 1;
 	}
 

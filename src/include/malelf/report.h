@@ -39,18 +39,11 @@
 
 MALELF_BEGIN_DECLS
 
-/*!
- *
- */
 typedef enum {
         MALELF_OUTPUT_XML,
         MALELF_OUTPUT_TEXT
 } MalelfOutputFormat;
 
-
-/*!
- *
- */
 typedef struct {
         char *fname;
         xmlTextWriterPtr writer;
@@ -58,34 +51,201 @@ typedef struct {
 } MalelfReport;
 
 
-/*!
+/*! Initialize report.
  *
+ * \param report A valid MalelfReport object.
+ * \param fname The file name to store the content.
+ * \param format The type of output (XML or TEXT). 
+ *
+ * \return MALELF_SUCCESS if operation was successful,
+ *          otherwise returns MALELF_ERROR. 
  */
 _u32 malelf_report_open(MalelfReport *report, const char *fname, _u8 format);
 
 
-/*!
+/*! Create report of Ehdr.
  *
+ * \param report A valid MalelfReport object.
+ * \param bin A valid MalelfBinary object.
+ *
+ * \return MALELF_SUCCESS if operation was successful,
+ *          otherwise returns MALELF_ERROR. 
  */
 _u32 malelf_report_ehdr(MalelfReport *report, MalelfBinary *bin);
 
 
-/*!
+/*! Generate e_type report from Ehdr.
  *
+ * \param report A valid MalelfReport object.
+ * \param ehdr A valid MalelfEhdr object.
+ *
+ * \return MALELF_SUCCESS if operation was successful,
+ *          otherwise returns MALELF_ERROR. 
+ */
+_u32 malelf_report_ehdr_type(MalelfReport *report, MalelfEhdr *ehdr);
+
+
+/*! Generate e_machine report from Ehdr.
+ *
+ * \param report A valid MalelfReport object.
+ * \param ehdr A valid MalelfEhdr object.
+ *
+ * \return MALELF_SUCCESS if operation was successful,
+ *          otherwise returns MALELF_ERROR. 
+ */
+_u32 malelf_report_ehdr_machine(MalelfReport *report, MalelfEhdr *ehdr);
+
+
+/*! Generate e_version report from Ehdr.
+ *
+ * \param report A valid MalelfReport object.
+ * \param ehdr A valid MalelfEhdr object.
+ *
+ * \return MALELF_SUCCESS if operation was successful,
+ *          otherwise returns MALELF_ERROR. 
+ */
+_u32 malelf_report_ehdr_version(MalelfReport *report, MalelfEhdr *ehdr);
+
+
+/*! Generate e_entry report from Ehdr.
+ *
+ * \param report A valid MalelfReport object.
+ * \param ehdr A valid MalelfEhdr object.
+ *
+ * \return MALELF_SUCCESS if operation was successful,
+ *          otherwise returns MALELF_ERROR. 
+ */
+_u32 malelf_report_ehdr_entry(MalelfReport *report, MalelfEhdr *ehdr);
+
+
+/*! Generate e_phoff report from Ehdr.
+ *
+ * \param report A valid MalelfReport object.
+ * \param ehdr A valid MalelfEhdr object.
+ *
+ * \return MALELF_SUCCESS if operation was successful,
+ *          otherwise returns MALELF_ERROR. 
+ */
+_u32 malelf_report_ehdr_phoff(MalelfReport *report, MalelfEhdr *ehdr);
+
+
+/*! Generate e_shoff report from Ehdr.
+ *
+ * \param report A valid MalelfReport object.
+ * \param ehdr A valid MalelfEhdr object.
+ *
+ * \return MALELF_SUCCESS if operation was successful,
+ *          otherwise returns MALELF_ERROR. 
+ */
+_u32 malelf_report_ehdr_shoff(MalelfReport *report, MalelfEhdr *ehdr);
+
+
+/*! Generate e_flags report from Ehdr.
+ *
+ * \param report A valid MalelfReport object.
+ * \param ehdr A valid MalelfEhdr object.
+ *
+ * \return MALELF_SUCCESS if operation was successful,
+ *          otherwise returns MALELF_ERROR. 
+ */
+_u32 malelf_report_ehdr_flags(MalelfReport *report, MalelfEhdr *ehdr);
+
+
+/*! Generate e_phentsize report from Ehdr.
+ *
+ * \param report A valid MalelfReport object.
+ * \param ehdr A valid MalelfEhdr object.
+ *
+ * \return MALELF_SUCCESS if operation was successful,
+ *          otherwise returns MALELF_ERROR. 
+ */
+_u32 malelf_report_ehdr_phentsize(MalelfReport *report, MalelfEhdr *ehdr);
+
+
+/*! Generate e_phnum report from Ehdr.
+ *
+ * \param report A valid MalelfReport object.
+ * \param ehdr A valid MalelfEhdr object.
+ *
+ * \return MALELF_SUCCESS if operation was successful,
+ *          otherwise returns MALELF_ERROR. 
+ */
+_u32 malelf_report_ehdr_phnum(MalelfReport *report, MalelfEhdr *ehdr);
+
+
+/*! Generate e_shentsize report from Ehdr.
+ *
+ * \param report A valid MalelfReport object.
+ * \param ehdr A valid MalelfEhdr object.
+ *
+ * \return MALELF_SUCCESS if operation was successful,
+ *          otherwise returns MALELF_ERROR. 
+ */
+_u32 malelf_report_ehdr_shentsize(MalelfReport *report, MalelfEhdr *ehdr);
+
+
+/*! Generate e_shnum report from Ehdr.
+ *
+ * \param report A valid MalelfReport object.
+ * \param ehdr A valid MalelfEhdr object.
+ *
+ * \return MALELF_SUCCESS if operation was successful,
+ *          otherwise returns MALELF_ERROR. 
+ */
+_u32 malelf_report_ehdr_shnum(MalelfReport *report, MalelfEhdr *ehdr);
+
+
+/*! Generate e_shstrndx report from Ehdr.
+ *
+ * \param report A valid MalelfReport object.
+ * \param ehdr A valid MalelfEhdr object.
+ *
+ * \return MALELF_SUCCESS if operation was successful,
+ *          otherwise returns MALELF_ERROR. 
+ */
+_u32 malelf_report_ehdr_shstrndx(MalelfReport *report, MalelfEhdr *ehdr);
+
+
+/*! Create report of Phdr.
+ *
+ * \param report A valid MalelfReport object.
+ * \param shdr A valid MalelfShdr object.
+ *
+ * \return MALELF_SUCCESS if operation was successful,
+ *          otherwise returns MALELF_ERROR. 
  */
 _u32 malelf_report_phdr(MalelfReport *report, MalelfBinary *bin);
 
-/*!
+
+/*! Create report of Shdr.
  *
- */
-_u32 malelf_report_shdr(MalelfReport *report, MalelfShdr *shdr);
-
-
-/*!
+ * \param report A valid MalelfReport object.
+ * \param shdr A valid MalelfShdr object.
  *
+ * \return MALELF_SUCCESS if operation was successful,
+ *          otherwise returns MALELF_ERROR. 
  */
-_u32 malelf_report_binary(MalelfReport *report, MalelfBinary *binary);
+_u32 malelf_report_shdr(MalelfReport *report, MalelfBinary *bin);
 
+
+/*! Create report of Ehdr, Phdr and Shdr.
+ *
+ * \param report A valid MalelfReport object.
+ * \param bin A valid MalelfBinary object.
+ *
+ * \return MALELF_SUCCESS if operation was successful,
+ *          otherwise returns MALELF_ERROR. 
+ */
+_u32 malelf_report_binary(MalelfReport *report, MalelfBinary *bin);
+
+
+/*! Ends MalelfReport object.
+ *
+ * \report A valid MalelfReport object.
+ *
+ * \return MALELF_SUCCESS if operation was successful,
+ *          otherwise returns MALELF_ERROR. 
+ */
 _u32 malelf_report_close(MalelfReport *report);
 
 

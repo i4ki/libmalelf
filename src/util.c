@@ -40,10 +40,7 @@
 
 extern _u8 malelf_quiet_mode;
 
-int malelf_log(FILE* fd,
-               const char* prefix,
-               const char *format,
-               va_list args)
+int malelf_log(FILE *fd, const char *prefix, const char *format, va_list args)
 {
         char outbuf[MAX_LOG_BUFFER];
         char n_format[MAX_LOG_BUFFER];
@@ -67,7 +64,7 @@ int malelf_log(FILE* fd,
         }
 }
 
-int malelf_print(FILE* fd, const char* format, ...)
+int malelf_print(FILE *fd, const char *format, ...)
 {
         va_list args;
         va_start(args, format);
@@ -88,14 +85,14 @@ int malelf_error(const char *format, ...)
         return malelf_log(stderr, "[-] ", format, args);
 }
 
-int malelf_success(const char* format, ...)
+int malelf_success(const char *format, ...)
 {
         va_list args;
         va_start(args, format);
         return malelf_log(stdout, "[+] ", format, args);
 }
 
-int malelf_warn(const char* format, ...)
+int malelf_warn(const char *format, ...)
 {
         va_list args;
         va_start(args, format);
@@ -105,7 +102,7 @@ int malelf_warn(const char* format, ...)
 void *malelf_malloc(_u32 size)
 {
         void *mem = malloc(size);
-        if (mem != NULL) {
+        if (NULL != mem) {
                 return mem;
         } else {
                 malelf_error("Failed to allocate '%d' bytes.\n", size);
@@ -113,15 +110,15 @@ void *malelf_malloc(_u32 size)
         }
 }
 
-void *malelf_realloc(void* pointer, _u32 new_size)
+void *malelf_realloc(void *pointer, _u32 new_size)
 {
-        if (pointer == NULL) {
+        if (NULL == pointer) {
                 pointer = malelf_malloc(new_size);
                 return pointer;
         }
 
         pointer = realloc(pointer, new_size);
-        if (pointer == NULL) {
+        if (NULL == pointer) {
                 malelf_error("Failed to realloc '%d' bytes.\n", new_size);
                 exit(-1);
         }
@@ -130,7 +127,7 @@ void *malelf_realloc(void* pointer, _u32 new_size)
 }
 
 /* dump ripped from `hacking - the art of exploitation - joe` */
-_u32 malelf_util_dump(_u8 *mem, _u32 size)
+_u32 malelf_dump(_u8 *mem, _u32 size)
 {
 	_u8 byte;
 	_u32 i, j;
@@ -138,7 +135,7 @@ _u32 malelf_util_dump(_u8 *mem, _u32 size)
 	for (i = 0; i < size; i++) {
 		byte = mem[i];
 		malelf_say("%02x ", mem[i]);
-		if (((i % 16) == 15) || (i == size - 1)) {
+		if (((i % 16) == 15) || (size - 1 == i)) {
 			for (j = 0; j < (15 - (i % 16)); j++) {
 				malelf_say("   ");
 			}
@@ -158,7 +155,6 @@ _u32 malelf_util_dump(_u8 *mem, _u32 size)
 			malelf_say("\n");
 		}
 	}
-
 	return MALELF_SUCCESS;
 }
 
@@ -176,12 +172,11 @@ _u32 malelf_write(int fd, _u8 *mem, _u32 size)
 			bytes_saved++;
 		}
 
-		if (tries == 3) {
+		if (3 == tries) {
 			/* IO problems? */
 			error = errno;
 			break;
 		}
 	}
-
 	return error;
 }

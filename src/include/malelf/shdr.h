@@ -62,16 +62,130 @@ typedef struct {
 	MalelfShdr *shdr;
 } MalelfSection;
 
+
+/*! Get sh_name member from Section Header Table.
+ *  
+ *  \param shdr A valid MalelfShdr object.
+ *  \param name The sh_name saved.
+ *  \param index The index of section.
+ *
+ *  \return MALELF_SUCCESS if name was successful set, 
+ *          otherwise returns MALELF_ERROR.  
+ */
 extern _u32 malelf_shdr_get_name(MalelfShdr *shdr, _u32 *name, _u32 index);
+
+
+/*! Get sh_type member from Section Header Table.
+ *  
+ *  \param shdr A valid MalelfShdr object.
+ *  \param type The sh_type saved.
+ *  \param index The index of section.
+ *
+ *  \return MALELF_SUCCESS if type was successful set, 
+ *          otherwise returns MALELF_ERROR.  
+ */
 extern _u32 malelf_shdr_get_type(MalelfShdr *shdr, _u32 *type, _u32 index);
+
+
+/*! Get sh_flags member from Section Header Table.
+ *  
+ *  \param shdr A valid MalelfShdr object.
+ *  \param flags The sh_flags saved.
+ *  \param index The index of section.
+ *
+ *  \return MALELF_SUCCESS if flags was successful set, 
+ *          otherwise returns MALELF_ERROR.  
+ */
 extern _u32 malelf_shdr_get_flags(MalelfShdr *shdr, _u32 *flags, _u32 index);
+
+
+/*! Get sh_addr member from Section Header Table.
+ *  
+ *  \param shdr A valid MalelfShdr object.
+ *  \param addr The sh_addr saved.
+ *  \param index The index of section.
+ *
+ *  \return MALELF_SUCCESS if addr was successful set, 
+ *          otherwise returns MALELF_ERROR.  
+ */
 extern _u32 malelf_shdr_get_addr(MalelfShdr *shdr, _u32 *addr, _u32 index);
+
+
+/*! Get sh_offset member from Section Header Table.
+ *  
+ *  \param shdr A valid MalelfShdr object.
+ *  \param offset The sh_offset saved.
+ *  \param index The index of section.
+ *
+ *  \return MALELF_SUCCESS if offset was successful set, 
+ *          otherwise returns MALELF_ERROR.  
+ */
 extern _u32 malelf_shdr_get_offset(MalelfShdr *shdr, _u32 *offset, _u32 index);
+
+
+/*! Get sh_size member from Section Header Table.
+ *  
+ *  \param shdr A valid MalelfShdr object.
+ *  \param size The sh_size saved.
+ *  \param index The index of section.
+ *
+ *  \return MALELF_SUCCESS if size was successful set, 
+ *          otherwise returns MALELF_ERROR.  
+ */
 extern _u32 malelf_shdr_get_size(MalelfShdr *shdr, _u32 *size, _u32 index);
+
+
+/*! Get sh_link member from Section Header Table.
+ *  
+ *  \param shdr A valid MalelfShdr object.
+ *  \param link The sh_link saved.
+ *  \param index The index of section.
+ *
+ *  \return MALELF_SUCCESS if link was successful set, 
+ *          otherwise returns MALELF_ERROR.  
+ */
 extern _u32 malelf_shdr_get_link(MalelfShdr *shdr, _u32 *link, _u32 index);
+
+
+/*! Get sh_info member from Section Header Table.
+ *  
+ *  \param shdr A valid MalelfShdr object.
+ *  \param info The sh_info saved.
+ *  \param index The index of section.
+ *
+ *  \return MALELF_SUCCESS if info was successful set, 
+ *          otherwise returns MALELF_ERROR.  
+ */
 extern _u32 malelf_shdr_get_info(MalelfShdr *shdr, _u32 *info, _u32 index);
-extern _u32 malelf_shdr_get_addralign(MalelfShdr *shdr, _u32 *addralign, _u32 index);
-extern _u32 malelf_shdr_get_entsize(MalelfShdr *shdr, _u32 *entsize, _u32 index);
+
+
+/*! Get sh_addralign member from Section Header Table.
+ *  
+ *  \param shdr A valid MalelfShdr object.
+ *  \param addralign The sh_addralign saved.
+ *  \param index The index of section.
+ *
+ *  \return MALELF_SUCCESS if addralign was successful set, 
+ *          otherwise returns MALELF_ERROR.  
+ */
+extern _u32 malelf_shdr_get_addralign(MalelfShdr *shdr, 
+                                      _u32 *addralign, 
+                                      _u32 index);
+
+
+/*! Get sh_entsize member from Section Header Table.
+ *  
+ *  \param shdr A valid MalelfShdr object.
+ *  \param entsize The sh_entsize saved.
+ *  \param index The index of section.
+ *
+ *  \return MALELF_SUCCESS if entsize was successful set, 
+ *          otherwise returns MALELF_ERROR.  
+ */
+extern _u32 malelf_shdr_get_entsize(MalelfShdr *shdr, 
+                                    _u32 *entsize, 
+                                    _u32 index);
+
 
 MALELF_END_DECLS
 

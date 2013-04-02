@@ -242,6 +242,15 @@ extern _i32 malelf_ehdr_get_shstrndx(MalelfEhdr *ehdr,
  */
 extern _i32 malelf_ehdr_get_flags(MalelfEhdr *ehdr, _u32 *flags);
 
+
+/*! Set e_entry member from ELF Header Table.
+ *  
+ *  \param ehdr Valid ELF Header Table object.
+ *  \param entry The new entry.
+ *
+ *  \return MALELF_SUCCESS if flags was successful saved, 
+ *          otherwise returns MALELF_ERROR.  
+ */
 extern _u32 malelf_ehdr_set_entry(MalelfEhdr *ehdr, _u32 new_entry);
 
 MALELF_END_DECLS

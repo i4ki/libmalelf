@@ -22,15 +22,15 @@ int main()
 
 	error = malelf_binary_open("/bin/ls", &bin);
 	if (MALELF_SUCCESS != error) {
-		malelf_perror(error);
+		MALELF_PERROR(error);
 		return 1;
 	}
 
 	/* Getting the section properties */
-	error = malelf_binary_get_section(1, &bin, &section);
+	error = malelf_binary_get_section(&bin, 1, &section);
 
 	/* Getting only the section name */
-	error = malelf_binary_get_section_name(1, &bin, &name);
+	error = malelf_binary_get_section_name(&bin, 1, &name);
 
 	assert (section.name == name);
 
@@ -44,7 +44,7 @@ int main()
 		if (i == 0)
 			continue;
 
-		error = malelf_binary_get_section_name(i, &bin, &name);
+		error = malelf_binary_get_section_name(&bin, i, &name);
 		printf("Section name: %s\n", name);
 	}
 

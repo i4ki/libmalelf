@@ -130,16 +130,16 @@ static void malelf_binary_get_section_name_TEST()
        CU_ASSERT(result == MALELF_SUCCESS);
        CU_ASSERT(NULL != bin.fname);
 
-       result = malelf_binary_get_section_name(1, &bin, &name);
+       result = malelf_binary_get_section_name(&bin, 1, &name);
        CU_ASSERT(MALELF_SUCCESS == result);
 
        CU_ASSERT_STRING_EQUAL(".interp", name);
 
-       result = malelf_binary_get_section_name(2, &bin, &name);
+       result = malelf_binary_get_section_name(&bin, 2, &name);
        CU_ASSERT(MALELF_SUCCESS == result);
        CU_ASSERT_STRING_EQUAL(".note.ABI-tag", name);
 
-       result = malelf_binary_get_section_name(12, &bin, &name);
+       result = malelf_binary_get_section_name(&bin, 12, &name);
        CU_ASSERT(MALELF_SUCCESS == result);
        CU_ASSERT_STRING_EQUAL(".init", name);	
 
@@ -159,21 +159,21 @@ static void malelf_binary_get_section_TEST()
        CU_ASSERT(result == MALELF_SUCCESS);
        CU_ASSERT(NULL != bin.fname);
 
-       result = malelf_binary_get_section(1, &bin, &section);
+       result = malelf_binary_get_section(&bin, 1, &section);
        CU_ASSERT(MALELF_SUCCESS == result);
        CU_ASSERT_STRING_EQUAL(section.name, ".interp");
        CU_ASSERT(section.offset == 0x134);
        CU_ASSERT(section.size == 0x13);
        CU_ASSERT(section.shdr != NULL);
 
-       result = malelf_binary_get_section(2, &bin, &section);
+       result = malelf_binary_get_section(&bin, 2, &section);
        CU_ASSERT(MALELF_SUCCESS == result);
        CU_ASSERT_STRING_EQUAL(section.name, ".note.ABI-tag");
        CU_ASSERT(section.offset == 0x148);
        CU_ASSERT(section.size == 0x20);
        CU_ASSERT(section.shdr != NULL);
 
-       result = malelf_binary_get_section(14, &bin, &section);
+       result = malelf_binary_get_section(&bin, 14, &section);
        CU_ASSERT(MALELF_SUCCESS == result);
        CU_ASSERT_STRING_EQUAL(section.name, ".text");
        CU_ASSERT(section.offset == 0x320);

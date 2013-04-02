@@ -89,7 +89,7 @@ int main(int argc, char **argv)
 	error = malelf_binary_create_elf_exec(&bin, MALELF_ELF32);
 	
 	if (MALELF_SUCCESS != error) {
-		malelf_perror(error);
+		MALELF_PERROR(error);
 		return 1;
 	}
 
@@ -106,7 +106,7 @@ int main(int argc, char **argv)
 	error = malelf_binary_add_phdr32(&bin, &phdr_load);
 
 	if (MALELF_SUCCESS != error) {
-		malelf_perror(error);
+		MALELF_PERROR(error);
 		malelf_binary_close(&bin);
 		return 1;
 	}
@@ -126,7 +126,7 @@ int main(int argc, char **argv)
 	error = malelf_binary_add_phdr32(&bin, &phdr_note);
 
 	if (MALELF_SUCCESS != error) {
-		malelf_perror(error);
+		MALELF_PERROR(error);
 		malelf_binary_close(&bin);
 		return 1;
 	}
@@ -144,7 +144,7 @@ int main(int argc, char **argv)
 	error = malelf_binary_write(&bin, argv[2]);
 
 	if (MALELF_SUCCESS != error) {
-		malelf_perror(error);
+		MALELF_PERROR(error);
 		return 1;
 	}
 

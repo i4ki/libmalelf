@@ -37,15 +37,15 @@
 #include "phdr.h"
 
 typedef struct {
-        char *fname;          /* Binary filename */
+        char *fname;         /* Binary filename */
 	char *bkpfile;       /* Filename of backup'ed file in case of 
                                 write operations */
         _i32 fd;             /* Binary file descriptor */
-        _u8* mem;            /* Binary content */
+        _u8 *mem;            /* Binary content */
         _u32 size;           /* Binary size */
-        MalelfEhdr ehdr;    /* ELF Header */
-        MalelfPhdr phdr;    /* Elf Program Headers */
-        MalelfShdr shdr;    /* Elf Section Headers */
+        MalelfEhdr ehdr;     /* ELF Header */
+        MalelfPhdr phdr;     /* Elf Program Headers */
+        MalelfShdr shdr;     /* Elf Section Headers */
         _u8 alloc_type;      /* System function used to allocate memory */
 	_u32 class;
 } MalelfBinary;
@@ -179,24 +179,92 @@ extern _u32 malelf_binary_map(MalelfBinary *bin);
  */
 extern _u32 malelf_binary_check_elf_magic(MalelfBinary *binary);
 
-extern _u32 malelf_binary_get_segment(_u32 idx, 
-				      MalelfBinary *bin, 
+
+/*! Get segment.
+ *
+ *  \param bin A valid MalelfBinary object.
+ *  \param idx The index of segment.
+ *  \param segment The segment saved.
+ *
+ *  \return MALELF_SUCCESS if the operation succeeded.
+ */
+extern _u32 malelf_binary_get_segment(MalelfBinary *bin,
+                                      _u32 idx, 
 				      MalelfSegment *segment);
 
-extern _u32 malelf_binary_get_section_name(_u32 idx,
-					   MalelfBinary *bin,
+
+/*! Get section name.
+ *
+ *  \param bin A valid MalelfBinary object.
+ *  \param idx The index of section.
+ *  \param name The section name saved.
+ *
+ *  \return MALELF_SUCCESS if the operation succeeded, otherwise MALELF_ERROR.
+ */
+extern _u32 malelf_binary_get_section_name(MalelfBinary *bin,
+                                           _u32 idx,
 					   char **name);
 
-extern _u32 malelf_binary_get_section(_u32 idx, 
-				      MalelfBinary *bin,
+
+/*! Get section.
+ *
+ *  \param bin A valid MalelfBinary object.
+ *  \param idx The index of section.
+ *  \param section The section information saved.
+ *
+ *  \return MALELF_SUCCESS if the operation succeeded, otherwise MALELF_ERROR.
+ */
+extern _u32 malelf_binary_get_section(MalelfBinary *bin,
+                                      _u32 idx, 
 				      MalelfSection *section);
 
+
+/*! Write a MalelfBinary file on disk.
+ *
+ *  \param bin A valid MalelfBinary object.
+ *  \param fname The file name to write the binary.
+ *
+ *  \return MALELF_SUCCESS if the operation succeeded, otherwise MALELF_ERROR.
+ */
 extern _u32 malelf_binary_write(MalelfBinary *bin, const char *fname);
 
+
+/*! Crate executable file arch 32.
+ *
+ *  \param bin A valid MalelfBinary object.
+ *
+ *  \return MALELF_SUCCESS if the operation succeeded, otherwise MALELF_ERROR.
+ */
 extern _u32 malelf_binary_create_elf_exec32(MalelfBinary *bin);
+
+
+/*! Create executable file arch 64.
+ *
+ *  \param bin A valid MalelfBinary object.
+ *
+ *  \return MALELF_SUCCESS if the operation succeeded, otherwise MALELF_ERROR.
+ */
 extern _u32 malelf_binary_create_elf_exec64(MalelfBinary *bin);
+
+
+/*! Create a executable file.
+ *
+ *  \param bin A valid MalelfBinary object.
+ *  \param class Architeture class of binary.
+ *
+ *  \return MALELF_SUCCESS if the operation succeeded, otherwise MALELF_ERROR.
+ */
 extern _u32 malelf_binary_create_elf_exec(MalelfBinary *bin, _u8 class);
-extern _u32 malelf_binary_add_phdr32(MalelfBinary *bin, Elf32_Phdr *new_phdr);
+
+
+/*! Add a Program Header Table.
+ *
+ *  \param bin A valid MalelfBinary object.
+ *  \param phdr The new phdr.
+ *
+ *  \return MALELF_SUCCESS if the operation succeeded, otherwise MALELF_ERROR.
+ */
+extern _u32 malelf_binary_add_phdr32(MalelfBinary *bin, Elf32_Phdr *phdr);
 					   
 
 

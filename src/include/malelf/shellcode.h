@@ -28,7 +28,22 @@
 #ifndef MALELF_SHELLCODE_H
 #define MALELF_SHELLCODE_H
 
+MALELF_BEGIN_DECLS
+
+/*
+ *
+ *
+ */
 extern _u32 malelf_shellcode_dump(MalelfBinary *bin);
+
+
+/*
+ *
+ *
+ */
 extern _u32 malelf_shellcode_get_c_string(FILE *fp, MalelfBinary *bin);
+
+
+MALELF_END_DECLS
 
 #endif
