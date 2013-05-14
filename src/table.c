@@ -100,10 +100,6 @@ _u32 malelf_table_finish(MalelfTable *obj)
                 return MALELF_ERROR;
         }
 
-        if (NULL != obj->filename) {
-                fclose(obj->filename);
-        }
-
         for (i = 0; i < obj->nrows * obj->ncolumns; i++) {
                 if (NULL != obj->content[i]) {
                         free(obj->content[i]);
@@ -136,24 +132,6 @@ static _u32 _malelf_table_alloc(MalelfTable *obj)
 		        return MALELF_ERROR;
                 }
         }
-        return MALELF_SUCCESS;
-}
-
-_u32 malelf_table_set_file(MalelfTable *obj, const char *filename)
-{
-        if (NULL == obj) {
-                return MALELF_ERROR;
-        }
-
-        if (NULL == filename) {
-                return MALELF_ERROR;
-        }
-
-        obj->filename = fopen(filename, "a+");
-        if (NULL == obj->filename) {
-                return MALELF_ERROR;
-        } 
-       
         return MALELF_SUCCESS;
 }
 

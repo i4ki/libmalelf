@@ -156,17 +156,6 @@ _u32 malelf_table_add_value(MalelfTable *obj,
 _u32 malelf_table_add_row(MalelfTable *obj, char **row);
 
 
-/*! Sets a file to save a table.
- *  
- *  \param obj A valid MalelfTable object.
- *  \param filename The filename.
- *
- *  \return MALELF_SUCCESS if the file was successfully setted, 
- *          otherwise returns MALELF_ERROR.  
- */
-_u32 malelf_table_set_file(MalelfTable *obj, const char *filename);
-
-
 /*! Sets the table width.
  *  
  *  \param obj A valid MalelfTable object.
