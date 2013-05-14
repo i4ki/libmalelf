@@ -100,6 +100,10 @@ _u32 malelf_table_finish(MalelfTable *obj)
                 return MALELF_ERROR;
         }
 
+        if (NULL != obj->filename) {
+                fclose(obj->filename);
+        }
+
         for (i = 0; i < obj->nrows * obj->ncolumns; i++) {
                 if (NULL != obj->content[i]) {
                         free(obj->content[i]);
