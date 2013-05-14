@@ -69,7 +69,7 @@ typedef struct {
         char *title;
         char **content;
         char **headers;
-        FILE *filename;
+        unsigned int pos;
         MalelfLine line;
 } MalelfTable;
 

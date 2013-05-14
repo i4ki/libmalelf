@@ -177,7 +177,7 @@ _u32 malelf_table_init(MalelfTable *obj,
         obj->headers = NULL;
         obj->content = NULL;
         obj->element = 0;
-        obj->filename = stdout;
+        obj->pos = 0;
 
         _malelf_table_alloc(obj);
 
@@ -262,7 +262,7 @@ _u32 malelf_table_set_ncolumns(MalelfTable *obj, unsigned int ncolumns)
 }
 
 static _u32 _malelf_table_get_column_length(MalelfTable *obj,
-                                                 unsigned int *clength)
+                                            unsigned int *clength)
 {
         if (NULL == obj) {
                 return MALELF_ERROR;
@@ -272,19 +272,19 @@ static _u32 _malelf_table_get_column_length(MalelfTable *obj,
         return MALELF_SUCCESS;
 }
 
-static void _malelf_table_print_char(MalelfTable *obj, char character)
+static void _malelf_table_print_char(char character)
 {
-        fprintf(obj->filename, "%c", character);
+        fprintf(stdout, "%c", character);
 }
 
-static void _malelf_table_print_str(MalelfTable *obj, char *str)
+static void _malelf_table_print_str(char *str)
 {
-        fprintf(obj->filename, "%s", str);
+        fprintf(stdout, "%s", str);
 }
 
-static void _malelf_table_new_line(MalelfTable *obj)
+static void _malelf_table_new_line()
 {
-        fprintf(obj->filename, "\n");
+        fprintf(stdout, "\n");
 }
 
 static _u32 _malelf_table_print_line(MalelfTable *obj)
@@ -300,24 +300,24 @@ static _u32 _malelf_table_print_line(MalelfTable *obj)
                 return MALELF_ERROR;
         }
 
-        _malelf_table_print_char(obj, obj->line.begin);
+        _malelf_table_print_char(obj->line.begin);
         for (i = 1; i < obj->width; i++) {
                 if ((aux == i) && (true == obj->line.flag)) {
-                        _malelf_table_print_char(obj, obj->line.partition);
+                        _malelf_table_print_char(obj->line.partition);
                         aux = aux + col_length;
                 } else {
-                        _malelf_table_print_char(obj, obj->line.middle);
+                        _malelf_table_print_char(obj->line.middle);
                 }
         }
-        _malelf_table_print_char(obj, obj->line.end);
-        _malelf_table_new_line(obj);
+        _malelf_table_print_char(obj->line.end);
+        _malelf_table_new_line();
 
         return MALELF_SUCCESS;
 }
 
 static int _malelf_table_get_column_middle(unsigned int colx,
-                                                 unsigned int coly,
-                                                 char *str)
+                                           unsigned int coly,
+                                           char *str)
 {
         if (NULL == str || 0 == strlen(str)) {
                 return -1;
@@ -341,16 +341,16 @@ static _u32 _malelf_table_print_title(MalelfTable *obj)
 
         middle = _malelf_table_get_column_middle(0, obj->width, obj->title);
         _malelf_table_print_line(obj);
-        _malelf_table_print_char(obj, PIPE);
+        _malelf_table_print_char(PIPE);
         for (i = 1; i < obj->width; i++) {
-                _malelf_table_print_char(obj, EMPTY);
+                _malelf_table_print_char(EMPTY);
                 if (middle == i) {
-                        fprintf(obj->filename, obj->title);
+                        fprintf(stdout, obj->title);
                         i = i + strlen(obj->title);
                 }
         }
-        _malelf_table_print_char(obj, PIPE);
-        _malelf_table_new_line(obj);
+        _malelf_table_print_char(PIPE);
+        _malelf_table_new_line();
         obj->line.flag = true;
         _malelf_table_print_line(obj);
 
@@ -380,33 +380,34 @@ static _u32 _malelf_table_print_headers(MalelfTable *obj)
         col_end = col_length;
         partitions = col_length;
         col_middle = _malelf_table_get_column_middle(col_begin,
-                                                 col_end,
-                                                 obj->headers[pos]);
+                                                     col_end,
+                                                     obj->headers[pos]);
 
-        _malelf_table_print_char(obj, PIPE);
+        _malelf_table_print_char(PIPE);
         for (i = 1; i < obj->width; i++) {
                 if (i == col_middle) {
-                        _malelf_table_print_str(obj, obj->headers[pos]);
+                        _malelf_table_print_str(obj->headers[pos]);
                         i = i + strlen(obj->headers[pos]) - 1;
                         col_end = col_length * count;
                         col_begin = col_begin + col_length;
                         pos++;
                         col_middle = _malelf_table_get_column_middle(col_end,
-                                                                 col_begin,
-                                                                 obj->headers[pos]);
+                                                                     col_begin,
+                                                                     obj->headers[pos]);
                         count++;
                         continue;
                 }
                 if (i == partitions) {
-                        _malelf_table_print_char(obj, PIPE);
+                        _malelf_table_print_char(PIPE);
                         partitions = partitions + col_length;
                         continue;
                 }
-                _malelf_table_print_char(obj, EMPTY);
+                _malelf_table_print_char(EMPTY);
         }
-        _malelf_table_print_char(obj, PIPE);
-        _malelf_table_new_line(obj);
+        _malelf_table_print_char(PIPE);
+        _malelf_table_new_line();
         _malelf_table_print_line(obj);
+        count = 2;
 
         return MALELF_SUCCESS;
 }
@@ -417,7 +418,6 @@ static _u32 _malelf_table_print_content(MalelfTable *obj)
         unsigned int i;
         unsigned int col_length;
         unsigned int col_middle;
-        static unsigned int pos = 0;
         unsigned int col_begin = 0;
         unsigned int col_end = 0;
         static unsigned int count = 2;
@@ -432,40 +432,40 @@ static _u32 _malelf_table_print_content(MalelfTable *obj)
         col_end = col_length;
         partitions = col_length;
         col_middle = _malelf_table_get_column_middle(col_begin,
-                                                 col_end,
-                                                 obj->content[pos]);
-        _malelf_table_print_char(obj, PIPE);
+                                                     col_end,
+                                                     obj->content[obj->pos]);
+        _malelf_table_print_char(PIPE);
         for (i = 1; i < obj->width; i++) {
                 if (i == col_middle) {
-                        _malelf_table_print_str(obj, obj->content[pos]);
-                        i = i + strlen(obj->content[pos]) - 1;
+                        _malelf_table_print_str(obj->content[obj->pos]);
+                        i = i + strlen(obj->content[obj->pos]) - 1;
                         col_end = col_length * count;
                         col_begin = col_begin + col_length;
-                        pos++;
-                        if (pos < obj->nrows*obj->ncolumns) {
+                        obj->pos++;
+                        if (obj->pos < obj->nrows*obj->ncolumns) {
                                 col_middle = _malelf_table_get_column_middle(col_end,
-                                                                         col_begin,
-                                                                         obj->content[pos]);
+                                                                             col_begin,
+                                                                             obj->content[obj->pos]);
                         }
                         count++;
                         continue;
                 }
                 if (i == partitions) {
-                        _malelf_table_print_char(obj, PIPE);
+                        _malelf_table_print_char(PIPE);
                         partitions = partitions + col_length;
                         continue;
                 }
-                _malelf_table_print_char(obj, EMPTY);
+                _malelf_table_print_char(EMPTY);
         }
-        _malelf_table_print_char(obj, PIPE);
-        _malelf_table_new_line(obj);
+        _malelf_table_print_char(PIPE);
+        _malelf_table_new_line();
         count = 2;
         col_begin = 0;
         col_end = partitions = col_length;
-        if (pos < obj->nrows*obj->ncolumns) {
+        if (obj->pos < obj->nrows*obj->ncolumns) {
                 col_middle = _malelf_table_get_column_middle(col_end,
-                                                         col_begin,
-                                                         obj->content[pos]);
+                                                             col_begin,
+                                                             obj->content[obj->pos]);
         }
 
         return MALELF_SUCCESS;
