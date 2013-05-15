@@ -41,26 +41,44 @@
 #include <malelf/defines.h>
 #include <malelf/shdr.h>
 
-
-_u32 malelf_shdr_get_name(MalelfShdr *shdr, _u32 *name, _u32 index)
-{
-        Elf32_Shdr *shdr32;
-        Elf64_Shdr *shdr64;
-
-        switch(shdr->class) {
-        case MALELF_ELF32:
-                shdr32 = shdr->uhdr.h32 + index;
-                *name = shdr32->sh_name;
-                break;
-        case MALELF_ELF64:
-                shdr64 = shdr->uhdr.h64 + index;
-                *name = shdr64->sh_name;
-                break;
-        default: return MALELF_ERROR;
-        }
-
-        return MALELF_SUCCESS;
-}
+static MalelfShdrType _shdr_type[] = {
+        {"SHT_NULL", SHT_NULL, "Section header table entry unused "},
+        {"SHT_PROGBITS", SHT_PROGBITS, "Program data "},
+        {"SHT_SYMTAB", SHT_SYMTAB, "Symbol table "},
+        {"SHT_STRTAB", SHT_STRTAB, "String table "},
+        {"SHT_RELA", SHT_RELA, "Relocation entries with addends "},
+        {"SHT_HASH", SHT_HASH, "Symbol hash table "},
+        {"SHT_DYNAMIC", SHT_DYNAMIC, "Dynamic linking information "},
+        {"SHT_NOTE", SHT_NOTE, "Notes "},
+        {"SHT_NOBITS", SHT_NOBITS, "Program space with no data (bss) "},
+        {"SHT_REL", SHT_REL, "Relocation entries, no addends "},
+        {"SHT_SHLIB", SHT_SHLIB, "Reserved "},
+        {"SHT_DYNSYM", SHT_DYNSYM, "Dynamic linker symbol table "},
+        {"SHT_INIT_ARRAY", SHT_INIT_ARRAY, "Array of constructors "},
+        {"SHT_FINI_ARRAY", SHT_FINI_ARRAY, "Array of destructors "},
+        {"SHT_PREINIT_ARRAY", SHT_PREINIT_ARRAY, "Array of pre-constructors "},
+        {"SHT_GROUP", SHT_GROUP, "Section group "},
+        {"SHT_SYMTAB_SHNDX", SHT_SYMTAB_SHNDX, "Extended section indeces "},
+        {"SHT_NUM", SHT_NUM, "Number of defined types.  "},
+        {"SHT_LOOS", SHT_LOOS, "Start OS-specific.  "},
+        {"SHT_GNU_ATTRIBUTES", SHT_GNU_ATTRIBUTES, "Object attributes.  "},
+        {"SHT_GNU_HASH", SHT_GNU_HASH, "GNU-style hash table.  "},
+        {"SHT_GNU_LIBLIST", SHT_GNU_LIBLIST, "Prelink library list "},
+        {"SHT_CHECKSUM", SHT_CHECKSUM, "Checksum for DSO content.  "},
+        {"SHT_LOSUNW", SHT_LOSUNW, "Sun-specific low bound.  "},
+        {"SHT_SUNW_move", SHT_SUNW_move, "SunW "},
+        {"SHT_SUNW_COMDAT", SHT_SUNW_COMDAT, "SunW COMDAT "},
+        {"SHT_SUNW_syminfo", SHT_SUNW_syminfo, "SunW SYNINFO "},
+        {"SHT_GNU_verdef", SHT_GNU_verdef, "Version definition section.  "},
+        {"SHT_GNU_verneed", SHT_GNU_verneed, "Version needs section.  "},
+        {"SHT_GNU_versym", SHT_GNU_versym, "Version symbol table.  "},
+        {"SHT_HISUNW", SHT_HISUNW, "Sun-specific high bound.  "},
+        {"SHT_HIOS", SHT_HIOS, "End OS-specific type "},
+        {"SHT_LOPROC", SHT_LOPROC, "Start of processor-specific "},
+        {"SHT_HIPROC", SHT_HIPROC, "End of processor-specific "},
+        {"SHT_LOUSER", SHT_LOUSER, "Start of application-specific "},
+        {"SHT_HIUSER", SHT_HIUSER, "End of application-specific "}
+};
 
 _u32 malelf_shdr_get_type(MalelfShdr *shdr, _u32 *type, _u32 index)
 {
@@ -75,6 +93,49 @@ _u32 malelf_shdr_get_type(MalelfShdr *shdr, _u32 *type, _u32 index)
         case MALELF_ELF64:
                 shdr64 = shdr->uhdr.h64 + index;
                 *type = shdr64->sh_type;
+                break;
+        default: return MALELF_ERROR;
+        }
+
+        return MALELF_SUCCESS;
+}
+
+
+_u32 malelf_shdr_get_mstype(MalelfShdr *shdr, 
+                            MalelfShdrType *ms_type, 
+                            _u32 index)
+{
+        _u32 type;
+        unsigned int i;
+
+        if (NULL == shdr) {
+                return MALELF_ERROR;
+        }
+
+        malelf_shdr_get_type(shdr, &type, index);
+        for (i = 0; i < 36; i++) {
+                if (type == _shdr_type[i].value) {
+                        *ms_type = _shdr_type[i];
+                        break;
+                }
+        }        
+
+        return MALELF_SUCCESS;
+}
+
+_u32 malelf_shdr_get_name(MalelfShdr *shdr, _u32 *name, _u32 index)
+{
+        Elf32_Shdr *shdr32;
+        Elf64_Shdr *shdr64;
+
+        switch(shdr->class) {
+        case MALELF_ELF32:
+                shdr32 = shdr->uhdr.h32 + index;
+                *name = shdr32->sh_name;
+                break;
+        case MALELF_ELF64:
+                shdr64 = shdr->uhdr.h64 + index;
+                *name = shdr64->sh_name;
                 break;
         default: return MALELF_ERROR;
         }

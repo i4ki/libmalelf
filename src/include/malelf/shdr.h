@@ -62,6 +62,12 @@ typedef struct {
 	MalelfShdr *shdr;
 } MalelfSection;
 
+typedef struct {
+        char *name;
+        _u32 value;
+        char *description;
+} MalelfShdrType;
+
 
 /*! Get sh_name member from Section Header Table.
  *  
@@ -86,6 +92,10 @@ extern _u32 malelf_shdr_get_name(MalelfShdr *shdr, _u32 *name, _u32 index);
  */
 extern _u32 malelf_shdr_get_type(MalelfShdr *shdr, _u32 *type, _u32 index);
 
+
+extern _u32 malelf_shdr_get_mstype(MalelfShdr *shdr,
+                                   MalelfShdrType *ms_type,
+                                   _u32 index);
 
 /*! Get sh_flags member from Section Header Table.
  *  
