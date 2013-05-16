@@ -195,7 +195,7 @@ void malelf_binary_create_elf_exec32_TEST()
 
         CU_ASSERT(MALELF_SUCCESS == error);
 
-        ehdr = bin.ehdr.h32;
+        ehdr = bin.ehdr.uhdr.h32;
 
         CU_ASSERT(ehdr->e_ident[0] == ELFMAG0);
         CU_ASSERT(ehdr->e_ident[1] == ELFMAG1);
@@ -353,10 +353,14 @@ CU_ErrorCode binary_get_test_suite(CU_pSuite *rsuite)
                                 malelf_binary_get_section_TEST)) ||
             (NULL == CU_add_test(suite,
                                 "malelf_binary_write_TEST",
-                                malelf_binary_write_TEST))) {
+                                malelf_binary_write_TEST)) ||
+            (NULL == CU_add_test(suite,
+                                "malelf_binary_create_elf_exec32_TEST",
+                                 malelf_binary_create_elf_exec32_TEST)))
+          {
                 *rsuite = NULL;
                 return CU_get_error();
-        }
+          }
 
         *rsuite = suite;
         return CUE_SUCCESS;
