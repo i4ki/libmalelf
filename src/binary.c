@@ -1151,7 +1151,7 @@ _u32 malelf_binary_create_elf_exec64(MalelfBinary *bin)
 
         /* executable file */
         ehdr->e_type = ET_EXEC;
-        ehdr->e_machine = EM_386;
+        ehdr->e_machine = EM_X86_64;
         ehdr->e_version = EV_CURRENT;
         ehdr->e_entry = 0x00;
         ehdr->e_phoff = 0x00;

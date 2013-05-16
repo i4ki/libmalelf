@@ -225,9 +225,56 @@ void malelf_binary_create_elf_exec32_TEST()
         CU_ASSERT(ehdr->e_ehsize == sizeof (Elf32_Ehdr)); // 52 bytes
         CU_ASSERT(ehdr->e_phentsize == 0x00);
         CU_ASSERT(ehdr->e_phnum == 0x00);
-        ehdr->e_shentsize = 0x00;
-        ehdr->e_shnum = 0x00;
-        ehdr->e_shstrndx = SHN_UNDEF;
+        CU_ASSERT(ehdr->e_shentsize == 0x00);
+        CU_ASSERT(ehdr->e_shnum == 0x00);
+        CU_ASSERT(ehdr->e_shstrndx == SHN_UNDEF);
+}
+
+void malelf_binary_create_elf_exec64_TEST()
+{
+        int error = MALELF_SUCCESS;
+        MalelfBinary bin;
+        Elf64_Ehdr *ehdr = NULL;
+
+        malelf_binary_init(&bin);
+
+        error = malelf_binary_create_elf_exec64(&bin);
+
+        CU_ASSERT(MALELF_SUCCESS == error);
+
+        ehdr = bin.ehdr.uhdr.h64;
+
+        CU_ASSERT(ehdr->e_ident[0] == ELFMAG0);
+        CU_ASSERT(ehdr->e_ident[1] == ELFMAG1);
+        CU_ASSERT(ehdr->e_ident[2] == ELFMAG2);
+        CU_ASSERT(ehdr->e_ident[3] == ELFMAG3);
+        CU_ASSERT(ehdr->e_ident[4] == ELFCLASS64);
+        CU_ASSERT(ehdr->e_ident[5] == ELFDATA2LSB);
+        CU_ASSERT(ehdr->e_ident[6] == EV_CURRENT);
+        CU_ASSERT(ehdr->e_ident[7] == ELFOSABI_LINUX);
+        CU_ASSERT(ehdr->e_ident[8] == 0);
+        CU_ASSERT(ehdr->e_ident[9] == 0);
+        CU_ASSERT(ehdr->e_ident[10] == 0);
+        CU_ASSERT(ehdr->e_ident[11] == 0);
+        CU_ASSERT(ehdr->e_ident[12] == 0);
+        CU_ASSERT(ehdr->e_ident[13] == 0);
+        CU_ASSERT(ehdr->e_ident[14] == 0);
+        CU_ASSERT(ehdr->e_ident[15] == 0);
+
+        /* executable file */
+        CU_ASSERT(ehdr->e_type == ET_EXEC);
+        CU_ASSERT(ehdr->e_machine == EM_X86_64);
+        CU_ASSERT(ehdr->e_version == EV_CURRENT);
+        CU_ASSERT(ehdr->e_entry == 0x00);
+        CU_ASSERT(ehdr->e_phoff == 0x00);
+        CU_ASSERT(ehdr->e_shoff == 0x00);
+        CU_ASSERT(ehdr->e_flags == 0x00);
+        CU_ASSERT(ehdr->e_ehsize == sizeof (Elf64_Ehdr)); // 52 bytes
+        CU_ASSERT(ehdr->e_phentsize == 0x00);
+        CU_ASSERT(ehdr->e_phnum == 0x00);
+        CU_ASSERT(ehdr->e_shentsize == 0x00);
+        CU_ASSERT(ehdr->e_shnum == 0x00);
+        CU_ASSERT(ehdr->e_shstrndx == SHN_UNDEF);
 }
 
 void malelf_binary_write_TEST()
@@ -356,8 +403,10 @@ CU_ErrorCode binary_get_test_suite(CU_pSuite *rsuite)
                                 malelf_binary_write_TEST)) ||
             (NULL == CU_add_test(suite,
                                 "malelf_binary_create_elf_exec32_TEST",
-                                 malelf_binary_create_elf_exec32_TEST)))
-          {
+                                 malelf_binary_create_elf_exec32_TEST))
+            || (NULL == CU_add_test(suite,
+                                "malelf_binary_create_elf_exec64_TEST",
+                                    malelf_binary_create_elf_exec64_TEST))) {
                 *rsuite = NULL;
                 return CU_get_error();
           }
