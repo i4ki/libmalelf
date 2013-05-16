@@ -69,6 +69,8 @@ typedef struct {
         char *title;
         char **content;
         char **headers;
+        int *column_array;
+        int *column_position;
         unsigned int pos;
         MalelfLine line;
 } MalelfTable;
