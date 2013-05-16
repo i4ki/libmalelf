@@ -139,6 +139,7 @@ static _u32 _malelf_table_alloc(MalelfTable *obj)
                         fprintf(stderr, "out of memory\n");
 		        return MALELF_ERROR;
                 }
+                memset(obj->content[i], 0, 50);
         }
         return MALELF_SUCCESS;
 }
@@ -550,6 +551,7 @@ _u32 malelf_table_print(MalelfTable *obj)
         }
 
         _malelf_table_print_line(obj);
+        _malelf_table_new_line();
 
         return MALELF_SUCCESS;
 }
