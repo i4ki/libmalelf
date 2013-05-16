@@ -42,7 +42,7 @@ static void malelf_binary_open_mmap_TEST(void)
        CU_ASSERT(NULL == MALELF_ELF_DATA(&bin.shdr));
        CU_ASSERT(bin.alloc_type == MALELF_ALLOC_NONE);
        CU_ASSERT(bin.class == MALELF_ELFNONE);
-       
+
        malelf_binary_init(&bin);
 
        /* Should fail */
@@ -57,7 +57,7 @@ static void malelf_binary_open_mmap_TEST(void)
        CU_ASSERT(NULL == MALELF_ELF_DATA(&bin.shdr));
        CU_ASSERT(bin.alloc_type == MALELF_ALLOC_MMAP);
        CU_ASSERT(bin.class == MALELF_ELFNONE);
-       
+
        result = malelf_binary_close(&bin);
 
        /* munmap on a non allocated memory area. */
@@ -84,13 +84,13 @@ static void malelf_binary_open_malloc_TEST(void)
        CU_ASSERT(bin.alloc_type == MALELF_ALLOC_MALLOC);
        CU_ASSERT(bin.class == MALELF_ELF32 ||
                  bin.class == MALELF_ELF64);
-       
+
        result = malelf_binary_close(&bin);
        CU_ASSERT(result == MALELF_SUCCESS);
 
        malelf_binary_init(&bin);
        malelf_binary_set_alloc_type(&bin, MALELF_ALLOC_MALLOC);
-       
+
        result = malelf_binary_open("/wrong/path/uninfected", &bin);
        CU_ASSERT(result == MALELF_ENOENT);
        CU_ASSERT(NULL == bin.fname);
@@ -141,7 +141,7 @@ static void malelf_binary_get_section_name_TEST()
 
        result = malelf_binary_get_section_name(&bin, 12, &name);
        CU_ASSERT(MALELF_SUCCESS == result);
-       CU_ASSERT_STRING_EQUAL(".init", name);	
+       CU_ASSERT_STRING_EQUAL(".init", name);
 
        malelf_binary_close(&bin);
 }
@@ -185,132 +185,131 @@ static void malelf_binary_get_section_TEST()
 
 void malelf_binary_write_TEST()
 {
-	int error = MALELF_SUCCESS;
-	MalelfBinary bin, bin2;
-	struct stat st_info;
+        int error = MALELF_SUCCESS;
+        MalelfBinary bin, bin2;
+        struct stat st_info;
 
-	malelf_binary_init(&bin);
+        malelf_binary_init(&bin);
 
-	error = malelf_binary_open("bintest/uninfected", &bin);
-	CU_ASSERT(MALELF_SUCCESS == error);
+        error = malelf_binary_open("bintest/uninfected", &bin);
+        CU_ASSERT(MALELF_SUCCESS == error);
 
-	error = malelf_binary_write(&bin, "bintest/uninfected_copy");
-	CU_ASSERT(MALELF_SUCCESS == error);
-	
-	CU_ASSERT(0 == stat("bintest/uninfected_copy", &st_info));
-	CU_ASSERT(st_info.st_size > 0);
-	CU_ASSERT(st_info.st_size == bin.size);
+        error = malelf_binary_write(&bin, "bintest/uninfected_copy");
+        CU_ASSERT(MALELF_SUCCESS == error);
 
-	malelf_binary_init(&bin2);
-	error = malelf_binary_open("bintest/uninfected_copy", &bin2);
-	CU_ASSERT(MALELF_SUCCESS == error);
+        CU_ASSERT(0 == stat("bintest/uninfected_copy", &st_info));
+        CU_ASSERT(st_info.st_size > 0);
+        CU_ASSERT(st_info.st_size == bin.size);
 
-	CU_ASSERT(bin2.size == bin.size);
-	CU_ASSERT(bin2.class == bin.class);
-	CU_ASSERT(bin.alloc_type == bin2.alloc_type);
+        malelf_binary_init(&bin2);
+        error = malelf_binary_open("bintest/uninfected_copy", &bin2);
+        CU_ASSERT(MALELF_SUCCESS == error);
 
-	int i;
-	
-	switch (bin2.class) {
-	case MALELF_ELF32: {
-		Elf32_Ehdr *ehdr = (Elf32_Ehdr *) MALELF_ELF_DATA(&bin.ehdr);
-		Elf32_Ehdr *ehdr2 = (Elf32_Ehdr *) MALELF_ELF_DATA(&bin2.ehdr);
-		
-		CU_ASSERT(NULL != ehdr2);
-		CU_ASSERT(NULL != ehdr);
+        CU_ASSERT(bin2.size == bin.size);
+        CU_ASSERT(bin2.class == bin.class);
+        CU_ASSERT(bin.alloc_type == bin2.alloc_type);
 
-		for (i = 0; i < 16; i++) {
-			CU_ASSERT(ehdr->e_ident[i] == ehdr2->e_ident[i]);
-		}
+        int i;
 
-		CU_ASSERT(ehdr->e_type == ehdr2->e_type);
-		CU_ASSERT(ehdr->e_machine == ehdr2->e_machine);
-		CU_ASSERT(ehdr->e_version == ehdr2->e_version);
-		CU_ASSERT(ehdr->e_entry == ehdr2->e_entry);
-		CU_ASSERT(ehdr->e_phoff == ehdr2->e_phoff);
-		CU_ASSERT(ehdr->e_shoff == ehdr2->e_shoff);
-		CU_ASSERT(ehdr->e_flags == ehdr2->e_flags);
-		CU_ASSERT(ehdr->e_ehsize == ehdr2->e_ehsize);
-		CU_ASSERT(ehdr->e_phentsize == ehdr2->e_phentsize);
-		CU_ASSERT(ehdr->e_phnum == ehdr2->e_phnum);
-		CU_ASSERT(ehdr->e_shentsize == ehdr2->e_shentsize);
-		CU_ASSERT(ehdr->e_shnum == ehdr2->e_shnum);
-		CU_ASSERT(ehdr->e_shstrndx == ehdr2->e_shstrndx);
+        switch (bin2.class) {
+        case MALELF_ELF32: {
+                Elf32_Ehdr *ehdr = (Elf32_Ehdr *) MALELF_ELF_DATA(&bin.ehdr);
+                Elf32_Ehdr *ehdr2 = (Elf32_Ehdr *) MALELF_ELF_DATA(&bin2.ehdr);
 
-		break;
-	}
-	case MALELF_ELF64: {
-		Elf64_Ehdr *ehdr = (Elf64_Ehdr *) MALELF_ELF_DATA(&bin.ehdr);
-		Elf64_Ehdr *ehdr2 = (Elf64_Ehdr *) MALELF_ELF_DATA(&bin2.ehdr);
-		
-		CU_ASSERT(NULL != ehdr2);
-		CU_ASSERT(NULL != ehdr);
+                CU_ASSERT(NULL != ehdr2);
+                CU_ASSERT(NULL != ehdr);
 
-		for (i = 0; i < 16; i++) {
-			CU_ASSERT(ehdr->e_ident[i] == ehdr2->e_ident[i]);
-		}
+                for (i = 0; i < 16; i++) {
+                        CU_ASSERT(ehdr->e_ident[i] == ehdr2->e_ident[i]);
+                }
 
-		CU_ASSERT(ehdr->e_type == ehdr2->e_type);
-		CU_ASSERT(ehdr->e_machine == ehdr2->e_machine);
-		CU_ASSERT(ehdr->e_version == ehdr2->e_version);
-		CU_ASSERT(ehdr->e_entry == ehdr2->e_entry);
-		CU_ASSERT(ehdr->e_phoff == ehdr2->e_phoff);
-		CU_ASSERT(ehdr->e_shoff == ehdr2->e_shoff);
-		CU_ASSERT(ehdr->e_flags == ehdr2->e_flags);
-		CU_ASSERT(ehdr->e_ehsize == ehdr2->e_ehsize);
-		CU_ASSERT(ehdr->e_phentsize == ehdr2->e_phentsize);
-		CU_ASSERT(ehdr->e_phnum == ehdr2->e_phnum);
-		CU_ASSERT(ehdr->e_shentsize == ehdr2->e_shentsize);
-		CU_ASSERT(ehdr->e_shnum == ehdr2->e_shnum);
-		CU_ASSERT(ehdr->e_shstrndx == ehdr2->e_shstrndx);
+                CU_ASSERT(ehdr->e_type == ehdr2->e_type);
+                CU_ASSERT(ehdr->e_machine == ehdr2->e_machine);
+                CU_ASSERT(ehdr->e_version == ehdr2->e_version);
+                CU_ASSERT(ehdr->e_entry == ehdr2->e_entry);
+                CU_ASSERT(ehdr->e_phoff == ehdr2->e_phoff);
+                CU_ASSERT(ehdr->e_shoff == ehdr2->e_shoff);
+                CU_ASSERT(ehdr->e_flags == ehdr2->e_flags);
+                CU_ASSERT(ehdr->e_ehsize == ehdr2->e_ehsize);
+                CU_ASSERT(ehdr->e_phentsize == ehdr2->e_phentsize);
+                CU_ASSERT(ehdr->e_phnum == ehdr2->e_phnum);
+                CU_ASSERT(ehdr->e_shentsize == ehdr2->e_shentsize);
+                CU_ASSERT(ehdr->e_shnum == ehdr2->e_shnum);
+                CU_ASSERT(ehdr->e_shstrndx == ehdr2->e_shstrndx);
 
-		break;
-	}
-	default:
-		CU_ASSERT(0);
-		
-	}
+                break;
+        }
+        case MALELF_ELF64: {
+                Elf64_Ehdr *ehdr = (Elf64_Ehdr *) MALELF_ELF_DATA(&bin.ehdr);
+                Elf64_Ehdr *ehdr2 = (Elf64_Ehdr *) MALELF_ELF_DATA(&bin2.ehdr);
 
-	CU_ASSERT(memcmp(bin.mem, bin2.mem, bin2.size) == 0);
+                CU_ASSERT(NULL != ehdr2);
+                CU_ASSERT(NULL != ehdr);
 
-	malelf_binary_close(&bin);
-	malelf_binary_close(&bin2);
-	unlink("bintest/uninfected_copy");
+                for (i = 0; i < 16; i++) {
+                        CU_ASSERT(ehdr->e_ident[i] == ehdr2->e_ident[i]);
+                }
+
+                CU_ASSERT(ehdr->e_type == ehdr2->e_type);
+                CU_ASSERT(ehdr->e_machine == ehdr2->e_machine);
+                CU_ASSERT(ehdr->e_version == ehdr2->e_version);
+                CU_ASSERT(ehdr->e_entry == ehdr2->e_entry);
+                CU_ASSERT(ehdr->e_phoff == ehdr2->e_phoff);
+                CU_ASSERT(ehdr->e_shoff == ehdr2->e_shoff);
+                CU_ASSERT(ehdr->e_flags == ehdr2->e_flags);
+                CU_ASSERT(ehdr->e_ehsize == ehdr2->e_ehsize);
+                CU_ASSERT(ehdr->e_phentsize == ehdr2->e_phentsize);
+                CU_ASSERT(ehdr->e_phnum == ehdr2->e_phnum);
+                CU_ASSERT(ehdr->e_shentsize == ehdr2->e_shentsize);
+                CU_ASSERT(ehdr->e_shnum == ehdr2->e_shnum);
+                CU_ASSERT(ehdr->e_shstrndx == ehdr2->e_shstrndx);
+
+                break;
+        }
+        default:
+                CU_ASSERT(0);
+        }
+
+        CU_ASSERT(memcmp(bin.mem, bin2.mem, bin2.size) == 0);
+
+        malelf_binary_close(&bin);
+        malelf_binary_close(&bin2);
+        unlink("bintest/uninfected_copy");
 }
 
 
 CU_ErrorCode binary_get_test_suite(CU_pSuite *rsuite)
 {
-	CU_pSuite suite = NULL;
+        CU_pSuite suite = NULL;
 
-	if (NULL == rsuite) {
-		return -1;
-	}
+        if (NULL == rsuite) {
+                return -1;
+        }
 
-	suite = CU_add_suite("Class Binary", NULL, NULL);
-	if(NULL == suite) {
-		*rsuite = NULL;
-		return CU_get_error();
-	}
+        suite = CU_add_suite("Class Binary", NULL, NULL);
+        if(NULL == suite) {
+                *rsuite = NULL;
+                return CU_get_error();
+        }
 
-	if ((NULL == CU_add_test(suite, 
-                                "malelf_binary_open_mmap_TEST", 
+        if ((NULL == CU_add_test(suite,
+                                "malelf_binary_open_mmap_TEST",
                                 malelf_binary_open_mmap_TEST)) ||
             (NULL == CU_add_test(suite,
                                 "malelf_binary_open_malloc_TEST",
-				 malelf_binary_open_malloc_TEST)) ||
-	    (NULL == CU_add_test(suite, 
-                                "malelf_binary_get_section_name_TEST", 
+                                 malelf_binary_open_malloc_TEST)) ||
+            (NULL == CU_add_test(suite,
+                                "malelf_binary_get_section_name_TEST",
                                 malelf_binary_get_section_name_TEST)) ||
-            (NULL == CU_add_test(suite, 
-                                "malelf_binary_get_section_TEST", 
+            (NULL == CU_add_test(suite,
+                                "malelf_binary_get_section_TEST",
                                 malelf_binary_get_section_TEST)) ||
-            (NULL == CU_add_test(suite, 
-                                "malelf_binary_write_TEST", 
+            (NULL == CU_add_test(suite,
+                                "malelf_binary_write_TEST",
                                 malelf_binary_write_TEST))) {
-	        *rsuite = NULL;
-	        return CU_get_error();
-	}
+                *rsuite = NULL;
+                return CU_get_error();
+        }
 
         *rsuite = suite;
         return CUE_SUCCESS;
