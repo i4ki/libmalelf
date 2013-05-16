@@ -1,3 +1,35 @@
+/*
+ * The libmalelf is a evil library that could be used for good ! It was
+ * developed with the intent to assist in the process of infecting
+ * binaries and provide a safe way to analyze malwares.
+ *
+ * Evil using this library is the responsibility of the programmer.
+ *
+ * Author:
+ *         Tiago Natel de Moura <natel@secplus.com.br>
+ *
+ * Contributor:
+ *         Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
+ *         Paulo Leonardo Benatto    <benatto@gmail.com>
+ *
+ * Copyright 2012, 2013 by Tiago Natel de Moura. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,7 +38,8 @@
 #include <malelf/table.h>
 #include <malelf/error.h>
 
-static _u32 _malelf_table_add_int_value(MalelfTable *obj, int value)
+static _u32 _malelf_table_add_int_value(MalelfTable *obj,
+                                        int value)
 {
         if (NULL == obj) {
                 return MALELF_ERROR;
@@ -16,11 +49,12 @@ static _u32 _malelf_table_add_int_value(MalelfTable *obj, int value)
                 sprintf(obj->content[obj->element], "%d", value);
                 obj->element++;
         }
-        
+
         return MALELF_SUCCESS;
 }
 
-static _u32 _malelf_table_add_hex_value(MalelfTable *obj, int value)
+static _u32 _malelf_table_add_hex_value(MalelfTable *obj,
+                                        int value)
 {
         if (NULL == obj) {
                 return MALELF_ERROR;
@@ -30,11 +64,12 @@ static _u32 _malelf_table_add_hex_value(MalelfTable *obj, int value)
                 sprintf(obj->content[obj->element], "0x%08x", value);
                 obj->element++;
         }
-        
+
         return MALELF_SUCCESS;
 }
 
-static _u32 _malelf_table_add_str_value(MalelfTable *obj, char *value)
+static _u32 _malelf_table_add_str_value(MalelfTable *obj,
+                                        char *value)
 {
         if (NULL == obj) {
                 return MALELF_ERROR;
@@ -44,12 +79,13 @@ static _u32 _malelf_table_add_str_value(MalelfTable *obj, char *value)
                 strncpy(obj->content[obj->element], value, strlen(value));
                 obj->element++;
         }
-        
+
         return MALELF_SUCCESS;
 }
 
 
-_u32 malelf_table_add_row(MalelfTable *obj, char **row)
+_u32 malelf_table_add_row(MalelfTable *obj,
+                          char **row)
 {
         unsigned int i;
 
@@ -57,23 +93,25 @@ _u32 malelf_table_add_row(MalelfTable *obj, char **row)
                 return MALELF_ERROR;
         }
 
-        if (NULL == row) { 
+        if (NULL == row) {
                 return MALELF_ERROR;
         }
 
         for (i = 0; i < obj->ncolumns; i++) {
                 if (obj->element < (obj->nrows * obj->ncolumns)) {
-                        strncpy(obj->content[obj->element], 
+                        strncpy(obj->content[obj->element],
                                 row[i],
-                                strlen(row[i])); 
+                                strlen(row[i]));
                         obj->element++;
                 }
         }
-        
+
         return MALELF_SUCCESS;
 }
 
-_u32 malelf_table_add_value(MalelfTable *obj, void *value, MalelfTableType type)
+_u32 malelf_table_add_value(MalelfTable *obj,
+                            void *value,
+                            MalelfTableType type)
 {
         if (NULL == obj) {
                 return MALELF_ERROR;
@@ -86,7 +124,7 @@ _u32 malelf_table_add_value(MalelfTable *obj, void *value, MalelfTableType type)
                                break;
         case MALELF_TABLE_HEX: _malelf_table_add_hex_value(obj, (int)value);
                                break;
-        }        
+        }
 
         return MALELF_SUCCESS;
 }
@@ -115,7 +153,7 @@ _u32 malelf_table_finish(MalelfTable *obj)
         }
 
         free(obj->content);
-              
+
         return MALELF_SUCCESS;
 }
 
@@ -127,7 +165,8 @@ static _u32 _malelf_table_alloc(MalelfTable *obj)
                 return MALELF_ERROR;
         }
 
-        obj->content = (char**)malloc((obj->nrows * obj->ncolumns) * sizeof(char *));
+        obj->content = (char**) malloc((obj->nrows * obj->ncolumns)
+                                       * sizeof(char *));
         if (NULL == obj->content) {
                 fprintf(stderr, "out of memory\n");
                 return MALELF_ERROR;
@@ -137,7 +176,7 @@ static _u32 _malelf_table_alloc(MalelfTable *obj)
                 obj->content[i] = (char*)malloc(50*sizeof(char));
                 if (obj->content[i] == NULL) {
                         fprintf(stderr, "out of memory\n");
-		        return MALELF_ERROR;
+                        return MALELF_ERROR;
                 }
                 memset(obj->content[i], 0, 50);
         }
@@ -315,7 +354,7 @@ static _u32 _malelf_table_print_line(MalelfTable *obj)
 
         _malelf_table_print_char(obj->line.begin);
         for (i = 1; i < obj->width; i++) {
-                if (((unsigned int)obj->column_position[array_pos] == i) && 
+                if (((unsigned int)obj->column_position[array_pos] == i) &&
                     (true == obj->line.flag)) {
                         _malelf_table_print_char(obj->line.partition);
                         array_pos++;
@@ -491,7 +530,7 @@ static _u32 _malelf_table_column_length(MalelfTable *obj)
         }
 
         for (i = 0; i < (obj->ncolumns*obj->nrows); i++) {
-                if ((int)(strlen(obj->content[i]) + 2) > 
+                if ((int)(strlen(obj->content[i]) + 2) >
                     (int)obj->column_array[i % obj->ncolumns]) {
                         obj->column_array[i % obj->ncolumns] = strlen(obj->content[i]) + 2;
                 }

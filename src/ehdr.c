@@ -1,13 +1,16 @@
-/* 
- * The malelf library was written in pure C, with the objective to 
- * provide a quick and easy way a set functions for programmers to 
- * manipulate ELF files. With libmalelf can dissect and infect ELF 
- * files. Evil using this library is the responsibility of the programmer.
+/*
+ * The libmalelf is a evil library that could be used for good ! It was
+ * developed with the intent to assist in the process of infecting
+ * binaries and provide a safe way to analyze malwares.
  *
- * Author: Tiago Natel de Moura <tiago4orion@gmail.com>
+ * Evil using this library is the responsibility of the programmer.
  *
- * Contributor: Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
- *              Paulo Leonardo Benatto <benatto@gmail.com>
+ * Author:
+ *         Tiago Natel de Moura <natel@secplus.com.br>
+ *
+ * Contributor:
+ *         Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
+ *         Paulo Leonardo Benatto    <benatto@gmail.com>
  *
  * Copyright 2012, 2013 by Tiago Natel de Moura. All Rights Reserved.
  *
@@ -19,7 +22,8 @@
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
@@ -72,7 +76,7 @@ static MalelfEhdrMachine _me_machine[] = {
 static _i32 _malelf_ehdr_get_machine(MalelfEhdr *ehdr, _u8 *machine)
 {
         int error = MALELF_SUCCESS;
-        
+
         assert(NULL != ehdr);
 
         *machine = MALELF_ELF_FIELD(ehdr, e_machine, error);
@@ -88,7 +92,6 @@ static _i32 _malelf_ehdr_get_type(MalelfEhdr *ehdr, _u16 *type)
         assert(NULL != ehdr);
 
         *type = MALELF_ELF_FIELD(ehdr, e_type, error);
-         
         return error;
 }
 
@@ -98,11 +101,10 @@ static _i32 _malelf_ehdr_get_version(MalelfEhdr *ehdr, _u8 *version)
         assert(NULL != ehdr);
 
         *version = MALELF_ELF_FIELD(ehdr, e_version, error);
-
         return error;
 }
 
-_i32 malelf_ehdr_get_version(MalelfEhdr *ehdr, 
+_i32 malelf_ehdr_get_version(MalelfEhdr *ehdr,
                              MalelfEhdrVersion *me_version)
 {
         int error = MALELF_SUCCESS;
@@ -115,20 +117,20 @@ _i32 malelf_ehdr_get_version(MalelfEhdr *ehdr,
         }
 
         switch(version) {
-        case EV_NONE: 
+        case EV_NONE:
                 *me_version = _me_version[0];
-                break; 
-        case EV_CURRENT: 
+                break;
+        case EV_CURRENT:
                 *me_version = _me_version[1];
                 break;
         default:
                 error = MALELF_ERROR;
         }
-        
+
         return error;
 }
 
-_i32 malelf_ehdr_get_type (MalelfEhdr *ehdr, 
+_i32 malelf_ehdr_get_type (MalelfEhdr *ehdr,
                            MalelfEhdrType *me_type)
 {
         int error = MALELF_SUCCESS;
@@ -140,40 +142,40 @@ _i32 malelf_ehdr_get_type (MalelfEhdr *ehdr,
                 me_type = NULL;
                 return error;
         }
-        
+
         switch(type) {
-        case ET_NONE: 
+        case ET_NONE:
                 *me_type = _me_type[0];
                 break;
-        case ET_REL: 
+        case ET_REL:
                 *me_type = _me_type[1];
                 break;
-        case ET_EXEC: 
+        case ET_EXEC:
                 *me_type = _me_type[2];
                 break;
-        case ET_DYN: 
+        case ET_DYN:
                 *me_type = _me_type[3];
                 break;
-        case ET_CORE: 
+        case ET_CORE:
                 *me_type = _me_type[4];
                 break;
-        case ET_LOPROC: 
+        case ET_LOPROC:
                 *me_type = _me_type[5];
                 break;
-        case ET_HIPROC: 
+        case ET_HIPROC:
                 *me_type = _me_type[6];
                 break;
         default:
                 me_type = NULL;
                 error = MALELF_ERROR;
         }
-        
+
         return error;
 }
 
 
 
-_i32 malelf_ehdr_get_machine(MalelfEhdr *ehdr, 
+_i32 malelf_ehdr_get_machine(MalelfEhdr *ehdr,
                              MalelfEhdrMachine *me_machine)
 {
         int error = MALELF_SUCCESS;
@@ -307,7 +309,7 @@ _i32 malelf_ehdr_get_flags(MalelfEhdr *ehdr, _u32 *flags)
         return error;
 }
 
-_i32 malelf_ehdr_set(MalelfEhdr* ehdr, _u8 *mem, _u32 size) 
+_i32 malelf_ehdr_set(MalelfEhdr* ehdr, _u8 *mem, _u32 size)
 {
         assert(NULL != ehdr);
         assert(NULL != mem);
@@ -334,20 +336,20 @@ _i32 malelf_ehdr_set(MalelfEhdr* ehdr, _u8 *mem, _u32 size)
         return MALELF_SUCCESS;
 }
 
-_u32 malelf_ehdr_set_entry(MalelfEhdr *ehdr, _u32 new_entry) 
+_u32 malelf_ehdr_set_entry(MalelfEhdr *ehdr, _u32 new_entry)
 {
-	_u32 error = MALELF_SUCCESS;
+        _u32 error = MALELF_SUCCESS;
 
-	switch (ehdr->class) {
-	case MALELF_ELF32:
-		ehdr->uhdr.h32->e_entry = new_entry;
-		break;
-	case MALELF_ELF64:
-		ehdr->uhdr.h64->e_entry = new_entry;
-		break;
-	default:
-		error = MALELF_EINVALID_CLASS;
-	}
+        switch (ehdr->class) {
+        case MALELF_ELF32:
+                ehdr->uhdr.h32->e_entry = new_entry;
+                break;
+        case MALELF_ELF64:
+                ehdr->uhdr.h64->e_entry = new_entry;
+                break;
+        default:
+                error = MALELF_EINVALID_CLASS;
+        }
 
-	return error;
+        return error;
 }

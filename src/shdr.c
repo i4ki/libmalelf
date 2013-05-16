@@ -1,13 +1,16 @@
-/* 
- * The malelf library was written in pure C, with the objective to 
- * provide a quick and easy way a set functions for programmers to 
- * manipulate ELF files. With libmalelf can dissect and infect ELF 
- * files. Evil using this library is the responsibility of the programmer.
+/*
+ * The libmalelf is a evil library that could be used for good ! It was
+ * developed with the intent to assist in the process of infecting
+ * binaries and provide a safe way to analyze malwares.
  *
- * Author: Tiago Natel de Moura <tiago4orion@gmail.com>
+ * Evil using this library is the responsibility of the programmer.
  *
- * Contributor: Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
- *              Paulo Leonardo Benatto <benatto@gmail.com>
+ * Author:
+ *         Tiago Natel de Moura <natel@secplus.com.br>
+ *
+ * Contributor:
+ *         Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
+ *         Paulo Leonardo Benatto    <benatto@gmail.com>
  *
  * Copyright 2012, 2013 by Tiago Natel de Moura. All Rights Reserved.
  *
@@ -19,11 +22,13 @@
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
  */
+
 
 #include <stdlib.h>
 #include <string.h>
@@ -80,7 +85,9 @@ static MalelfShdrType _shdr_type[] = {
         {"SHT_HIUSER", SHT_HIUSER, "End of application-specific "}
 };
 
-_u32 malelf_shdr_get_type(MalelfShdr *shdr, _u32 *type, _u32 index)
+_u32 malelf_shdr_get_type(MalelfShdr *shdr,
+                          _u32 *type,
+                          _u32 index)
 {
         Elf32_Shdr *shdr32;
         Elf64_Shdr *shdr64;
@@ -101,8 +108,8 @@ _u32 malelf_shdr_get_type(MalelfShdr *shdr, _u32 *type, _u32 index)
 }
 
 
-_u32 malelf_shdr_get_mstype(MalelfShdr *shdr, 
-                            MalelfShdrType *ms_type, 
+_u32 malelf_shdr_get_mstype(MalelfShdr *shdr,
+                            MalelfShdrType *ms_type,
                             _u32 index)
 {
         _u32 type;
@@ -118,12 +125,14 @@ _u32 malelf_shdr_get_mstype(MalelfShdr *shdr,
                         *ms_type = _shdr_type[i];
                         break;
                 }
-        }        
+        }
 
         return MALELF_SUCCESS;
 }
 
-_u32 malelf_shdr_get_name(MalelfShdr *shdr, _u32 *name, _u32 index)
+_u32 malelf_shdr_get_name(MalelfShdr *shdr,
+                          _u32 *name,
+                          _u32 index)
 {
         Elf32_Shdr *shdr32;
         Elf64_Shdr *shdr64;
@@ -143,7 +152,9 @@ _u32 malelf_shdr_get_name(MalelfShdr *shdr, _u32 *name, _u32 index)
         return MALELF_SUCCESS;
 }
 
-_u32 malelf_shdr_get_flags(MalelfShdr *shdr, _u32 *flags, _u32 index)
+_u32 malelf_shdr_get_flags(MalelfShdr *shdr,
+                           _u32 *flags,
+                           _u32 index)
 {
         Elf32_Shdr *shdr32;
         Elf64_Shdr *shdr64;
@@ -163,7 +174,9 @@ _u32 malelf_shdr_get_flags(MalelfShdr *shdr, _u32 *flags, _u32 index)
         return MALELF_SUCCESS;
 }
 
-_u32 malelf_shdr_get_addr(MalelfShdr *shdr, _u32 *addr, _u32 index)
+_u32 malelf_shdr_get_addr(MalelfShdr *shdr,
+                          _u32 *addr,
+                          _u32 index)
 {
         Elf32_Shdr *shdr32;
         Elf64_Shdr *shdr64;
@@ -183,7 +196,9 @@ _u32 malelf_shdr_get_addr(MalelfShdr *shdr, _u32 *addr, _u32 index)
         return MALELF_SUCCESS;
 }
 
-_u32 malelf_shdr_get_offset(MalelfShdr *shdr, _u32 *offset, _u32 index)
+_u32 malelf_shdr_get_offset(MalelfShdr *shdr,
+                            _u32 *offset,
+                            _u32 index)
 {
         Elf32_Shdr *shdr32;
         Elf64_Shdr *shdr64;
@@ -203,7 +218,9 @@ _u32 malelf_shdr_get_offset(MalelfShdr *shdr, _u32 *offset, _u32 index)
         return MALELF_SUCCESS;
 }
 
-_u32 malelf_shdr_get_size(MalelfShdr *shdr, _u32 *size, _u32 index)
+_u32 malelf_shdr_get_size(MalelfShdr *shdr,
+                          _u32 *size,
+                          _u32 index)
 {
         Elf32_Shdr *shdr32;
         Elf64_Shdr *shdr64;
@@ -223,7 +240,9 @@ _u32 malelf_shdr_get_size(MalelfShdr *shdr, _u32 *size, _u32 index)
         return MALELF_SUCCESS;
 }
 
-_u32 malelf_shdr_get_link(MalelfShdr *shdr, _u32 *link, _u32 index)
+_u32 malelf_shdr_get_link(MalelfShdr *shdr,
+                          _u32 *link,
+                          _u32 index)
 {
         Elf32_Shdr *shdr32;
         Elf64_Shdr *shdr64;
@@ -243,7 +262,9 @@ _u32 malelf_shdr_get_link(MalelfShdr *shdr, _u32 *link, _u32 index)
         return MALELF_SUCCESS;
 }
 
-_u32 malelf_shdr_get_info(MalelfShdr *shdr, _u32 *info, _u32 index)
+_u32 malelf_shdr_get_info(MalelfShdr *shdr,
+                          _u32 *info,
+                          _u32 index)
 {
         Elf32_Shdr *shdr32;
         Elf64_Shdr *shdr64;
@@ -263,7 +284,9 @@ _u32 malelf_shdr_get_info(MalelfShdr *shdr, _u32 *info, _u32 index)
         return MALELF_SUCCESS;
 }
 
-_u32 malelf_shdr_get_addralign(MalelfShdr *shdr, _u32 *addralign, _u32 index)
+_u32 malelf_shdr_get_addralign(MalelfShdr *shdr,
+                               _u32 *addralign,
+                               _u32 index)
 {
         Elf32_Shdr *shdr32;
         Elf64_Shdr *shdr64;
@@ -283,7 +306,9 @@ _u32 malelf_shdr_get_addralign(MalelfShdr *shdr, _u32 *addralign, _u32 index)
         return MALELF_SUCCESS;
 }
 
-_u32 malelf_shdr_get_entsize(MalelfShdr *shdr, _u32 *entsize, _u32 index)
+_u32 malelf_shdr_get_entsize(MalelfShdr *shdr,
+                             _u32 *entsize,
+                             _u32 index)
 {
         Elf32_Shdr *shdr32;
         Elf64_Shdr *shdr64;
@@ -302,4 +327,3 @@ _u32 malelf_shdr_get_entsize(MalelfShdr *shdr, _u32 *entsize, _u32 index)
 
         return MALELF_SUCCESS;
 }
-

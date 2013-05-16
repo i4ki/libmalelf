@@ -2,13 +2,13 @@
  * Simple example to create a RAW ELF Executable file.
  * Very useful if you need create a tiny ELF to send in a exploit or
  * simply to understand the ELF format.
- * 
- * This example could be used to create a tiny ELF binary that execute your
- * shellcode/payload. This example contains a NOTE segment too for demo of 
- * how to create more than one segment.
+ *
+ * This example could be used to create a tiny ELF binary that execute
+ * your shellcode/payload. This example contains a NOTE segment too for
+ * demo of how to create more than one segment.
  *
  * ;; shellcode.asm
- * 
+ *
  * BITS 32
  *
  * _start:
@@ -18,7 +18,7 @@
  *     mov ebx, 1
  *     mov eax, 4      ; write(stdout, "1337", 4)
  *     int 0x80
- * 
+ *
  *     xor eax, eax
  *     xor ebx, ebx
  *     inc eax         ; exit(0)
@@ -27,7 +27,7 @@
  * ;; cut here ;;
  *
  * $ nasm -f bin ./shellcode.asm -o shellcode.bin
- * 
+ *
  * $ ./creating_elf ./shellcode.bin ./tiny_elf
  * $ ./tiny_elf
  * 1337
@@ -52,103 +52,103 @@
 #include <malelf/error.h>
 #include <malelf/util.h>
 
-int main(int argc, char **argv) 
+int main(int argc, char **argv)
 {
-	MalelfBinary bin;
-	Elf32_Phdr phdr_load, phdr_note;
-	_u32 error;
-	int fd;
-	struct stat st_info;
-	unsigned char *text_data;
+        MalelfBinary bin;
+        Elf32_Phdr phdr_load, phdr_note;
+        _u32 error;
+        int fd;
+        struct stat st_info;
+        unsigned char *text_data;
 
-	if (argc < 3) {
-		printf("%s <text-segment-file> <output-elf>\n", *argv);
-		return 1;
-	}
+        if (argc < 3) {
+                printf("%s <text-segment-file> <output-elf>\n", *argv);
+                return 1;
+        }
 
-	fd = open(argv[1], O_RDONLY);
+        fd = open(argv[1], O_RDONLY);
 
-	if (fd == -1) {
-		fprintf(stderr, "Failed to open %s...\n", argv[1]);
-		return 1;
-	}
+        if (fd == -1) {
+                fprintf(stderr, "Failed to open %s...\n", argv[1]);
+                return 1;
+        }
 
-	if (stat(argv[1], &st_info) == -1) {
-		perror("Failed to stat file.\n");
-		return 1;
-	}
+        if (stat(argv[1], &st_info) == -1) {
+                perror("Failed to stat file.\n");
+                return 1;
+        }
 
 
-	text_data = mmap(NULL, st_info.st_size, PROT_READ, MAP_SHARED, fd, 0);
-	if (!text_data) {
-		perror("Failed to mmap...\n");
-		return 1;
-	}
+        text_data = mmap(NULL, st_info.st_size, PROT_READ, MAP_SHARED, fd, 0);
+        if (!text_data) {
+                perror("Failed to mmap...\n");
+                return 1;
+        }
 
-	malelf_binary_init(&bin);
-	error = malelf_binary_create_elf_exec(&bin, MALELF_ELF32);
-	
-	if (MALELF_SUCCESS != error) {
-		MALELF_PERROR(error);
-		return 1;
-	}
+        malelf_binary_init(&bin);
+        error = malelf_binary_create_elf_exec(&bin, MALELF_ELF32);
 
-	/* First, configure your executable (PT_LOAD) segment */
-	phdr_load.p_type = PT_LOAD;
-	phdr_load.p_offset = sizeof (Elf32_Ehdr) + sizeof (Elf32_Phdr) * 3;
-	phdr_load.p_vaddr = 0x08048000 + phdr_load.p_offset;
-	phdr_load.p_paddr = phdr_load.p_vaddr;
-	phdr_load.p_filesz = st_info.st_size;
-	phdr_load.p_memsz = phdr_load.p_filesz;
-	phdr_load.p_flags = PF_X;
-	phdr_load.p_align = 0;
+        if (MALELF_SUCCESS != error) {
+                MALELF_PERROR(error);
+                return 1;
+        }
 
-	error = malelf_binary_add_phdr32(&bin, &phdr_load);
+        /* First, configure your executable (PT_LOAD) segment */
+        phdr_load.p_type = PT_LOAD;
+        phdr_load.p_offset = sizeof (Elf32_Ehdr) + sizeof (Elf32_Phdr) * 3;
+        phdr_load.p_vaddr = 0x08048000 + phdr_load.p_offset;
+        phdr_load.p_paddr = phdr_load.p_vaddr;
+        phdr_load.p_filesz = st_info.st_size;
+        phdr_load.p_memsz = phdr_load.p_filesz;
+        phdr_load.p_flags = PF_X;
+        phdr_load.p_align = 0;
 
-	if (MALELF_SUCCESS != error) {
-		MALELF_PERROR(error);
-		malelf_binary_close(&bin);
-		return 1;
-	}
+        error = malelf_binary_add_phdr32(&bin, &phdr_load);
 
-	/* content of NOTE segment */
-	const char * message = "generated libmalelf";
+        if (MALELF_SUCCESS != error) {
+                MALELF_PERROR(error);
+                malelf_binary_close(&bin);
+                return 1;
+        }
 
-	phdr_note.p_type = PT_NOTE;
-	phdr_note.p_offset = phdr_load.p_offset + st_info.st_size;
-	phdr_note.p_vaddr = 0x08048000 + phdr_load.p_offset + st_info.st_size;
-	phdr_note.p_paddr = phdr_note.p_vaddr;
-	phdr_note.p_filesz = strlen(message);
-	phdr_note.p_memsz = phdr_note.p_filesz;
-	phdr_note.p_flags = PF_R | PF_W;
-	phdr_note.p_align = 0;
+        /* content of NOTE segment */
+        const char * message = "generated libmalelf";
 
-	error = malelf_binary_add_phdr32(&bin, &phdr_note);
+        phdr_note.p_type = PT_NOTE;
+        phdr_note.p_offset = phdr_load.p_offset + st_info.st_size;
+        phdr_note.p_vaddr = 0x08048000 + phdr_load.p_offset + st_info.st_size;
+        phdr_note.p_paddr = phdr_note.p_vaddr;
+        phdr_note.p_filesz = strlen(message);
+        phdr_note.p_memsz = phdr_note.p_filesz;
+        phdr_note.p_flags = PF_R | PF_W;
+        phdr_note.p_align = 0;
 
-	if (MALELF_SUCCESS != error) {
-		MALELF_PERROR(error);
-		malelf_binary_close(&bin);
-		return 1;
-	}
+        error = malelf_binary_add_phdr32(&bin, &phdr_note);
 
-	/* copying text segment */
-	bin.mem = malelf_realloc(bin.mem, phdr_load.p_offset + st_info.st_size);
-	memcpy(bin.mem + phdr_load.p_offset, text_data, st_info.st_size);
+        if (MALELF_SUCCESS != error) {
+                MALELF_PERROR(error);
+                malelf_binary_close(&bin);
+                return 1;
+        }
 
-	/* copying note segment */
-	bin.mem = malelf_realloc(bin.mem, phdr_note.p_offset + phdr_note.p_filesz);
-	memcpy(bin.mem + phdr_note.p_offset, message, phdr_note.p_filesz);
+        /* copying text segment */
+        bin.mem = malelf_realloc(bin.mem, phdr_load.p_offset + st_info.st_size);
+        memcpy(bin.mem + phdr_load.p_offset, text_data, st_info.st_size);
 
-	malelf_ehdr_set_entry(&bin.ehdr, phdr_load.p_vaddr);
+        /* copying note segment */
+        bin.mem = malelf_realloc(bin.mem, phdr_note.p_offset + phdr_note.p_filesz);
+        memcpy(bin.mem + phdr_note.p_offset, message, phdr_note.p_filesz);
 
-	error = malelf_binary_write(&bin, argv[2]);
+        malelf_ehdr_set_entry(&bin.ehdr, phdr_load.p_vaddr);
 
-	if (MALELF_SUCCESS != error) {
-		MALELF_PERROR(error);
-		return 1;
-	}
+        error = malelf_binary_write(&bin, argv[2]);
 
-	munmap(text_data, st_info.st_size);
-	malelf_binary_close(&bin);
-	return 0;
+        if (MALELF_SUCCESS != error) {
+                MALELF_PERROR(error);
+                return 1;
+        }
+
+        munmap(text_data, st_info.st_size);
+        malelf_binary_close(&bin);
+        return 0;
 }

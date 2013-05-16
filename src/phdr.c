@@ -1,13 +1,16 @@
-/* 
- * The malelf library was written in pure C, with the objective to 
- * provide a quick and easy way a set functions for programmers to 
- * manipulate ELF files. With libmalelf can dissect and infect ELF 
- * files. Evil using this library is the responsibility of the programmer.
+/*
+ * The libmalelf is a evil library that could be used for good ! It was
+ * developed with the intent to assist in the process of infecting
+ * binaries and provide a safe way to analyze malwares.
  *
- * Author: Tiago Natel de Moura <tiago4orion@gmail.com>
+ * Evil using this library is the responsibility of the programmer.
  *
- * Contributor: Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
- *              Paulo Leonardo Benatto <benatto@gmail.com>
+ * Author:
+ *         Tiago Natel de Moura <natel@secplus.com.br>
+ *
+ * Contributor:
+ *         Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
+ *         Paulo Leonardo Benatto    <benatto@gmail.com>
  *
  * Copyright 2012, 2013 by Tiago Natel de Moura. All Rights Reserved.
  *
@@ -19,7 +22,8 @@
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
@@ -46,7 +50,7 @@ _u32 malelf_phdr_get_type(MalelfPhdr *phdr, _u32 *type, _u32 index)
 {
         Elf32_Phdr *phdr32;
         Elf64_Phdr *phdr64;
-        
+
         switch(phdr->class) {
         case MALELF_ELF32:
                 phdr32 = phdr->uhdr.h32 + index;
@@ -58,7 +62,7 @@ _u32 malelf_phdr_get_type(MalelfPhdr *phdr, _u32 *type, _u32 index)
                 break;
         default: return MALELF_ERROR;
         }
-        
+
         return MALELF_SUCCESS;
 }
 
@@ -66,7 +70,7 @@ _u32 malelf_phdr_get_offset(MalelfPhdr *phdr, _u32 *offset, _u32 index)
 {
         Elf32_Phdr *phdr32;
         Elf64_Phdr *phdr64;
-        
+
         switch(phdr->class) {
         case MALELF_ELF32:
                 phdr32 = phdr->uhdr.h32 + index;
@@ -78,7 +82,7 @@ _u32 malelf_phdr_get_offset(MalelfPhdr *phdr, _u32 *offset, _u32 index)
                 break;
         default: return MALELF_ERROR;
         }
-        
+
         return MALELF_SUCCESS;
 }
 
@@ -86,7 +90,7 @@ _u32 malelf_phdr_get_vaddr(MalelfPhdr *phdr, _u32 *vaddr, _u32 index)
 {
         Elf32_Phdr *phdr32;
         Elf64_Phdr *phdr64;
-        
+
         switch(phdr->class) {
         case MALELF_ELF32:
                 phdr32 = phdr->uhdr.h32 + index;
@@ -98,7 +102,7 @@ _u32 malelf_phdr_get_vaddr(MalelfPhdr *phdr, _u32 *vaddr, _u32 index)
                 break;
         default: return MALELF_ERROR;
         }
-        
+
         return MALELF_SUCCESS;
 }
 
@@ -106,7 +110,7 @@ _u32 malelf_phdr_get_paddr(MalelfPhdr *phdr, _u32 *paddr, _u32 index)
 {
         Elf32_Phdr *phdr32;
         Elf64_Phdr *phdr64;
-        
+
         switch(phdr->class) {
         case MALELF_ELF32:
                 phdr32 = phdr->uhdr.h32 + index;
@@ -118,7 +122,7 @@ _u32 malelf_phdr_get_paddr(MalelfPhdr *phdr, _u32 *paddr, _u32 index)
                 break;
         default: return MALELF_ERROR;
         }
-        
+
         return MALELF_SUCCESS;
 }
 
@@ -144,12 +148,12 @@ _u32 malelf_phdr_get_filesz(MalelfPhdr *phdr, _u32 *filesz, _u32 index)
 
 _u32 malelf_phdr_dump(Elf32_Phdr *p)
 {
-	malelf_success("p_type: %u\n", p->p_type);
-	malelf_success("p_offset: 0x%08x\n", p->p_offset);
-	malelf_success("p_vaddr: 0x%08x\n", p->p_vaddr);
+        malelf_success("p_type: %u\n", p->p_type);
+        malelf_success("p_offset: 0x%08x\n", p->p_offset);
+        malelf_success("p_vaddr: 0x%08x\n", p->p_vaddr);
 
-	malelf_success("Dump:\n");
-	return malelf_dump((_u8 *) p, sizeof (Elf32_Phdr));
+        malelf_success("Dump:\n");
+        return malelf_dump((_u8 *) p, sizeof (Elf32_Phdr));
 }
 
 _u32 malelf_phdr_get_memsz(MalelfPhdr *phdr, _u32 *memsz, _u32 index)

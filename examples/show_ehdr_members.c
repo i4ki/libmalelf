@@ -32,40 +32,38 @@ int main()
 
         malelf_binary_init(&binary);
         malelf_binary_set_alloc_type(&binary, MALELF_ALLOC_MALLOC);
-    	malelf_binary_open("/bin/ls", &binary);
- 
+        malelf_binary_open("/bin/ls", &binary);
+
         result = malelf_binary_get_ehdr(&binary, &ehdr);
-        result = malelf_ehdr_get_version(&ehdr, &me_version);        
-        result = malelf_ehdr_get_type(&ehdr, &me_type);        
-        result = malelf_ehdr_get_machine(&ehdr, &me_machine);        
-        result = malelf_ehdr_get_ehsize(&ehdr, &size);        
-        result = malelf_ehdr_get_phentsize(&ehdr, &phentsize);        
-        result = malelf_ehdr_get_shentsize(&ehdr, &shentsize);        
-        result = malelf_ehdr_get_shnum(&ehdr, &shnum);        
-        result = malelf_ehdr_get_phnum(&ehdr, &phnum);        
-        result = malelf_ehdr_get_shstrndx(&ehdr, &shstrndx);        
+        result = malelf_ehdr_get_version(&ehdr, &me_version);
+        result = malelf_ehdr_get_type(&ehdr, &me_type);
+        result = malelf_ehdr_get_machine(&ehdr, &me_machine);
+        result = malelf_ehdr_get_ehsize(&ehdr, &size);
+        result = malelf_ehdr_get_phentsize(&ehdr, &phentsize);
+        result = malelf_ehdr_get_shentsize(&ehdr, &shentsize);
+        result = malelf_ehdr_get_shnum(&ehdr, &shnum);
+        result = malelf_ehdr_get_phnum(&ehdr, &phnum);
+        result = malelf_ehdr_get_shstrndx(&ehdr, &shstrndx);
 
-        printf("Version Name: %d\n", me_version.name);        
-        printf("Version Value: %d\n", me_version.value);        
-        printf("Version Description: %s\n", me_version.meaning);        
+        printf("Version Name: %d\n", me_version.name);
+        printf("Version Value: %d\n", me_version.value);
+        printf("Version Description: %s\n", me_version.meaning);
 
-        printf("Type Name: %d\n", me_type.name);        
-        printf("Type Value: %d\n", me_type.value);        
-        printf("Type Description: %s\n", me_type.meaning);        
+        printf("Type Name: %d\n", me_type.name);
+        printf("Type Value: %d\n", me_type.value);
+        printf("Type Description: %s\n", me_type.meaning);
 
-        printf("Machine Name: %d\n", me_machine.name);        
-        printf("Machine Value: %d\n", me_machine.value);        
-        printf("Machine Description: %s\n", me_machine.meaning);        
-        
-        printf("Size: %d\n", size);        
-        printf("Program Header Table Entry Size: %d\n", phentsize);        
-        printf("Section Header Table Entry Size: %d\n", shentsize);        
-        
-        printf("Number of Entries PHT: %d\n", phnum);        
+        printf("Machine Name: %d\n", me_machine.name);
+        printf("Machine Value: %d\n", me_machine.value);
+        printf("Machine Description: %s\n", me_machine.meaning);
+
+        printf("Size: %d\n", size);
+        printf("Program Header Table Entry Size: %d\n", phentsize);
+        printf("Section Header Table Entry Size: %d\n", shentsize);
+        printf("Number of Entries PHT: %d\n", phnum);
         printf("Number of Entries SHT: %d\n", shnum);
-        
         printf("SHT index: %d\n", shstrndx);
-        
+
         malelf_binary_close(&binary);
 
         return 0;

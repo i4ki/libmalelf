@@ -1,5 +1,6 @@
 /**
- * Simple example that show how to get a section and stores on MalelfSection
+ * Simple example that show how to get a section and stores
+ * on MalelfSection
  * and how to simple obtain the section names by index.
  *
  * by i4k
@@ -11,44 +12,43 @@
 #include <malelf/binary.h>
 #include <malelf/error.h>
 
-int main() 
+int main()
 {
-	MalelfBinary bin;
-	MalelfSection section;
-	int error = MALELF_SUCCESS, i = 0;
-	char *name = NULL;
+        MalelfBinary bin;
+        MalelfSection section;
+        int error = MALELF_SUCCESS, i = 0;
+        char *name = NULL;
 
-	malelf_binary_init(&bin);
+        malelf_binary_init(&bin);
 
-	error = malelf_binary_open("/bin/ls", &bin);
-	if (MALELF_SUCCESS != error) {
-		MALELF_PERROR(error);
-		return 1;
-	}
+        error = malelf_binary_open("/bin/ls", &bin);
+        if (MALELF_SUCCESS != error) {
+                MALELF_PERROR(error);
+                return 1;
+        }
 
-	/* Getting the section properties */
-	error = malelf_binary_get_section(&bin, 1, &section);
+        /* Getting the section properties */
+        error = malelf_binary_get_section(&bin, 1, &section);
 
-	/* Getting only the section name */
-	error = malelf_binary_get_section_name(&bin, 1, &name);
+        /* Getting only the section name */
+        error = malelf_binary_get_section_name(&bin, 1, &name);
 
-	assert (section.name == name);
+        assert (section.name == name);
 
-	printf("Section '%s'\n", section.name);
-	printf("\tType: %u\n", section.type);
-	printf("\toffset in file: 0x%08x\n", section.offset);
-	printf("\tsize in file: %u\n\n", section.size);
+        printf("Section '%s'\n", section.name);
+        printf("\tType: %u\n", section.type);
+        printf("\toffset in file: 0x%08x\n", section.offset);
+        printf("\tsize in file: %u\n\n", section.size);
 
-	/* Getting only the name of sections */
-	for (i = 0; i < MALELF_ELF_FIELD(&bin.ehdr, e_shnum, error); i++) {
-		if (i == 0)
-			continue;
+        /* Getting only the name of sections */
+        for (i = 0; i < MALELF_ELF_FIELD(&bin.ehdr, e_shnum, error); i++) {
+                if (i == 0)
+                        continue;
 
-		error = malelf_binary_get_section_name(&bin, i, &name);
-		printf("Section name: %s\n", name);
-	}
+                error = malelf_binary_get_section_name(&bin, i, &name);
+                printf("Section name: %s\n", name);
+        }
 
-	malelf_binary_close(&bin);
-	
-	return 0;
+        malelf_binary_close(&bin);
+        return 0;
 }

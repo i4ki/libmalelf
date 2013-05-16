@@ -1,13 +1,16 @@
-/* 
- * The malelf library was written in pure C, with the objective to 
- * provide a quick and easy way a set functions for programmers to 
- * manipulate ELF files. With libmalelf can dissect and infect ELF 
- * files. Evil using this library is the responsibility of the programmer.
+/*
+ * The libmalelf is a evil library that could be used for good ! It was
+ * developed with the intent to assist in the process of infecting
+ * binaries and provide a safe way to analyze malwares.
  *
- * Author: Tiago Natel de Moura <tiago4orion@gmail.com>
+ * Evil using this library is the responsibility of the programmer.
  *
- * Contributor: Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
- *              Paulo Leonardo Benatto <benatto@gmail.com>
+ * Author:
+ *         Tiago Natel de Moura <natel@secplus.com.br>
+ *
+ * Contributor:
+ *         Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
+ *         Paulo Leonardo Benatto    <benatto@gmail.com>
  *
  * Copyright 2012, 2013 by Tiago Natel de Moura. All Rights Reserved.
  *
@@ -19,11 +22,13 @@
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
  */
+
 
 #ifndef MALELF_BINARY_H
 #define MALELF_BINARY_H
@@ -38,7 +43,7 @@
 
 typedef struct {
         char *fname;         /* Binary filename */
-	char *bkpfile;       /* Filename of backup'ed file in case of 
+        char *bkpfile;       /* Filename of backup'ed file in case of
                                 write operations */
         _i32 fd;             /* Binary file descriptor */
         _u8 *mem;            /* Binary content */
@@ -47,7 +52,7 @@ typedef struct {
         MalelfPhdr phdr;     /* Elf Program Headers */
         MalelfShdr shdr;     /* Elf Section Headers */
         _u8 alloc_type;      /* System function used to allocate memory */
-	_u32 class;
+        _u32 class;
 } MalelfBinary;
 
 
@@ -72,7 +77,7 @@ extern _i32 malelf_binary_close(MalelfBinary *bin);
 /*! Set the alloc type.
  *
  *  \param bin A valid MalelfBinary object.
- *  \alloc_type How the binary will be loaded. 
+ *  \alloc_type How the binary will be loaded.
  *              (MALELF_ALLOC_MMAP or MALELF_ALLOC_MALLOC)
  */
 extern void malelf_binary_set_alloc_type(MalelfBinary *bin, _u8 alloc_type);
@@ -189,8 +194,8 @@ extern _u32 malelf_binary_check_elf_magic(MalelfBinary *binary);
  *  \return MALELF_SUCCESS if the operation succeeded.
  */
 extern _u32 malelf_binary_get_segment(MalelfBinary *bin,
-                                      _u32 idx, 
-				      MalelfSegment *segment);
+                                      _u32 idx,
+                                      MalelfSegment *segment);
 
 
 /*! Get section name.
@@ -203,7 +208,7 @@ extern _u32 malelf_binary_get_segment(MalelfBinary *bin,
  */
 extern _u32 malelf_binary_get_section_name(MalelfBinary *bin,
                                            _u32 idx,
-					   char **name);
+                                           char **name);
 
 
 /*! Get section.
@@ -215,8 +220,8 @@ extern _u32 malelf_binary_get_section_name(MalelfBinary *bin,
  *  \return MALELF_SUCCESS if the operation succeeded, otherwise MALELF_ERROR.
  */
 extern _u32 malelf_binary_get_section(MalelfBinary *bin,
-                                      _u32 idx, 
-				      MalelfSection *section);
+                                      _u32 idx,
+                                      MalelfSection *section);
 
 
 /*! Write a MalelfBinary file on disk.
@@ -265,7 +270,7 @@ extern _u32 malelf_binary_create_elf_exec(MalelfBinary *bin, _u8 class);
  *  \return MALELF_SUCCESS if the operation succeeded, otherwise MALELF_ERROR.
  */
 extern _u32 malelf_binary_add_phdr32(MalelfBinary *bin, Elf32_Phdr *phdr);
-					   
+
 
 
 #endif /* MALELF_BINARY_H */

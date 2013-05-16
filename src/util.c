@@ -1,13 +1,16 @@
-/* 
- * The malelf library was written in pure C, with the objective to 
- * provide a quick and easy way a set functions for programmers to 
- * manipulate ELF files. With libmalelf can dissect and infect ELF 
- * files. Evil using this library is the responsibility of the programmer.
+/*
+ * The libmalelf is a evil library that could be used for good ! It was
+ * developed with the intent to assist in the process of infecting
+ * binaries and provide a safe way to analyze malwares.
  *
- * Author: Tiago Natel de Moura <tiago4orion@gmail.com>
+ * Evil using this library is the responsibility of the programmer.
  *
- * Contributor: Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
- *              Paulo Leonardo Benatto <benatto@gmail.com>
+ * Author:
+ *         Tiago Natel de Moura <natel@secplus.com.br>
+ *
+ * Contributor:
+ *         Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
+ *         Paulo Leonardo Benatto    <benatto@gmail.com>
  *
  * Copyright 2012, 2013 by Tiago Natel de Moura. All Rights Reserved.
  *
@@ -19,11 +22,13 @@
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
  */
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -40,7 +45,10 @@
 
 extern _u8 malelf_quiet_mode;
 
-int malelf_log(FILE *fd, const char *prefix, const char *format, va_list args)
+int malelf_log(FILE *fd,
+               const char *prefix,
+               const char *format,
+               va_list args)
 {
         char outbuf[MAX_LOG_BUFFER];
         char n_format[MAX_LOG_BUFFER];
@@ -51,7 +59,7 @@ int malelf_log(FILE *fd, const char *prefix, const char *format, va_list args)
         memset(n_format, '\0', MAX_LOG_BUFFER);
         strncpy(n_format, prefix, MAX_LOG_BUFFER);
         strncat(n_format, format, MAX_LOG_BUFFER - strlen(n_format));
-  
+
         i = vsprintf(outbuf, n_format, args);
 
         len = strlen(outbuf);
@@ -59,7 +67,7 @@ int malelf_log(FILE *fd, const char *prefix, const char *format, va_list args)
                 va_end(args);
                 return i;
         } else {
-		va_end(args);
+                va_end(args);
                 return  -1;
         }
 }
@@ -129,54 +137,54 @@ void *malelf_realloc(void *pointer, _u32 new_size)
 /* dump ripped from `hacking - the art of exploitation - joe` */
 _u32 malelf_dump(_u8 *mem, _u32 size)
 {
-	_u8 byte;
-	_u32 i, j;
+        _u8 byte;
+        _u32 i, j;
 
-	for (i = 0; i < size; i++) {
-		byte = mem[i];
-		malelf_say("%02x ", mem[i]);
-		if (((i % 16) == 15) || (size - 1 == i)) {
-			for (j = 0; j < (15 - (i % 16)); j++) {
-				malelf_say("   ");
-			}
+        for (i = 0; i < size; i++) {
+                byte = mem[i];
+                malelf_say("%02x ", mem[i]);
+                if (((i % 16) == 15) || (size - 1 == i)) {
+                        for (j = 0; j < (15 - (i % 16)); j++) {
+                                malelf_say("   ");
+                        }
 
-			malelf_say("| ");
+                        malelf_say("| ");
 
-			for (j = (i - (i % 16)); j <= i; j++) {
-				byte = mem[j];
-				if ((byte > 31) && (byte < 127)) {
-					/* ascii char */
-					malelf_say("%c", byte);
-				} else {
-					malelf_say(".");
-				}
-			}
+                        for (j = (i - (i % 16)); j <= i; j++) {
+                                byte = mem[j];
+                                if ((byte > 31) && (byte < 127)) {
+                                        /* ascii char */
+                                        malelf_say("%c", byte);
+                                } else {
+                                        malelf_say(".");
+                                }
+                        }
 
-			malelf_say("\n");
-		}
-	}
-	return MALELF_SUCCESS;
+                        malelf_say("\n");
+                }
+        }
+        return MALELF_SUCCESS;
 }
 
-_u32 malelf_write(int fd, _u8 *mem, _u32 size) 
+_u32 malelf_write(int fd, _u8 *mem, _u32 size)
 {
-	int error = MALELF_SUCCESS;
-	_u32 bytes_saved = 0;
-	_u8 tries = 0;
+        int error = MALELF_SUCCESS;
+        _u32 bytes_saved = 0;
+        _u8 tries = 0;
 
-	while (bytes_saved < size) {
-		if (write(fd, mem + bytes_saved, 1) <= 0) {
-			tries++;
-		} else {
-			tries  = 0;
-			bytes_saved++;
-		}
+        while (bytes_saved < size) {
+                if (write(fd, mem + bytes_saved, 1) <= 0) {
+                        tries++;
+                } else {
+                        tries  = 0;
+                        bytes_saved++;
+                }
 
-		if (3 == tries) {
-			/* IO problems? */
-			error = errno;
-			break;
-		}
-	}
-	return error;
+                if (3 == tries) {
+                        /* IO problems? */
+                        error = errno;
+                        break;
+                }
+        }
+        return error;
 }

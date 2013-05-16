@@ -1,13 +1,16 @@
-/* 
- * The malelf library was written in pure C, with the objective to 
- * provide a quick and easy way a set functions for programmers to 
- * manipulate ELF files. With libmalelf can dissect and infect ELF 
- * files. Evil using this library is the responsibility of the programmer.
+/*
+ * The libmalelf is a evil library that could be used for good ! It was
+ * developed with the intent to assist in the process of infecting
+ * binaries and provide a safe way to analyze malwares.
  *
- * Author: Tiago Natel de Moura <tiago4orion@gmail.com>
+ * Evil using this library is the responsibility of the programmer.
  *
- * Contributor: Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
- *              Paulo Leonardo Benatto <benatto@gmail.com>
+ * Author:
+ *         Tiago Natel de Moura <natel@secplus.com.br>
+ *
+ * Contributor:
+ *         Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
+ *         Paulo Leonardo Benatto    <benatto@gmail.com>
  *
  * Copyright 2012, 2013 by Tiago Natel de Moura. All Rights Reserved.
  *
@@ -19,11 +22,13 @@
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
  */
+
 
 #ifndef MALELF_DEFINES_H
 #define MALELF_DEFINES_H
@@ -51,19 +56,19 @@
 
 #define MALELF_ELF_DATA(hdr) \
         ( \
-                (hdr)->class == MALELF_ELF32 ?	\
-		(void *)((hdr)->uhdr.h32) :	\
+                (hdr)->class == MALELF_ELF32 ?        \
+                (void *)((hdr)->uhdr.h32) :        \
                 ( \
                         (hdr)->class == MALELF_ELF64 ? \
                         (void *)((hdr)->uhdr.h64) :    \
-		        NULL \
-		) \
-	)
+                        NULL \
+                ) \
+        )
 
 #define MALELF_ELF_FIELD(hdr, field, error)  \
         (((hdr)->class == MALELF_ELF32) ?      \
-	        ((hdr)->uhdr.h32->field) :		\
+                ((hdr)->uhdr.h32->field) :                \
         (((hdr)->class == MALELF_ELF64) ? \
-	        ((hdr)->uhdr.h64->field) : (error = MALELF_EINVALID_CLASS) && NULL))
+                ((hdr)->uhdr.h64->field) : (error = MALELF_EINVALID_CLASS) && NULL))
 
 #endif /* MALELF_DEFINES_H */
