@@ -1193,50 +1193,14 @@ _u32 malelf_binary_add_phdr32(MalelfBinary *bin, Elf32_Phdr *new_phdr)
 
         ehdr = MALELF_ELF_DATA(&bin->ehdr);
 
-        if (ehdr->e_phoff == 0 && ehdr->e_phnum == 0) {
-                Elf32_Phdr phdr;
-                _u32 old_size = bin->size;
-                /* doesn't have PHT */
-
-                /* allocate space for two program headers,
-                   the first is PT_NULL */
-                bin->mem = malelf_realloc(bin->mem,
-                                          bin->size +
-                                          sizeof(Elf32_Phdr) * 2);
-                if (bin->mem == NULL) {
-                        return MALELF_EALLOC;
-                }
-
-                /* The first PHT is filled by NULL */
-
-                phdr.p_type = PT_NULL;
-                phdr.p_offset = 0x00;
-                phdr.p_vaddr = 0x00;
-                phdr.p_paddr = 0x00;
-                phdr.p_filesz = 0x00;
-                phdr.p_memsz = 0x00;
-                phdr.p_flags = 0x00;
-                phdr.p_align = 0x00;
-
-                memcpy(bin->mem + old_size, &phdr, sizeof (Elf32_Phdr));
-
-                ehdr->e_phoff = sizeof (Elf32_Ehdr);
-                ehdr->e_phnum = 1;
-                ehdr->e_phentsize = sizeof(Elf32_Phdr);
-                bin->size += 2 * sizeof (Elf32_Phdr);
-
-                _malelf_binary_map_phdr(bin);
-        } else {
-                bin->mem = malelf_realloc(bin->mem,
-                                          bin->size +
-                                          sizeof(Elf32_Phdr));
-
-                if (!bin->mem) {
-                        return MALELF_EALLOC;
-                }
-
-                bin->size += sizeof(Elf32_Phdr);
+        bin->mem = malelf_realloc(bin->mem,
+                                  bin->size +
+                                  sizeof(Elf32_Phdr));
+        if (!bin->mem) {
+                return MALELF_EALLOC;
         }
+
+        bin->size += sizeof(Elf32_Phdr);
 
         memcpy(bin->mem + ehdr->e_phoff +
                (sizeof (Elf32_Phdr) * ehdr->e_phnum),
