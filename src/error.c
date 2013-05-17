@@ -36,7 +36,7 @@
 #include "malelf/error.h"
 
 const char* malelf_strerr[] = {
-        "Unknow error", /* MALELF_ERROR */
+        "Unknown error", /* MALELF_ERROR */
         "File already closed",
         "Error allocating memory",
         "Binary is NOT ELF",

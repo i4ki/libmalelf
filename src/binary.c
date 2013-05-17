@@ -1186,12 +1186,31 @@ _u32 malelf_binary_create_elf_exec(MalelfBinary *bin, _u8 class)
 _u32 malelf_binary_add_phdr32(MalelfBinary *bin, Elf32_Phdr *new_phdr)
 {
         Elf32_Ehdr *ehdr;
+        _u16 n_phdrs = 0;
+        _u32 new_phdr_offset = 0;
 
         assert(NULL != bin->mem);
+        assert(bin->size > 0);
         assert(NULL != bin->ehdr.uhdr.h32);
         assert(NULL != new_phdr);
 
         ehdr = MALELF_ELF_DATA(&bin->ehdr);
+        assert(NULL != ehdr);
+
+        if (ehdr->e_phoff == 0x00 || ehdr->e_phnum == 0x00) {
+                /* If the binary doesn't have program headers yet,
+                   we need set the initial stuff of EHDR ... */
+
+                /* Here we are good boys ... let's set a good value for
+                   program headers offset.
+                   Feel free to hack this, like overlapping a bit
+                   of ehdr ... hehe */
+                ehdr->e_phoff = sizeof (Elf32_Ehdr); /* 52 bytes */
+                ehdr->e_phnum = 0x00;
+        }
+
+        /* Actual number of program headers */
+        n_phdrs = ehdr->e_phnum;
 
         bin->mem = malelf_realloc(bin->mem,
                                   bin->size +
@@ -1201,10 +1220,15 @@ _u32 malelf_binary_add_phdr32(MalelfBinary *bin, Elf32_Phdr *new_phdr)
         }
 
         bin->size += sizeof(Elf32_Phdr);
+        new_phdr_offset = (_u32) ehdr->e_phoff +
+          (sizeof (Elf32_Phdr) * n_phdrs);
 
-        memcpy(bin->mem + ehdr->e_phoff +
-               (sizeof (Elf32_Phdr) * ehdr->e_phnum),
-               new_phdr, sizeof (Elf32_Phdr));
+        assert (bin->size >= new_phdr_offset);
+        assert (bin->size == (new_phdr_offset + sizeof (Elf32_Phdr)));
+
+        memcpy(bin->mem + new_phdr_offset,
+               new_phdr,
+               sizeof (Elf32_Phdr));
 
         ehdr->e_phnum++;
         return MALELF_SUCCESS;

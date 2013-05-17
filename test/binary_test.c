@@ -293,9 +293,6 @@ void malelf_binary_add_phdr32_TEST()
         error = malelf_binary_create_elf_exec32(&bin);
         CU_ASSERT(MALELF_SUCCESS == error);
 
-        error = malelf_binary_add_phdr32(&bin, &new_phdr);
-        CU_ASSERT(MALELF_SUCCESS == error);
-
         /* First, configure your executable (PT_LOAD) segment */
         new_phdr.p_type = PT_PHDR;
         new_phdr.p_offset = sizeof (Elf32_Ehdr);
@@ -310,6 +307,7 @@ void malelf_binary_add_phdr32_TEST()
 
         error = malelf_binary_get_phdr(&bin, &mphdr);
         CU_ASSERT(MALELF_SUCCESS == error);
+
         CU_ASSERT(NULL != (void*)&mphdr);
 
         phdr = mphdr.uhdr.h32;

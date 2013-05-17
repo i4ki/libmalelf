@@ -95,7 +95,7 @@ int main(int argc, char **argv)
 
         /* First, configure your executable (PT_LOAD) segment */
         phdr_load.p_type = PT_LOAD;
-        phdr_load.p_offset = sizeof (Elf32_Ehdr) + sizeof (Elf32_Phdr) * 3;
+        phdr_load.p_offset = sizeof (Elf32_Ehdr) + sizeof (Elf32_Phdr) * 2;
         phdr_load.p_vaddr = 0x08048000 + phdr_load.p_offset;
         phdr_load.p_paddr = phdr_load.p_vaddr;
         phdr_load.p_filesz = st_info.st_size;
