@@ -61,65 +61,49 @@ typedef struct {
         _u8 class;          /*!< Architeture class */
 }MalelfEhdr;
 
-/*! The MalelfEhdrType stores information about e_type member.
+/*! The MalelfEhdrTable stores information about e_type, 
+ *  e_machine and e_version member.
  */
 typedef struct {
         _u16 name;
         _i32 value;
         char *meaning;
-} MalelfEhdrType;
-
-/*! The MalelfEhdrVersion stores information about e_version member.
- */
-typedef struct {
-        _u16 name;
-        _i32 value;
-        char *meaning;
-} MalelfEhdrVersion;
-
-/*! The MalelfEhdrMachine stores information about e_machine member.
- */
-typedef struct {
-        _u16 name;
-        _i32 value;
-        char *meaning;
-} MalelfEhdrMachine;
-
+} MalelfEhdrTable;
 
 /*! Get e_type member from ELF Header Table.
  *
  *  \param ehdr Valid ELF Header Table object.
- *  \param me_type Saved values(name, valeu and meaning) MalelfEhdrType.
+ *  \param me_type Saved values(name, valeu and meaning) MalelfEhdrTable.
  *
- *  \return MALELF_SUCCESS if MalelfEhdrType was successful set,
+ *  \return MALELF_SUCCESS if MalelfEhdrTable was successful set,
  *          otherwise returns MALELF_ERROR.
  */
 extern _i32 malelf_ehdr_get_type (MalelfEhdr *ehdr,
-                                  MalelfEhdrType *me_type);
+                                  MalelfEhdrTable *me_type);
 
 
 /*! Get e_machine member from ELF Header Table.
  *
  *  \param ehdr Valid ELF Header Table object.
- *  \param me_machine Saved values(name, valeu and meaning) MalelfEhdrMachine.
+ *  \param me_machine Saved values(name, valeu and meaning) MalelfEhdrTable.
  *
- *  \return MALELF_SUCCESS if MalelfEhdrMachine was successful set,
+ *  \return MALELF_SUCCESS if MalelfEhdrTable was successful set,
  *          otherwise returns MALELF_ERROR.
  */
 extern _i32 malelf_ehdr_get_machine(MalelfEhdr *ehdr,
-                                    MalelfEhdrMachine *me_machine);
+                                    MalelfEhdrTable *me_machine);
 
 
 /*! Get e_version member from ELF Header Table.
  *
  *  \param ehdr Valid ELF Header Table object.
- *  \param me_version Saved values(name, valeu and meaning) MalelfEhdrVersion.
+ *  \param me_version Saved values(name, valeu and meaning) MalelfEhdrTable.
  *
- *  \return MALELF_SUCCESS if MalelfEhdrVersion was successful set,
+ *  \return MALELF_SUCCESS if MalelfEhdrTable was successful set,
  *          otherwise returns MALELF_ERROR.
  */
 extern _i32 malelf_ehdr_get_version(MalelfEhdr *ehdr,
-                                    MalelfEhdrVersion *version);
+                                    MalelfEhdrTable *version);
 
 
 /*! Get e_shoff member from ELF Header Table.

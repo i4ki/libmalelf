@@ -17,9 +17,9 @@ int main()
 {
         MalelfBinary binary;
         MalelfEhdr ehdr;
-        MalelfEhdrType me_type;
-        MalelfEhdrMachine me_machine;
-        MalelfEhdrVersion me_version;
+        MalelfEhdrTable me_type;
+        MalelfEhdrTable me_machine;
+        MalelfEhdrTable me_version;
 
         _i32 result;
         _u32 size;

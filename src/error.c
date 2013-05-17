@@ -69,7 +69,7 @@ void __malelf_perror(int code,
         if (code >= 0 && code < MALELF_LAST_ERRNO) {
                 error_message = strerror(code);
         } else if (code >= 0 && code < MALELF_LAST_ERROR) {
-                error_message = malelf_strerror(code);
+                error_message =(char*) malelf_strerror(code);
         }
 
         LOG_ERROR(format_error,

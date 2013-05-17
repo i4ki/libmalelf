@@ -120,7 +120,7 @@ _u32 malelf_report_ehdr_type(MalelfReport *report, MalelfEhdr *ehdr)
         assert(NULL != report->writer);
         assert(NULL != ehdr);
 
-        MalelfEhdrType me_type;
+        MalelfEhdrTable me_type;
         malelf_ehdr_get_type(ehdr, &me_type);
         error = xmlTextWriterWriteFormatElement(report->writer,
                                                 (const xmlChar *)"type",
@@ -140,7 +140,7 @@ _u32 malelf_report_ehdr_machine(MalelfReport *report,
         assert(NULL != report->writer);
         assert(NULL != ehdr);
 
-        MalelfEhdrMachine me_machine;
+        MalelfEhdrTable me_machine;
         malelf_ehdr_get_machine(ehdr, &me_machine);
         error = xmlTextWriterWriteFormatElement(report->writer,
                                                 (const xmlChar *)"machine",
@@ -160,7 +160,7 @@ _u32 malelf_report_ehdr_version(MalelfReport *report,
         assert(NULL != report->writer);
         assert(NULL != ehdr);
 
-        MalelfEhdrVersion me_version;
+        MalelfEhdrTable me_version;
         malelf_ehdr_get_version(ehdr, &me_version);
         error = xmlTextWriterWriteFormatElement(report->writer,
                                                 (const xmlChar *)"version",
