@@ -24,15 +24,15 @@ static void malelf_ehdr_TEST(void)
         CU_ASSERT(result == MALELF_SUCCESS);
         CU_ASSERT(ehdr.class == MALELF_ELF32 || ehdr.class == MALELF_ELF64);
 
-        MalelfEhdrType me_type;
+        MalelfEhdrTable me_type;
         result = malelf_ehdr_get_type(&ehdr, &me_type);
         CU_ASSERT(result == MALELF_SUCCESS);
 
-        MalelfEhdrVersion me_version;
+        MalelfEhdrTable me_version;
         result = malelf_ehdr_get_version(&ehdr, &me_version);
         CU_ASSERT(result == MALELF_SUCCESS);
         
-        MalelfEhdrMachine me_machine;
+        MalelfEhdrTable me_machine;
         result = malelf_ehdr_get_machine(&ehdr, &me_machine);
         CU_ASSERT(result == MALELF_SUCCESS);
 

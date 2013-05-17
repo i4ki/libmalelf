@@ -45,7 +45,7 @@
 #include <malelf/error.h>
 #include <malelf/ehdr.h>
 
-static MalelfEhdrType _me_type[] = {
+static MalelfEhdrTable _me_type[] = {
         {ET_NONE,        0, "No filetype"},
         {ET_REL,         1, "Relocatable file"},
         {ET_EXEC,        2, "Executable file"},
@@ -55,12 +55,12 @@ static MalelfEhdrType _me_type[] = {
         {ET_HIPROC, 0xffff, "Processor-specific"}
 };
 
-static MalelfEhdrVersion _me_version[] = {
+static MalelfEhdrTable _me_version[] = {
         {EV_NONE,    0, "Invalid version"},
         {EV_CURRENT, 1, "Current Version"}
 };
 
-static MalelfEhdrMachine _me_machine[] = {
+static MalelfEhdrTable _me_machine[] = {
         {EM_NONE,  0, "No machine"},
         {EM_M32,   1, "AT&T WE 32100"},
         {EM_SPARC, 2, "SPARC"},
@@ -105,7 +105,7 @@ static _i32 _malelf_ehdr_get_version(MalelfEhdr *ehdr, _u8 *version)
 }
 
 _i32 malelf_ehdr_get_version(MalelfEhdr *ehdr,
-                             MalelfEhdrVersion *me_version)
+                             MalelfEhdrTable *me_version)
 {
         int error = MALELF_SUCCESS;
         _u8 version;
@@ -131,7 +131,7 @@ _i32 malelf_ehdr_get_version(MalelfEhdr *ehdr,
 }
 
 _i32 malelf_ehdr_get_type (MalelfEhdr *ehdr,
-                           MalelfEhdrType *me_type)
+                           MalelfEhdrTable *me_type)
 {
         int error = MALELF_SUCCESS;
         _u16 type;
@@ -176,7 +176,7 @@ _i32 malelf_ehdr_get_type (MalelfEhdr *ehdr,
 
 
 _i32 malelf_ehdr_get_machine(MalelfEhdr *ehdr,
-                             MalelfEhdrMachine *me_machine)
+                             MalelfEhdrTable *me_machine)
 {
         int error = MALELF_SUCCESS;
         _u8 machine;
