@@ -4,11 +4,11 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
+#include <malelf/error.h>
+#include <malelf/binary.h>
 
 #include <CUnit/Basic.h>
 #include <CUnit/CUnit.h>
-
-#include "binary_test.h"
 
 static void malelf_binary_open_mmap_TEST(void)
 {

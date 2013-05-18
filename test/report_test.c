@@ -4,33 +4,30 @@
 #include <CUnit/Basic.h>
 #include <CUnit/CUnit.h>
 
-#include "report_test.h"
-#include "binary_test.h"
-
 static void malelf_report_TEST(void)
 {
 }
 
 CU_ErrorCode report_get_test_suite(CU_pSuite *rsuite)
 {
-	CU_pSuite suite = NULL;
+        CU_pSuite suite = NULL;
 
-	if (NULL == rsuite) {
-		return -1;
-	}
+        if (NULL == rsuite) {
+                return -1;
+        }
 
-	suite = CU_add_suite("Class Report", NULL, NULL);
-	if(NULL == suite) {
-		*rsuite = NULL;
-		return CU_get_error();
-	}
+        suite = CU_add_suite("Module Report", NULL, NULL);
+        if(NULL == suite) {
+                *rsuite = NULL;
+                return CU_get_error();
+        }
 
-	if (NULL == CU_add_test(suite, 
-                                "malelf_report_TEST", 
+        if (NULL == CU_add_test(suite,
+                                "malelf_report_TEST",
                                 malelf_report_TEST)) {
-	        *rsuite = NULL;
-	        return CU_get_error();
-	}
+                *rsuite = NULL;
+                return CU_get_error();
+        }
 
         *rsuite = suite;
         return CUE_SUCCESS;
