@@ -99,7 +99,7 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libmalelf_la_DEPENDENCIES =
 am_libmalelf_la_OBJECTS = binary.lo ehdr.lo phdr.lo shdr.lo error.lo \
-	util.lo report.lo shellcode.lo table.lo
+	util.lo report.lo shellcode.lo table.lo debug.lo
 libmalelf_la_OBJECTS = $(am_libmalelf_la_OBJECTS)
 libmalelf_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
@@ -257,7 +257,9 @@ target_vendor = @target_vendor@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-CFLAGS_LANGUAGE = -std=c99 -pedantic
+CFLAGS_LANGUAGE = -std=c99 -pedantic -D_POSIX_C_SOURCE \
+		-D_SVID_SOURCE
+
 CFLAGS_WARNS = -Wall -Wextra -Werror
 CFLAGS_INCLUDES = -Iinclude -I$(LIBXML_INCLUDES)
 AM_CFLAGS = -ggdb -fPIC -O2 $(CFLAGS_LANGUAGE) \
@@ -273,10 +275,11 @@ libmalelf_la_SOURCES = binary.c \
 			util.c \
 			report.c \
 			shellcode.c \
-			table.c
+			table.c \
+			debug.c
 
 libmalelf_la_LDFLAGS = -version-info 1:0:0
-libmalelf_la_LIBADD = -L$(LIBXML_LIBPATH) -lxml2 
+libmalelf_la_LIBADD = -L$(LIBXML_LIBPATH) -lxml2
 library_includedir = $(includedir)/malelf
 library_include_HEADERS = include/malelf/binary.h \
 				include/malelf/ehdr.h \
@@ -288,7 +291,8 @@ library_include_HEADERS = include/malelf/binary.h \
 				include/malelf/types.h \
 				include/malelf/util.h \
 				include/malelf/shellcode.h\
-				include/malelf/table.h
+				include/malelf/table.h \
+				include/malelf/debug.h
 
 all: all-am
 
@@ -366,6 +370,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/binary.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/debug.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ehdr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/error.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/phdr.Plo@am__quote@
