@@ -43,6 +43,7 @@
 
 #include <malelf/types.h>
 #include <malelf/error.h>
+#include <malelf/debug.h>
 #include <malelf/binary.h>
 #include <malelf/defines.h>
 
@@ -53,6 +54,8 @@ _u32 malelf_binary_get_class(MalelfBinary *bin, _u8 *class)
         assert(NULL != bin && NULL != bin->mem);
 
         if (MALELF_SUCCESS != malelf_binary_check_elf_magic(bin)) {
+                malelf_debug("Binary file hasn't the ELF "
+                             "magic numbers.\n");
                 return MALELF_ERROR;
         }
 
@@ -229,6 +232,9 @@ void malelf_binary_init(MalelfBinary *bin)
         bin->shdr.uhdr.h32 = NULL;
         bin->alloc_type = MALELF_ALLOC_MMAP;
         bin->class = MALELF_ELFNONE;
+
+        malelf_debug_init();
+        malelf_debug("MalelfBinary structure initialized.\n");
 }
 
 void malelf_binary_set_alloc_type(MalelfBinary *bin, _u8 alloc_type)
@@ -336,6 +342,7 @@ _i32 malelf_binary_open(char *fname, MalelfBinary *bin)
 
         result = malelf_binary_check_elf_magic(bin);
         if (MALELF_SUCCESS != result) {
+                malelf_debug("File '%s' isn't ELF.\n", fname);
                 return result;
         }
 
@@ -564,7 +571,8 @@ static _u32 _malelf_binary_get_section64(_u32 section_idx,
         shdr64 = ushdr.uhdr.h64;
         shdr64 += section_idx;
 
-        section->name = _malelf_binary_get_section_name(bin, section_idx);
+        section->name = _malelf_binary_get_section_name(bin,
+                                                        section_idx);
         section->offset = shdr64->sh_offset;
         section->size = shdr64->sh_size;
         return MALELF_SUCCESS;
