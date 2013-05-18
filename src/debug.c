@@ -38,6 +38,7 @@
 #include <malelf/error.h>
 #include <malelf/util.h>
 
+#define LOG_BUFSIZE 1024
 static _u8 _malelf_debug = 0;
 static FILE *_malelf_debug_fd;
 static _u8 _malelf_debug_ok = 0;
@@ -88,7 +89,7 @@ int malelf_debug(const char * fmt, ...)
         va_start(args, fmt);
         struct tm result;
         time_t ltime; /* calendar time */
-        char fmt_out[1024];
+        char fmt_out[LOG_BUFSIZE];
         char stime[26];
         int timelen;
 
@@ -98,7 +99,7 @@ int malelf_debug(const char * fmt, ...)
                 return 0;
         }
 
-        bzero(fmt_out, 1024);
+        bzero(fmt_out, LOG_BUFSIZE);
         bzero(stime, 26);
 
         ltime=time(NULL); /* get current cal time */
@@ -108,9 +109,11 @@ int malelf_debug(const char * fmt, ...)
         timelen = strlen(stime);
 
         strncpy(fmt_out, stime, timelen);
-        fmt_out[24] = 0;
-        strncat(fmt_out, " ", 1024);
-        strncat(fmt_out, fmt, 1024);
+        fmt_out[timelen - 1] = 0;
+        strncat(fmt_out, " ", LOG_BUFSIZE - timelen);
+        strncat(fmt_out, fmt, (LOG_BUFSIZE - 1) - timelen);
+        strncat(fmt_out, "\n",
+                (LOG_BUFSIZE - 1) - timelen - strlen(fmt));
 
         return _malelf_debug ?
                 malelf_log(_malelf_debug_fd, "[DEBUG] ", fmt_out, args) :
