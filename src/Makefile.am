@@ -1,4 +1,5 @@
-CFLAGS_LANGUAGE=-std=c99 -pedantic
+CFLAGS_LANGUAGE=-std=c99 -pedantic -D_POSIX_C_SOURCE \
+		-D_SVID_SOURCE
 CFLAGS_WARNS=-Wall -Wextra -Werror
 CFLAGS_INCLUDES=-Iinclude -I$(LIBXML_INCLUDES)
 
@@ -16,11 +17,12 @@ libmalelf_la_SOURCES =  binary.c \
 			util.c \
 			report.c \
 			shellcode.c \
-			table.c
+			table.c \
+			debug.c
 
 
 libmalelf_la_LDFLAGS = -version-info 1:0:0
-libmalelf_la_LIBADD=-L$(LIBXML_LIBPATH) -lxml2 
+libmalelf_la_LIBADD=-L$(LIBXML_LIBPATH) -lxml2
 
 library_includedir=$(includedir)/malelf
 library_include_HEADERS	=	include/malelf/binary.h \
@@ -33,4 +35,5 @@ library_include_HEADERS	=	include/malelf/binary.h \
 				include/malelf/types.h \
 				include/malelf/util.h \
 				include/malelf/shellcode.h\
-				include/malelf/table.h
+				include/malelf/table.h \
+				include/malelf/debug.h
