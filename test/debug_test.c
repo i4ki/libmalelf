@@ -29,6 +29,7 @@
  *
  */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <malelf/debug.h>
 
@@ -42,16 +43,16 @@ void malelf_debug_init_TEST()
         unsetenv("MALELF_DEBUG_FILE");
 
         malelf_debug_init();
-        CU_ASSERT(malelf_debug("testing") == 0);
+        CU_ASSERT(MALELF_DEBUG_TEST("testing") == 0);
 
         setenv("MALELF_DEBUG", "1", 1);
-        setenv("MALELF_DEBUG_FILE", "tmp/test.log", 1);
+        setenv("MALELF_DEBUG_FILE", "tmp/check.log", 1);
 
         malelf_debug_init();
-        CU_ASSERT(malelf_debug("1") == 35);
-        CU_ASSERT(malelf_debug("12") == 36)
-        CU_ASSERT(malelf_debug("1234567890") == 44); // time + msg
-        CU_ASSERT(malelf_debug(
+        CU_ASSERT(MALELF_DEBUG_TEST("1") == 70);
+        CU_ASSERT(MALELF_DEBUG_TEST("12") == 71)
+        CU_ASSERT(MALELF_DEBUG_TEST("1234567890") == 79); // time + msg
+        CU_ASSERT(MALELF_DEBUG_TEST(
                           "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                           "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                           "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -87,7 +88,9 @@ void malelf_debug_init_TEST()
                           "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                           "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                           "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                          ) == 1024);  /* trying to overflow */
+                          ) == 1023);  /* trying to overflow */
+
+        CU_ASSERT(MALELF_DEBUG_TEST("testing") == 76);
 }
 
 CU_ErrorCode debug_get_test_suite(CU_pSuite *rsuite)

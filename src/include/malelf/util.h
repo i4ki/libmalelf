@@ -39,7 +39,7 @@
 
 MALELF_BEGIN_DECLS
 
-#define MAX_LOG_BUFFER 1024
+#define MAX_LOG_BUFFER (0x1000)
 
 #define LOG_RAW malelf_say
 #define SAY if(!malelf_quiet_mode) malelf_say

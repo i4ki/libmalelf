@@ -38,10 +38,11 @@
 #include <malelf/error.h>
 #include <malelf/util.h>
 
-#define LOG_BUFSIZE 1024
-static _u8 _malelf_debug = 0;
-static FILE *_malelf_debug_fd;
-static _u8 _malelf_debug_ok = 0;
+#define LOG_BUFSIZE (1024)
+
+_u8 _malelf_debug = 0;
+FILE *_malelf_debug_fd;
+_u8 _malelf_debug_ok = 0;
 
 void _malelf_debug_open_file(char *fname)
 {
@@ -83,15 +84,29 @@ void malelf_debug_init()
         }
 }
 
-int malelf_debug(const char * fmt, ...)
+void malelf_debug_cleanup()
+{
+        if (_malelf_debug_fd > stderr)
+                fclose(_malelf_debug_fd);
+}
+
+/* Private function */
+int __malelf_debug(_u8 logcode,
+                   const char* func,
+                   const char *file,
+                   const char *line,
+                   const char * fmt,
+                   ...)
 {
         va_list args;
         va_start(args, fmt);
         struct tm result;
-        time_t ltime; /* calendar time */
+        time_t ltime;
+        char temp[256];
         char fmt_out[LOG_BUFSIZE];
         char stime[26];
         int timelen;
+        char *prefix;
 
         if (!_malelf_debug_ok) {
                 malelf_error("Debug not started... You need run "
@@ -99,23 +114,57 @@ int malelf_debug(const char * fmt, ...)
                 return 0;
         }
 
+        bzero(temp, 255);
         bzero(fmt_out, LOG_BUFSIZE);
         bzero(stime, 26);
 
-        ltime=time(NULL); /* get current cal time */
+        ltime=time(NULL);
         localtime_r(&ltime, &result);
         asctime_r(&result, stime);
 
         timelen = strlen(stime);
 
-        strncpy(fmt_out, stime, timelen);
-        fmt_out[timelen - 1] = 0;
-        strncat(fmt_out, " ", LOG_BUFSIZE - timelen);
-        strncat(fmt_out, fmt, (LOG_BUFSIZE - 1) - timelen);
-        strncat(fmt_out, "\n",
-                (LOG_BUFSIZE - 1) - timelen - strlen(fmt));
+        strcat(temp, "[");
+        strncat(temp, stime, timelen);
+        temp[timelen] = 0;
+        strcat(temp, "]");
+        strcat(temp, "[%s][%s:%s] %s");
+
+        snprintf(fmt_out,
+                 LOG_BUFSIZE,
+                 temp,
+                 func,
+                 file,
+                 line,
+                 fmt);
+
+        fmt_out[LOG_BUFSIZE - 2] = 0;
+        strcat(fmt_out, "\n");
+
+        switch (logcode) {
+        case MALELF_LOG_NONE:
+                prefix = "";
+                break;
+        case MALELF_LOG_INFO:
+                prefix = "[INFO]";
+                break;
+        case MALELF_LOG_WARN:
+                prefix = "[WARN]";
+                break;
+        case MALELF_LOG_ERROR:
+                prefix = "[ERROR]";
+                break;
+        case MALELF_LOG_CRITICAL:
+                prefix = "[CRITICAL]";
+                break;
+        default:
+                prefix = "[INFO]";
+        }
 
         return _malelf_debug ?
-                malelf_log(_malelf_debug_fd, "[DEBUG] ", fmt_out, args) :
-                0;
+                malelf_log(_malelf_debug_fd,
+                           prefix,
+                           fmt_out,
+                           args) :
+                           0;
 }

@@ -24,10 +24,10 @@ int main()
    }
 
    /* add a suite to the registry */
-   if (CUE_SUCCESS != binary_get_test_suite(&binary_suite) ||
-       CUE_SUCCESS != ehdr_get_test_suite(&ehdr_suite) ||
+   if (CUE_SUCCESS != ehdr_get_test_suite(&ehdr_suite) ||
        CUE_SUCCESS != report_get_test_suite(&report_suite) ||
-       CUE_SUCCESS != debug_get_test_suite(&debug_suite)) {
+       CUE_SUCCESS != debug_get_test_suite(&debug_suite) ||
+       CUE_SUCCESS != binary_get_test_suite(&binary_suite)) {
            CU_cleanup_registry();
    }
 
