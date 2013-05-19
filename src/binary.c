@@ -406,7 +406,7 @@ _i32 malelf_binary_close(MalelfBinary *bin)
                 }
         }
 
-        MALELF_DEBUG_INFO("Binary '%s' closed");
+        MALELF_DEBUG_INFO("Binary '%s' closed", bin->fname);
         _malelf_binary_cleanup(bin);
 
         return error;
