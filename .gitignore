@@ -1,0 +1,44 @@
+## generic files to ignore
+*~
+*.lock
+*.DS_Store
+*.swp
+Makefile
+*.log
+*.status
+
+# Object files
+*.o
+
+# Libraries
+*.lib
+*.a
+*.la
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+*.lo
+
+# Executables
+*.exe
+*.out
+*.app
+
+# libmalelf specifics
+test/bintest/
+.deps/
+examples/.libs
+examples/creating_elf
+examples/get_section_names
+examples/show_ehdr_members
+examples/writing_binaries
+libtool
+src/.libs/
+stamp-h1
+config.h
+test/.#binary_test.c
+test/.libs/
+test/main_test
