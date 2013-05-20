@@ -231,6 +231,15 @@ extern _u32 malelf_binary_get_section(MalelfBinary *bin,
  *
  *  \return MALELF_SUCCESS if the operation succeeded, otherwise MALELF_ERROR.
  */
+extern _u32 malelf_binary_write_elf(MalelfBinary *bin, const char *fname) __attribute__((deprecated));
+
+/*! Write a MalelfBinary file on disk.
+ *
+ *  \param bin A valid MalelfBinary object.
+ *  \param fname The file name to write the binary.
+ *
+ *  \return MALELF_SUCCESS if the operation succeeded, otherwise MALELF_ERROR.
+ */
 extern _u32 malelf_binary_write(MalelfBinary *bin, const char *fname);
 
 

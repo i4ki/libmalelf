@@ -55,13 +55,13 @@
 int main(int argc, char **argv)
 {
         MalelfBinary bin;
-        Elf32_Phdr phdr_load, phdr_note;
+        Elf32_Phdr phdr_load, phdr_note, phdr_phdr;
         _u32 error;
         int fd;
         struct stat st_info;
         unsigned char *text_data;
 
-        if (argc < 3) {
+        if (argc < 2) {
                 printf("%s <text-segment-file> <output-elf>\n", *argv);
                 return 1;
         }
@@ -93,6 +93,22 @@ int main(int argc, char **argv)
                 return 1;
         }
 
+        phdr_phdr.p_type = PT_PHDR;
+        phdr_phdr.p_offset = sizeof (Elf32_Ehdr);
+        phdr_phdr.p_vaddr = MALELF_ORIGIN + phdr_phdr.p_offset;
+        phdr_phdr.p_paddr = phdr_phdr.p_vaddr;
+        phdr_phdr.p_flags = PF_R | PF_X;
+        phdr_phdr.p_filesz = phdr_phdr.p_memsz = sizeof (Elf32_Phdr);
+        phdr_phdr.p_align = 0;
+
+        error = malelf_binary_add_phdr32(&bin, &phdr_phdr);
+
+        if (MALELF_SUCCESS != error) {
+                MALELF_PERROR(error);
+                malelf_binary_close(&bin);
+                return 1;
+        }
+
         /* First, configure your executable (PT_LOAD) segment */
         phdr_load.p_type = PT_LOAD;
         phdr_load.p_offset = sizeof (Elf32_Ehdr) + sizeof (Elf32_Phdr) * 3;
@@ -100,7 +116,7 @@ int main(int argc, char **argv)
         phdr_load.p_paddr = phdr_load.p_vaddr;
         phdr_load.p_filesz = st_info.st_size;
         phdr_load.p_memsz = phdr_load.p_filesz;
-        phdr_load.p_flags = PF_X;
+        phdr_load.p_flags = PF_X | PF_R;
         phdr_load.p_align = 0;
 
         error = malelf_binary_add_phdr32(&bin, &phdr_load);

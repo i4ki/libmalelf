@@ -51,25 +51,33 @@ int malelf_log(FILE *fd,
                va_list args)
 {
         char outbuf[MAX_LOG_BUFFER];
-        char n_format[MAX_LOG_BUFFER];
-        int i;
-        size_t len;
+        int i, error = 0;
+        size_t len, len_prefix;
 
         memset(outbuf, '\0', MAX_LOG_BUFFER);
-        memset(n_format, '\0', MAX_LOG_BUFFER);
-        strncpy(n_format, prefix, MAX_LOG_BUFFER);
-        strncat(n_format, format, MAX_LOG_BUFFER - strlen(n_format));
 
-        i = vsprintf(outbuf, n_format, args);
-
+        i = vsprintf(outbuf, format, args);
         len = strlen(outbuf);
-        if (fwrite(outbuf, sizeof(char), len, fd) == len) {
-                va_end(args);
-                return i;
-        } else {
-                va_end(args);
-                return  -1;
+        len_prefix = strlen(prefix);
+
+        if (fwrite(prefix,
+                   sizeof(char),
+                   strlen(prefix),
+                   fd) != len_prefix) {
+                error = 1;
+                goto out;
         }
+
+        if (fwrite(outbuf, sizeof(char), len, fd) != len) {
+                error = 1;
+                goto out;
+        }
+
+        fflush(fd);
+
+out:
+        va_end(args);
+        return error ? -1 : i;
 }
 
 int malelf_print(FILE *fd, const char *format, ...)

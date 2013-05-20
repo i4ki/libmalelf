@@ -1,7 +1,7 @@
-/* 
- * The malelf library was written in pure C, with the objective to 
- * provide a quick and easy way a set functions for programmers to 
- * manipulate ELF files. With libmalelf can dissect and infect ELF 
+/*
+ * The malelf library was written in pure C, with the objective to
+ * provide a quick and easy way a set functions for programmers to
+ * manipulate ELF files. With libmalelf can dissect and infect ELF
  * files. Evil using this library is the responsibility of the programmer.
  *
  * Author: Tiago Natel de Moura <tiago4orion@gmail.com>
@@ -37,7 +37,7 @@ MALELF_BEGIN_DECLS
 #define MAX_MSG_ERROR 255
 
 typedef enum {
-  MALELF_SUCCESS = 0,  
+  MALELF_SUCCESS = 0,
   MALELF_EPERM,	/* Operation not permitted */
   MALELF_ENOENT	= 2,	/* No such file or directory */
   MALELF_ESRCH	= 3,	/* No such process */
@@ -109,9 +109,9 @@ extern void __malelf_perror(int code,
                             int line);
 
 /*! Get string error.
- * 
+ *
  * \param code Error code.
- * 
+ *
  * \return String error.
  */
 extern const char* malelf_strerror(int code);

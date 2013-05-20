@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <malelf/error.h>
+#include <malelf/binary.h>
+
 #include <CUnit/Basic.h>
 #include <CUnit/CUnit.h>
-
-#include "ehdr_test.h"
-#include "binary_test.h"
 
 static void malelf_ehdr_TEST(void)
 {
@@ -31,7 +31,7 @@ static void malelf_ehdr_TEST(void)
         MalelfEhdrTable me_version;
         result = malelf_ehdr_get_version(&ehdr, &me_version);
         CU_ASSERT(result == MALELF_SUCCESS);
-        
+
         MalelfEhdrTable me_machine;
         result = malelf_ehdr_get_machine(&ehdr, &me_machine);
         CU_ASSERT(result == MALELF_SUCCESS);
@@ -39,11 +39,11 @@ static void malelf_ehdr_TEST(void)
         _u32 shoff;
         result = malelf_ehdr_get_shoff(&ehdr, &shoff);
         CU_ASSERT(result == MALELF_SUCCESS);
-        
+
         _u32 phoff;
         result = malelf_ehdr_get_phoff(&ehdr, &phoff);
         CU_ASSERT(result == MALELF_SUCCESS);
-        
+
         _u32 entry;
         result = malelf_ehdr_get_phoff(&ehdr, &entry);
         CU_ASSERT(result == MALELF_SUCCESS);
@@ -51,8 +51,8 @@ static void malelf_ehdr_TEST(void)
         _u32 ehsize;
         result =  malelf_ehdr_get_ehsize(&ehdr, &ehsize);
         CU_ASSERT(result == MALELF_SUCCESS);
-        
-        _u32 phentsize;  
+
+        _u32 phentsize;
         result = malelf_ehdr_get_phentsize(&ehdr, &phentsize);
         CU_ASSERT(result == MALELF_SUCCESS);
 
@@ -63,7 +63,7 @@ static void malelf_ehdr_TEST(void)
         _u32 shnum;
         result = malelf_ehdr_get_shnum(&ehdr, &shnum);
         CU_ASSERT(result == MALELF_SUCCESS);
-        
+
         _u32 shentsize;
         result = malelf_ehdr_get_shentsize(&ehdr, &shentsize);
         CU_ASSERT(result == MALELF_SUCCESS);
@@ -79,24 +79,24 @@ static void malelf_ehdr_TEST(void)
 
 CU_ErrorCode ehdr_get_test_suite(CU_pSuite *rsuite)
 {
-	CU_pSuite suite = NULL;
+        CU_pSuite suite = NULL;
 
-	if (NULL == rsuite) {
-		return -1;
-	}
+        if (NULL == rsuite) {
+                return -1;
+        }
 
-	suite = CU_add_suite("Class Ehdr", NULL, NULL);
-	if(NULL == suite) {
-		*rsuite = NULL;
-		return CU_get_error();
-	}
+        suite = CU_add_suite("Module Ehdr", NULL, NULL);
+        if(NULL == suite) {
+                *rsuite = NULL;
+                return CU_get_error();
+        }
 
-	if (NULL == CU_add_test(suite, 
-                                "malelf_ehdr_TEST", 
+        if (NULL == CU_add_test(suite,
+                                "malelf_ehdr_TEST",
                                 malelf_ehdr_TEST)) {
-	        *rsuite = NULL;
-	        return CU_get_error();
-	}
+                *rsuite = NULL;
+                return CU_get_error();
+        }
 
         *rsuite = suite;
         return CUE_SUCCESS;

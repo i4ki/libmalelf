@@ -36,7 +36,7 @@
 #include "malelf/error.h"
 
 const char* malelf_strerr[] = {
-        "Unknow error", /* MALELF_ERROR */
+        "Unknown error", /* MALELF_ERROR */
         "File already closed",
         "Error allocating memory",
         "Binary is NOT ELF",
@@ -62,14 +62,14 @@ void __malelf_perror(int code,
                      const char* file,
                      int line)
 {
-        const char * format_error = "[%s][function %s][line %d]"
+        char * format_error = "[%s][function %s][line %d]"
                                     "[code %d] %s\n";
         char * error_message = "UNKNOW ERROR";
 
         if (code >= 0 && code < MALELF_LAST_ERRNO) {
                 error_message = strerror(code);
         } else if (code >= 0 && code < MALELF_LAST_ERROR) {
-                error_message =(char*) malelf_strerror(code);
+                error_message = (char *) malelf_strerror(code);
         }
 
         LOG_ERROR(format_error,
