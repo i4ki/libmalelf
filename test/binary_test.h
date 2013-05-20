@@ -8,7 +8,7 @@
  * Author:
  *         Tiago Natel de Moura <natel@secplus.com.br>
  *
- * Contributorss:
+ * Contributors:
  *         Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
  *         Paulo Leonardo Benatto    <benatto@gmail.com>
  *
@@ -29,25 +29,21 @@
  *
  */
 
-#ifndef MALELF_SHELLCODE_H
-#define MALELF_SHELLCODE_H
+#ifndef __BINARY_TEST__
+#define __BINARY_TEST__
+
+#include "../src/include/malelf/defines.h"
+#include "../src/include/malelf/binary.h"
+#include "../src/include/malelf/types.h"
+#include "../src/include/malelf/error.h"
+
+#include <CUnit/Basic.h>
 
 MALELF_BEGIN_DECLS
 
-/*
- *
- *
- */
-extern _u32 malelf_shellcode_dump(MalelfBinary *bin);
-
-
-/*
- *
- *
- */
-extern _u32 malelf_shellcode_get_c_string(FILE *fp, MalelfBinary *bin);
-
+extern CU_ErrorCode binary_get_test_suite(CU_pSuite *rsuite);
 
 MALELF_END_DECLS
 
-#endif
+
+#endif /* __BINARY_TEST__ */

@@ -1,7 +1,7 @@
 libmalelf
 =========
 
-The libmalelf is a evil library that could be used for good !
+The libmalelf is an evil library that could be used for good!
 It was developed with the intent to assist in the process of infecting binaries 
 and provide a safe way to analyze malwares.
 

@@ -1,15 +1,18 @@
-/* 
- * The malelf library was written in pure C, with the objective to 
- * provide a quick and easy way a set functions for programmers to 
- * manipulate ELF files. With libmalelf can dissect and infect ELF 
- * files. Evil using this library is the responsibility of the programmer.
+/*
+ * The libmalelf is an evil library that could be used for good! It was
+ * developed with the intent to assist in the process of infecting
+ * binaries and provide a safe way to analyze malwares.
  *
- * Author: Paulo Leonardo Benatto <benatto@gmail.com>
+ * Evil using this library is the responsibility of the programmer.
  *
- * Contributor: Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
- *              Tiago Natel de Moura <tiago4orion@gmail.com>
+ * Author:
+ *         Tiago Natel de Moura <natel@secplus.com.br>
  *
- * Copyright 2012, 2013 by Paulo Leonardo Benatto. All Rights Reserved.
+ * Contributorss:
+ *         Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
+ *         Paulo Leonardo Benatto    <benatto@gmail.com>
+ *
+ * Copyright 2012, 2013 by Tiago Natel de Moura. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +22,8 @@
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
@@ -82,7 +86,7 @@ typedef struct {
  *  \param nrows The numer of rows in a table.
  *  \param ncolumns The number of columns in ta table.
  *
- *  \return MALELF_SUCCESS if class was successfully initialized, 
+ *  \return MALELF_SUCCESS if class was successfully initialized,
  *          otherwise MALELF_ERROR.
  */
 _u32 malelf_table_init(MalelfTable *obj,
@@ -95,98 +99,98 @@ _u32 malelf_table_init(MalelfTable *obj,
  *
  *  \param obj a valid MalelfTable object.
  *
- *  \return MALELF_SUCCESS if class was successfully finished, 
+ *  \return MALELF_SUCCESS if class was successfully finished,
  *          otherwise MALELF_ERROR.
  */
 _u32 malelf_table_finish(MalelfTable *obj);
 
 
 /*! Sets the title of the table.
- *  
+ *
  *  \param obj A valid MalelfTable object.
  *  \param title The table title.
  *
- *  \return MALELF_SUCCESS if title was successfully saved, 
- *          otherwise returns MALELF_ERROR.  
+ *  \return MALELF_SUCCESS if title was successfully saved,
+ *          otherwise returns MALELF_ERROR.
  */
 _u32 malelf_table_set_title(MalelfTable *obj, char *title);
 
 
 /*! Sets the headers of the table.
- *  
+ *
  *  \param obj A valid MalelfTable object.
  *  \param headers The table headers.
  *
- *  \return MALELF_SUCCESS if headers was successfully saved, 
- *          otherwise returns MALELF_ERROR.  
+ *  \return MALELF_SUCCESS if headers was successfully saved,
+ *          otherwise returns MALELF_ERROR.
  */
 _u32 malelf_table_set_headers(MalelfTable *obj, char **headers);
 
 
 /*! Print the table.
- *  
+ *
  *  \param obj A valid MalelfTable object.
  *
- *  \return MALELF_SUCCESS if table was successfully printed, 
- *          otherwise returns MALELF_ERROR.  
+ *  \return MALELF_SUCCESS if table was successfully printed,
+ *          otherwise returns MALELF_ERROR.
  */
 _u32 malelf_table_print(MalelfTable *obj);
 
 
 /*! Add new value in a table.
- *  
+ *
  *  \param obj A valid MalelfTable object.
  *  \param value The value to be inserted.
  *  \param type The type of value.
  *
- *  \return MALELF_SUCCESS if the value was successfully inserted, 
- *          otherwise returns MALELF_ERROR.  
+ *  \return MALELF_SUCCESS if the value was successfully inserted,
+ *          otherwise returns MALELF_ERROR.
  */
-_u32 malelf_table_add_value(MalelfTable *obj, 
-                            void *value, 
+_u32 malelf_table_add_value(MalelfTable *obj,
+                            void *value,
                             MalelfTableType type);
 
 
 /*! Add new row in a table.
- *  
+ *
  *  \param obj A valid MalelfTable object.
  *  \param row The row to be inserted.
  *
- *  \return MALELF_SUCCESS if the row was successfully inserted, 
- *          otherwise returns MALELF_ERROR.  
+ *  \return MALELF_SUCCESS if the row was successfully inserted,
+ *          otherwise returns MALELF_ERROR.
  */
 _u32 malelf_table_add_row(MalelfTable *obj, char **row);
 
 
 /*! Sets the table width.
- *  
+ *
  *  \param obj A valid MalelfTable object.
  *  \param width The new table width.
  *
- *  \return MALELF_SUCCESS if the width was successfullyly setted, 
- *          otherwise returns MALELF_ERROR.  
+ *  \return MALELF_SUCCESS if the width was successfullyly setted,
+ *          otherwise returns MALELF_ERROR.
  */
 _u32 malelf_table_set_width(MalelfTable *obj, unsigned int width);
 
 
 /*! Sets the number of rows in a table.
- *  
+ *
  *  \param obj A valid MalelfTable object.
  *  \param nrows The number of rows.
  *
- *  \return MALELF_SUCCESS if the nrows was successfullyly setted, 
- *          otherwise returns MALELF_ERROR.  
+ *  \return MALELF_SUCCESS if the nrows was successfullyly setted,
+ *          otherwise returns MALELF_ERROR.
  */
 _u32 malelf_table_set_nrows(MalelfTable *obj, unsigned int nrows);
 
 
 /*! Sets the number of rows in a table.
- *  
+ *
  *  \param obj A valid MalelfTable object.
  *  \param nrows The number of rows.
  *
- *  \return MALELF_SUCCESS if the nrows was successfullyly setted, 
- *          otherwise returns MALELF_ERROR.  
+ *  \return MALELF_SUCCESS if the nrows was successfullyly setted,
+ *          otherwise returns MALELF_ERROR.
  */
 _u32 malelf_table_set_ncolumns(MalelfTable *obj, unsigned int ncolumns);
 
