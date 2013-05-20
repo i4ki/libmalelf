@@ -177,7 +177,7 @@ static void malelf_binary_get_section_TEST()
         CU_ASSERT(MALELF_SUCCESS == result);
         CU_ASSERT_STRING_EQUAL(section.name, ".text");
         CU_ASSERT(section.offset == 0x320);
-        CU_ASSERT(section.size == 0x170);
+        CU_ASSERT(section.size == 0x184);
         CU_ASSERT(section.shdr != NULL);
 
         malelf_binary_close(&bin);
@@ -304,6 +304,47 @@ void malelf_binary_add_phdr32_TEST()
 
         error = malelf_binary_add_phdr32(&bin, &new_phdr);
         CU_ASSERT(MALELF_SUCCESS == error);
+
+        _u32 uvalue;
+        error = malelf_ehdr_get_phoff(&bin.ehdr, &uvalue);
+        CU_ASSERT(MALELF_SUCCESS == error);
+        CU_ASSERT(uvalue == new_phdr.p_offset);
+
+        error = malelf_ehdr_get_phnum(&bin.ehdr, &uvalue);
+        CU_ASSERT(MALELF_SUCCESS == error);
+        CU_ASSERT(uvalue == 1);
+
+        error = malelf_phdr_get_type(&bin.phdr, &uvalue, 0);
+        CU_ASSERT(MALELF_SUCCESS == error);
+        CU_ASSERT(PT_PHDR == uvalue);
+
+        error = malelf_phdr_get_vaddr(&bin.phdr, &uvalue, 0);
+        CU_ASSERT(MALELF_SUCCESS == error);
+        CU_ASSERT(uvalue == new_phdr.p_vaddr);
+
+        error = malelf_phdr_get_paddr(&bin.phdr, &uvalue, 0);
+        CU_ASSERT(MALELF_SUCCESS == error);
+        CU_ASSERT(uvalue == new_phdr.p_paddr);
+
+        error = malelf_phdr_get_memsz(&bin.phdr, &uvalue, 0);
+        CU_ASSERT(MALELF_SUCCESS == error);
+        CU_ASSERT(uvalue == new_phdr.p_memsz);
+
+        error = malelf_phdr_get_flags(&bin.phdr, &uvalue, 0);
+        CU_ASSERT(MALELF_SUCCESS == error);
+        CU_ASSERT(uvalue == new_phdr.p_flags);
+
+        error = malelf_phdr_get_align(&bin.phdr, &uvalue, 0);
+        CU_ASSERT(MALELF_SUCCESS == error);
+        CU_ASSERT(uvalue == new_phdr.p_align);
+
+        error = malelf_phdr_get_offset(&bin.phdr, &uvalue,  0);
+        CU_ASSERT(MALELF_SUCCESS == error);
+        CU_ASSERT(uvalue == new_phdr.p_offset);
+
+        error = malelf_phdr_get_filesz(&bin.phdr, &uvalue, 0);
+        CU_ASSERT(MALELF_SUCCESS == error);
+        CU_ASSERT(uvalue == new_phdr.p_filesz);
 
         error = malelf_binary_get_phdr(&bin, &mphdr);
         CU_ASSERT(MALELF_SUCCESS == error);

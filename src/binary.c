@@ -903,7 +903,7 @@ _u32 malelf_binary_write_shdr(MalelfBinary *bin)
  * 7- Write the SHT;
  * 8- Write everything between SHT and bin->size;
  */
-_u32 _malelf_binary_write(MalelfBinary *bin)
+_u32 _malelf_binary_write_elf(MalelfBinary *bin)
 {
         _u32 error = MALELF_SUCCESS;
         _u32 i;
@@ -1059,6 +1059,69 @@ _u32 _malelf_binary_write(MalelfBinary *bin)
                                 return error;
                         }
                 }
+        }
+
+        return error;
+}
+
+_u32 malelf_binary_write_elf(MalelfBinary *bin, const char *fname)
+{
+        int error = MALELF_SUCCESS;
+
+        struct stat st_info;
+        char *bkpfile;
+
+        assert(NULL != bin);
+
+        if (NULL != fname) {
+                bin->fname = (char *)fname;
+        }
+
+        close(bin->fd);
+
+        if (0 == stat(bin->fname, &st_info)) {
+                /* file exists, backuping... */
+                bkpfile = tmpnam(NULL);
+                error = rename(bin->fname, bkpfile);
+                if (!error) {
+                        error = errno;
+                        MALELF_DEBUG_ERROR("Failed to backup binary "
+                                           "'%s' in '%s'",
+                                           bin->fname,
+                                           bkpfile);
+                        return error;
+                }
+
+                bin->bkpfile = bkpfile;
+        }
+
+        bin->fd = open(bin->fname, O_RDWR|O_CREAT|O_TRUNC, 0755);
+        if (bin->fd == -1) {
+                error = errno;
+                MALELF_DEBUG_ERROR("Failed to open file '%s' to write.",
+                                   bin->fname);
+                return error;
+        }
+
+        return _malelf_binary_write_elf(bin);
+}
+
+/**
+ * Write the binary based on value in bin->mem and bin->size.
+ */
+_u32 _malelf_binary_write(MalelfBinary *bin)
+{
+        _u32 error;
+        assert (bin->size > 0);
+        assert (bin->fd != -1);
+
+        error = malelf_write(bin->fd, bin->mem, bin->size);
+        if (MALELF_SUCCESS != error) {
+                MALELF_DEBUG_ERROR("Failed to write '%u' bytes to "
+                                   "binary '%s'",
+                                   bin->size,
+                                   bin->fname);
+                return error;
         }
 
         return error;
@@ -1237,6 +1300,8 @@ _u32 malelf_binary_add_phdr32(MalelfBinary *bin, Elf32_Phdr *new_phdr)
         assert(NULL != bin->ehdr.uhdr.h32);
         assert(NULL != new_phdr);
 
+        MALELF_DEBUG_INFO("Adding phdr");
+
         ehdr = MALELF_ELF_DATA(&bin->ehdr);
         assert(NULL != ehdr);
 
@@ -1249,6 +1314,7 @@ _u32 malelf_binary_add_phdr32(MalelfBinary *bin, Elf32_Phdr *new_phdr)
                    Feel free to hack this, like overlapping a bit
                    of ehdr ... hehe */
                 ehdr->e_phoff = sizeof (Elf32_Ehdr); /* 52 bytes */
+                ehdr->e_phentsize = sizeof (Elf32_Phdr);
                 ehdr->e_phnum = 0x00;
         }
 
@@ -1272,13 +1338,21 @@ _u32 malelf_binary_add_phdr32(MalelfBinary *bin, Elf32_Phdr *new_phdr)
         assert (bin->size >= new_phdr_offset);
         assert (bin->size == (new_phdr_offset + sizeof (Elf32_Phdr)));
 
+        MALELF_DEBUG_INFO("New phdr info: (current phnum: %u, "
+                          "current size: %u, new offset: %u",
+                          n_phdrs,
+                          bin->size,
+                          new_phdr_offset);
+
         memcpy(bin->mem + new_phdr_offset,
                new_phdr,
                sizeof (Elf32_Phdr));
 
         ehdr->e_phnum++;
 
-        MALELF_DEBUG_INFO("New program header added. (type=%s, address="
+        _malelf_binary_map_phdr(bin);
+
+        MALELF_DEBUG_INFO("New program header added. (type=%u, address="
                           "0x%08x, size=%u)",
                           new_phdr->p_type,
                           new_phdr->p_vaddr,

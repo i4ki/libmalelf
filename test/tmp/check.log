@@ -1,128 +1,750 @@
-[WARN][Sun May 19 10:54:11 2013][malelf_debug_init_TEST][debug_test.c:52] 1
-[WARN][Sun May 19 10:54:11 2013][malelf_debug_init_TEST][debug_test.c:53] 12
-[WARN][Sun May 19 10:54:11 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
-[WARN][Sun May 19 10:54:11 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-[WARN][Sun May 19 10:54:11 2013][malelf_debug_init_TEST][debug_test.c:93] testing
-[DEBUG][Sun May 19 10:54:11 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[DEBUG][Sun May 19 10:54:11 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
-[DEBUG][Sun May 19 10:54:11 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[DEBUG][Sun May 19 10:54:11 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[DEBUG][Sun May 19 10:54:11 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[DEBUG][Sun May 19 10:54:11 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[DEBUG][Sun May 19 10:54:11 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
-[DEBUG][Sun May 19 10:54:11 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[DEBUG][Sun May 19 10:54:11 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
-[DEBUG][Sun May 19 10:54:11 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[DEBUG][Sun May 19 10:54:11 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
-[DEBUG][Sun May 19 10:54:11 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[DEBUG][Sun May 19 10:54:11 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected_copy' loaded by mmap(2)
-[DEBUG][Sun May 19 10:54:11 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[DEBUG][Sun May 19 10:54:11 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[DEBUG][Sun May 19 10:54:11 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[WARN][Sun May 19 10:54:54 2013][malelf_debug_init_TEST][debug_test.c:52] 1
-[WARN][Sun May 19 10:54:54 2013][malelf_debug_init_TEST][debug_test.c:53] 12
-[WARN][Sun May 19 10:54:54 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
-[WARN][Sun May 19 10:54:54 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-[WARN][Sun May 19 10:54:54 2013][malelf_debug_init_TEST][debug_test.c:93] testing
-[INFO][Sun May 19 10:54:54 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 10:54:54 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
-[INFO][Sun May 19 10:54:54 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 10:54:54 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 10:54:54 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 10:54:54 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 10:54:54 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
-[INFO][Sun May 19 10:54:54 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 10:54:54 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
-[INFO][Sun May 19 10:54:54 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 10:54:54 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
-[INFO][Sun May 19 10:54:54 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 10:54:54 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected_copy' loaded by mmap(2)
-[INFO][Sun May 19 10:54:54 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 10:54:54 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 10:54:54 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[WARN][Sun May 19 11:19:28 2013][malelf_debug_init_TEST][debug_test.c:52] 1
-[WARN][Sun May 19 11:19:28 2013][malelf_debug_init_TEST][debug_test.c:53] 12
-[WARN][Sun May 19 11:19:28 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
-[WARN][Sun May 19 11:19:28 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-[WARN][Sun May 19 11:19:28 2013][malelf_debug_init_TEST][debug_test.c:93] testing
-[INFO][Sun May 19 11:19:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 11:19:28 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
-[INFO][Sun May 19 11:19:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 11:19:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 11:19:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 11:19:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 11:19:28 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
-[INFO][Sun May 19 11:19:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 11:19:28 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
-[INFO][Sun May 19 11:19:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 11:19:28 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
-[INFO][Sun May 19 11:19:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 11:19:28 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected_copy' loaded by mmap(2)
-[INFO][Sun May 19 11:19:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 11:19:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 11:19:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[WARN][Sun May 19 12:08:05 2013][malelf_debug_init_TEST][debug_test.c:52] 1
-[WARN][Sun May 19 12:08:05 2013][malelf_debug_init_TEST][debug_test.c:53] 12
-[WARN][Sun May 19 12:08:05 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
-[WARN][Sun May 19 12:08:05 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-[WARN][Sun May 19 12:08:05 2013][malelf_debug_init_TEST][debug_test.c:93] testing
-[INFO][Sun May 19 12:08:05 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 12:08:05 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
-[INFO][Sun May 19 12:08:05 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 12:08:05 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 12:08:05 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 12:08:05 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 12:08:05 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
-[INFO][Sun May 19 12:08:05 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 12:08:05 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
-[INFO][Sun May 19 12:08:05 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 12:08:05 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
-[INFO][Sun May 19 12:08:05 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 12:08:05 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected_copy' loaded by mmap(2)
-[INFO][Sun May 19 12:08:05 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 12:08:05 2013][malelf_binary_create_elf_exec32][binary.c:1139] i386 template ELF header created.
-[INFO][Sun May 19 12:08:05 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 12:08:05 2013][malelf_binary_create_elf_exec64][binary.c:1192] x86_64/AMD64 template ELF header created.
-[INFO][Sun May 19 12:08:05 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 12:08:05 2013][malelf_binary_create_elf_exec32][binary.c:1139] i386 template ELF header created.
-[WARN][Sun May 19 12:59:13 2013][malelf_debug_init_TEST][debug_test.c:52] 1
-[WARN][Sun May 19 12:59:13 2013][malelf_debug_init_TEST][debug_test.c:53] 12
-[WARN][Sun May 19 12:59:13 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
-[WARN][Sun May 19 12:59:13 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-[WARN][Sun May 19 12:59:13 2013][malelf_debug_init_TEST][debug_test.c:93] testing
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 12:59:13 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 12:59:13 2013][_malelf_binary_malloc_load][binary.c:326] Binary 'bintest/uninfected' mapped in memory with mmap(2)
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 12:59:13 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 12:59:13 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 12:59:13 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 12:59:13 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected_copy' loaded by mmap(2)
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected_copy' opened and mapped in memory
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_create_elf_exec64][binary.c:1211] x86_64/AMD64 template ELF header created.
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
-[INFO][Sun May 19 12:59:13 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[WARN][Sun May 19 14:27:35 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Sun May 19 14:27:35 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Sun May 19 14:27:35 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Sun May 19 14:27:35 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Sun May 19 14:27:35 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:27:35 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:27:35 2013][_malelf_binary_malloc_load][binary.c:326] Binary 'bintest/uninfected' mapped in memory with mmap(2)
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:27:35 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:27:35 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:27:35 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:27:35 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected_copy' loaded by mmap(2)
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected_copy' opened and mapped in memory
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_create_elf_exec64][binary.c:1211] x86_64/AMD64 template ELF header created.
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_add_phdr32][binary.c:1240] Adding phdr
+[INFO][Sun May 19 14:27:35 2013][malelf_binary_add_phdr32][binary.c:1281] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[WARN][Sun May 19 14:28:45 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Sun May 19 14:28:45 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Sun May 19 14:28:45 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Sun May 19 14:28:45 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Sun May 19 14:28:45 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:28:45 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:28:45 2013][_malelf_binary_malloc_load][binary.c:326] Binary 'bintest/uninfected' mapped in memory with mmap(2)
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:28:45 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:28:45 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:28:45 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:28:45 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected_copy' loaded by mmap(2)
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected_copy' opened and mapped in memory
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_create_elf_exec64][binary.c:1211] x86_64/AMD64 template ELF header created.
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_add_phdr32][binary.c:1240] Adding phdr
+[INFO][Sun May 19 14:28:45 2013][malelf_binary_add_phdr32][binary.c:1281] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[WARN][Sun May 19 14:29:24 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Sun May 19 14:29:24 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Sun May 19 14:29:24 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Sun May 19 14:29:24 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Sun May 19 14:29:24 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:29:24 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:29:24 2013][_malelf_binary_malloc_load][binary.c:326] Binary 'bintest/uninfected' mapped in memory with mmap(2)
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:29:24 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:29:24 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:29:24 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:29:24 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected_copy' loaded by mmap(2)
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected_copy' opened and mapped in memory
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_create_elf_exec64][binary.c:1211] x86_64/AMD64 template ELF header created.
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_add_phdr32][binary.c:1240] Adding phdr
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_add_phdr32][binary.c:1281] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Sun May 19 14:29:24 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[WARN][Sun May 19 14:34:00 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Sun May 19 14:34:00 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Sun May 19 14:34:00 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Sun May 19 14:34:00 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Sun May 19 14:34:00 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:34:00 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:34:00 2013][_malelf_binary_malloc_load][binary.c:326] Binary 'bintest/uninfected' mapped in memory with mmap(2)
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:34:00 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:34:00 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:34:00 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:34:00 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected_copy' loaded by mmap(2)
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected_copy' opened and mapped in memory
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_create_elf_exec64][binary.c:1211] x86_64/AMD64 template ELF header created.
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_add_phdr32][binary.c:1240] Adding phdr
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_add_phdr32][binary.c:1281] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Sun May 19 14:34:00 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[WARN][Sun May 19 14:35:35 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Sun May 19 14:35:35 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Sun May 19 14:35:35 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Sun May 19 14:35:35 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Sun May 19 14:35:35 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:35:35 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:35:35 2013][_malelf_binary_malloc_load][binary.c:326] Binary 'bintest/uninfected' mapped in memory with mmap(2)
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:35:35 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:35:35 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:35:35 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:35:35 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected_copy' loaded by mmap(2)
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected_copy' opened and mapped in memory
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_create_elf_exec64][binary.c:1211] x86_64/AMD64 template ELF header created.
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_add_phdr32][binary.c:1240] Adding phdr
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_add_phdr32][binary.c:1281] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Sun May 19 14:35:35 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[WARN][Sun May 19 14:36:57 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Sun May 19 14:36:57 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Sun May 19 14:36:57 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Sun May 19 14:36:57 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Sun May 19 14:36:57 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:36:57 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:36:57 2013][_malelf_binary_malloc_load][binary.c:326] Binary 'bintest/uninfected' mapped in memory with mmap(2)
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:36:57 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:36:57 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:36:57 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:36:57 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected_copy' loaded by mmap(2)
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected_copy' opened and mapped in memory
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_create_elf_exec64][binary.c:1211] x86_64/AMD64 template ELF header created.
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_add_phdr32][binary.c:1240] Adding phdr
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_add_phdr32][binary.c:1281] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Sun May 19 14:36:57 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[WARN][Sun May 19 17:06:11 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Sun May 19 17:06:11 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Sun May 19 17:06:11 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Sun May 19 17:06:11 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Sun May 19 17:06:11 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:06:11 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:06:11 2013][_malelf_binary_malloc_load][binary.c:326] Binary 'bintest/uninfected' mapped in memory with mmap(2)
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:06:11 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:06:11 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:06:11 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:06:11 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected_copy' loaded by mmap(2)
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected_copy' opened and mapped in memory
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_create_elf_exec64][binary.c:1211] x86_64/AMD64 template ELF header created.
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_add_phdr32][binary.c:1240] Adding phdr
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_add_phdr32][binary.c:1281] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Sun May 19 17:06:11 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[WARN][Sun May 19 17:13:37 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Sun May 19 17:13:37 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Sun May 19 17:13:37 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Sun May 19 17:13:37 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Sun May 19 17:13:37 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:13:37 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:13:37 2013][_malelf_binary_malloc_load][binary.c:326] Binary 'bintest/uninfected' mapped in memory with mmap(2)
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:13:37 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:13:37 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:13:37 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:13:37 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected_copy' loaded by mmap(2)
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected_copy' opened and mapped in memory
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_create_elf_exec64][binary.c:1211] x86_64/AMD64 template ELF header created.
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_add_phdr32][binary.c:1240] Adding phdr
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_add_phdr32][binary.c:1281] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Sun May 19 17:13:37 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[WARN][Sun May 19 17:20:51 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Sun May 19 17:20:51 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Sun May 19 17:20:51 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Sun May 19 17:20:51 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Sun May 19 17:20:51 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:20:51 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:20:51 2013][_malelf_binary_malloc_load][binary.c:326] Binary 'bintest/uninfected' mapped in memory with mmap(2)
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:20:51 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:20:51 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:20:51 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:20:51 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected_copy' loaded by mmap(2)
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected_copy' opened and mapped in memory
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_create_elf_exec64][binary.c:1211] x86_64/AMD64 template ELF header created.
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_add_phdr32][binary.c:1240] Adding phdr
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_add_phdr32][binary.c:1281] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Sun May 19 17:20:51 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[WARN][Sun May 19 17:31:10 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Sun May 19 17:31:10 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Sun May 19 17:31:10 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Sun May 19 17:31:10 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Sun May 19 17:31:10 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:31:10 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:31:10 2013][_malelf_binary_malloc_load][binary.c:326] Binary 'bintest/uninfected' mapped in memory with mmap(2)
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:31:10 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:31:10 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:31:10 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:31:10 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected_copy' loaded by mmap(2)
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected_copy' opened and mapped in memory
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_create_elf_exec64][binary.c:1211] x86_64/AMD64 template ELF header created.
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_add_phdr32][binary.c:1240] Adding phdr
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_add_phdr32][binary.c:1281] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Sun May 19 17:31:10 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[WARN][Sun May 19 17:33:30 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Sun May 19 17:33:30 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Sun May 19 17:33:30 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Sun May 19 17:33:30 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Sun May 19 17:33:30 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:33:30 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:33:30 2013][_malelf_binary_malloc_load][binary.c:326] Binary 'bintest/uninfected' mapped in memory with mmap(2)
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:33:30 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:33:30 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:33:30 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:33:30 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected_copy' loaded by mmap(2)
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected_copy' opened and mapped in memory
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_create_elf_exec64][binary.c:1211] x86_64/AMD64 template ELF header created.
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_add_phdr32][binary.c:1240] Adding phdr
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_add_phdr32][binary.c:1281] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Sun May 19 17:33:30 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[WARN][Sun May 19 17:35:06 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Sun May 19 17:35:06 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Sun May 19 17:35:06 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Sun May 19 17:35:06 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Sun May 19 17:35:06 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:35:06 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:35:06 2013][_malelf_binary_malloc_load][binary.c:326] Binary 'bintest/uninfected' mapped in memory with mmap(2)
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:35:06 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:35:06 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:35:06 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:35:06 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected_copy' loaded by mmap(2)
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected_copy' opened and mapped in memory
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_create_elf_exec64][binary.c:1211] x86_64/AMD64 template ELF header created.
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_add_phdr32][binary.c:1240] Adding phdr
+[INFO][Sun May 19 17:35:06 2013][malelf_binary_add_phdr32][binary.c:1281] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[WARN][Sun May 19 17:35:50 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Sun May 19 17:35:50 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Sun May 19 17:35:50 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Sun May 19 17:35:50 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Sun May 19 17:35:50 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:35:50 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:35:50 2013][_malelf_binary_malloc_load][binary.c:326] Binary 'bintest/uninfected' mapped in memory with mmap(2)
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:35:50 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:35:50 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:35:50 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:35:50 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected_copy' loaded by mmap(2)
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected_copy' opened and mapped in memory
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_create_elf_exec64][binary.c:1211] x86_64/AMD64 template ELF header created.
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_create_elf_exec32][binary.c:1158] i386 template ELF header created.
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_add_phdr32][binary.c:1240] Adding phdr
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_add_phdr32][binary.c:1281] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_add_phdr32][binary.c:1295] New program header added. (type=6, address=0x08048034, size=32)
+[INFO][Sun May 19 17:35:50 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[WARN][Sun May 19 17:46:29 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Sun May 19 17:46:29 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Sun May 19 17:46:29 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Sun May 19 17:46:29 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Sun May 19 17:46:29 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:46:29 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:46:29 2013][_malelf_binary_malloc_load][binary.c:326] Binary 'bintest/uninfected' mapped in memory with mmap(2)
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:46:29 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:46:29 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:46:29 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:46:29 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected_copy' loaded by mmap(2)
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected_copy' opened and mapped in memory
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_create_elf_exec32][binary.c:1218] i386 template ELF header created.
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_create_elf_exec64][binary.c:1271] x86_64/AMD64 template ELF header created.
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_create_elf_exec32][binary.c:1218] i386 template ELF header created.
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_add_phdr32][binary.c:1300] Adding phdr
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_add_phdr32][binary.c:1341] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_add_phdr32][binary.c:1355] New program header added. (type=6, address=0x08048034, size=32)
+[INFO][Sun May 19 17:46:29 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[WARN][Sun May 19 17:46:59 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Sun May 19 17:46:59 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Sun May 19 17:46:59 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Sun May 19 17:46:59 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Sun May 19 17:46:59 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:46:59 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:46:59 2013][_malelf_binary_malloc_load][binary.c:326] Binary 'bintest/uninfected' mapped in memory with mmap(2)
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:46:59 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:46:59 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:46:59 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:46:59 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected_copy' loaded by mmap(2)
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected_copy' opened and mapped in memory
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_create_elf_exec32][binary.c:1218] i386 template ELF header created.
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_create_elf_exec64][binary.c:1271] x86_64/AMD64 template ELF header created.
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_create_elf_exec32][binary.c:1218] i386 template ELF header created.
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_add_phdr32][binary.c:1300] Adding phdr
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_add_phdr32][binary.c:1341] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_add_phdr32][binary.c:1355] New program header added. (type=6, address=0x08048034, size=32)
+[INFO][Sun May 19 17:46:59 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[WARN][Mon May 20 07:43:52 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Mon May 20 07:43:52 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Mon May 20 07:43:52 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Mon May 20 07:43:52 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Mon May 20 07:43:52 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 20 07:43:52 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 20 07:43:52 2013][_malelf_binary_malloc_load][binary.c:326] Binary 'bintest/uninfected' mapped in memory with mmap(2)
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 20 07:43:52 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 20 07:43:52 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 20 07:43:52 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 20 07:43:52 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected_copy' loaded by mmap(2)
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected_copy' opened and mapped in memory
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_create_elf_exec32][binary.c:1218] i386 template ELF header created.
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_create_elf_exec64][binary.c:1271] x86_64/AMD64 template ELF header created.
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_create_elf_exec32][binary.c:1218] i386 template ELF header created.
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_add_phdr32][binary.c:1300] Adding phdr
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_add_phdr32][binary.c:1341] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_add_phdr32][binary.c:1355] New program header added. (type=6, address=0x08048034, size=32)
+[INFO][Mon May 20 07:43:52 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[WARN][Mon May 20 08:26:36 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Mon May 20 08:26:36 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Mon May 20 08:26:36 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Mon May 20 08:26:36 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Mon May 20 08:26:36 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 20 08:26:36 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 20 08:26:36 2013][_malelf_binary_malloc_load][binary.c:326] Binary 'bintest/uninfected' mapped in memory with mmap(2)
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 20 08:26:36 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 20 08:26:36 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected' closed
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 20 08:26:36 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 20 08:26:36 2013][_malelf_binary_mmap_load][binary.c:297] Binary 'bintest/uninfected_copy' loaded by mmap(2)
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_open][binary.c:370] Binary 'bintest/uninfected_copy' opened and mapped in memory
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_close][binary.c:409] Binary 'bintest/uninfected_copy' closed
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_create_elf_exec32][binary.c:1221] i386 template ELF header created.
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_create_elf_exec64][binary.c:1274] x86_64/AMD64 template ELF header created.
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_create_elf_exec32][binary.c:1221] i386 template ELF header created.
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_add_phdr32][binary.c:1303] Adding phdr
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_add_phdr32][binary.c:1345] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_add_phdr32][binary.c:1359] New program header added. (type=6, address=0x08048034, size=32)
+[INFO][Mon May 20 08:26:36 2013][malelf_binary_close][binary.c:409] Binary '(null)' closed

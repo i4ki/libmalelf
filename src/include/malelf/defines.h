@@ -54,6 +54,8 @@
 #define MALELF_ALLOC_MMAP 1
 #define MALELF_ALLOC_MALLOC 2
 
+#define MALELF_ORIGIN (0x08048000)
+
 #define MALELF_ELF_DATA(hdr) \
         ( \
                 (hdr)->class == MALELF_ELF32 ?        \
