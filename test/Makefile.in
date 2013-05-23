@@ -71,7 +71,8 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_main_test_OBJECTS = ehdr_test.$(OBJEXT) binary_test.$(OBJEXT) \
-	debug_test.$(OBJEXT) report_test.$(OBJEXT) main_test.$(OBJEXT)
+	debug_test.$(OBJEXT) util_test.$(OBJEXT) report_test.$(OBJEXT) \
+	main_test.$(OBJEXT)
 main_test_OBJECTS = $(am_main_test_OBJECTS)
 main_test_LDADD = $(LDADD)
 main_test_DEPENDENCIES =
@@ -275,6 +276,7 @@ LDADD = -L../src/.libs -lmalelf -lcunit
 main_test_SOURCES = ehdr_test.c \
 			binary_test.c \
 			debug_test.c \
+			util_test.c \
 			report_test.c \
 			main_test.c
 
@@ -382,6 +384,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ehdr_test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main_test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/report_test.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/util_test.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

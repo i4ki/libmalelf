@@ -41,6 +41,7 @@
 
 #include <malelf/util.h>
 #include <malelf/error.h>
+#include <malelf/debug.h>
 
 extern _u8 malelf_quiet_mode;
 
@@ -194,4 +195,47 @@ _u32 malelf_write(int fd, _u8 *mem, _u32 size)
                 }
         }
         return error;
+}
+
+/*!
+ * Find the offset of the first occurrence of magic number magic_addr
+ * in binary_data.
+ * The offset returned is at offset_magic param.
+ *
+ * @return MALELF_SUCCESS if pattern found, MALELF_ERROR otherwises
+ */
+_u32 malelf_find_magic_number(_u8 *binary_data,
+                              _u32 size,
+                              union malelf_dword magic_addr,
+                              _u32 *offset_magic) {
+        _u8 curSearch = 0;
+        _u8 found = 0;
+        _u32 i = 0;
+        *offset_magic = 0;
+
+        while(i < size) {
+                unsigned hex = binary_data[i];
+
+                if(hex == magic_addr.char_val[curSearch]) {
+                        /* found a match */
+                        curSearch++;
+
+                        if(curSearch > 3) {
+                                /* found the whole magic number */
+                                found = 1;
+                                *offset_magic = i - 3;
+                                MALELF_DEBUG_INFO("Magic number found at"
+                                                  "'%d' bytes of malware"
+                                                  "\n", offset_magic);
+                                break;
+                        }
+                } else {
+                        /* go back, search for first char */
+                        curSearch = 0;
+                }
+
+                i++;
+        }
+
+        return found ? MALELF_SUCCESS : MALELF_ERROR;
 }

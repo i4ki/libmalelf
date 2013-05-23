@@ -14,5 +14,6 @@ LDADD=-L../src/.libs -lmalelf -lcunit
 main_test_SOURCES = 	ehdr_test.c \
 			binary_test.c \
 			debug_test.c \
+			util_test.c \
 			report_test.c \
 			main_test.c
