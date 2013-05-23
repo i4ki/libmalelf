@@ -8,7 +8,7 @@
  * Author:
  *         Tiago Natel de Moura <natel@secplus.com.br>
  *
- * Contributorss:
+ * Contributors:
  *         Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
  *         Paulo Leonardo Benatto    <benatto@gmail.com>
  *
@@ -29,28 +29,31 @@
  *
  */
 
-#ifndef TYPES_H
-#define TYPES_H
 
-#include <stdint.h>
-#include <sys/types.h>
+#ifndef INFECT_H
+#define INFECT_H
 
-#include "defines.h"
+#include <malelf/binary.h>
 
-MALELF_BEGIN_DECLS
+#define MALELF_MAGIC_BYTES 0x31333337
 
-typedef uint8_t  _u8;
-typedef uint16_t _u16;
-typedef uint32_t _u32;
-typedef int8_t   _i8;
-typedef int16_t  _i16;
-typedef int32_t  _i32;
+extern _u8 malelf_infect_silvio_padding(MalelfBinary* input,
+                                        MalelfBinary* output,
+                                        MalelfBinary* parasite,
+                                        _u32 offset_entry_point,
+                                        unsigned long int magic_bytes);
 
-union malelf_dword {
-    unsigned long int long_val;
-    unsigned char char_val[4];
-};
+extern _u8 _malelf_parasite_silvio_padding(MalelfBinary* in,
+                                           MalelfBinary* out,
+                                           unsigned int end_of_text,
+                                           MalelfBinary *parasite,
+                                           _u32 offset_entry_point,
+                                           unsigned old_e_entry,
+                                           unsigned long int magic_bytes);
 
-MALELF_END_DECLS
+/*extern _u8 malelf_infect_nop(MalelfBinary* input,
+                             MalelfBinary* output,
+                             MalelfBinary* parasite);*/
+
 
 #endif
