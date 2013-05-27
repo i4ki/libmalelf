@@ -1,4 +1,4 @@
-SUBDIRS = bintest
+SUBDIRS = hosts malwares
 
 TESTS = main_test
 
@@ -16,4 +16,5 @@ main_test_SOURCES = 	ehdr_test.c \
 			debug_test.c \
 			util_test.c \
 			report_test.c \
+			infect_test.c \
 			main_test.c

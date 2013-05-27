@@ -42,6 +42,7 @@ CU_ErrorCode ehdr_get_test_suite(CU_pSuite *rsuite);
 CU_ErrorCode report_get_test_suite(CU_pSuite *rsuite);
 CU_ErrorCode debug_get_test_suite(CU_pSuite *rsuite);
 CU_ErrorCode util_get_test_suite(CU_pSuite *rsuite);
+CU_ErrorCode infect_get_test_suite(CU_pSuite *rsuite);
 
 int main()
 {
@@ -50,6 +51,7 @@ int main()
    CU_pSuite report_suite = NULL;
    CU_pSuite debug_suite = NULL;
    CU_pSuite util_suite = NULL;
+   CU_pSuite infect_suite = NULL;
 
    /* initialize the CUnit test registry */
    if (CUE_SUCCESS != CU_initialize_registry()) {
@@ -61,7 +63,8 @@ int main()
        CUE_SUCCESS != report_get_test_suite(&report_suite) ||
        CUE_SUCCESS != debug_get_test_suite(&debug_suite) ||
        CUE_SUCCESS != util_get_test_suite(&util_suite) ||
-       CUE_SUCCESS != binary_get_test_suite(&binary_suite)) {
+       CUE_SUCCESS != binary_get_test_suite(&binary_suite) ||
+       CUE_SUCCESS != infect_get_test_suite(&infect_suite)) {
            CU_cleanup_registry();
    }
 

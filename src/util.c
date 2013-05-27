@@ -38,6 +38,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <errno.h>
+#include <assert.h>
 
 #include <malelf/util.h>
 #include <malelf/error.h>
@@ -212,6 +213,12 @@ _u32 malelf_find_magic_number(_u8 *binary_data,
         _u8 found = 0;
         _u32 i = 0;
         *offset_magic = 0;
+
+        if (! (i < size)) {
+                MALELF_DEBUG_ERROR("Empty binary data to find magic "
+                                   "number...");
+                return MALELF_EMISSING_MAGIC_BYTES;
+        }
 
         while(i < size) {
                 unsigned hex = binary_data[i];

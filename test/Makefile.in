@@ -72,7 +72,7 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_main_test_OBJECTS = ehdr_test.$(OBJEXT) binary_test.$(OBJEXT) \
 	debug_test.$(OBJEXT) util_test.$(OBJEXT) report_test.$(OBJEXT) \
-	main_test.$(OBJEXT)
+	infect_test.$(OBJEXT) main_test.$(OBJEXT)
 main_test_OBJECTS = $(am_main_test_OBJECTS)
 main_test_LDADD = $(LDADD)
 main_test_DEPENDENCIES =
@@ -268,7 +268,7 @@ target_vendor = @target_vendor@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-SUBDIRS = bintest
+SUBDIRS = hosts malwares
 AM_CFLAGS = -Wall -Werror -ggdb \
 		-I../src/include
 
@@ -278,6 +278,7 @@ main_test_SOURCES = ehdr_test.c \
 			debug_test.c \
 			util_test.c \
 			report_test.c \
+			infect_test.c \
 			main_test.c
 
 all: all-recursive
@@ -382,6 +383,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/binary_test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/debug_test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ehdr_test.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/infect_test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main_test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/report_test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/util_test.Po@am__quote@

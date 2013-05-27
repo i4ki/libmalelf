@@ -12807,7 +12807,7 @@ fi
 
 
 
-ac_config_files="$ac_config_files Makefile src/Makefile test/Makefile test/bintest/Makefile examples/Makefile"
+ac_config_files="$ac_config_files Makefile src/Makefile test/Makefile test/hosts/Makefile test/malwares/Makefile examples/Makefile"
 
 
 
@@ -13819,7 +13819,8 @@ do
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
     "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
     "test/Makefile") CONFIG_FILES="$CONFIG_FILES test/Makefile" ;;
-    "test/bintest/Makefile") CONFIG_FILES="$CONFIG_FILES test/bintest/Makefile" ;;
+    "test/hosts/Makefile") CONFIG_FILES="$CONFIG_FILES test/hosts/Makefile" ;;
+    "test/malwares/Makefile") CONFIG_FILES="$CONFIG_FILES test/malwares/Makefile" ;;
     "examples/Makefile") CONFIG_FILES="$CONFIG_FILES examples/Makefile" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
@@ -15299,4 +15300,3 @@ $as_echo "            TARGET_CPU: $target_cpu" >&6; }
 $as_echo "            HOST_CPU: $host_cpu" >&6; }
    { $as_echo "$as_me:${as_lineno-$LINENO}: result:             ELF_FORMAT: $ELF_FORMAT" >&5
 $as_echo "            ELF_FORMAT: $ELF_FORMAT" >&6; }
-

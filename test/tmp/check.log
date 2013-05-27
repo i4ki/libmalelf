@@ -2301,3 +2301,1476 @@
 [INFO][Thu May 23 19:20:55 2013][malelf_binary_add_phdr32][binary.c:1393] New phdr info: (current phnum: 0, current size: 84, new offset: 52
 [INFO][Thu May 23 19:20:55 2013][malelf_binary_add_phdr32][binary.c:1407] New program header added. (type=6, address=0x08048034, size=32)
 [INFO][Thu May 23 19:20:55 2013][malelf_binary_close][binary.c:450] Binary '(null)' closed
+[WARN][Mon May 27 09:38:33 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Mon May 27 09:38:33 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Mon May 27 09:38:33 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Mon May 27 09:38:33 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Mon May 27 09:38:33 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[ERROR][Mon May 27 09:38:33 2013][malelf_debug_init_TEST][debug_test.c:96] testing
+[INFO][Mon May 27 09:38:33 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1079363476' bytes of malware
+
+[INFO][Mon May 27 09:38:33 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1079363476' bytes of malware
+
+[INFO][Mon May 27 09:38:33 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1079363476' bytes of malware
+
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 09:38:33 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 09:38:33 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 09:38:33 2013][_malelf_binary_malloc_load][binary.c:358] Binary 'bintest/uninfected' mapped in memory with mmap(2)
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 09:38:33 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 09:38:33 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 09:38:33 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 09:38:33 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected_copy'.
+[INFO][Mon May 27 09:38:33 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected_copy' loaded by mmap(2)
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected_copy' opened and mapped in memory
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected_copy' closed
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected_copy' closed
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_create_elf_exec64][binary.c:1336] x86_64/AMD64 template ELF header created.
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_add_phdr32][binary.c:1365] Adding phdr
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_add_phdr32][binary.c:1407] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_add_phdr32][binary.c:1421] New program header added. (type=6, address=0x08048034, size=32)
+[INFO][Mon May 27 09:38:33 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[WARN][Mon May 27 10:06:40 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Mon May 27 10:06:40 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Mon May 27 10:06:40 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Mon May 27 10:06:40 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Mon May 27 10:06:40 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[ERROR][Mon May 27 10:06:40 2013][malelf_debug_init_TEST][debug_test.c:96] testing
+[INFO][Mon May 27 10:06:40 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1074190644' bytes of malware
+
+[INFO][Mon May 27 10:06:40 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1074190644' bytes of malware
+
+[INFO][Mon May 27 10:06:40 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1074190644' bytes of malware
+
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:06:40 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:06:40 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:06:40 2013][_malelf_binary_malloc_load][binary.c:358] Binary 'bintest/uninfected' mapped in memory with mmap(2)
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:06:40 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:06:40 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:06:40 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:06:40 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected_copy'.
+[INFO][Mon May 27 10:06:40 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected_copy' loaded by mmap(2)
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected_copy' opened and mapped in memory
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected_copy' closed
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected_copy' closed
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_create_elf_exec64][binary.c:1336] x86_64/AMD64 template ELF header created.
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_add_phdr32][binary.c:1365] Adding phdr
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_add_phdr32][binary.c:1407] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_add_phdr32][binary.c:1421] New program header added. (type=6, address=0x08048034, size=32)
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_open][binary.c:375] Opening file '/bin/cp'.
+[INFO][Mon May 27 10:06:40 2013][_malelf_binary_mmap_load][binary.c:311] Binary '/bin/cp' loaded by mmap(2)
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_open][binary.c:425] Binary '/bin/cp' opened and mapped in memory
+[INFO][Mon May 27 10:06:40 2013][malelf_binary_open][binary.c:375] Opening file 'malwares/write_message.o'.
+[ERROR][Mon May 27 10:06:40 2013][_malelf_binary_open][binary.c:276] Failed to open file 'malwares/write_message.o'.
+[WARN][Mon May 27 10:08:49 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Mon May 27 10:08:49 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Mon May 27 10:08:49 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Mon May 27 10:08:49 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Mon May 27 10:08:49 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[ERROR][Mon May 27 10:08:49 2013][malelf_debug_init_TEST][debug_test.c:96] testing
+[INFO][Mon May 27 10:08:49 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1075567844' bytes of malware
+
+[INFO][Mon May 27 10:08:49 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1075567844' bytes of malware
+
+[INFO][Mon May 27 10:08:49 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1075567844' bytes of malware
+
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:08:49 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:08:49 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:08:49 2013][_malelf_binary_malloc_load][binary.c:358] Binary 'bintest/uninfected' mapped in memory with mmap(2)
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:08:49 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:08:49 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:08:49 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:08:49 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected_copy'.
+[INFO][Mon May 27 10:08:49 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected_copy' loaded by mmap(2)
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected_copy' opened and mapped in memory
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected_copy' closed
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected_copy' closed
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_create_elf_exec64][binary.c:1336] x86_64/AMD64 template ELF header created.
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_add_phdr32][binary.c:1365] Adding phdr
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_add_phdr32][binary.c:1407] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_add_phdr32][binary.c:1421] New program header added. (type=6, address=0x08048034, size=32)
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_open][binary.c:375] Opening file '/bin/cp'.
+[INFO][Mon May 27 10:08:49 2013][_malelf_binary_mmap_load][binary.c:311] Binary '/bin/cp' loaded by mmap(2)
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_open][binary.c:425] Binary '/bin/cp' opened and mapped in memory
+[INFO][Mon May 27 10:08:49 2013][malelf_binary_open][binary.c:375] Opening file 'malwares/write_message.o'.
+[ERROR][Mon May 27 10:08:49 2013][_malelf_binary_open][binary.c:276] Failed to open file 'malwares/write_message.o'.
+[WARN][Mon May 27 10:09:34 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Mon May 27 10:09:34 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Mon May 27 10:09:34 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Mon May 27 10:09:34 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Mon May 27 10:09:34 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[ERROR][Mon May 27 10:09:34 2013][malelf_debug_init_TEST][debug_test.c:96] testing
+[INFO][Mon May 27 10:09:34 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1078201892' bytes of malware
+
+[INFO][Mon May 27 10:09:34 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1078201892' bytes of malware
+
+[INFO][Mon May 27 10:09:34 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1078201892' bytes of malware
+
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:09:34 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:09:34 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:09:34 2013][_malelf_binary_malloc_load][binary.c:358] Binary 'bintest/uninfected' mapped in memory with mmap(2)
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:09:34 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:09:34 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:09:34 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:09:34 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected_copy'.
+[INFO][Mon May 27 10:09:34 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected_copy' loaded by mmap(2)
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected_copy' opened and mapped in memory
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected_copy' closed
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected_copy' closed
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_create_elf_exec64][binary.c:1336] x86_64/AMD64 template ELF header created.
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_add_phdr32][binary.c:1365] Adding phdr
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_add_phdr32][binary.c:1407] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_add_phdr32][binary.c:1421] New program header added. (type=6, address=0x08048034, size=32)
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_open][binary.c:375] Opening file '/bin/cp'.
+[INFO][Mon May 27 10:09:34 2013][_malelf_binary_mmap_load][binary.c:311] Binary '/bin/cp' loaded by mmap(2)
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_open][binary.c:425] Binary '/bin/cp' opened and mapped in memory
+[INFO][Mon May 27 10:09:34 2013][malelf_binary_open][binary.c:375] Opening file 'malwares/write_message.o'.
+[ERROR][Mon May 27 10:09:34 2013][_malelf_binary_open][binary.c:276] Failed to open file 'malwares/write_message.o'.
+[WARN][Mon May 27 10:11:08 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Mon May 27 10:11:08 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Mon May 27 10:11:08 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Mon May 27 10:11:08 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Mon May 27 10:11:08 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[ERROR][Mon May 27 10:11:08 2013][malelf_debug_init_TEST][debug_test.c:96] testing
+[INFO][Mon May 27 10:11:08 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1080298964' bytes of malware
+
+[INFO][Mon May 27 10:11:08 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1080298964' bytes of malware
+
+[INFO][Mon May 27 10:11:08 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1080298964' bytes of malware
+
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:11:08 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:11:08 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:11:08 2013][_malelf_binary_malloc_load][binary.c:358] Binary 'bintest/uninfected' mapped in memory with mmap(2)
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:11:08 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:11:08 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:11:08 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:11:08 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected_copy'.
+[INFO][Mon May 27 10:11:08 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected_copy' loaded by mmap(2)
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected_copy' opened and mapped in memory
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected_copy' closed
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected_copy' closed
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_create_elf_exec64][binary.c:1336] x86_64/AMD64 template ELF header created.
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_add_phdr32][binary.c:1365] Adding phdr
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_add_phdr32][binary.c:1407] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_add_phdr32][binary.c:1421] New program header added. (type=6, address=0x08048034, size=32)
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_open][binary.c:375] Opening file '/bin/cp'.
+[INFO][Mon May 27 10:11:08 2013][_malelf_binary_mmap_load][binary.c:311] Binary '/bin/cp' loaded by mmap(2)
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_open][binary.c:425] Binary '/bin/cp' opened and mapped in memory
+[INFO][Mon May 27 10:11:08 2013][malelf_binary_open][binary.c:375] Opening file 'malwares/write_message.o'.
+[ERROR][Mon May 27 10:11:08 2013][_malelf_binary_open][binary.c:276] Failed to open file 'malwares/write_message.o'.
+[WARN][Mon May 27 10:12:08 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Mon May 27 10:12:08 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Mon May 27 10:12:08 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Mon May 27 10:12:08 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Mon May 27 10:12:08 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[ERROR][Mon May 27 10:12:08 2013][malelf_debug_init_TEST][debug_test.c:96] testing
+[INFO][Mon May 27 10:12:08 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1079302420' bytes of malware
+
+[INFO][Mon May 27 10:12:08 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1079302420' bytes of malware
+
+[INFO][Mon May 27 10:12:08 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1079302420' bytes of malware
+
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:12:08 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:12:08 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:12:08 2013][_malelf_binary_malloc_load][binary.c:358] Binary 'bintest/uninfected' mapped in memory with mmap(2)
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:12:08 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:12:08 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:12:08 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected' closed
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[INFO][Mon May 27 10:12:08 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected_copy'.
+[INFO][Mon May 27 10:12:08 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'bintest/uninfected_copy' loaded by mmap(2)
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_open][binary.c:425] Binary 'bintest/uninfected_copy' opened and mapped in memory
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected_copy' closed
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_close][binary.c:464] Binary 'bintest/uninfected_copy' closed
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_create_elf_exec64][binary.c:1336] x86_64/AMD64 template ELF header created.
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_add_phdr32][binary.c:1365] Adding phdr
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_add_phdr32][binary.c:1407] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_add_phdr32][binary.c:1421] New program header added. (type=6, address=0x08048034, size=32)
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_open][binary.c:375] Opening file '/bin/cp'.
+[INFO][Mon May 27 10:12:08 2013][_malelf_binary_mmap_load][binary.c:311] Binary '/bin/cp' loaded by mmap(2)
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_open][binary.c:425] Binary '/bin/cp' opened and mapped in memory
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_open][binary.c:375] Opening file 'malwares/write_message.o'.
+[ERROR][Mon May 27 10:12:08 2013][_malelf_binary_open][binary.c:276] Failed to open file 'malwares/write_message.o'.
+[INFO][Mon May 27 10:12:08 2013][malelf_binary_close][binary.c:464] Binary '/bin/cp' closed
+[WARN][Mon May 27 10:20:56 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Mon May 27 10:20:56 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Mon May 27 10:20:56 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Mon May 27 10:20:56 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Mon May 27 10:20:56 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[ERROR][Mon May 27 10:20:56 2013][malelf_debug_init_TEST][debug_test.c:96] testing
+[INFO][Mon May 27 10:20:56 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1076507268' bytes of malware
+
+[INFO][Mon May 27 10:20:56 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1076507268' bytes of malware
+
+[INFO][Mon May 27 10:20:56 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1076507268' bytes of malware
+
+[INFO][Mon May 27 10:20:56 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:20:56 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[ERROR][Mon May 27 10:20:56 2013][_malelf_binary_open][binary.c:276] Failed to open file 'bintest/uninfected'.
+[INFO][Mon May 27 10:20:56 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:20:56 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:20:56 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:20:56 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:20:56 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:20:56 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:20:56 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[ERROR][Mon May 27 10:20:56 2013][_malelf_binary_open][binary.c:276] Failed to open file 'bintest/uninfected'.
+[INFO][Mon May 27 10:20:56 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:20:56 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:20:56 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:20:56 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:20:56 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:20:56 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:20:56 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[ERROR][Mon May 27 10:20:56 2013][_malelf_binary_open][binary.c:276] Failed to open file 'bintest/uninfected'.
+[WARN][Mon May 27 10:22:14 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Mon May 27 10:22:14 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Mon May 27 10:22:14 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Mon May 27 10:22:14 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Mon May 27 10:22:14 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[ERROR][Mon May 27 10:22:14 2013][malelf_debug_init_TEST][debug_test.c:96] testing
+[INFO][Mon May 27 10:22:14 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1082021332' bytes of malware
+
+[INFO][Mon May 27 10:22:14 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1082021332' bytes of malware
+
+[INFO][Mon May 27 10:22:14 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1082021332' bytes of malware
+
+[INFO][Mon May 27 10:22:14 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:22:14 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:22:14 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:22:14 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:22:14 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:22:14 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:22:14 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:22:14 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:22:14 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:22:14 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:22:14 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[ERROR][Mon May 27 10:22:14 2013][_malelf_binary_open][binary.c:276] Failed to open file 'bintest/uninfected'.
+[INFO][Mon May 27 10:22:14 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:22:14 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:22:14 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:22:14 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:22:14 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:22:14 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:22:14 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[ERROR][Mon May 27 10:22:14 2013][_malelf_binary_open][binary.c:276] Failed to open file 'bintest/uninfected'.
+[WARN][Mon May 27 10:22:59 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Mon May 27 10:22:59 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Mon May 27 10:22:59 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Mon May 27 10:22:59 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Mon May 27 10:22:59 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[ERROR][Mon May 27 10:22:59 2013][malelf_debug_init_TEST][debug_test.c:96] testing
+[INFO][Mon May 27 10:22:59 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1076507268' bytes of malware
+
+[INFO][Mon May 27 10:22:59 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1076507268' bytes of malware
+
+[INFO][Mon May 27 10:22:59 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1076507268' bytes of malware
+
+[INFO][Mon May 27 10:22:59 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:22:59 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:22:59 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:22:59 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:22:59 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:22:59 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:22:59 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:22:59 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:22:59 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:22:59 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:22:59 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:22:59 2013][_malelf_binary_malloc_load][binary.c:358] Binary 'hosts/uninfected' mapped in memory with mmap(2)
+[INFO][Mon May 27 10:22:59 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:22:59 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:22:59 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:22:59 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:22:59 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:22:59 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:22:59 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:22:59 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[ERROR][Mon May 27 10:22:59 2013][_malelf_binary_open][binary.c:276] Failed to open file 'bintest/uninfected'.
+[WARN][Mon May 27 10:23:13 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Mon May 27 10:23:13 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Mon May 27 10:23:13 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Mon May 27 10:23:13 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Mon May 27 10:23:13 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[ERROR][Mon May 27 10:23:13 2013][malelf_debug_init_TEST][debug_test.c:96] testing
+[INFO][Mon May 27 10:23:13 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1080792084' bytes of malware
+
+[INFO][Mon May 27 10:23:13 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1080792084' bytes of malware
+
+[INFO][Mon May 27 10:23:13 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1080792084' bytes of malware
+
+[INFO][Mon May 27 10:23:13 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:23:13 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:23:13 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:23:13 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:23:13 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:23:13 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:23:13 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:23:13 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:23:13 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:23:13 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:23:13 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:23:13 2013][_malelf_binary_malloc_load][binary.c:358] Binary 'hosts/uninfected' mapped in memory with mmap(2)
+[INFO][Mon May 27 10:23:13 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:23:13 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:23:13 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:23:13 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:23:13 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:23:13 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:23:13 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:23:13 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:23:13 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:23:13 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:23:13 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:23:13 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:23:13 2013][malelf_binary_open][binary.c:375] Opening file 'bintest/uninfected'.
+[ERROR][Mon May 27 10:23:13 2013][_malelf_binary_open][binary.c:276] Failed to open file 'bintest/uninfected'.
+[WARN][Mon May 27 10:23:53 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Mon May 27 10:23:53 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Mon May 27 10:23:53 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Mon May 27 10:23:53 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Mon May 27 10:23:53 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[ERROR][Mon May 27 10:23:53 2013][malelf_debug_init_TEST][debug_test.c:96] testing
+[INFO][Mon May 27 10:23:53 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1076629876' bytes of malware
+
+[INFO][Mon May 27 10:23:53 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1076629876' bytes of malware
+
+[INFO][Mon May 27 10:23:53 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1076629876' bytes of malware
+
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:23:53 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:23:53 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:23:53 2013][_malelf_binary_malloc_load][binary.c:358] Binary 'hosts/uninfected' mapped in memory with mmap(2)
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:23:53 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:23:53 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:23:53 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:23:53 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected_copy'.
+[INFO][Mon May 27 10:23:53 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected_copy' loaded by mmap(2)
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected_copy' opened and mapped in memory
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected_copy' closed
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected_copy' closed
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_create_elf_exec64][binary.c:1336] x86_64/AMD64 template ELF header created.
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_add_phdr32][binary.c:1365] Adding phdr
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_add_phdr32][binary.c:1407] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_add_phdr32][binary.c:1421] New program header added. (type=6, address=0x08048034, size=32)
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_open][binary.c:375] Opening file '/bin/cp'.
+[INFO][Mon May 27 10:23:53 2013][_malelf_binary_mmap_load][binary.c:311] Binary '/bin/cp' loaded by mmap(2)
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_open][binary.c:425] Binary '/bin/cp' opened and mapped in memory
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_open][binary.c:375] Opening file 'malwares/write_message.o'.
+[INFO][Mon May 27 10:23:53 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'malwares/write_message.o' loaded by mmap(2)
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_open][binary.c:425] Binary 'malwares/write_message.o' opened and mapped in memory
+[INFO][Mon May 27 10:23:53 2013][malelf_infect_silvio_padding32][infect.c:123] Text segment starts at 0x08048000
+
+[INFO][Mon May 27 10:23:53 2013][malelf_infect_silvio_padding32][infect.c:125] Patched entry point from 0x804abf8 to 0x8065764
+
+[INFO][Mon May 27 10:23:53 2013][malelf_infect_silvio_padding32][infect.c:127] Inserting parasite at offset 1d764 vaddr 0x8065764
+
+[INFO][Mon May 27 10:23:53 2013][_malelf_infect_silvio_padding][infect.c:178] Inserting parasite
+
+[ERROR][Mon May 27 10:23:53 2013][_malelf_binary_open][binary.c:276] Failed to open file 'infected/cp'.
+[ERROR][Mon May 27 10:23:53 2013][_malelf_infect_silvio_padding][infect.c:183] Failed to open file 'infected/cp' for write.
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_close][binary.c:464] Binary '/bin/cp' closed
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_close][binary.c:464] Binary 'infected/cp' closed
+[INFO][Mon May 27 10:23:53 2013][malelf_binary_close][binary.c:464] Binary 'malwares/write_message.o' closed
+[WARN][Mon May 27 10:25:07 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Mon May 27 10:25:07 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Mon May 27 10:25:07 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Mon May 27 10:25:07 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Mon May 27 10:25:07 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[ERROR][Mon May 27 10:25:07 2013][malelf_debug_init_TEST][debug_test.c:96] testing
+[INFO][Mon May 27 10:25:07 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1075988388' bytes of malware
+
+[INFO][Mon May 27 10:25:07 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1075988388' bytes of malware
+
+[INFO][Mon May 27 10:25:07 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1075988388' bytes of malware
+
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:25:07 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:25:07 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:25:07 2013][_malelf_binary_malloc_load][binary.c:358] Binary 'hosts/uninfected' mapped in memory with mmap(2)
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:25:07 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:25:07 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:25:07 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:25:07 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected_copy'.
+[INFO][Mon May 27 10:25:07 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected_copy' loaded by mmap(2)
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected_copy' opened and mapped in memory
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected_copy' closed
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected_copy' closed
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_create_elf_exec64][binary.c:1336] x86_64/AMD64 template ELF header created.
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_add_phdr32][binary.c:1365] Adding phdr
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_add_phdr32][binary.c:1407] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_add_phdr32][binary.c:1421] New program header added. (type=6, address=0x08048034, size=32)
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_open][binary.c:375] Opening file '/bin/cp'.
+[INFO][Mon May 27 10:25:07 2013][_malelf_binary_mmap_load][binary.c:311] Binary '/bin/cp' loaded by mmap(2)
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_open][binary.c:425] Binary '/bin/cp' opened and mapped in memory
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_open][binary.c:375] Opening file 'malwares/write_message.o'.
+[INFO][Mon May 27 10:25:07 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'malwares/write_message.o' loaded by mmap(2)
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_open][binary.c:425] Binary 'malwares/write_message.o' opened and mapped in memory
+[INFO][Mon May 27 10:25:07 2013][malelf_infect_silvio_padding32][infect.c:123] Text segment starts at 0x08048000
+
+[INFO][Mon May 27 10:25:07 2013][malelf_infect_silvio_padding32][infect.c:125] Patched entry point from 0x804abf8 to 0x8065764
+
+[INFO][Mon May 27 10:25:07 2013][malelf_infect_silvio_padding32][infect.c:127] Inserting parasite at offset 1d764 vaddr 0x8065764
+
+[INFO][Mon May 27 10:25:07 2013][_malelf_infect_silvio_padding][infect.c:178] Inserting parasite
+
+[ERROR][Mon May 27 10:25:07 2013][malelf_patch_binary_at_magic_byte][patch.c:102] Failed to find magic bytes in binary...
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_close][binary.c:464] Binary '/bin/cp' closed
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_close][binary.c:464] Binary 'infected/cp' closed
+[INFO][Mon May 27 10:25:07 2013][malelf_binary_close][binary.c:464] Binary 'malwares/write_message.o' closed
+[WARN][Mon May 27 10:28:55 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Mon May 27 10:28:55 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Mon May 27 10:28:55 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Mon May 27 10:28:55 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Mon May 27 10:28:55 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[ERROR][Mon May 27 10:28:55 2013][malelf_debug_init_TEST][debug_test.c:96] testing
+[INFO][Mon May 27 10:28:55 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1082051156' bytes of malware
+
+[INFO][Mon May 27 10:28:55 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1082051156' bytes of malware
+
+[INFO][Mon May 27 10:28:55 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1082051156' bytes of malware
+
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:28:55 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:28:55 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:28:55 2013][_malelf_binary_malloc_load][binary.c:358] Binary 'hosts/uninfected' mapped in memory with mmap(2)
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:28:55 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:28:55 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:28:55 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:28:55 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected_copy'.
+[INFO][Mon May 27 10:28:55 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected_copy' loaded by mmap(2)
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected_copy' opened and mapped in memory
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected_copy' closed
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected_copy' closed
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_create_elf_exec64][binary.c:1336] x86_64/AMD64 template ELF header created.
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_add_phdr32][binary.c:1365] Adding phdr
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_add_phdr32][binary.c:1407] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_add_phdr32][binary.c:1421] New program header added. (type=6, address=0x08048034, size=32)
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_open][binary.c:375] Opening file '/bin/cp'.
+[INFO][Mon May 27 10:28:55 2013][_malelf_binary_mmap_load][binary.c:311] Binary '/bin/cp' loaded by mmap(2)
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_open][binary.c:425] Binary '/bin/cp' opened and mapped in memory
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_open][binary.c:375] Opening file 'malwares/write_message.o'.
+[INFO][Mon May 27 10:28:55 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'malwares/write_message.o' loaded by mmap(2)
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_open][binary.c:425] Binary 'malwares/write_message.o' opened and mapped in memory
+[INFO][Mon May 27 10:28:55 2013][malelf_infect_silvio_padding32][infect.c:123] Text segment starts at 0x08048000
+
+[INFO][Mon May 27 10:28:55 2013][malelf_infect_silvio_padding32][infect.c:125] Patched entry point from 0x804abf8 to 0x8065764
+
+[INFO][Mon May 27 10:28:55 2013][malelf_infect_silvio_padding32][infect.c:127] Inserting parasite at offset 1d764 vaddr 0x8065764
+
+[INFO][Mon May 27 10:28:55 2013][_malelf_infect_silvio_padding][infect.c:178] Inserting parasite
+
+[ERROR][Mon May 27 10:28:55 2013][malelf_patch_binary_at_magic_byte][patch.c:102] Failed to find magic bytes in binary...
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_close][binary.c:464] Binary '/bin/cp' closed
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_close][binary.c:464] Binary 'infected/cp' closed
+[INFO][Mon May 27 10:28:55 2013][malelf_binary_close][binary.c:464] Binary 'malwares/write_message.o' closed
+[WARN][Mon May 27 10:34:10 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Mon May 27 10:34:10 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Mon May 27 10:34:10 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Mon May 27 10:34:10 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Mon May 27 10:34:10 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[ERROR][Mon May 27 10:34:10 2013][malelf_debug_init_TEST][debug_test.c:96] testing
+[INFO][Mon May 27 10:34:10 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1078092548' bytes of malware
+
+[INFO][Mon May 27 10:34:10 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1078092548' bytes of malware
+
+[INFO][Mon May 27 10:34:10 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1078092548' bytes of malware
+
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:34:10 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:34:10 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:34:10 2013][_malelf_binary_malloc_load][binary.c:358] Binary 'hosts/uninfected' mapped in memory with mmap(2)
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:34:10 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:34:10 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:34:10 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:34:10 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected_copy'.
+[INFO][Mon May 27 10:34:10 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected_copy' loaded by mmap(2)
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected_copy' opened and mapped in memory
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected_copy' closed
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected_copy' closed
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_create_elf_exec64][binary.c:1336] x86_64/AMD64 template ELF header created.
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_add_phdr32][binary.c:1365] Adding phdr
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_add_phdr32][binary.c:1407] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_add_phdr32][binary.c:1421] New program header added. (type=6, address=0x08048034, size=32)
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_open][binary.c:375] Opening file '/bin/cp'.
+[INFO][Mon May 27 10:34:10 2013][_malelf_binary_mmap_load][binary.c:311] Binary '/bin/cp' loaded by mmap(2)
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_open][binary.c:425] Binary '/bin/cp' opened and mapped in memory
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_open][binary.c:375] Opening file 'malwares/write_message.o'.
+[INFO][Mon May 27 10:34:10 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'malwares/write_message.o' loaded by mmap(2)
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_open][binary.c:425] Binary 'malwares/write_message.o' opened and mapped in memory
+[INFO][Mon May 27 10:34:10 2013][malelf_infect_silvio_padding32][infect.c:123] Text segment starts at 0x08048000
+
+[INFO][Mon May 27 10:34:10 2013][malelf_infect_silvio_padding32][infect.c:125] Patched entry point from 0x804abf8 to 0x8065764
+
+[INFO][Mon May 27 10:34:10 2013][malelf_infect_silvio_padding32][infect.c:127] Inserting parasite at offset 1d764 vaddr 0x8065764
+
+[INFO][Mon May 27 10:34:10 2013][_malelf_infect_silvio_padding][infect.c:178] Inserting parasite
+
+[ERROR][Mon May 27 10:34:10 2013][malelf_patch_binary_at_magic_byte][patch.c:102] Failed to find magic bytes in binary...
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_close][binary.c:464] Binary '/bin/cp' closed
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_close][binary.c:464] Binary 'infected/cp' closed
+[INFO][Mon May 27 10:34:10 2013][malelf_binary_close][binary.c:464] Binary 'malwares/write_message.o' closed
+[WARN][Mon May 27 10:39:47 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Mon May 27 10:39:47 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Mon May 27 10:39:47 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Mon May 27 10:39:47 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Mon May 27 10:39:47 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[ERROR][Mon May 27 10:39:47 2013][malelf_debug_init_TEST][debug_test.c:96] testing
+[INFO][Mon May 27 10:39:47 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1080485460' bytes of malware
+
+[INFO][Mon May 27 10:39:47 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1080485460' bytes of malware
+
+[INFO][Mon May 27 10:39:47 2013][malelf_find_magic_number][util.c:229] Magic number found at'-1080485460' bytes of malware
+
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:39:47 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:39:47 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:39:47 2013][_malelf_binary_malloc_load][binary.c:358] Binary 'hosts/uninfected' mapped in memory with mmap(2)
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:39:47 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:39:47 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:39:47 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:39:47 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected_copy'.
+[INFO][Mon May 27 10:39:47 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected_copy' loaded by mmap(2)
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected_copy' opened and mapped in memory
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected_copy' closed
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected_copy' closed
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_create_elf_exec64][binary.c:1336] x86_64/AMD64 template ELF header created.
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_add_phdr32][binary.c:1365] Adding phdr
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_add_phdr32][binary.c:1407] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_add_phdr32][binary.c:1421] New program header added. (type=6, address=0x08048034, size=32)
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_open][binary.c:375] Opening file '/bin/cp'.
+[INFO][Mon May 27 10:39:47 2013][_malelf_binary_mmap_load][binary.c:311] Binary '/bin/cp' loaded by mmap(2)
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_open][binary.c:425] Binary '/bin/cp' opened and mapped in memory
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_open][binary.c:375] Opening file 'malwares/write_message.o'.
+[INFO][Mon May 27 10:39:47 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'malwares/write_message.o' loaded by mmap(2)
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_open][binary.c:425] Binary 'malwares/write_message.o' opened and mapped in memory
+[INFO][Mon May 27 10:39:47 2013][malelf_infect_silvio_padding32][infect.c:123] Text segment starts at 0x08048000
+
+[INFO][Mon May 27 10:39:47 2013][malelf_infect_silvio_padding32][infect.c:125] Patched entry point from 0x804abf8 to 0x8065764
+
+[INFO][Mon May 27 10:39:47 2013][malelf_infect_silvio_padding32][infect.c:127] Inserting parasite at offset 1d764 vaddr 0x8065764
+
+[INFO][Mon May 27 10:39:47 2013][_malelf_infect_silvio_padding][infect.c:178] Inserting parasite
+
+[ERROR][Mon May 27 10:39:47 2013][malelf_patch_binary_at_magic_byte][patch.c:102] Failed to find magic bytes in binary...
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_close][binary.c:464] Binary '/bin/cp' closed
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_close][binary.c:464] Binary 'infected/cp' closed
+[INFO][Mon May 27 10:39:47 2013][malelf_binary_close][binary.c:464] Binary 'malwares/write_message.o' closed
+[WARN][Mon May 27 10:42:09 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Mon May 27 10:42:09 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Mon May 27 10:42:09 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Mon May 27 10:42:09 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Mon May 27 10:42:09 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[ERROR][Mon May 27 10:42:09 2013][malelf_debug_init_TEST][debug_test.c:96] testing
+[INFO][Mon May 27 10:42:09 2013][malelf_find_magic_number][util.c:232] Magic number found at'-1079406740' bytes of malware
+
+[INFO][Mon May 27 10:42:09 2013][malelf_find_magic_number][util.c:232] Magic number found at'-1079406740' bytes of malware
+
+[INFO][Mon May 27 10:42:09 2013][malelf_find_magic_number][util.c:232] Magic number found at'-1079406740' bytes of malware
+
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:42:09 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:42:09 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:42:09 2013][_malelf_binary_malloc_load][binary.c:358] Binary 'hosts/uninfected' mapped in memory with mmap(2)
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:42:09 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:42:09 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:42:09 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:42:09 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected_copy'.
+[INFO][Mon May 27 10:42:09 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected_copy' loaded by mmap(2)
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected_copy' opened and mapped in memory
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected_copy' closed
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected_copy' closed
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_create_elf_exec64][binary.c:1336] x86_64/AMD64 template ELF header created.
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_add_phdr32][binary.c:1365] Adding phdr
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_add_phdr32][binary.c:1407] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_add_phdr32][binary.c:1421] New program header added. (type=6, address=0x08048034, size=32)
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_open][binary.c:375] Opening file '/bin/cp'.
+[INFO][Mon May 27 10:42:09 2013][_malelf_binary_mmap_load][binary.c:311] Binary '/bin/cp' loaded by mmap(2)
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_open][binary.c:425] Binary '/bin/cp' opened and mapped in memory
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_open][binary.c:375] Opening file 'malwares/write_message.o'.
+[INFO][Mon May 27 10:42:09 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'malwares/write_message.o' loaded by mmap(2)
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_open][binary.c:425] Binary 'malwares/write_message.o' opened and mapped in memory
+[INFO][Mon May 27 10:42:09 2013][malelf_infect_silvio_padding32][infect.c:123] Text segment starts at 0x08048000
+
+[INFO][Mon May 27 10:42:09 2013][malelf_infect_silvio_padding32][infect.c:125] Patched entry point from 0x804abf8 to 0x8065764
+
+[INFO][Mon May 27 10:42:09 2013][malelf_infect_silvio_padding32][infect.c:127] Inserting parasite at offset 1d764 vaddr 0x8065764
+
+[INFO][Mon May 27 10:42:09 2013][_malelf_infect_silvio_padding][infect.c:178] Inserting parasite
+
+[ERROR][Mon May 27 10:42:09 2013][malelf_patch_binary_at_magic_byte][patch.c:102] Failed to find magic bytes in binary...
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_close][binary.c:464] Binary '/bin/cp' closed
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_close][binary.c:464] Binary 'infected/cp' closed
+[INFO][Mon May 27 10:42:09 2013][malelf_binary_close][binary.c:464] Binary 'malwares/write_message.o' closed
+[WARN][Mon May 27 10:42:53 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Mon May 27 10:42:53 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Mon May 27 10:42:53 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Mon May 27 10:42:53 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Mon May 27 10:42:53 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[ERROR][Mon May 27 10:42:53 2013][malelf_debug_init_TEST][debug_test.c:96] testing
+[INFO][Mon May 27 10:42:53 2013][malelf_find_magic_number][util.c:232] Magic number found at'-1075632244' bytes of malware
+
+[INFO][Mon May 27 10:42:53 2013][malelf_find_magic_number][util.c:232] Magic number found at'-1075632244' bytes of malware
+
+[INFO][Mon May 27 10:42:53 2013][malelf_find_magic_number][util.c:232] Magic number found at'-1075632244' bytes of malware
+
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:42:53 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:42:53 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:42:53 2013][_malelf_binary_malloc_load][binary.c:358] Binary 'hosts/uninfected' mapped in memory with mmap(2)
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:42:53 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:42:53 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:42:53 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:42:53 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected_copy'.
+[INFO][Mon May 27 10:42:53 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected_copy' loaded by mmap(2)
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected_copy' opened and mapped in memory
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected_copy' closed
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected_copy' closed
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_create_elf_exec64][binary.c:1336] x86_64/AMD64 template ELF header created.
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_add_phdr32][binary.c:1365] Adding phdr
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_add_phdr32][binary.c:1407] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_add_phdr32][binary.c:1421] New program header added. (type=6, address=0x08048034, size=32)
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_open][binary.c:375] Opening file '/bin/cp'.
+[INFO][Mon May 27 10:42:53 2013][_malelf_binary_mmap_load][binary.c:311] Binary '/bin/cp' loaded by mmap(2)
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_open][binary.c:425] Binary '/bin/cp' opened and mapped in memory
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_open][binary.c:375] Opening file 'malwares/write_message.o'.
+[INFO][Mon May 27 10:42:53 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'malwares/write_message.o' loaded by mmap(2)
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_open][binary.c:425] Binary 'malwares/write_message.o' opened and mapped in memory
+[INFO][Mon May 27 10:42:53 2013][malelf_infect_silvio_padding32][infect.c:123] Text segment starts at 0x08048000
+
+[INFO][Mon May 27 10:42:53 2013][malelf_infect_silvio_padding32][infect.c:125] Patched entry point from 0x804abf8 to 0x8065764
+
+[INFO][Mon May 27 10:42:53 2013][malelf_infect_silvio_padding32][infect.c:127] Inserting parasite at offset 1d764 vaddr 0x8065764
+
+[INFO][Mon May 27 10:42:53 2013][_malelf_infect_silvio_padding][infect.c:178] Inserting parasite
+
+[ERROR][Mon May 27 10:42:53 2013][malelf_patch_binary_at_magic_byte][patch.c:102] Failed to find magic bytes in binary...
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_close][binary.c:464] Binary '/bin/cp' closed
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_close][binary.c:464] Binary 'infected/cp' closed
+[INFO][Mon May 27 10:42:53 2013][malelf_binary_close][binary.c:464] Binary 'malwares/write_message.o' closed
+[WARN][Mon May 27 10:44:22 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Mon May 27 10:44:22 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Mon May 27 10:44:22 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Mon May 27 10:44:22 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Mon May 27 10:44:22 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[ERROR][Mon May 27 10:44:22 2013][malelf_debug_init_TEST][debug_test.c:96] testing
+[INFO][Mon May 27 10:44:22 2013][malelf_find_magic_number][util.c:235] Magic number found at'-1077496388' bytes of malware
+
+[INFO][Mon May 27 10:44:22 2013][malelf_find_magic_number][util.c:235] Magic number found at'-1077496388' bytes of malware
+
+[INFO][Mon May 27 10:44:22 2013][malelf_find_magic_number][util.c:235] Magic number found at'-1077496388' bytes of malware
+
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:44:22 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:44:22 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:44:22 2013][_malelf_binary_malloc_load][binary.c:358] Binary 'hosts/uninfected' mapped in memory with mmap(2)
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_open][binary.c:375] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:44:22 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:44:22 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:44:22 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:44:22 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_open][binary.c:375] Opening file 'hosts/uninfected_copy'.
+[INFO][Mon May 27 10:44:22 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected_copy' loaded by mmap(2)
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_open][binary.c:425] Binary 'hosts/uninfected_copy' opened and mapped in memory
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected_copy' closed
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_close][binary.c:464] Binary 'hosts/uninfected_copy' closed
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_create_elf_exec64][binary.c:1336] x86_64/AMD64 template ELF header created.
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_create_elf_exec32][binary.c:1283] i386 template ELF header created.
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_add_phdr32][binary.c:1365] Adding phdr
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_add_phdr32][binary.c:1407] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_add_phdr32][binary.c:1421] New program header added. (type=6, address=0x08048034, size=32)
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_close][binary.c:464] Binary '(null)' closed
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_open][binary.c:375] Opening file '/bin/cp'.
+[INFO][Mon May 27 10:44:22 2013][_malelf_binary_mmap_load][binary.c:311] Binary '/bin/cp' loaded by mmap(2)
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_open][binary.c:425] Binary '/bin/cp' opened and mapped in memory
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_open][binary.c:375] Opening file 'malwares/write_message.o'.
+[INFO][Mon May 27 10:44:22 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'malwares/write_message.o' loaded by mmap(2)
+[INFO][Mon May 27 10:44:22 2013][malelf_binary_open][binary.c:425] Binary 'malwares/write_message.o' opened and mapped in memory
+[INFO][Mon May 27 10:44:22 2013][malelf_infect_silvio_padding32][infect.c:123] Text segment starts at 0x08048000
+
+[INFO][Mon May 27 10:44:22 2013][malelf_infect_silvio_padding32][infect.c:125] Patched entry point from 0x804abf8 to 0x8065764
+
+[INFO][Mon May 27 10:44:22 2013][malelf_infect_silvio_padding32][infect.c:127] Inserting parasite at offset 1d764 vaddr 0x8065764
+
+[INFO][Mon May 27 10:44:22 2013][_malelf_infect_silvio_padding][infect.c:178] Inserting parasite
+
+[WARN][Mon May 27 10:47:44 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Mon May 27 10:47:44 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Mon May 27 10:47:44 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Mon May 27 10:47:44 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Mon May 27 10:47:44 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[ERROR][Mon May 27 10:47:44 2013][malelf_debug_init_TEST][debug_test.c:96] testing
+[INFO][Mon May 27 10:47:44 2013][malelf_find_magic_number][util.c:239] Magic number found at'-1076833524' bytes of malware
+
+[INFO][Mon May 27 10:47:44 2013][malelf_find_magic_number][util.c:239] Magic number found at'-1076833524' bytes of malware
+
+[INFO][Mon May 27 10:47:44 2013][malelf_find_magic_number][util.c:239] Magic number found at'-1076833524' bytes of malware
+
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_open][binary.c:377] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:47:44 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_open][binary.c:427] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_close][binary.c:466] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_open][binary.c:377] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:47:44 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_close][binary.c:466] Binary '(null)' closed
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_open][binary.c:377] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:47:44 2013][_malelf_binary_malloc_load][binary.c:360] Binary 'hosts/uninfected' mapped in memory with mmap(2)
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_open][binary.c:427] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_close][binary.c:466] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_open][binary.c:377] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:47:44 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_close][binary.c:466] Binary '(null)' closed
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_open][binary.c:377] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:47:44 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_open][binary.c:427] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_close][binary.c:466] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_open][binary.c:377] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:47:44 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_open][binary.c:427] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_close][binary.c:466] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_open][binary.c:377] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:47:44 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_open][binary.c:427] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_open][binary.c:377] Opening file 'hosts/uninfected_copy'.
+[INFO][Mon May 27 10:47:44 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected_copy' loaded by mmap(2)
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_open][binary.c:427] Binary 'hosts/uninfected_copy' opened and mapped in memory
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_close][binary.c:466] Binary 'hosts/uninfected_copy' closed
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_close][binary.c:466] Binary 'hosts/uninfected_copy' closed
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_create_elf_exec32][binary.c:1285] i386 template ELF header created.
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_close][binary.c:466] Binary '(null)' closed
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_create_elf_exec64][binary.c:1338] x86_64/AMD64 template ELF header created.
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_close][binary.c:466] Binary '(null)' closed
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_create_elf_exec32][binary.c:1285] i386 template ELF header created.
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_add_phdr32][binary.c:1367] Adding phdr
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_add_phdr32][binary.c:1409] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_add_phdr32][binary.c:1423] New program header added. (type=6, address=0x08048034, size=32)
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_close][binary.c:466] Binary '(null)' closed
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_open][binary.c:377] Opening file '/bin/cp'.
+[INFO][Mon May 27 10:47:44 2013][_malelf_binary_mmap_load][binary.c:311] Binary '/bin/cp' loaded by mmap(2)
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_open][binary.c:427] Binary '/bin/cp' opened and mapped in memory
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_open][binary.c:377] Opening file 'malwares/write_message.o'.
+[INFO][Mon May 27 10:47:44 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'malwares/write_message.o' loaded by mmap(2)
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_open][binary.c:427] Binary 'malwares/write_message.o' opened and mapped in memory
+[INFO][Mon May 27 10:47:44 2013][malelf_infect_silvio_padding32][infect.c:123] Text segment starts at 0x08048000
+
+[INFO][Mon May 27 10:47:44 2013][malelf_infect_silvio_padding32][infect.c:125] Patched entry point from 0x804abf8 to 0x8065764
+
+[INFO][Mon May 27 10:47:44 2013][malelf_infect_silvio_padding32][infect.c:127] Inserting parasite at offset 1d764 vaddr 0x8065764
+
+[INFO][Mon May 27 10:47:44 2013][_malelf_infect_silvio_padding][infect.c:178] Inserting parasite
+
+[ERROR][Mon May 27 10:47:44 2013][malelf_patch_binary_at_magic_byte][patch.c:102] Failed to find magic bytes in binary...
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_close][binary.c:466] Binary '/bin/cp' closed
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_close][binary.c:466] Binary 'infected/cp' closed
+[INFO][Mon May 27 10:47:44 2013][malelf_binary_close][binary.c:466] Binary 'malwares/write_message.o' closed
+[WARN][Mon May 27 10:51:28 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Mon May 27 10:51:28 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Mon May 27 10:51:28 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Mon May 27 10:51:28 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Mon May 27 10:51:28 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[ERROR][Mon May 27 10:51:28 2013][malelf_debug_init_TEST][debug_test.c:96] testing
+[INFO][Mon May 27 10:51:28 2013][malelf_find_magic_number][util.c:239] Magic number found at'-1077934324' bytes of malware
+
+[INFO][Mon May 27 10:51:28 2013][malelf_find_magic_number][util.c:239] Magic number found at'-1077934324' bytes of malware
+
+[INFO][Mon May 27 10:51:28 2013][malelf_find_magic_number][util.c:239] Magic number found at'-1077934324' bytes of malware
+
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_open][binary.c:377] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:51:28 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_open][binary.c:427] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_close][binary.c:466] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_open][binary.c:377] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:51:28 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_close][binary.c:466] Binary '(null)' closed
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_open][binary.c:377] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:51:28 2013][_malelf_binary_malloc_load][binary.c:360] Binary 'hosts/uninfected' mapped in memory with mmap(2)
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_open][binary.c:427] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_close][binary.c:466] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_open][binary.c:377] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:51:28 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_close][binary.c:466] Binary '(null)' closed
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_open][binary.c:377] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:51:28 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_open][binary.c:427] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_close][binary.c:466] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_open][binary.c:377] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:51:28 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_open][binary.c:427] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_close][binary.c:466] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_open][binary.c:377] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:51:28 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_open][binary.c:427] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_open][binary.c:377] Opening file 'hosts/uninfected_copy'.
+[INFO][Mon May 27 10:51:28 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected_copy' loaded by mmap(2)
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_open][binary.c:427] Binary 'hosts/uninfected_copy' opened and mapped in memory
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_close][binary.c:466] Binary 'hosts/uninfected_copy' closed
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_close][binary.c:466] Binary 'hosts/uninfected_copy' closed
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_create_elf_exec32][binary.c:1285] i386 template ELF header created.
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_close][binary.c:466] Binary '(null)' closed
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_create_elf_exec64][binary.c:1338] x86_64/AMD64 template ELF header created.
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_close][binary.c:466] Binary '(null)' closed
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_create_elf_exec32][binary.c:1285] i386 template ELF header created.
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_add_phdr32][binary.c:1367] Adding phdr
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_add_phdr32][binary.c:1409] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_add_phdr32][binary.c:1423] New program header added. (type=6, address=0x08048034, size=32)
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_close][binary.c:466] Binary '(null)' closed
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_open][binary.c:377] Opening file '/bin/cp'.
+[INFO][Mon May 27 10:51:28 2013][_malelf_binary_mmap_load][binary.c:311] Binary '/bin/cp' loaded by mmap(2)
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_open][binary.c:427] Binary '/bin/cp' opened and mapped in memory
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_open][binary.c:377] Opening file 'malwares/write_message.o'.
+[INFO][Mon May 27 10:51:28 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'malwares/write_message.o' loaded by mmap(2)
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_open][binary.c:427] Binary 'malwares/write_message.o' opened and mapped in memory
+[INFO][Mon May 27 10:51:28 2013][malelf_infect_silvio_padding32][infect.c:123] Text segment starts at 0x08048000
+
+[INFO][Mon May 27 10:51:28 2013][malelf_infect_silvio_padding32][infect.c:125] Patched entry point from 0x804abf8 to 0x8065764
+
+[INFO][Mon May 27 10:51:28 2013][malelf_infect_silvio_padding32][infect.c:127] Inserting parasite at offset 1d764 vaddr 0x8065764
+
+[INFO][Mon May 27 10:51:28 2013][_malelf_infect_silvio_padding][infect.c:178] Inserting parasite
+
+[ERROR][Mon May 27 10:51:28 2013][malelf_patch_binary_at_magic_byte][patch.c:102] Failed to find magic bytes in binary...
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_close][binary.c:466] Binary '/bin/cp' closed
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_close][binary.c:466] Binary 'infected/cp' closed
+[INFO][Mon May 27 10:51:28 2013][malelf_binary_close][binary.c:466] Binary 'malwares/write_message.o' closed
+[WARN][Mon May 27 10:51:48 2013][malelf_debug_init_TEST][debug_test.c:52] 1
+[WARN][Mon May 27 10:51:48 2013][malelf_debug_init_TEST][debug_test.c:53] 12
+[WARN][Mon May 27 10:51:48 2013][malelf_debug_init_TEST][debug_test.c:54] 1234567890
+[WARN][Mon May 27 10:51:48 2013][malelf_debug_init_TEST][debug_test.c:91] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN][Mon May 27 10:51:48 2013][malelf_debug_init_TEST][debug_test.c:93] testing
+[ERROR][Mon May 27 10:51:48 2013][malelf_debug_init_TEST][debug_test.c:96] testing
+[INFO][Mon May 27 10:51:48 2013][malelf_find_magic_number][util.c:236] Magic number found at'-1074704612' bytes of malware
+
+[INFO][Mon May 27 10:51:48 2013][malelf_find_magic_number][util.c:236] Magic number found at'-1074704612' bytes of malware
+
+[INFO][Mon May 27 10:51:48 2013][malelf_find_magic_number][util.c:236] Magic number found at'-1074704612' bytes of malware
+
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_open][binary.c:377] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:51:48 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_open][binary.c:427] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_close][binary.c:466] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_open][binary.c:377] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:51:48 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_close][binary.c:466] Binary '(null)' closed
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_open][binary.c:377] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:51:48 2013][_malelf_binary_malloc_load][binary.c:360] Binary 'hosts/uninfected' mapped in memory with mmap(2)
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_open][binary.c:427] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_close][binary.c:466] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_open][binary.c:377] Opening file '/wrong/path/uninfected'.
+[ERROR][Mon May 27 10:51:48 2013][_malelf_binary_open][binary.c:276] Failed to open file '/wrong/path/uninfected'.
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_close][binary.c:466] Binary '(null)' closed
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_open][binary.c:377] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:51:48 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_open][binary.c:427] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_close][binary.c:466] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_open][binary.c:377] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:51:48 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_open][binary.c:427] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_close][binary.c:466] Binary 'hosts/uninfected' closed
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_open][binary.c:377] Opening file 'hosts/uninfected'.
+[INFO][Mon May 27 10:51:48 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected' loaded by mmap(2)
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_open][binary.c:427] Binary 'hosts/uninfected' opened and mapped in memory
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_open][binary.c:377] Opening file 'hosts/uninfected_copy'.
+[INFO][Mon May 27 10:51:48 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'hosts/uninfected_copy' loaded by mmap(2)
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_open][binary.c:427] Binary 'hosts/uninfected_copy' opened and mapped in memory
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_close][binary.c:466] Binary 'hosts/uninfected_copy' closed
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_close][binary.c:466] Binary 'hosts/uninfected_copy' closed
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_create_elf_exec32][binary.c:1285] i386 template ELF header created.
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_close][binary.c:466] Binary '(null)' closed
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_create_elf_exec64][binary.c:1338] x86_64/AMD64 template ELF header created.
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_close][binary.c:466] Binary '(null)' closed
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_create_elf_exec32][binary.c:1285] i386 template ELF header created.
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_add_phdr32][binary.c:1367] Adding phdr
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_add_phdr32][binary.c:1409] New phdr info: (current phnum: 0, current size: 84, new offset: 52
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_add_phdr32][binary.c:1423] New program header added. (type=6, address=0x08048034, size=32)
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_close][binary.c:466] Binary '(null)' closed
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_init][binary.c:235] MalelfBinary structure initialized.
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_open][binary.c:377] Opening file '/bin/cp'.
+[INFO][Mon May 27 10:51:48 2013][_malelf_binary_mmap_load][binary.c:311] Binary '/bin/cp' loaded by mmap(2)
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_open][binary.c:427] Binary '/bin/cp' opened and mapped in memory
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_open][binary.c:377] Opening file 'malwares/write_message.o'.
+[INFO][Mon May 27 10:51:48 2013][_malelf_binary_mmap_load][binary.c:311] Binary 'malwares/write_message.o' loaded by mmap(2)
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_open][binary.c:427] Binary 'malwares/write_message.o' opened and mapped in memory
+[INFO][Mon May 27 10:51:48 2013][malelf_infect_silvio_padding32][infect.c:123] Text segment starts at 0x08048000
+
+[INFO][Mon May 27 10:51:48 2013][malelf_infect_silvio_padding32][infect.c:125] Patched entry point from 0x804abf8 to 0x8065764
+
+[INFO][Mon May 27 10:51:48 2013][malelf_infect_silvio_padding32][infect.c:127] Inserting parasite at offset 1d764 vaddr 0x8065764
+
+[INFO][Mon May 27 10:51:48 2013][_malelf_infect_silvio_padding][infect.c:178] Inserting parasite
+
+[ERROR][Mon May 27 10:51:48 2013][malelf_patch_binary_at_magic_byte][patch.c:102] Failed to find magic bytes in binary...
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_close][binary.c:466] Binary '/bin/cp' closed
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_close][binary.c:466] Binary 'infected/cp' closed
+[INFO][Mon May 27 10:51:48 2013][malelf_binary_close][binary.c:466] Binary 'malwares/write_message.o' closed

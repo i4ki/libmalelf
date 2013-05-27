@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
         new_entry = atoi(argv[3]);
 
         malelf_binary_init(&bin);
-        error = malelf_binary_open(ifname, &bin);
+        error = malelf_binary_open(&bin, ifname);
         if (MALELF_SUCCESS != error) {
                 MALELF_PERROR(error);
                 return 1;

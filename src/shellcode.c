@@ -98,6 +98,9 @@ _u32 malelf_shellcode_create_flat(MalelfBinary *output,
                 return error;
         }
 
+        /**
+         * TODO: USE MALLOC_FROM()
+         */
         error = malelf_binary_mmap_from(output, shellcode);
 
         ofd = fdopen(output->fd, "w+");
@@ -114,6 +117,10 @@ _u32 malelf_shellcode_create_flat(MalelfBinary *output,
                                 ofd);
         }
 
+        /**
+         * TODO:
+         * Fix that to write IN memory with realloc() + memcpy()
+         */
         fwrite("\xb8", sizeof(_u8), 1, ofd);
         count++;
         fwrite(&entry_point.char_val[0], 1, 1, ofd);

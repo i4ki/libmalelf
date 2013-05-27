@@ -327,6 +327,8 @@ _u32 malelf_binary_mmap_from(MalelfBinary *dest,
                 return MALELF_EALLOC;
         }
 
+        dest->size = src->size;
+
         return MALELF_SUCCESS;
 }
 
