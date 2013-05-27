@@ -48,7 +48,10 @@ const char* malelf_strerr[] = {
         "The file is empty",
         "The buffer tried to set on MalelfEhdr is bigger\
          than the ElfX_Ehdr structure.",
-        "Invalid ELF Class"
+        "Invalid ELF Class",
+        "Unknown allocation type. Probably the MalelfBinary structure "
+        "was not instantiated by malelf_binary_init()",
+        "File exists... leaving ..."
 };
 
 const char* malelf_strerror(int code)

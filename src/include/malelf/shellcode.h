@@ -32,9 +32,9 @@
 #ifndef MALELF_SHELLCODE_H
 #define MALELF_SHELLCODE_H
 
-MALELF_BEGIN_DECLS
+#include <malelf/binary.h>
 
-#define MALELF_MAGIC_BYTES 0x31333337
+MALELF_BEGIN_DECLS
 
 /*
  *
@@ -49,9 +49,9 @@ extern _u32 malelf_shellcode_dump(MalelfBinary *bin);
  */
 extern _u32 malelf_shellcode_get_c_string(FILE *fp, MalelfBinary *bin);
 
-extern _i32 malelf_shellcode_create_flat(FILE* fd_o,
-                                         int in_size,
-                                         FILE* fd_i,
+extern _u32 malelf_shellcode_create_flat(MalelfBinary *dest,
+                                         MalelfBinary *src,
+                                         _u32 *magic_offset,
                                          unsigned long int original_entry_point,
                                          unsigned long int magic_bytes);
 

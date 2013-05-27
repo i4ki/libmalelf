@@ -244,33 +244,47 @@ void malelf_binary_set_alloc_type(MalelfBinary *bin, _u8 alloc_type)
         }
 }
 
-_i32 malelf_binary_open_mmap(char *fname, MalelfBinary *bin)
+_i32 malelf_binary_open_mmap(MalelfBinary *bin, char *fname)
 {
         malelf_binary_set_alloc_type(bin, MALELF_ALLOC_MMAP);
-        return malelf_binary_open(fname, bin);
+        return malelf_binary_open(bin, fname);
 }
 
-_i32 malelf_binary_open_malloc(char* fname, MalelfBinary *bin)
+_i32 malelf_binary_open_malloc(MalelfBinary *bin, char *fname)
 {
         malelf_binary_set_alloc_type(bin, MALELF_ALLOC_MALLOC);
-        return malelf_binary_open(fname, bin);
+        return malelf_binary_open(bin, fname);
 }
 
-static _i32 _malelf_binary_verify_file(char*fname, MalelfBinary *bin)
+static _i32 _malelf_binary_open(MalelfBinary *bin,
+                                char *fname,
+                                int flags)
 {
+        _u8 is_creat = (flags & O_CREAT) == O_CREAT;
+        _u32 error;
         struct stat st_info;
 
-        bin->fd = open(fname, O_RDONLY);
+        if (!is_creat) {
+                bin->fd = open(fname, flags);
+        } else {
+                bin->fd = open(fname, flags, 0666);
+        }
 
         if (-1 == bin->fd) {
-                return errno;
+                error = errno;
+                MALELF_DEBUG_ERROR("Failed to open file '%s'.",
+                                   fname);
+                return error;
         }
 
         if (-1 == fstat(bin->fd, &st_info)) {
-                return errno;
+                error = errno;
+                MALELF_DEBUG_ERROR("Failed to stat file '%s'.",
+                                   bin->fname);
+                return error;
         }
 
-        if (0 == st_info.st_size) {
+        if (0 == st_info.st_size && !is_creat) {
                 return MALELF_EEMPTY_FILE;
         }
 
@@ -296,6 +310,24 @@ static _i32 _malelf_binary_mmap_load(MalelfBinary *bin)
 
        MALELF_DEBUG("Binary '%s' loaded by mmap(2)", bin->fname);
        return MALELF_SUCCESS;
+}
+
+_u32 malelf_binary_mmap_from(MalelfBinary *dest,
+                             MalelfBinary *src)
+{
+        dest->mem = mmap(0,
+                   src->size,
+                   PROT_READ,
+                   MAP_SHARED,
+                   src->fd,
+                   0);
+
+        if (dest->mem == MAP_FAILED) {
+                MALELF_DEBUG_ERROR("Failed to map binary in memory...");
+                return MALELF_EALLOC;
+        }
+
+        return MALELF_SUCCESS;
 }
 
 static _i32 _malelf_binary_malloc_load(MalelfBinary *bin)
@@ -327,12 +359,22 @@ static _i32 _malelf_binary_malloc_load(MalelfBinary *bin)
         return MALELF_SUCCESS;
 }
 
-_i32 malelf_binary_open(char *fname, MalelfBinary *bin)
+_i32 malelf_binary_openw(MalelfBinary *bin, char *fname)
+{
+        return _malelf_binary_open(bin,
+                                   fname,
+                                   O_RDWR | O_CREAT | O_TRUNC);
+}
+
+_i32 malelf_binary_open(MalelfBinary *bin, char *fname)
 {
         assert(fname != NULL);
         assert(bin != NULL);
 
-        _i32 result = _malelf_binary_verify_file(fname, bin);
+        MALELF_DEBUG_INFO("Opening file '%s'.",
+                          fname);
+
+        _i32 result = _malelf_binary_open(bin, fname, O_RDONLY);
         if (MALELF_SUCCESS != result) {
                 return result;
         }
@@ -350,20 +392,33 @@ _i32 malelf_binary_open(char *fname, MalelfBinary *bin)
                         return result;
                 }
         } else {
-                return MALELF_EALLOC;
+                return MALELF_EUNKNOWN_ALLOC_TYPE;
         }
 
         result = malelf_binary_check_elf_magic(bin);
-        if (MALELF_SUCCESS != result) {
-                MALELF_DEBUG("File '%s' isn't ELF.", fname);
-                return result;
-        }
 
-        result = malelf_binary_map(bin);
-        if (MALELF_SUCCESS != result) {
-                MALELF_DEBUG_ERROR("Failed to map binary '%s' in "
-                                   "memory", bin->fname);
-                return result;
+        if (bin->class < MALELF_FLAT) {
+                if (MALELF_SUCCESS != result) {
+                        MALELF_DEBUG_ERROR("MalelfBinary of type ELF but "
+                                     "file '%s' isn't ELF.", fname);
+                        return result;
+                }
+
+                result = malelf_binary_map(bin);
+                if (MALELF_SUCCESS != result) {
+                        MALELF_DEBUG_ERROR("Failed to map binary '%s' in "
+                                           "memory", bin->fname);
+                        return result;
+                }
+        } else {
+                if (MALELF_SUCCESS == result) {
+                        MALELF_DEBUG_WARN("MalelfBinary of type FLAT but"
+                                          " file '%s' detected as valid"
+                                          " ELF. Please check the file.",
+                                          bin->fname);
+                }
+
+                result = MALELF_SUCCESS;
         }
 
         MALELF_DEBUG_INFO("Binary '%s' opened and mapped in memory",
@@ -1127,35 +1182,22 @@ _u32 _malelf_binary_write(MalelfBinary *bin)
         return error;
 }
 
-_u32 malelf_binary_write(MalelfBinary *bin, const char *fname)
+_u32 malelf_binary_create(MalelfBinary *bin, _u8 overwrite)
 {
         int error = MALELF_SUCCESS;
 
         struct stat st_info;
-        char *bkpfile;
 
         assert(NULL != bin);
 
-        if (NULL != fname) {
-                bin->fname = (char *)fname;
+        if (bin->fd && bin->fd != -1) {
+                close(bin->fd);
         }
 
-        close(bin->fd);
-
-        if (0 == stat(bin->fname, &st_info)) {
-                /* file exists, backuping... */
-                bkpfile = tmpnam(NULL);
-                error = rename(bin->fname, bkpfile);
-                if (!error) {
-                        error = errno;
-                        MALELF_DEBUG_ERROR("Failed to backup binary "
-                                           "'%s' in '%s'",
-                                           bin->fname,
-                                           bkpfile);
-                        return error;
-                }
-
-                bin->bkpfile = bkpfile;
+        if (0 == stat(bin->fname, &st_info) &&
+            st_info.st_size > 0 && !overwrite) {
+                /* file exists... The boss doesn't want to overwrite. */
+                return MALELF_EFILE_EXISTS;
         }
 
         bin->fd = open(bin->fname, O_RDWR|O_CREAT|O_TRUNC, 0755);
@@ -1163,6 +1205,26 @@ _u32 malelf_binary_write(MalelfBinary *bin, const char *fname)
                 error = errno;
                 MALELF_DEBUG_ERROR("Failed to open file '%s' to write.",
                                    bin->fname);
+                return error;
+        }
+
+        return MALELF_SUCCESS;
+}
+
+_u32 malelf_binary_write(MalelfBinary *bin,
+                         char *fname,
+                         _u8 overwrite)
+{
+        _u32 error;
+
+        assert (NULL != fname &&
+                NULL != bin);
+
+        bin->fname = fname;
+
+        error = malelf_binary_create(bin, overwrite);
+
+        if (MALELF_SUCCESS != error) {
                 return error;
         }
 

@@ -8,7 +8,7 @@
  * Author:
  *         Tiago Natel de Moura <natel@secplus.com.br>
  *
- * Contributors:
+ * Contributorss:
  *         Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
  *         Paulo Leonardo Benatto    <benatto@gmail.com>
  *
@@ -29,29 +29,15 @@
  *
  */
 
+#ifndef MALELF_PATCH_H
+#define MALELF_PATCH_H
 
-#ifndef INFECT_H
-#define INFECT_H
+extern _u8 malelf_patch_binary_at_magic_byte(MalelfBinary *binary,
+                                             _u32 magic_bytes,
+                                             _u32 value_addr);
 
-#include <malelf/binary.h>
-
-extern _u8 malelf_infect_silvio_padding(MalelfBinary* input,
-                                        MalelfBinary* output,
-                                        MalelfBinary* parasite,
-                                        _u32 offset_entry_point,
-                                        unsigned long int magic_bytes);
-
-extern _u8 _malelf_infect_silvio_padding(MalelfBinary* in,
-                                         MalelfBinary* out,
-                                         unsigned int end_of_text,
-                                         MalelfBinary *parasite,
-                                         _u32 offset_entry_point,
-                                         unsigned old_e_entry,
-                                         unsigned long int magic_bytes);
-
-/*extern _u8 malelf_infect_nop(MalelfBinary* input,
-                             MalelfBinary* output,
-                             MalelfBinary* parasite);*/
-
+extern _u8 malelf_patch_binary_at(MalelfBinary *bin,
+                                  _u32 offset,
+                                  unsigned value);
 
 #endif

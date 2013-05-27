@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
                 return 1;
                 }
 
-        error = malelf_binary_write(&bin, ofname);
+        error = malelf_binary_write(&bin, ofname, 1);
         if (MALELF_SUCCESS != error) {
                 MALELF_PERROR(error);
                 return 1;

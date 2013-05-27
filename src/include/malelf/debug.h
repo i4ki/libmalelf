@@ -52,8 +52,9 @@
 #define _MALELF_DEBUG(code, ...)                                \
         do {                                                    \
                 if (_malelf_debug >= code &&                    \
-                    _malelf_debug <= MALELF_LOG_CRITICAL)       \
+                    _malelf_debug <= MALELF_LOG_CRITICAL) {     \
                         _MALELF_DEBUG_TEST(code, __VA_ARGS__);  \
+                }                                               \
         } while(0)
 
 #define MALELF_DEBUG_INFO(...) _MALELF_DEBUG(MALELF_LOG_INFO,\

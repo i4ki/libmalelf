@@ -157,7 +157,7 @@ int main(int argc, char **argv)
 
         malelf_ehdr_set_entry(&bin.ehdr, phdr_load.p_vaddr);
 
-        error = malelf_binary_write(&bin, argv[2]);
+        error = malelf_binary_write(&bin, argv[2], 1);
 
         if (MALELF_SUCCESS != error) {
                 MALELF_PERROR(error);

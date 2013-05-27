@@ -409,7 +409,7 @@ void malelf_binary_write_TEST()
         error = malelf_binary_open("bintest/uninfected", &bin);
         CU_ASSERT(MALELF_SUCCESS == error);
 
-        error = malelf_binary_write(&bin, "bintest/uninfected_copy");
+        error = malelf_binary_write(&bin, "bintest/uninfected_copy", 1);
         CU_ASSERT(MALELF_SUCCESS == error);
 
         CU_ASSERT(0 == stat("bintest/uninfected_copy", &st_info));

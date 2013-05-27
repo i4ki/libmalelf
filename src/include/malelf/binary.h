@@ -143,7 +143,9 @@ extern _u32 malelf_binary_get_alloc_type(MalelfBinary *bin, _u8 *alloc_type);
  *
  *  \return The malelf status.
  */
-extern _i32 malelf_binary_open(char *fname, MalelfBinary *binary);
+extern _i32 malelf_binary_open(MalelfBinary *binary, char *fname);
+
+extern _i32 malelf_binary_openw(MalelfBinary *binary, char *fname);
 
 
 /*! Load binary file using mmap.
@@ -153,7 +155,10 @@ extern _i32 malelf_binary_open(char *fname, MalelfBinary *binary);
  *
  *  \return The malelf status.
  */
-extern _i32 malelf_binary_open_mmap(char *fname, MalelfBinary *binary);
+extern _i32 malelf_binary_open_mmap(MalelfBinary *binary, char *fname);
+
+extern _u32 malelf_binary_mmap_from(MalelfBinary *dest,
+                                    MalelfBinary *src);
 
 
 /*! Load binary file using malloc.
@@ -163,7 +168,7 @@ extern _i32 malelf_binary_open_mmap(char *fname, MalelfBinary *binary);
  *
  *  \return The malelf status.
  */
-extern _i32 malelf_binary_open_malloc(char *fname, MalelfBinary *binary);
+extern _i32 malelf_binary_open_malloc(MalelfBinary *binary, char *fname);
 
 
 /*! Load Ehdr, Phdr and Shdr.
@@ -237,10 +242,14 @@ extern _u32 malelf_binary_write_elf(MalelfBinary *bin, const char *fname) __attr
  *  \param bin A valid MalelfBinary object.
  *  \param fname The file name to write the binary.
  *
- *  \return MALELF_SUCCESS if the operation succeeded, otherwise MALELF_ERROR.
+ *  \return MALELF_SUCCESS if the operation succeeded,
+ * otherwise MALELF_ERROR.
  */
-extern _u32 malelf_binary_write(MalelfBinary *bin, const char *fname);
+extern _u32 malelf_binary_write(MalelfBinary *bin,
+                                char *fname,
+                                _u8 overwrite);
 
+extern _u32 malelf_binary_create(MalelfBinary *output, _u8 overwrite);
 
 /*! Crate executable file arch 32.
  *

