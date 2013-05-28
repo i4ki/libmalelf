@@ -39,15 +39,7 @@ extern _u8 malelf_infect_silvio_padding(MalelfBinary* input,
                                         MalelfBinary* output,
                                         MalelfBinary* parasite,
                                         _u32 offset_entry_point,
-                                        unsigned long int magic_bytes);
-
-extern _u8 _malelf_infect_silvio_padding(MalelfBinary* in,
-                                         MalelfBinary* out,
-                                         unsigned int end_of_text,
-                                         MalelfBinary *parasite,
-                                         _u32 offset_entry_point,
-                                         unsigned old_e_entry,
-                                         unsigned long int magic_bytes);
+                                        _u32 magic_bytes);
 
 /*extern _u8 malelf_infect_nop(MalelfBinary* input,
                              MalelfBinary* output,

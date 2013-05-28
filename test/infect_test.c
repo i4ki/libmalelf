@@ -110,8 +110,7 @@ void test_malelf_infect_silvio_padding(char* malware_path,
         MalelfBinary input, output, malware, malware_in;
         _i32 error;
 
-        char uninfected_files[][256] = {"/bin/cp",
-                                        "/bin/echo",
+        char uninfected_files[][256] = {"/bin/echo",
                                         "/bin/ls",
                                         "/usr/bin/id",
                                         "/bin/ps",
