@@ -42,3 +42,17 @@ config.h
 test/.#binary_test.c
 test/.libs/
 test/main_test
+/autom4te.cache/output.0
+/autom4te.cache/output.1
+/autom4te.cache/requests
+/autom4te.cache/traces.0
+/autom4te.cache/traces.1
+/test/infected/cp
+/test/infected/echo
+/test/infected/id
+/test/infected/ls
+/test/infected/ps
+/test/infected/pwd
+/test/infected/uname
+/test/tmp/test
+/test/tmp/test.c
