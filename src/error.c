@@ -51,7 +51,9 @@ const char* malelf_strerr[] = {
         "Invalid ELF Class",
         "Unknown allocation type. Probably the MalelfBinary structure "
         "was not instantiated by malelf_binary_init()",
-        "File exists... leaving ..."
+        "File exists... leaving ...",
+        "TEXT segment not found in binary. Neither segment has Read\
+         and Exec flags."
 };
 
 const char* malelf_strerror(int code)
