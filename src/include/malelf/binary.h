@@ -160,6 +160,12 @@ extern _i32 malelf_binary_open_mmap(MalelfBinary *binary, char *fname);
 extern _u32 malelf_binary_mmap_from(MalelfBinary *dest,
                                     MalelfBinary *src);
 
+extern _u32 malelf_binary_malloc_from(MalelfBinary *dest,
+                                      MalelfBinary *src);
+
+extern _u32 malelf_binary_malloc_add_byte(MalelfBinary *bin,
+                                          void *byte);
+
 
 /*! Load binary file using malloc.
  *

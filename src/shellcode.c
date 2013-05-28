@@ -72,7 +72,6 @@ _u32 malelf_shellcode_create_flat(MalelfBinary *output,
 {
         _u32 count = 0;
         _u32 error;
-        FILE *ofd;
 
         union malelf_dword entry_point;
 
@@ -98,37 +97,54 @@ _u32 malelf_shellcode_create_flat(MalelfBinary *output,
                 return error;
         }
 
-        /**
-         * TODO: USE MALLOC_FROM()
-         */
-        error = malelf_binary_mmap_from(output, shellcode);
-
-        ofd = fdopen(output->fd, "w+");
-
-        if (NULL == ofd) {
-                munmap(output->mem, output->size);
-                return errno;
-        }
-
-        while (count < shellcode->size) {
-                count += fwrite(shellcode->mem + count,
-                                sizeof(_u8),
-                                1,
-                                ofd);
-        }
+        error = malelf_binary_malloc_from(output, shellcode);
 
         /**
-         * TODO:
-         * Fix that to write IN memory with realloc() + memcpy()
+         * Adding the JMP HOST opcode snippet.
          */
-        fwrite("\xb8", sizeof(_u8), 1, ofd);
+
+        if ((error = malelf_binary_malloc_add_byte(output, "\xb8"))
+            != MALELF_SUCCESS) {
+                return error;
+        }
         count++;
-        fwrite(&entry_point.char_val[0], 1, 1, ofd);
-        fwrite(&entry_point.char_val[1], 1, 1, ofd);
-        fwrite(&entry_point.char_val[2], 1, 1, ofd);
-        fwrite(&entry_point.char_val[3], 1, 1, ofd);
-        /* jmp eax */
-        fwrite("\xff\xe0", sizeof(_u8), 2, ofd);
+
+        error = malelf_binary_malloc_add_byte(output,
+                                              &entry_point.char_val[0]);
+        if (MALELF_SUCCESS != error) {
+                return error;
+        }
+
+        error = malelf_binary_malloc_add_byte(output,
+                                              &entry_point.char_val[1]);
+        if (MALELF_SUCCESS != error) {
+                return error;
+        }
+
+        error = malelf_binary_malloc_add_byte(output,
+                                              &entry_point.char_val[2]);
+        if (MALELF_SUCCESS != error) {
+                return error;
+        }
+
+        error = malelf_binary_malloc_add_byte(output,
+                                              &entry_point.char_val[3]);
+        if (MALELF_SUCCESS != error) {
+                return error;
+        }
+
+        /* Add JMP *EAX */
+        error = malelf_binary_malloc_add_byte(output,
+                                              "\xff");
+        if (MALELF_SUCCESS != error) {
+                return error;
+        }
+
+        error = malelf_binary_malloc_add_byte(output,
+                                              "\xe0");
+        if (MALELF_SUCCESS != error) {
+                return error;
+        }
 
         *magic_offset = count;
 

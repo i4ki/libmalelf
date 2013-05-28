@@ -174,10 +174,31 @@ static _i32 _malelf_binary_map_shdr(MalelfBinary *bin)
 _u32 malelf_binary_map(MalelfBinary *bin)
 {
         _i32 error = MALELF_SUCCESS;
+        _u32 class = 0;
 
         assert(NULL != bin && NULL != bin->mem);
 
-        bin->class = bin->mem[EI_CLASS];
+        if (bin->size < EI_CLASS) {
+                return MALELF_EINVALID_CLASS;
+        }
+
+        class = bin->mem[EI_CLASS];
+
+        if (class < MALELF_FLAT && class > MALELF_ELFNONE) {
+                if (bin->class >= MALELF_FLAT) {
+                        MALELF_DEBUG_WARN("Binary previously configured"
+                                          " as FLAT binary, but for now"
+                                          " was detected as ELF. "
+                                          "Changing bin->class to ELF.");
+                }
+
+                bin->class = class;
+        } else {
+                MALELF_DEBUG_WARN("This memory content isn't ELF and "
+                                  "cannot be mapped in ELF structures. "
+                                  "Skipping...");
+                return MALELF_EINVALID_CLASS;
+        }
 
         error = _malelf_binary_map_ehdr(bin);
         if (MALELF_SUCCESS != error) {
@@ -312,6 +333,43 @@ static _i32 _malelf_binary_mmap_load(MalelfBinary *bin)
        return MALELF_SUCCESS;
 }
 
+_u32 malelf_binary_malloc_from(MalelfBinary *dest,
+                               MalelfBinary *src)
+{
+        _u32 error;
+
+        if (src->mem == NULL || src->size == 0) {
+                return MALELF_ERROR;
+        }
+
+        if (dest->mem != NULL) {
+                if (dest->alloc_type == MALELF_ALLOC_MALLOC) {
+                        free(dest->mem);
+                } else if (dest->alloc_type == MALELF_ALLOC_MMAP) {
+                        if ((munmap(dest->mem, dest->size)) == -1) {
+                                return errno;
+                        }
+                } else {
+                        dest->mem = NULL;
+                }
+        }
+
+        dest->mem = malloc(src->size);
+        dest->alloc_type = MALELF_ALLOC_MALLOC;
+        dest->size = src->size;
+        dest->class = src->class;
+        memcpy(dest->mem, src->mem, dest->size);
+
+        if (dest->class > MALELF_ELF && dest->class < MALELF_FLAT) {
+                error = malelf_binary_map(dest);
+                if (MALELF_SUCCESS != error) {
+                        return error;
+                }
+        }
+
+        return MALELF_SUCCESS;
+}
+
 _u32 malelf_binary_mmap_from(MalelfBinary *dest,
                              MalelfBinary *src)
 {
@@ -329,6 +387,29 @@ _u32 malelf_binary_mmap_from(MalelfBinary *dest,
 
         dest->size = src->size;
 
+        return MALELF_SUCCESS;
+}
+
+_u32 malelf_binary_malloc_add_byte(MalelfBinary *bin,
+                                   void *byte)
+{
+        if (bin->alloc_type != MALELF_ALLOC_MALLOC) {
+                return MALELF_ERROR;
+        }
+
+        if (bin->size == 0 || bin->mem == NULL) {
+                bin->mem = malloc(0);
+                return malelf_binary_malloc_add_byte(bin, byte);
+        }
+
+        bin->size++;
+
+        bin->mem = malelf_realloc(bin->mem, bin->size);
+        if (NULL == bin->mem) {
+                return MALELF_EALLOC;
+        }
+
+        memcpy(bin->mem + (bin->size - 1), byte, 1);
         return MALELF_SUCCESS;
 }
 
