@@ -53,7 +53,7 @@
  * @var _u32 -- offset to patch
  * @var unsigned -- value to patch
  */
-_u8 malelf_patch_binary_at(MalelfBinary *bin,
+_u32 malelf_patch_at(MalelfBinary *bin,
                            _u32 offset,
                            unsigned value)
 {
@@ -78,7 +78,7 @@ _u8 malelf_patch_binary_at(MalelfBinary *bin,
  * @var unsigned long int -- magic_bytes
  * @var unsigned -- value_addr
  */
-_u8 malelf_patch_binary_at_magic_byte(MalelfBinary *binary,
+_u32 malelf_patch_at_magic_byte(MalelfBinary *binary,
                                       _u32 magic_bytes,
                                       _u32 value_addr)
 {
@@ -103,7 +103,7 @@ _u8 malelf_patch_binary_at_magic_byte(MalelfBinary *binary,
                 return MALELF_EMISSING_MAGIC_BYTES;
         }
 
-        return malelf_patch_binary_at(binary,
+        return malelf_patch_at(binary,
                                       offset_magic_bytes,
                                       value_addr);
 }

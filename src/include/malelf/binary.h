@@ -163,8 +163,13 @@ extern _u32 malelf_binary_mmap_from(MalelfBinary *dest,
 extern _u32 malelf_binary_malloc_from(MalelfBinary *dest,
                                       MalelfBinary *src);
 
-extern _u32 malelf_binary_malloc_add_byte(MalelfBinary *bin,
+extern _u32 malelf_binary_add_byte(MalelfBinary *bin,
                                           void *byte);
+
+extern _u32 malelf_binary_copy_data(MalelfBinary *dest,
+                                    MalelfBinary *src,
+                                    _u32 offset_start,
+                                    _u32 offset_end);
 
 
 /*! Load binary file using malloc.

@@ -192,17 +192,24 @@ void test_malelf_infect_silvio_padding(char* malware_path,
                                                            &malware,
                                                            0,
                                                            magic_bytes);
-
-                malelf_binary_close(&input);
-                malelf_binary_close(&output);
-                malelf_binary_close(&malware_in);
-
                 CU_ASSERT(error == MALELF_SUCCESS);
 
                 if (error != MALELF_SUCCESS) {
                         MALELF_PERROR(error);
                         return;
                 }
+
+                error = malelf_binary_write(&output, output.fname, 1);
+
+                CU_ASSERT(MALELF_SUCCESS == error);
+                if (MALELF_SUCCESS != error) {
+                        MALELF_PERROR(error);
+                        return;
+                }
+
+                malelf_binary_close(&input);
+                malelf_binary_close(&output);
+                malelf_binary_close(&malware_in);
 
                 /* Testing ...*/
                 error = system(chmod_str);

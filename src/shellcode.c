@@ -103,44 +103,44 @@ _u32 malelf_shellcode_create_flat(MalelfBinary *output,
          * Adding the JMP HOST opcode snippet.
          */
 
-        if ((error = malelf_binary_malloc_add_byte(output, "\xb8"))
+        if ((error = malelf_binary_add_byte(output, "\xb8"))
             != MALELF_SUCCESS) {
                 return error;
         }
         count++;
 
-        error = malelf_binary_malloc_add_byte(output,
+        error = malelf_binary_add_byte(output,
                                               &entry_point.char_val[0]);
         if (MALELF_SUCCESS != error) {
                 return error;
         }
 
-        error = malelf_binary_malloc_add_byte(output,
+        error = malelf_binary_add_byte(output,
                                               &entry_point.char_val[1]);
         if (MALELF_SUCCESS != error) {
                 return error;
         }
 
-        error = malelf_binary_malloc_add_byte(output,
+        error = malelf_binary_add_byte(output,
                                               &entry_point.char_val[2]);
         if (MALELF_SUCCESS != error) {
                 return error;
         }
 
-        error = malelf_binary_malloc_add_byte(output,
+        error = malelf_binary_add_byte(output,
                                               &entry_point.char_val[3]);
         if (MALELF_SUCCESS != error) {
                 return error;
         }
 
         /* Add JMP *EAX */
-        error = malelf_binary_malloc_add_byte(output,
+        error = malelf_binary_add_byte(output,
                                               "\xff");
         if (MALELF_SUCCESS != error) {
                 return error;
         }
 
-        error = malelf_binary_malloc_add_byte(output,
+        error = malelf_binary_add_byte(output,
                                               "\xe0");
         if (MALELF_SUCCESS != error) {
                 return error;

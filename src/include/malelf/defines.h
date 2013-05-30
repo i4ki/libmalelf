@@ -86,5 +86,6 @@
                 ((hdr)->uhdr.h64->field) : (error = MALELF_EINVALID_CLASS) && NULL))
 
 #define MALELF_MAGIC_BYTES 0x37333331
+#define MALELF_PAGE_SIZE (4096)
 
 #endif /* MALELF_DEFINES_H */
