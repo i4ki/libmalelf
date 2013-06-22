@@ -8,7 +8,7 @@
  * Author:
  *         Tiago Natel de Moura <natel@secplus.com.br>
  *
- * Contributorss:
+ * Contributors:
  *         Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
  *         Paulo Leonardo Benatto    <benatto@gmail.com>
  *
@@ -29,38 +29,27 @@
  *
  */
 
-#ifndef MALELF_SHELLCODE_H
-#define MALELF_SHELLCODE_H
+
+#ifndef INFECT_H
+#define INFECT_H
 
 #include <malelf/binary.h>
 
-MALELF_BEGIN_DECLS
+extern _u8 malelf_infect_silvio_padding(MalelfBinary* input,
+                                        MalelfBinary* output,
+                                        MalelfBinary* parasite,
+                                        _u32 offset_entry_point,
+                                        _u32 magic_bytes);
 
-/*
- *
- *
- */
-extern _u32 malelf_shellcode_dump(MalelfBinary *bin);
+extern _u32 malelf_infect_silvio_padding32(MalelfBinary *host,
+                                           MalelfBinary *output,
+                                           MalelfBinary *parasite,
+                                           _u32 offset_entry_point,
+                                           _u32 magic_bytes);
 
+/*extern _u8 malelf_infect_nop(MalelfBinary* input,
+                             MalelfBinary* output,
+                             MalelfBinary* parasite);*/
 
-/*
- *
- *
- */
-extern _u32 malelf_shellcode_get_c_string(FILE *fp, MalelfBinary *bin);
-
-extern _u32 malelf_shellcode_create_flat(MalelfBinary *dest,
-                                         MalelfBinary *src,
-                                         _u32 *magic_offset,
-                                         unsigned long int original_entry_point,
-                                         unsigned long int magic_bytes);
-
-extern _i32 malelf_shellcode_create_c(FILE* fd_o,
-                                      int in_size,
-                                      FILE* fd_i,
-                                      unsigned long int original_entry_point);
-
-
-MALELF_END_DECLS
 
 #endif

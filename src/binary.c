@@ -174,10 +174,31 @@ static _i32 _malelf_binary_map_shdr(MalelfBinary *bin)
 _u32 malelf_binary_map(MalelfBinary *bin)
 {
         _i32 error = MALELF_SUCCESS;
+        _u32 class = 0;
 
         assert(NULL != bin && NULL != bin->mem);
 
-        bin->class = bin->mem[EI_CLASS];
+        if (bin->size < EI_CLASS) {
+                return MALELF_EINVALID_CLASS;
+        }
+
+        class = bin->mem[EI_CLASS];
+
+        if (class < MALELF_FLAT && class > MALELF_ELFNONE) {
+                if (bin->class >= MALELF_FLAT) {
+                        MALELF_DEBUG_WARN("Binary previously configured"
+                                          " as FLAT binary, but for now"
+                                          " was detected as ELF. "
+                                          "Changing bin->class to ELF.");
+                }
+
+                bin->class = class;
+        } else {
+                MALELF_DEBUG_WARN("This memory content isn't ELF and "
+                                  "cannot be mapped in ELF structures. "
+                                  "Skipping...");
+                return MALELF_EINVALID_CLASS;
+        }
 
         error = _malelf_binary_map_ehdr(bin);
         if (MALELF_SUCCESS != error) {
@@ -244,33 +265,47 @@ void malelf_binary_set_alloc_type(MalelfBinary *bin, _u8 alloc_type)
         }
 }
 
-_i32 malelf_binary_open_mmap(char *fname, MalelfBinary *bin)
+_i32 malelf_binary_open_mmap(MalelfBinary *bin, char *fname)
 {
         malelf_binary_set_alloc_type(bin, MALELF_ALLOC_MMAP);
-        return malelf_binary_open(fname, bin);
+        return malelf_binary_open(bin, fname);
 }
 
-_i32 malelf_binary_open_malloc(char* fname, MalelfBinary *bin)
+_i32 malelf_binary_open_malloc(MalelfBinary *bin, char *fname)
 {
         malelf_binary_set_alloc_type(bin, MALELF_ALLOC_MALLOC);
-        return malelf_binary_open(fname, bin);
+        return malelf_binary_open(bin, fname);
 }
 
-static _i32 _malelf_binary_verify_file(char*fname, MalelfBinary *bin)
+static _i32 _malelf_binary_open(MalelfBinary *bin,
+                                char *fname,
+                                int flags)
 {
+        _u8 is_creat = (flags & O_CREAT) == O_CREAT;
+        _u32 error;
         struct stat st_info;
 
-        bin->fd = open(fname, O_RDONLY);
+        if (!is_creat) {
+                bin->fd = open(fname, flags);
+        } else {
+                bin->fd = open(fname, flags, 0666);
+        }
 
         if (-1 == bin->fd) {
-                return errno;
+                error = errno;
+                MALELF_DEBUG_ERROR("Failed to open file '%s'.",
+                                   fname);
+                return error;
         }
 
         if (-1 == fstat(bin->fd, &st_info)) {
-                return errno;
+                error = errno;
+                MALELF_DEBUG_ERROR("Failed to stat file '%s'.",
+                                   bin->fname);
+                return error;
         }
 
-        if (0 == st_info.st_size) {
+        if (0 == st_info.st_size && !is_creat) {
                 return MALELF_EEMPTY_FILE;
         }
 
@@ -296,6 +331,117 @@ static _i32 _malelf_binary_mmap_load(MalelfBinary *bin)
 
        MALELF_DEBUG("Binary '%s' loaded by mmap(2)", bin->fname);
        return MALELF_SUCCESS;
+}
+
+_u32 malelf_binary_malloc_from(MalelfBinary *dest,
+                               MalelfBinary *src)
+{
+        _u32 error;
+
+        if (src->mem == NULL || src->size == 0) {
+                return MALELF_ERROR;
+        }
+
+        if (dest->mem != NULL) {
+                if (dest->alloc_type == MALELF_ALLOC_MALLOC) {
+                        free(dest->mem);
+                } else if (dest->alloc_type == MALELF_ALLOC_MMAP) {
+                        if ((munmap(dest->mem, dest->size)) == -1) {
+                                return errno;
+                        }
+                } else {
+                        dest->mem = NULL;
+                }
+        }
+
+        dest->mem = malloc(src->size);
+        dest->alloc_type = MALELF_ALLOC_MALLOC;
+        dest->size = src->size;
+        dest->class = src->class;
+        memcpy(dest->mem, src->mem, dest->size);
+
+        if (dest->class > MALELF_ELF && dest->class < MALELF_FLAT) {
+                error = malelf_binary_map(dest);
+                if (MALELF_SUCCESS != error) {
+                        return error;
+                }
+        }
+
+        return MALELF_SUCCESS;
+}
+
+_u32 malelf_binary_mmap_from(MalelfBinary *dest,
+                             MalelfBinary *src)
+{
+        dest->mem = mmap(0,
+                   src->size,
+                   PROT_READ,
+                   MAP_SHARED,
+                   src->fd,
+                   0);
+
+        if (dest->mem == MAP_FAILED) {
+                MALELF_DEBUG_ERROR("Failed to map binary in memory...");
+                return MALELF_EALLOC;
+        }
+
+        dest->size = src->size;
+
+        return MALELF_SUCCESS;
+}
+
+_u32 malelf_binary_add_byte(MalelfBinary *bin,
+                                   void *byte)
+{
+        if (bin->alloc_type != MALELF_ALLOC_MALLOC) {
+                return MALELF_ERROR;
+        }
+
+        bin->size++;
+
+        bin->mem = malelf_realloc(bin->mem, bin->size);
+        if (NULL == bin->mem) {
+                return MALELF_EALLOC;
+        }
+
+        memcpy(bin->mem + (bin->size - 1), byte, 1);
+        return MALELF_SUCCESS;
+}
+
+_u32 malelf_binary_copy_data(MalelfBinary *dest,
+                            MalelfBinary *src,
+                            _u32 offset_start,
+                            _u32 offset_end)
+{
+        _u32 old_size = dest->size;
+
+        if (dest->alloc_type != MALELF_ALLOC_MALLOC) {
+                if (dest->mem == NULL) {
+                        dest->alloc_type = MALELF_ALLOC_MALLOC;
+                        return malelf_binary_copy_data(dest,
+                                                       src,
+                                                       offset_start,
+                                                       offset_end);
+                } else {
+                        return MALELF_ENOT_ALLOC_MALLOC;
+                }
+        }
+
+        if (offset_end == 0) {
+                offset_end = src->size;
+        }
+
+        dest->size += offset_end - offset_start;
+        dest->mem = malelf_realloc(dest->mem, dest->size);
+        if (NULL == dest->mem) {
+                return MALELF_EALLOC;
+        }
+
+        memcpy(dest->mem + old_size,
+               src->mem + offset_start,
+               offset_end - offset_start);
+
+        return MALELF_SUCCESS;
 }
 
 static _i32 _malelf_binary_malloc_load(MalelfBinary *bin)
@@ -327,12 +473,22 @@ static _i32 _malelf_binary_malloc_load(MalelfBinary *bin)
         return MALELF_SUCCESS;
 }
 
-_i32 malelf_binary_open(char *fname, MalelfBinary *bin)
+_i32 malelf_binary_openw(MalelfBinary *bin, char *fname)
+{
+        return _malelf_binary_open(bin,
+                                   fname,
+                                   O_RDWR | O_CREAT | O_TRUNC);
+}
+
+_i32 malelf_binary_open(MalelfBinary *bin, char *fname)
 {
         assert(fname != NULL);
         assert(bin != NULL);
 
-        _i32 result = _malelf_binary_verify_file(fname, bin);
+        MALELF_DEBUG_INFO("Opening file '%s'.",
+                          fname);
+
+        _i32 result = _malelf_binary_open(bin, fname, O_RDONLY);
         if (MALELF_SUCCESS != result) {
                 return result;
         }
@@ -350,20 +506,33 @@ _i32 malelf_binary_open(char *fname, MalelfBinary *bin)
                         return result;
                 }
         } else {
-                return MALELF_EALLOC;
+                return MALELF_EUNKNOWN_ALLOC_TYPE;
         }
 
         result = malelf_binary_check_elf_magic(bin);
-        if (MALELF_SUCCESS != result) {
-                MALELF_DEBUG("File '%s' isn't ELF.", fname);
-                return result;
-        }
 
-        result = malelf_binary_map(bin);
-        if (MALELF_SUCCESS != result) {
-                MALELF_DEBUG_ERROR("Failed to map binary '%s' in "
-                                   "memory", bin->fname);
-                return result;
+        if (bin->class < MALELF_FLAT) {
+                if (MALELF_SUCCESS != result) {
+                        MALELF_DEBUG_ERROR("MalelfBinary of type ELF but "
+                                     "file '%s' isn't ELF.", fname);
+                        return result;
+                }
+
+                result = malelf_binary_map(bin);
+                if (MALELF_SUCCESS != result) {
+                        MALELF_DEBUG_ERROR("Failed to map binary '%s' in "
+                                           "memory", bin->fname);
+                        return result;
+                }
+        } else {
+                if (MALELF_SUCCESS == result) {
+                        MALELF_DEBUG_WARN("MalelfBinary of type FLAT but"
+                                          " file '%s' detected as valid"
+                                          " ELF. Please check the file.",
+                                          bin->fname);
+                }
+
+                result = MALELF_SUCCESS;
         }
 
         MALELF_DEBUG_INFO("Binary '%s' opened and mapped in memory",
@@ -502,57 +671,100 @@ _u32 malelf_binary_get_segment(MalelfBinary *bin,
         return error;
 }
 
-inline char* _malelf_binary_get_section_name(MalelfBinary *bin,
-                                             _u32 section_idx)
+inline _u32 _malelf_binary_get_section_name32(MalelfBinary *bin,
+                                               _u32 section_idx,
+                                               char **name)
 {
-        int error = MALELF_SUCCESS;
         MalelfShdr ushdr;
         Elf32_Shdr *shdr32;
-        Elf64_Shdr *shdr64;
+        Elf32_Shdr *shstrtab;
+        _u32 error;
 
         error = malelf_binary_get_shdr(bin, &ushdr);
 
-        if (error != MALELF_SUCCESS) {
-                return NULL;
+        if (MALELF_SUCCESS != error) {
+                return error;
         }
 
-        switch (bin->class) {
-        case MALELF_ELF32: {
-                shdr32 = ushdr.uhdr.h32;
-                shdr32 += section_idx;
-                return (char *)(bin->mem +
-                        bin->shdr.uhdr.h32[bin->ehdr.uhdr.h32->e_shstrndx].sh_offset +
-                        shdr32->sh_name);
-        }
-        case MALELF_ELF64: {
-                shdr64 = ushdr.uhdr.h64;
-                shdr64 += section_idx;
-
-                return (char *)(bin->mem +
-                        bin->shdr.uhdr.h64[bin->ehdr.uhdr.h64->e_shstrndx].sh_offset +
-                        shdr64->sh_name);
-        }
-        default:
-                return NULL;
+        shdr32 = ushdr.uhdr.h32;
+        shdr32 += section_idx;
+        _u32 strndx = bin->ehdr.uhdr.h32->e_shstrndx;
+        if (strndx > bin->ehdr.uhdr.h32->e_shnum) {
+                return MALELF_ESHSTRNDX_CORRUPTED;
         }
 
-        return NULL;
+        shstrtab = &bin->shdr.uhdr.h32[strndx];
+        if (shstrtab->sh_offset > bin->size) {
+                return MALELF_ESHSTRTAB_OFFSET_OUT_OF_RANGE;
+        }
+
+        *name = (char *)(bin->mem + shstrtab->sh_offset + shdr32->sh_name);
+
+        return MALELF_SUCCESS;
+}
+
+inline _u32 _malelf_binary_get_section_name64(MalelfBinary *bin,
+                                               _u32 section_idx,
+                                               char **name)
+{
+        MalelfShdr ushdr;
+        Elf64_Shdr *shdr64;
+        Elf64_Shdr *shstrtab;
+        _u32 error;
+
+        error = malelf_binary_get_shdr(bin, &ushdr);
+
+        if (MALELF_SUCCESS != error) {
+                return error;
+        }
+
+        shdr64 = ushdr.uhdr.h64;
+        shdr64 += section_idx;
+        _u32 strndx = bin->ehdr.uhdr.h64->e_shstrndx;
+        if (strndx > bin->ehdr.uhdr.h64->e_shnum) {
+                return MALELF_ESHSTRNDX_CORRUPTED;
+        }
+
+        shstrtab = &bin->shdr.uhdr.h64[strndx];
+        if (shstrtab->sh_offset > bin->size) {
+                return MALELF_ESHSTRTAB_OFFSET_OUT_OF_RANGE;
+        }
+
+        *name = (char *)(bin->mem +
+                         shstrtab->sh_offset + shdr64->sh_name);
+
+        return MALELF_SUCCESS;
 }
 
 _u32 malelf_binary_get_section_name(MalelfBinary *bin,
-                                    _u32 section_idx,
-                                    char **name)
+                                     _u32 section_idx,
+                                     char **name)
 {
-        char *n = _malelf_binary_get_section_name(bin, section_idx);
-        *name = n;
-        return (*name == NULL) ? MALELF_ERROR : MALELF_SUCCESS;
+        int error = MALELF_SUCCESS;
+
+        switch (bin->class) {
+        case MALELF_ELF32: {
+                error = _malelf_binary_get_section_name32(bin,
+                                                          section_idx,
+                                                          name);
+                return error;
+        }
+        case MALELF_ELF64: {
+                error = _malelf_binary_get_section_name64(bin,
+                                                          section_idx,
+                                                          name);
+                return error;
+        }
+        }
+
+        return MALELF_EINVALID_CLASS;
 }
 
 static _u32 _malelf_binary_get_section32(_u32 section_idx,
                                          MalelfBinary *bin,
                                          MalelfSection *section)
 {
-        int error = MALELF_SUCCESS;
+        _u32 error = MALELF_SUCCESS;
         Elf32_Shdr *shdr32;
 
         MalelfShdr ushdr;
@@ -566,8 +778,14 @@ static _u32 _malelf_binary_get_section32(_u32 section_idx,
         shdr32 = ushdr.uhdr.h32;
         shdr32 += section_idx;
 
-        section->name = _malelf_binary_get_section_name(bin,
-                                                        section_idx);
+        error = malelf_binary_get_section_name(bin,
+                                                section_idx,
+                                                &section->name);
+
+        if (MALELF_SUCCESS != error) {
+                return error;
+        }
+
         section->offset = shdr32->sh_offset;
         section->size = shdr32->sh_size;
         section->shdr = &ushdr;
@@ -591,8 +809,14 @@ static _u32 _malelf_binary_get_section64(_u32 section_idx,
         shdr64 = ushdr.uhdr.h64;
         shdr64 += section_idx;
 
-        section->name = _malelf_binary_get_section_name(bin,
-                                                        section_idx);
+        error = malelf_binary_get_section_name(bin,
+                                                section_idx,
+                                                &section->name);
+
+        if (MALELF_SUCCESS != error) {
+                return error;
+        }
+
         section->offset = shdr64->sh_offset;
         section->size = shdr64->sh_size;
         return MALELF_SUCCESS;
@@ -653,8 +877,14 @@ static _u32 _malelf_binary_get_section_by_name32(MalelfBinary *bin,
                 if (s->sh_type == SHT_NULL)
                         continue;
 
-                char *section_name = _malelf_binary_get_section_name(bin,
-                                                                     i);
+                char *section_name = NULL;
+                error = malelf_binary_get_section_name(bin,
+                                                       i,
+                                                       &section_name);
+                if (MALELF_SUCCESS != error) {
+                        return error;
+                }
+
                 if (section_name != NULL && !strcmp(name, section_name)) {
                         return _malelf_binary_get_section32(i, bin, section);
                 }
@@ -695,9 +925,18 @@ _u32 _malelf_binary_get_section_by_name64(MalelfBinary *bin,
                 if (s->sh_type == SHT_NULL)
                         continue;
 
-                char *section_name = _malelf_binary_get_section_name(bin, i);
+                char *section_name = NULL;
+                error = malelf_binary_get_section_name(bin,
+                                                       i,
+                                                       &section_name);
+                if (MALELF_SUCCESS != error) {
+                        return error;
+                }
+
                 if (section_name != NULL && !strcmp(name, section_name)) {
-                        return _malelf_binary_get_section64(i, bin, section);
+                        return _malelf_binary_get_section64(i,
+                                                            bin,
+                                                            section);
                 }
         }
 
@@ -1127,35 +1366,22 @@ _u32 _malelf_binary_write(MalelfBinary *bin)
         return error;
 }
 
-_u32 malelf_binary_write(MalelfBinary *bin, const char *fname)
+_u32 malelf_binary_create(MalelfBinary *bin, _u8 overwrite)
 {
         int error = MALELF_SUCCESS;
 
         struct stat st_info;
-        char *bkpfile;
 
         assert(NULL != bin);
 
-        if (NULL != fname) {
-                bin->fname = (char *)fname;
+        if (bin->fd && bin->fd != -1) {
+                close(bin->fd);
         }
 
-        close(bin->fd);
-
-        if (0 == stat(bin->fname, &st_info)) {
-                /* file exists, backuping... */
-                bkpfile = tmpnam(NULL);
-                error = rename(bin->fname, bkpfile);
-                if (!error) {
-                        error = errno;
-                        MALELF_DEBUG_ERROR("Failed to backup binary "
-                                           "'%s' in '%s'",
-                                           bin->fname,
-                                           bkpfile);
-                        return error;
-                }
-
-                bin->bkpfile = bkpfile;
+        if (0 == stat(bin->fname, &st_info) &&
+            st_info.st_size > 0 && !overwrite) {
+                /* file exists... The boss doesn't want to overwrite. */
+                return MALELF_EFILE_EXISTS;
         }
 
         bin->fd = open(bin->fname, O_RDWR|O_CREAT|O_TRUNC, 0755);
@@ -1163,6 +1389,26 @@ _u32 malelf_binary_write(MalelfBinary *bin, const char *fname)
                 error = errno;
                 MALELF_DEBUG_ERROR("Failed to open file '%s' to write.",
                                    bin->fname);
+                return error;
+        }
+
+        return MALELF_SUCCESS;
+}
+
+_u32 malelf_binary_write(MalelfBinary *bin,
+                         char *fname,
+                         _u8 overwrite)
+{
+        _u32 error;
+
+        assert (NULL != fname &&
+                NULL != bin);
+
+        bin->fname = fname;
+
+        error = malelf_binary_create(bin, overwrite);
+
+        if (MALELF_SUCCESS != error) {
                 return error;
         }
 

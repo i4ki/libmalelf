@@ -18,7 +18,9 @@ libmalelf_la_SOURCES =  binary.c \
 			report.c \
 			shellcode.c \
 			table.c \
-			debug.c
+			debug.c \
+			patch.c \
+			infect.c
 
 
 libmalelf_la_LDFLAGS = -version-info 1:0:0
@@ -36,4 +38,6 @@ library_include_HEADERS	=	include/malelf/binary.h \
 				include/malelf/util.h \
 				include/malelf/shellcode.h\
 				include/malelf/table.h \
-				include/malelf/debug.h
+				include/malelf/debug.h 	\
+				include/malelf/patch.h 	\
+				include/malelf/infect.h

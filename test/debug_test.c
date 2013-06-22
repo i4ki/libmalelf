@@ -91,6 +91,9 @@ void malelf_debug_init_TEST()
                           ) == 1023);  /* trying to overflow */
 
         CU_ASSERT(MALELF_DEBUG_TEST("testing") == 76);
+
+        setenv("MALELF_DEBUG", "4", 1);
+        CU_ASSERT(MALELF_DEBUG_TEST_ERROR("testing") == 76);
 }
 
 CU_ErrorCode debug_get_test_suite(CU_pSuite *rsuite)

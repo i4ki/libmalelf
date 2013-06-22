@@ -77,9 +77,9 @@ if test "x$HAVE_TESTS" = "xyes"; then
       if test "$with_cunit_dir" != ""; then
       	 AC_MSG_ERROR(["CUnit headers not found at $with_cunit_dir/include/CUnit/CUnit.h"])
       fi
-      AC_MSG_ERROR([CUnit headers not found... 
+      AC_MSG_ERROR([CUnit headers not found...
      if installed, please use --with-cunit-prefix=/dir
-     To install the CUnit on debian based distros use: 
+     To install the CUnit on debian based distros use:
          sudo apt-get install libcunit1-dev
 
      If you doesn't want run tests, remove the --enable-tests...])
@@ -90,7 +90,7 @@ if test "x$ac_cv_header_libxml_xmlwriter_h" = "xno"; then
    AC_MSG_ERROR([libxml2 headers not found at $with_libxml2_includes/libxml/xmlwriter.h
     To install the libxml2 on debian based distros use:
         sudo apt-get install libxml2-dev
-    If the library is already installed, use --with-libxml2-prefix=/dir])   
+    If the library is already installed, use --with-libxml2-prefix=/dir])
 fi
 
 INCLUDE_TESTS=
@@ -161,7 +161,8 @@ AC_SUBST([TARGET_ARCH])
 AC_CONFIG_FILES([     Makefile \
                       src/Makefile \
                       test/Makefile \
-                      test/bintest/Makefile \
+                      test/hosts/Makefile \
+                      test/malwares/Makefile \
 		      examples/Makefile])
 
 
@@ -230,4 +231,3 @@ fi
    AC_MSG_RESULT([            TARGET_CPU: $target_cpu])
    AC_MSG_RESULT([            HOST_CPU: $host_cpu])
    AC_MSG_RESULT([            ELF_FORMAT: $ELF_FORMAT])
-

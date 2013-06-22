@@ -77,9 +77,11 @@ void malelf_debug_init()
 
         if (malelf_debug_env) {
                 _malelf_debug = atoi(malelf_debug_env);
-                if (_malelf_debug) {
-                        _malelf_debug = 1;
+                if (_malelf_debug >= MALELF_LOG_INFO &&
+                    _malelf_debug <= MALELF_LOG_CRITICAL) {
                         _malelf_debug_open_file(malelf_debug_file_env);
+                } else {
+                  _malelf_debug = MALELF_LOG_CRITICAL;
                 }
         }
 }

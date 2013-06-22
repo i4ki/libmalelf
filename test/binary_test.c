@@ -48,7 +48,7 @@ static void malelf_binary_open_mmap_TEST(void)
 
         malelf_binary_init(&bin);
 
-        result = malelf_binary_open("bintest/uninfected", &bin);
+        result = malelf_binary_open(&bin, "hosts/uninfected");
 
         CU_ASSERT(result == MALELF_SUCCESS);
         CU_ASSERT(NULL != bin.fname);
@@ -77,7 +77,7 @@ static void malelf_binary_open_mmap_TEST(void)
         malelf_binary_init(&bin);
 
         /* Should fail */
-        result = malelf_binary_open("/wrong/path/uninfected", &bin);
+        result = malelf_binary_open(&bin, "/wrong/path/uninfected");
         CU_ASSERT(result == MALELF_ENOENT);
         CU_ASSERT(NULL == bin.fname);
         CU_ASSERT(bin.fd == -1);
@@ -103,7 +103,7 @@ static void malelf_binary_open_malloc_TEST(void)
         malelf_binary_init(&bin);
         malelf_binary_set_alloc_type(&bin, MALELF_ALLOC_MALLOC);
 
-        result = malelf_binary_open("bintest/uninfected", &bin);
+        result = malelf_binary_open(&bin, "hosts/uninfected");
         CU_ASSERT(result == MALELF_SUCCESS);
         CU_ASSERT(NULL != bin.fname);
         CU_ASSERT(bin.fd > 2);
@@ -122,7 +122,7 @@ static void malelf_binary_open_malloc_TEST(void)
         malelf_binary_init(&bin);
         malelf_binary_set_alloc_type(&bin, MALELF_ALLOC_MALLOC);
 
-        result = malelf_binary_open("/wrong/path/uninfected", &bin);
+        result = malelf_binary_open(&bin, "/wrong/path/uninfected");
         CU_ASSERT(result == MALELF_ENOENT);
         CU_ASSERT(NULL == bin.fname);
         CU_ASSERT(bin.fd == -1);
@@ -156,7 +156,7 @@ static void malelf_binary_get_section_name_TEST()
 
         malelf_binary_init(&bin);
 
-        result = malelf_binary_open("bintest/uninfected", &bin);
+        result = malelf_binary_open(&bin, "hosts/uninfected");
 
         CU_ASSERT(result == MALELF_SUCCESS);
         CU_ASSERT(NULL != bin.fname);
@@ -185,7 +185,7 @@ static void malelf_binary_get_section_TEST()
 
         malelf_binary_init(&bin);
 
-        result = malelf_binary_open("bintest/uninfected", &bin);
+        result = malelf_binary_open(&bin, "hosts/uninfected");
 
         CU_ASSERT(result == MALELF_SUCCESS);
         CU_ASSERT(NULL != bin.fname);
@@ -406,18 +406,18 @@ void malelf_binary_write_TEST()
 
         malelf_binary_init(&bin);
 
-        error = malelf_binary_open("bintest/uninfected", &bin);
+        error = malelf_binary_open(&bin, "hosts/uninfected");
         CU_ASSERT(MALELF_SUCCESS == error);
 
-        error = malelf_binary_write(&bin, "bintest/uninfected_copy");
+        error = malelf_binary_write(&bin, "hosts/uninfected_copy", 1);
         CU_ASSERT(MALELF_SUCCESS == error);
 
-        CU_ASSERT(0 == stat("bintest/uninfected_copy", &st_info));
+        CU_ASSERT(0 == stat("hosts/uninfected_copy", &st_info));
         CU_ASSERT(st_info.st_size > 0);
         CU_ASSERT(st_info.st_size == bin.size);
 
         malelf_binary_init(&bin2);
-        error = malelf_binary_open("bintest/uninfected_copy", &bin2);
+        error = malelf_binary_open(&bin2, "hosts/uninfected_copy");
         CU_ASSERT(MALELF_SUCCESS == error);
 
         CU_ASSERT(bin2.size == bin.size);
@@ -489,7 +489,7 @@ void malelf_binary_write_TEST()
 
         malelf_binary_close(&bin);
         malelf_binary_close(&bin2);
-        unlink("bintest/uninfected_copy");
+        unlink("hosts/uninfected_copy");
 }
 
 

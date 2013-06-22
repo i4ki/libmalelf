@@ -29,38 +29,15 @@
  *
  */
 
-#ifndef MALELF_SHELLCODE_H
-#define MALELF_SHELLCODE_H
+#ifndef MALELF_PATCH_H
+#define MALELF_PATCH_H
 
-#include <malelf/binary.h>
+extern _u8 malelf_patch_at_magic_byte(MalelfBinary *binary,
+                                             _u32 magic_bytes,
+                                             _u32 value_addr);
 
-MALELF_BEGIN_DECLS
-
-/*
- *
- *
- */
-extern _u32 malelf_shellcode_dump(MalelfBinary *bin);
-
-
-/*
- *
- *
- */
-extern _u32 malelf_shellcode_get_c_string(FILE *fp, MalelfBinary *bin);
-
-extern _u32 malelf_shellcode_create_flat(MalelfBinary *dest,
-                                         MalelfBinary *src,
-                                         _u32 *magic_offset,
-                                         unsigned long int original_entry_point,
-                                         unsigned long int magic_bytes);
-
-extern _i32 malelf_shellcode_create_c(FILE* fd_o,
-                                      int in_size,
-                                      FILE* fd_i,
-                                      unsigned long int original_entry_point);
-
-
-MALELF_END_DECLS
+extern _u8 malelf_patch_at(MalelfBinary *bin,
+                                  _u32 offset,
+                                  unsigned value);
 
 #endif

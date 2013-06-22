@@ -43,10 +43,23 @@
 /* Unused variables */
 #define UNUSED(x) (void) x
 
-/* ELF Architecture Type */
-#define MALELF_ELF32 ELFCLASS32
-#define MALELF_ELF64 ELFCLASS64
-#define MALELF_ELFNONE ELFCLASSNONE
+/* Binary format type */
+#define MALELF_FMT_ELF (0)
+#define MALELF_FMT_FLAT (1)
+
+/* Binary format types + architecture */
+#       define MALELF_ELF ELFCLASSNONE
+        /* ELF Architecture Type */
+#       define MALELF_ELFNONE MALELF_ELF
+#       define MALELF_ELF32 ELFCLASS32
+#       define MALELF_ELF64 ELFCLASS64
+
+#       define MALELF_FLAT (1 + MALELF_ELF64)
+        /* Flat Architecture Type */
+#       define MALELF_FLATUNKNOWN MALELF_FLAT
+#       define MALELF_FLAT32 (1 + MALELF_FLATUNKNOWN)
+#       define MALELF_FLAT64 (1 + MALELF_FLAT32)
+
 
 /* System-function used to allocate buffer */
 #define MALELF_ALLOC_NONE 0
@@ -71,5 +84,8 @@
                 ((hdr)->uhdr.h32->field) :                \
         (((hdr)->class == MALELF_ELF64) ? \
                 ((hdr)->uhdr.h64->field) : (error = MALELF_EINVALID_CLASS) && NULL))
+
+#define MALELF_MAGIC_BYTES 0x37333331
+#define MALELF_PAGE_SIZE (4096)
 
 #endif /* MALELF_DEFINES_H */

@@ -21,7 +21,7 @@ int main()
 
         malelf_binary_init(&bin);
 
-        error = malelf_binary_open("/bin/ls", &bin);
+        error = malelf_binary_open(&bin, "/bin/ls");
         if (MALELF_SUCCESS != error) {
                 MALELF_PERROR(error);
                 return 1;

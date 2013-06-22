@@ -46,6 +46,11 @@ typedef int8_t   _i8;
 typedef int16_t  _i16;
 typedef int32_t  _i32;
 
+union malelf_dword {
+    unsigned long int long_val;
+    unsigned char char_val[4];
+};
+
 MALELF_END_DECLS
 
 #endif

@@ -45,7 +45,7 @@ static void malelf_ehdr_TEST(void)
         _i32 result;
 
         malelf_binary_init(&bin);
-        result = malelf_binary_open("bintest/uninfected", &bin);
+        result = malelf_binary_open(&bin, "hosts/uninfected");
         CU_ASSERT(result == MALELF_SUCCESS);
 
         result = malelf_binary_get_ehdr(&bin, &ehdr);

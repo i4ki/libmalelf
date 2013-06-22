@@ -114,6 +114,22 @@ extern _u32 malelf_dump(_u8 *mem, _u32 size);
 extern _u32 malelf_write(int fd, _u8 *mem, _u32 size);
 
 
+/*! Find offset of the first occurrence of magic number magic_addr
+ * in data.
+ *
+ *  \param data Binary buffer
+ *  \param size Size of the buffer
+ *  \param magic_addr Magic number
+ *
+ *  \return MALELF_SUCCESS if magic number was found
+ *          otherwise returns MALELF_ERROR.
+ */
+extern _u32 malelf_find_magic_number(_u8 *data,
+                                     _u32 size,
+                                     union malelf_dword magic_addr,
+                                     _u32 *offset_magic);
+
+
 MALELF_END_DECLS
 
 #endif

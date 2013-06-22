@@ -32,7 +32,7 @@ int main()
 
         malelf_binary_init(&binary);
         malelf_binary_set_alloc_type(&binary, MALELF_ALLOC_MALLOC);
-        malelf_binary_open("/bin/ls", &binary);
+        malelf_binary_open(&binary, "/bin/ls");
 
         result = malelf_binary_get_ehdr(&binary, &ehdr);
         result = malelf_ehdr_get_version(&ehdr, &me_version);

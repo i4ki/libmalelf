@@ -48,7 +48,20 @@ const char* malelf_strerr[] = {
         "The file is empty",
         "The buffer tried to set on MalelfEhdr is bigger\
          than the ElfX_Ehdr structure.",
-        "Invalid ELF Class"
+        "Invalid ELF Class",
+        "Unknown allocation type. Probably the MalelfBinary structure "
+        "was not instantiated by malelf_binary_init()",
+        "File exists... leaving ...",
+        "TEXT segment not found in binary. Neither segment has Read\
+ and Exec flags.",
+        "Alloc type isn't MALELF_ALLOC_MALLOC ... is not possible to\
+ realloc",
+        "Entry of e_shstrndx in ELF header could be corrupted. The index"
+        " is bigger than the number of sections in e_shnum. Verify your "
+        "binary.",
+        "Offset in binary of Section Header String Table (shstrtab) is "
+        "bigger than the size of binary. The file analysed could be "
+        "corrupted."
 };
 
 const char* malelf_strerror(int code)

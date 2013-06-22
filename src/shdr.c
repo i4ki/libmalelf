@@ -119,7 +119,7 @@ _u32 malelf_shdr_get_mstype(MalelfShdr *shdr,
         }
 
         malelf_shdr_get_type(shdr, &type, index);
-        for (i = 0; i < 36; i++) {
+        for (i = 0; i < sizeof(_shdr_type)/sizeof(MalelfShdrType); i++) {
                 if (type == _shdr_type[i].value) {
                         *ms_type = _shdr_type[i];
                         break;
