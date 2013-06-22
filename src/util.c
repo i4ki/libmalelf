@@ -233,7 +233,7 @@ _u32 malelf_find_magic_number(_u8 *binary_data,
                                 *offset_magic = i - 3;
                                 MALELF_DEBUG_INFO("Magic number found at"
                                                   "'%d' bytes of malware"
-                                                  "\n", offset_magic);
+                                                  "\n", *offset_magic);
                                 break;
                         }
                 } else {

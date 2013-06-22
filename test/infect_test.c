@@ -11,6 +11,7 @@
 #include <libgen.h>
 
 #include <malelf/error.h>
+#include <malelf/debug.h>
 #include <malelf/binary.h>
 #include <malelf/shellcode.h>
 #include <malelf/infect.h>
@@ -118,6 +119,8 @@ void test_malelf_infect_silvio_padding(char* malware_path,
                                         "/bin/uname"
         };
 
+        malelf_debug_init();
+
         memset(chmod_str, 0, 256);
         memset(infected_path, 0, 256);
         memset(infected_exec, 0, 256);
@@ -187,11 +190,11 @@ void test_malelf_infect_silvio_padding(char* malware_path,
                 CU_ASSERT(error == MALELF_SUCCESS);
 
                 //Testing ...
-                error = malelf_infect_silvio_padding32_new(&input,
-                                                           &output,
-                                                           &malware,
-                                                           0,
-                                                           magic_bytes);
+                error = malelf_infect_silvio_padding32(&input,
+                                                       &output,
+                                                       &malware,
+                                                       0,
+                                                       magic_bytes);
                 CU_ASSERT(error == MALELF_SUCCESS);
 
                 if (error != MALELF_SUCCESS) {

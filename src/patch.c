@@ -79,8 +79,8 @@ _u32 malelf_patch_at(MalelfBinary *bin,
  * @var unsigned -- value_addr
  */
 _u32 malelf_patch_at_magic_byte(MalelfBinary *binary,
-                                      _u32 magic_bytes,
-                                      _u32 value_addr)
+                                _u32 magic_bytes,
+                                _u32 value_addr)
 {
         _u32 error;
         _u32 offset_magic_bytes = 0;
