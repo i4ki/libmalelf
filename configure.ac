@@ -1,6 +1,5 @@
 #AC_PREREQ([2.68])
 AC_INIT([libmalelf], [1.0], [natel@secplus.com.br])
-AC_CANONICAL_SYSTEM
 
 AC_MSG_RESULT([Welcome to AutoHELL])
 AM_INIT_AUTOMAKE
@@ -17,25 +16,21 @@ dnl Enable unit-tests
 AC_ARG_ENABLE([tests],
     AS_HELP_STRING([--enable-tests], [Enable Malelficus Unit Tests]))
 
-with_cunit_dir=
-AC_ARG_WITH([cunit-dir],
-            [AS_HELP_STRING([--with-cunit-dir],
+AC_ARG_WITH([cunit-prefix],
+            [AS_HELP_STRING([--with-cunit-prefix],
               [Use this CUnit prefix directory @<:@default=/usr@:>@])],
-            [],
-            [])
+            [with_cunit_prefix="$withval"],
+            [with_cunit_prefix=""])
 
-if test "$with_cunit_dir" != ""; then
-   extra_includes="$with_cunit_dir"
+if test "$with_cunit_prefix" != ""; then
+   extra_includes="$extra_includes:$with_cunit_prefix/include"
 fi
 
-with_libxml2_prefix=/usr
-
-
-AC_ARG_WITH([libxml2-dir],
+AC_ARG_WITH([libxml2-prefix],
 	[AS_HELP_STRING([--with-libxml2-prefix],
 	  [Use this libxml2 prefix directory @<:@default=/usr@:>])],
-        [],
-	[])
+        [with_libxml2_prefix="$withval"],
+	[with_libxml2_prefix=/usr])
 
 with_libxml2_includes="$with_libxml2_prefix/include/libxml2"
 with_libxml2_libpath="$with_libxml2_prefix/lib"
@@ -46,6 +41,23 @@ LIBXML_LIBPATH="$with_libxml2_libpath"
 
 AC_SUBST(LIBXML_INCLUDES)
 AC_SUBST(LIBXML_LIBPATH)
+
+AC_ARG_WITH([libudis-prefix],
+	[AS_HELP_STRING([--with-libudis-prefix],
+	  [Use this libudis86 prefix directory @<:@default=/usr/local@:>])],
+        [with_libudis_prefix="$withval"],
+	[with_libudis_prefix="/usr/local"])
+
+with_libudis_includes="$with_libudis_prefix/include"
+with_libudis_libpath="$with_libudis_prefix/lib"
+
+extra_includes="$extra_includes:$with_libudis_prefix"
+LIBUDIS_INCLUDES="$with_libudis_includes"
+LIBUDIS_LIBPATH="$with_libudis_libpath"
+
+AC_SUBST(LIBUDIS_INCLUDES)
+AC_SUBST(LIBUDIS_LIBPATH)
+
 AC_SUBST(extra_includes)
 
 AS_IF([test "x$enable_tests" = "xyes"], [HAVE_TESTS=yes], [HAVE_TESTS=no])
@@ -67,7 +79,8 @@ AC_CHECK_HEADERS([  fcntl.h \
 		    unistd.h \
 		    elf.h \
 		    CUnit/CUnit.h \
-		    libxml/xmlwriter.h])
+		    libxml/xmlwriter.h\
+                    udis86.h])
 
 CFLAGS="$CFLAGS_BK"
 CPPFLAGS="$CPPFLAGS_BK"
@@ -91,6 +104,12 @@ if test "x$ac_cv_header_libxml_xmlwriter_h" = "xno"; then
     To install the libxml2 on debian based distros use:
         sudo apt-get install libxml2-dev
     If the library is already installed, use --with-libxml2-prefix=/dir])
+fi
+
+if test "x$ac_cv_header_udis86_h" = "xno"; then
+   AC_MSG_ERROR([libudis86 headers not found at $with_libudis_includes/udis86.h
+    Download udis86 from http://udis86.sourceforge.net/
+    If the library is already installed, use --with-libudis-prefix=/dir])
 fi
 
 INCLUDE_TESTS=
