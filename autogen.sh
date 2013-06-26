@@ -6,6 +6,7 @@ aclocal_bin=`which aclocal`
 autoconf_bin=`which autoconf`
 libtoolize_bin=`which libtoolize`
 automake_bin=`which automake`
+autoheader_bin=`which autoheader`
 
 check_exec() {
     bin="$1"
@@ -25,5 +26,6 @@ check_exec() {
 
 check_exec "$aclocal_bin" "aclocal"
 check_exec "$autoconf_bin" "autoconf"
+check_exec "$autoheader_bin" "autoheader"
 check_exec "$libtoolize_bin" "libtoolize"
 check_exec "$automake_bin --add-missing" "automake"
