@@ -96,6 +96,12 @@ void malelf_debug_init_TEST()
         CU_ASSERT(MALELF_DEBUG_TEST_ERROR("testing") == 76);
 }
 
+void malelf_debug_cleanup()
+{
+        unsetenv("MALELF_DEBUG");
+        unsetenv("MALELF_DEBUG_FILE");
+}
+
 CU_ErrorCode debug_get_test_suite(CU_pSuite *rsuite)
 {
         CU_pSuite suite = NULL;
@@ -104,7 +110,7 @@ CU_ErrorCode debug_get_test_suite(CU_pSuite *rsuite)
                 return -1;
         }
 
-        suite = CU_add_suite("Module debug", NULL, NULL);
+        suite = CU_add_suite("Module debug", NULL, (CU_CleanupFunc) malelf_debug_cleanup);
         if(NULL == suite) {
                 *rsuite = NULL;
                 return CU_get_error();

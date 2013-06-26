@@ -397,7 +397,7 @@ static _u32 _malelf_table_print_title(MalelfTable *obj)
         for (i = 1; i < obj->width; i++) {
                 _malelf_table_print_char(EMPTY);
                 if (middle == i) {
-                        fprintf(stdout, obj->title);
+                        fprintf(stdout, "%s", obj->title);
                         i = i + strlen(obj->title);
                 }
         }
