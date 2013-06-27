@@ -37,7 +37,7 @@
 #include <malelf/table.h>
 #include <malelf/error.h>
 
-_u32 _malelf_table_add_int_value(MalelfTable *obj, int value)
+_u32 malelf_table_add_int_value(MalelfTable *obj, int value)
 {
         if (NULL == obj) {
                 return MALELF_ERROR;
@@ -51,7 +51,7 @@ _u32 _malelf_table_add_int_value(MalelfTable *obj, int value)
         return MALELF_SUCCESS;
 }
 
-_u32 _malelf_table_add_hex_value(MalelfTable *obj, int value)
+_u32 malelf_table_add_hex_value(MalelfTable *obj, int value)
 {
         if (NULL == obj) {
                 return MALELF_ERROR;
@@ -65,7 +65,7 @@ _u32 _malelf_table_add_hex_value(MalelfTable *obj, int value)
         return MALELF_SUCCESS;
 }
 
-_u32 _malelf_table_add_str_value(MalelfTable *obj, char *value)
+_u32 malelf_table_add_str_value(MalelfTable *obj, const char *value)
 {
         if (NULL == obj) {
                 return MALELF_ERROR;
