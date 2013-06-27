@@ -32,7 +32,9 @@ typedef struct {
 
 _u32 malelf_disas_init(MalelfDisas *obj, MalelfBinary *bin);
 
-_u32 malelf_disas(MalelfDisas *obj);
+_u32 malelf_disas(MalelfDisas *obj, 
+                  MalelfBinary *bin, 
+                  const char *section_name);
 
 _u32 malelf_disas_set_syntax_att(MalelfDisas *obj);
 

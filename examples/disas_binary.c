@@ -1,10 +1,3 @@
-/**
- * Simple example that shows how to get the informations of EHDR
- * using the libmalelf API.
- *
- * by patito
- */
-
 #include <stdio.h>
 #include <malelf/binary.h>
 #include <malelf/ehdr.h>
@@ -24,7 +17,7 @@ int main()
 
         malelf_disas_init(&disas, &binary);
 
-        malelf_disas(&disas);
+        malelf_disas(&disas, &binary, ".text");
 
 
         malelf_binary_close(&binary);
