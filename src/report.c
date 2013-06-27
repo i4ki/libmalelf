@@ -209,6 +209,25 @@ _u32 malelf_report_ehdr_phoff(MalelfReport *report, MalelfEhdr *ehdr)
         return MALELF_SUCCESS;
 }
 
+_u32 malelf_report_ehdr_size(MalelfReport *report, MalelfEhdr *ehdr)
+{
+        _i32 error = 0;
+        assert(NULL != report);
+        assert(NULL != report->writer);
+        assert(NULL != ehdr);
+
+        _u32 size;
+        malelf_ehdr_get_ehsize(ehdr, &size);
+        error = xmlTextWriterWriteFormatElement(report->writer,
+                                                (const xmlChar *)"size",
+                                                "%d", size);
+        if (-1 == error) {
+                return MALELF_ERROR;
+        }
+
+        return MALELF_SUCCESS;
+}
+
 _u32 malelf_report_ehdr_shoff(MalelfReport *report, MalelfEhdr *ehdr)
 {
         _i32 error = 0;
@@ -361,6 +380,7 @@ _u32 malelf_report_ehdr(MalelfReport *report, MalelfBinary *bin)
         malelf_report_ehdr_type(report, &ehdr);
         malelf_report_ehdr_machine(report, &ehdr);
         malelf_report_ehdr_version(report, &ehdr);
+        malelf_report_ehdr_size(report, &ehdr);
         malelf_report_ehdr_entry(report, &ehdr);
         malelf_report_ehdr_phoff(report, &ehdr);
         malelf_report_ehdr_shoff(report, &ehdr);

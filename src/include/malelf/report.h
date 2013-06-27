@@ -180,6 +180,17 @@ extern _u32 malelf_report_ehdr_phentsize(MalelfReport *report,
 extern _u32 malelf_report_ehdr_phnum(MalelfReport *report, MalelfEhdr *ehdr);
 
 
+/*! Generate e_ehsize report from Ehdr.
+ *
+ * \param report A valid MalelfReport object.
+ * \param ehdr A valid MalelfEhdr object.
+ *
+ * \return MALELF_SUCCESS if operation was successful,
+ *          otherwise returns MALELF_ERROR.
+ */
+extern _u32 malelf_report_ehdr_size(MalelfReport *report, MalelfEhdr *ehdr);
+
+
 /*! Generate e_shentsize report from Ehdr.
  *
  * \param report A valid MalelfReport object.
