@@ -20,6 +20,7 @@ libmalelf_la_SOURCES =  binary.c \
 			table.c \
 			debug.c \
 			patch.c \
+			disas.c \
 			infect.c
 
 
@@ -40,4 +41,5 @@ library_include_HEADERS	=	include/malelf/binary.h \
 				include/malelf/table.h \
 				include/malelf/debug.h 	\
 				include/malelf/patch.h 	\
+				include/malelf/disas.h 	\
 				include/malelf/infect.h
