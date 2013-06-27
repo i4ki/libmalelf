@@ -79,7 +79,6 @@ _u32 malelf_shellcode_create_flat(MalelfBinary *output,
         assert (NULL != output);
         assert (NULL != shellcode->mem);
         assert (shellcode->size > 0);
-        assert (NULL != output->fname);
 
         if (original_entry_point > 0) {
                 entry_point.long_val = original_entry_point;
@@ -87,14 +86,6 @@ _u32 malelf_shellcode_create_flat(MalelfBinary *output,
                 entry_point.long_val = magic_bytes;
         } else {
                 entry_point.long_val = MALELF_MAGIC_BYTES;
-        }
-
-        error = malelf_binary_create(output, 1);
-
-        if (MALELF_SUCCESS != error) {
-                MALELF_DEBUG_ERROR("Failed to create empty binary file"
-                                   " '%s'.", output->fname);
-                return error;
         }
 
         error = malelf_binary_malloc_from(output, shellcode);
