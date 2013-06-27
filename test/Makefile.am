@@ -1,5 +1,3 @@
-AUTOMAKE_OPTIONS = serial-tests
-
 SUBDIRS = hosts malwares
 
 TESTS = main_test

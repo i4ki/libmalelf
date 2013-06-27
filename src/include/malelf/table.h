@@ -41,6 +41,8 @@
 #define PLUS  '+'
 #define LESS  '-'
 
+#define MALELF_TABLE_CONTENT_LEN 50
+
 /* MalelfLine
  *
  * +-------------------------------------------------+
@@ -79,6 +81,7 @@ typedef struct {
         MalelfLine line;
 } MalelfTable;
 
+
 /*! Initialize MalelfTable objetc. This method must be called.
  *
  *  \param obj a valid MalelfTable object.
@@ -89,10 +92,10 @@ typedef struct {
  *  \return MALELF_SUCCESS if class was successfully initialized,
  *          otherwise MALELF_ERROR.
  */
-_u32 malelf_table_init(MalelfTable *obj,
-                       unsigned int width,
-                       unsigned int nrows,
-                       unsigned int ncolumns);
+extern _u32 malelf_table_init(MalelfTable *obj,
+                              unsigned int width,
+                              unsigned int nrows,
+                              unsigned int ncolumns);
 
 
 /*!  Clean MalelfTable objetc. This method must be called.
@@ -102,7 +105,7 @@ _u32 malelf_table_init(MalelfTable *obj,
  *  \return MALELF_SUCCESS if class was successfully finished,
  *          otherwise MALELF_ERROR.
  */
-_u32 malelf_table_finish(MalelfTable *obj);
+extern _u32 malelf_table_finish(MalelfTable *obj);
 
 
 /*! Sets the title of the table.
@@ -113,7 +116,7 @@ _u32 malelf_table_finish(MalelfTable *obj);
  *  \return MALELF_SUCCESS if title was successfully saved,
  *          otherwise returns MALELF_ERROR.
  */
-_u32 malelf_table_set_title(MalelfTable *obj, char *title);
+extern _u32 malelf_table_set_title(MalelfTable *obj, char *title);
 
 
 /*! Sets the headers of the table.
@@ -124,7 +127,7 @@ _u32 malelf_table_set_title(MalelfTable *obj, char *title);
  *  \return MALELF_SUCCESS if headers was successfully saved,
  *          otherwise returns MALELF_ERROR.
  */
-_u32 malelf_table_set_headers(MalelfTable *obj, char **headers);
+extern _u32 malelf_table_set_headers(MalelfTable *obj, char **headers);
 
 
 /*! Print the table.
@@ -134,21 +137,40 @@ _u32 malelf_table_set_headers(MalelfTable *obj, char **headers);
  *  \return MALELF_SUCCESS if table was successfully printed,
  *          otherwise returns MALELF_ERROR.
  */
-_u32 malelf_table_print(MalelfTable *obj);
+extern _u32 malelf_table_print(MalelfTable *obj);
 
 
-/*! Add new value in a table.
+/*! Add new int value in a table.
  *
  *  \param obj A valid MalelfTable object.
  *  \param value The value to be inserted.
- *  \param type The type of value.
  *
  *  \return MALELF_SUCCESS if the value was successfully inserted,
  *          otherwise returns MALELF_ERROR.
  */
-_u32 malelf_table_add_value(MalelfTable *obj,
-                            void *value,
-                            MalelfTableType type);
+extern _u32 malelf_table_add_int_value(MalelfTable *obj, int value);
+
+
+/*! Add new hex value in a table.
+ *
+ *  \param obj A valid MalelfTable object.
+ *  \param value The value to be inserted.
+ *
+ *  \return MALELF_SUCCESS if the value was successfully inserted,
+ *          otherwise returns MALELF_ERROR.
+ */
+extern _u32 malelf_table_add_hex_value(MalelfTable *obj, int value);
+
+
+/*! Add new str value in a table.
+ *
+ *  \param obj A valid MalelfTable object.
+ *  \param value The value to be inserted.
+ *
+ *  \return MALELF_SUCCESS if the value was successfully inserted,
+ *          otherwise returns MALELF_ERROR.
+ */
+extern _u32 malelf_table_add_str_value(MalelfTable *obj, const char *value);
 
 
 /*! Add new row in a table.
@@ -159,7 +181,7 @@ _u32 malelf_table_add_value(MalelfTable *obj,
  *  \return MALELF_SUCCESS if the row was successfully inserted,
  *          otherwise returns MALELF_ERROR.
  */
-_u32 malelf_table_add_row(MalelfTable *obj, char **row);
+extern _u32 malelf_table_add_row(MalelfTable *obj, char **row);
 
 
 /*! Sets the table width.
@@ -170,7 +192,7 @@ _u32 malelf_table_add_row(MalelfTable *obj, char **row);
  *  \return MALELF_SUCCESS if the width was successfullyly setted,
  *          otherwise returns MALELF_ERROR.
  */
-_u32 malelf_table_set_width(MalelfTable *obj, unsigned int width);
+extern _u32 malelf_table_set_width(MalelfTable *obj, unsigned int width);
 
 
 /*! Sets the number of rows in a table.
@@ -181,7 +203,7 @@ _u32 malelf_table_set_width(MalelfTable *obj, unsigned int width);
  *  \return MALELF_SUCCESS if the nrows was successfullyly setted,
  *          otherwise returns MALELF_ERROR.
  */
-_u32 malelf_table_set_nrows(MalelfTable *obj, unsigned int nrows);
+extern _u32 malelf_table_set_nrows(MalelfTable *obj, unsigned int nrows);
 
 
 /*! Sets the number of rows in a table.
@@ -192,7 +214,7 @@ _u32 malelf_table_set_nrows(MalelfTable *obj, unsigned int nrows);
  *  \return MALELF_SUCCESS if the nrows was successfullyly setted,
  *          otherwise returns MALELF_ERROR.
  */
-_u32 malelf_table_set_ncolumns(MalelfTable *obj, unsigned int ncolumns);
+extern _u32 malelf_table_set_ncolumns(MalelfTable *obj, unsigned int ncolumns);
 
 
 #endif /* __MALELF_TABLE_H__ */

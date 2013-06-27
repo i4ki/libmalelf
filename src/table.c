@@ -37,8 +37,7 @@
 #include <malelf/table.h>
 #include <malelf/error.h>
 
-static _u32 _malelf_table_add_int_value(MalelfTable *obj,
-                                        int value)
+_u32 _malelf_table_add_int_value(MalelfTable *obj, int value)
 {
         if (NULL == obj) {
                 return MALELF_ERROR;
@@ -52,8 +51,7 @@ static _u32 _malelf_table_add_int_value(MalelfTable *obj,
         return MALELF_SUCCESS;
 }
 
-static _u32 _malelf_table_add_hex_value(MalelfTable *obj,
-                                        int value)
+_u32 _malelf_table_add_hex_value(MalelfTable *obj, int value)
 {
         if (NULL == obj) {
                 return MALELF_ERROR;
@@ -67,10 +65,14 @@ static _u32 _malelf_table_add_hex_value(MalelfTable *obj,
         return MALELF_SUCCESS;
 }
 
-static _u32 _malelf_table_add_str_value(MalelfTable *obj,
-                                        char *value)
+_u32 _malelf_table_add_str_value(MalelfTable *obj, char *value)
 {
         if (NULL == obj) {
+                return MALELF_ERROR;
+        }
+ 
+        if ((NULL == value) ||
+            (strlen(value) > MALELF_TABLE_CONTENT_LEN)) {
                 return MALELF_ERROR;
         }
 
@@ -83,8 +85,7 @@ static _u32 _malelf_table_add_str_value(MalelfTable *obj,
 }
 
 
-_u32 malelf_table_add_row(MalelfTable *obj,
-                          char **row)
+_u32 malelf_table_add_row(MalelfTable *obj, char **row)
 {
         unsigned int i;
 
@@ -107,27 +108,6 @@ _u32 malelf_table_add_row(MalelfTable *obj,
 
         return MALELF_SUCCESS;
 }
-
-_u32 malelf_table_add_value(MalelfTable *obj,
-                            void *value,
-                            MalelfTableType type)
-{
-        if (NULL == obj) {
-                return MALELF_ERROR;
-        }
-
-        switch(type) {
-        case MALELF_TABLE_INT: _malelf_table_add_int_value(obj, (int)value);
-                               break;
-        case MALELF_TABLE_STR: _malelf_table_add_str_value(obj, (char*)value);
-                               break;
-        case MALELF_TABLE_HEX: _malelf_table_add_hex_value(obj, (int)value);
-                               break;
-        }
-
-        return MALELF_SUCCESS;
-}
-
 
 _u32 malelf_table_finish(MalelfTable *obj)
 {
