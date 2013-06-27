@@ -1,0 +1,12 @@
+Libmalelf was created originally by Tiago Natel de Moura, but now the project 
+is maintained by the SEC+ hackers. Its main goal is improve the knowledge about
+malwares for unix-like operating systems and provides a set of API and tools
+designed to malware analysis and development.
+
+Contributors:
+=============
+
+- Tiago Natel de Moura <natel at secplus.com.br>
+- Paulo Leonardo Benatto <benatto at gmail.com>
+- Daniel Ricardo dos Santos <danielrs at gmail.com>
+- Pedro Vitti <pedrovitti at gmail.com>
