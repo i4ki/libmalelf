@@ -253,8 +253,26 @@ void malelf_binary_init(MalelfBinary *bin)
         bin->class = MALELF_ELFNONE;
 
         malelf_debug_init();
-        MALELF_DEBUG("MalelfBinary structure initialized.");
+        MALELF_DEBUG_INFO("MalelfBinary structure initialized.");
 }
+
+void malelf_binary_init_all(_u32 count, ...)
+{
+        va_list arg;
+        va_start(arg, count);
+        _u32 i = 0;
+
+        MalelfBinary *bptr = NULL;
+        for (i = 0; i < count; i++) {
+                bptr = va_arg(arg, MalelfBinary *);
+                if (bptr != NULL) {
+                        malelf_binary_init(bptr);
+                }
+        }
+
+        va_end(arg);
+}
+
 
 void malelf_binary_set_alloc_type(MalelfBinary *bin, _u8 alloc_type)
 {

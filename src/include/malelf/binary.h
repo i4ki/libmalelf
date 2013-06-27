@@ -54,13 +54,19 @@ typedef struct {
         _u32 class;
 } MalelfBinary;
 
-
 /*! Initialize MalelfBinary objetc. This method must be called.
  *
  *  \param bin a valid malelfbinary object.
  *
  */
 extern void malelf_binary_init(MalelfBinary *bin);
+
+/*! Initialize a list of MalelfBinary objects passed by parameter.
+ *
+ *  \param bin a valid malelfbinary object.
+ *
+ */
+extern void malelf_binary_init_all(_u32 count, ...);
 
 
 /*!  Clean MalelfBinary objetc. This method must be called.
