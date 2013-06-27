@@ -65,7 +65,9 @@ int main()
        CUE_SUCCESS != util_get_test_suite(&util_suite) ||
        CUE_SUCCESS != binary_get_test_suite(&binary_suite) ||
        CUE_SUCCESS != infect_get_test_suite(&infect_suite)) {
+           fprintf(stderr, "Failed to create test suite.\n");
            CU_cleanup_registry();
+           return 1;
    }
 
    /* Run all tests using the CUnit Basic interface */
