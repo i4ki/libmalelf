@@ -26,4 +26,4 @@ show_ehdr_members_SOURCES = show_ehdr_members.c
 text_section_SOURCES = text_section.asm
 
 AM_CFLAGS = -Wall -Wextra -Werror -I../src/include
-LDADD = -L../src/.libs -lmalelf -ludis86
+LDADD = -L../src/.libs -lmalelf

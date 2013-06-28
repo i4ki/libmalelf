@@ -30,7 +30,7 @@ AC_ARG_WITH([libxml2-prefix],
 	[AS_HELP_STRING([--with-libxml2-prefix],
 	  [Use this libxml2 prefix directory @<:@default=/usr@:>])],
         [with_libxml2_prefix="$withval"],
-	[with_libxml2_prefix=/usr])
+	[with_libxml2_prefix="/usr"])
 
 with_libxml2_includes="$with_libxml2_prefix/include/libxml2"
 with_libxml2_libpath="$with_libxml2_prefix/lib"

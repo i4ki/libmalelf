@@ -1,7 +1,7 @@
 CFLAGS_LANGUAGE=-std=c99 -pedantic -D_POSIX_C_SOURCE \
 		-D_SVID_SOURCE
 CFLAGS_WARNS=-Wall -Wextra -Werror
-CFLAGS_INCLUDES=-Iinclude -I$(LIBXML_INCLUDES)
+CFLAGS_INCLUDES=-Iinclude -I$(LIBXML_INCLUDES) -I$(LIBUDIS_INCLUDES)
 
 AM_CFLAGS=	-ggdb -fPIC -O2 $(CFLAGS_LANGUAGE) \
 		$(CFLAGS_WARNS) \
@@ -25,7 +25,7 @@ libmalelf_la_SOURCES =  binary.c \
 
 
 libmalelf_la_LDFLAGS = -version-info 1:0:0
-libmalelf_la_LIBADD=-L$(LIBXML_LIBPATH) -lxml2
+libmalelf_la_LIBADD=-L$(LIBXML_LIBPATH) -L$(LIBUDIS_LIBPATH) -lxml2 -ludis86
 
 library_includedir=$(includedir)/malelf
 library_include_HEADERS	=	include/malelf/binary.h \
