@@ -8,6 +8,16 @@ libtoolize_bin=`which libtoolize`
 automake_bin=`which automake`
 autoheader_bin=`which autoheader`
 
+automake_version=`automake --version | head -n1 | sed -e 's|[^0-9.]||g'`
+
+# generating clean Makefile.am
+cp test/Makefile.am.orig test/Makefile.am
+
+# Patching test/Makefile.am in case of automake-1.13.*
+case "$automake_version" in
+    *1.13*) echo "Patching test/Makefile.am"; echo "AUTOMAKE_OPTIONS=serial-tests" >> test/Makefile.am;;
+esac
+
 check_exec() {
     bin="$1"
     name="$2"
