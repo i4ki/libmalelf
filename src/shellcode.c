@@ -90,6 +90,8 @@ _u32 malelf_shellcode_create_flat(MalelfBinary *output,
 
         error = malelf_binary_malloc_from(output, shellcode);
 
+        count = output->size;
+
         /**
          * Adding the JMP HOST opcode snippet.
          */
@@ -101,38 +103,38 @@ _u32 malelf_shellcode_create_flat(MalelfBinary *output,
         count++;
 
         error = malelf_binary_add_byte(output,
-                                              &entry_point.char_val[0]);
+                                       &entry_point.char_val[0]);
         if (MALELF_SUCCESS != error) {
                 return error;
         }
 
         error = malelf_binary_add_byte(output,
-                                              &entry_point.char_val[1]);
+                                       &entry_point.char_val[1]);
         if (MALELF_SUCCESS != error) {
                 return error;
         }
 
         error = malelf_binary_add_byte(output,
-                                              &entry_point.char_val[2]);
+                                       &entry_point.char_val[2]);
         if (MALELF_SUCCESS != error) {
                 return error;
         }
 
         error = malelf_binary_add_byte(output,
-                                              &entry_point.char_val[3]);
+                                       &entry_point.char_val[3]);
         if (MALELF_SUCCESS != error) {
                 return error;
         }
 
         /* Add JMP *EAX */
         error = malelf_binary_add_byte(output,
-                                              "\xff");
+                                       "\xff");
         if (MALELF_SUCCESS != error) {
                 return error;
         }
 
         error = malelf_binary_add_byte(output,
-                                              "\xe0");
+                                       "\xe0");
         if (MALELF_SUCCESS != error) {
                 return error;
         }
@@ -159,7 +161,7 @@ _i32 malelf_shellcode_create_c(FILE* fd_o,
 
         mem = mmap(0, in_size, PROT_READ, MAP_SHARED, fileno(fd_i), 0);
         if (mem == MAP_FAILED) {
-                LOG_ERROR("Failed to map binary in memory...\n");
+                MALELF_LOG_ERROR("Failed to map binary in memory...\n");
                 return -1;
         }
 

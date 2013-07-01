@@ -712,11 +712,13 @@ inline _u32 _malelf_binary_get_section_name32(MalelfBinary *bin,
         }
 
         shstrtab = &bin->shdr.uhdr.h32[strndx];
-        if (shstrtab->sh_offset > bin->size) {
+        if (shstrtab->sh_offset > bin->size ||
+            shstrtab->sh_offset == 0) {
                 return MALELF_ESHSTRTAB_OFFSET_OUT_OF_RANGE;
         }
 
-        *name = (char *)(bin->mem + shstrtab->sh_offset + shdr32->sh_name);
+        *name = (char *)(bin->mem +
+                         shstrtab->sh_offset + shdr32->sh_name);
 
         return MALELF_SUCCESS;
 }

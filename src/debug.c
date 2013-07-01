@@ -77,11 +77,11 @@ void malelf_debug_init()
 
         if (malelf_debug_env) {
                 _malelf_debug = atoi(malelf_debug_env);
-                if (_malelf_debug >= MALELF_LOG_INFO &&
-                    _malelf_debug <= MALELF_LOG_CRITICAL) {
+                if (_malelf_debug >= MALELF_DEBUG_LOG_INFO &&
+                    _malelf_debug <= MALELF_DEBUG_LOG_CRITICAL) {
                         _malelf_debug_open_file(malelf_debug_file_env);
                 } else {
-                  _malelf_debug = MALELF_LOG_CRITICAL;
+                  _malelf_debug = MALELF_DEBUG_LOG_CRITICAL;
                 }
         }
 }
@@ -144,19 +144,19 @@ int __malelf_debug(_u8 logcode,
         strcat(fmt_out, "\n");
 
         switch (logcode) {
-        case MALELF_LOG_NONE:
+        case MALELF_DEBUG_LOG_NONE:
                 prefix = "";
                 break;
-        case MALELF_LOG_INFO:
+        case MALELF_DEBUG_LOG_INFO:
                 prefix = "[INFO]";
                 break;
-        case MALELF_LOG_WARN:
+        case MALELF_DEBUG_LOG_WARN:
                 prefix = "[WARN]";
                 break;
-        case MALELF_LOG_ERROR:
+        case MALELF_DEBUG_LOG_ERROR:
                 prefix = "[ERROR]";
                 break;
-        case MALELF_LOG_CRITICAL:
+        case MALELF_DEBUG_LOG_CRITICAL:
                 prefix = "[CRITICAL]";
                 break;
         default:

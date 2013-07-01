@@ -36,11 +36,11 @@
 #define STRINGFY(x) #x
 #define TOSTRING(x) STRINGFY(x)
 
-#define MALELF_LOG_NONE (0)
-#define MALELF_LOG_INFO (1)
-#define MALELF_LOG_WARN (2)
-#define MALELF_LOG_ERROR (3)
-#define MALELF_LOG_CRITICAL (4)
+#define MALELF_DEBUG_LOG_NONE (0)
+#define MALELF_DEBUG_LOG_INFO (1)
+#define MALELF_DEBUG_LOG_WARN (2)
+#define MALELF_DEBUG_LOG_ERROR (3)
+#define MALELF_DEBUG_LOG_CRITICAL (4)
 
 #define _MALELF_DEBUG_TEST(code, ...)                           \
         __malelf_debug(code,                                    \
@@ -52,29 +52,29 @@
 #define _MALELF_DEBUG(code, ...)                                \
         do {                                                    \
                 if (_malelf_debug >= code &&                    \
-                    _malelf_debug <= MALELF_LOG_CRITICAL) {     \
+                    _malelf_debug <= MALELF_DEBUG_LOG_CRITICAL) {     \
                         _MALELF_DEBUG_TEST(code, __VA_ARGS__);  \
                 }                                               \
         } while(0)
 
-#define MALELF_DEBUG_INFO(...) _MALELF_DEBUG(MALELF_LOG_INFO,\
+#define MALELF_DEBUG_INFO(...) _MALELF_DEBUG(MALELF_DEBUG_LOG_INFO,\
                                              __VA_ARGS__)
-#define MALELF_DEBUG_WARN(...) _MALELF_DEBUG(MALELF_LOG_WARN,\
+#define MALELF_DEBUG_WARN(...) _MALELF_DEBUG(MALELF_DEBUG_LOG_WARN,\
                                              __VA_ARGS__)
-#define MALELF_DEBUG_ERROR(...) _MALELF_DEBUG(MALELF_LOG_ERROR, \
+#define MALELF_DEBUG_ERROR(...) _MALELF_DEBUG(MALELF_DEBUG_LOG_ERROR, \
                                               __VA_ARGS__)
-#define MALELF_DEBUG_CRITICAL(...) _MALELF_DEBUG(MALELF_LOG_CRITICAL,   \
+#define MALELF_DEBUG_CRITICAL(...) _MALELF_DEBUG(MALELF_DEBUG_LOG_CRITICAL,   \
                                                  __VA_ARGS__)
 #define MALELF_DEBUG MALELF_DEBUG_INFO
 
 #define MALELF_DEBUG_TEST_WARN(...)                             \
-        _MALELF_DEBUG_TEST(MALELF_LOG_INFO, __VA_ARGS__)
+        _MALELF_DEBUG_TEST(MALELF_DEBUG_LOG_INFO, __VA_ARGS__)
 #define MALELF_DEBUG_TEST_INFO(...)                             \
-        _MALELF_DEBUG_TEST(MALELF_LOG_WARN, __VA_ARGS__)
+        _MALELF_DEBUG_TEST(MALELF_DEBUG_LOG_WARN, __VA_ARGS__)
 #define MALELF_DEBUG_TEST_ERROR(...)                            \
-        _MALELF_DEBUG_TEST(MALELF_LOG_ERROR, __VA_ARGS__)
+        _MALELF_DEBUG_TEST(MALELF_DEBUG_LOG_ERROR, __VA_ARGS__)
 #define MALELF_DEBUG_TEST_CRITICAL(...)                         \
-        _MALELF_DEBUG_TEST(MALELF_LOG_CRITICAL, __VA_ARGS__)
+        _MALELF_DEBUG_TEST(MALELF_DEBUG_LOG_CRITICAL, __VA_ARGS__)
 #define MALELF_DEBUG_TEST MALELF_DEBUG_TEST_INFO
 
 extern _u8 _malelf_debug;

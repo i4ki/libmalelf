@@ -85,10 +85,10 @@ void __malelf_perror(int code,
                 error_message = (char *) malelf_strerror(code);
         }
 
-        LOG_ERROR(format_error,
-                  file,
-                  func,
-                  line,
-                  code,
-                  error_message);
+        MALELF_LOG_ERROR(format_error,
+                         file,
+                         func,
+                         line,
+                         code,
+                         error_message);
 }

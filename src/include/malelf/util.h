@@ -40,19 +40,28 @@ MALELF_BEGIN_DECLS
 
 #define MAX_LOG_BUFFER (0x1000)
 
-#define LOG_RAW malelf_say
-#define SAY if(!malelf_quiet_mode) malelf_say
-#define LOG LOG_RAW
-#define LOG_SUCCESS malelf_success
-#define LOG_VERBOSE_SUCCESS LOG_SUCCESS
-#define LOG_ERROR malelf_error
-#define LOG_WARN malelf_warn
+#define MALELF_LOG malelf_say
+#define MALELF_SAY if(!malelf_quiet_mode) malelf_say
+#define MALELF_LOG_SUCCESS malelf_success
+#define MALELF_LOG_VERBOSE_SUCCESS MALELF_LOG_SUCCESS
+#define MALELF_LOG_ERROR malelf_error
+#define MALELF_LOG_WARN malelf_warn
 
 #define MALELF_UNUSED(var) (void*)var
 
 
 /*
+ * Log information on a file handler with a prefix.
+ * Example:
+ * malelf_log(fd, "[+]", "value=%d\n", 1) will print:
  *
+ * [+] value=1
+ *
+ * \param fd Output FILE handler
+ * \param prefix String prefix to the log
+ * \param format String format
+ * \param args List of arguments to format
+ * \return Number of bytes written to fd
  */
 extern int malelf_log(FILE *fd,
                       const char* prefix,
