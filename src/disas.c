@@ -41,7 +41,7 @@ _u32 malelf_disas_init(MalelfDisas *obj, MalelfBinary *bin)
         }
 
         ud_init(&obj->ud_obj);
-         
+
         switch (bin->class) {
         case MALELF_ELF32:
                 ud_set_mode(&obj->ud_obj, 32);
@@ -62,7 +62,7 @@ _u32 malelf_disas_set_syntax_intel(MalelfDisas *obj)
         if (NULL == obj) {
                 return MALELF_ERROR;
         }
-        
+
         ud_set_syntax(&obj->ud_obj, UD_SYN_INTEL);
 
         return MALELF_SUCCESS;
@@ -81,8 +81,8 @@ _u32 malelf_disas_set_syntax_att(MalelfDisas *obj)
 
 
 
-static _u32 _malelf_disas64(MalelfDisas *obj, 
-                            MalelfBinary *bin, 
+static _u32 _malelf_disas64(MalelfDisas *obj,
+                            MalelfBinary *bin,
                             const char *section_name)
 {
         MalelfEhdr ehdr;
@@ -119,17 +119,17 @@ static _u32 _malelf_disas64(MalelfDisas *obj,
                 }
 
                 if (NULL != section_name) {
-                        if (0 != strncmp(sec_name, 
-                                         section_name, 
+                        if (0 != strncmp(sec_name,
+                                         section_name,
                                          strlen(section_name))) {
                                 continue;
                         }
                 }
-                      
+
                 if (NULL != sec_name) {
                         _u8* mem = bin->mem + s->sh_offset;
-                        ud_set_input_buffer(&obj->ud_obj, 
-                                            (unsigned char* )mem, 
+                        ud_set_input_buffer(&obj->ud_obj,
+                                            (unsigned char* )mem,
                                             s->sh_size);
                         while (ud_disassemble(&obj->ud_obj)) {
                                 printf("\t%s\n", ud_insn_asm(&obj->ud_obj));
@@ -139,8 +139,8 @@ static _u32 _malelf_disas64(MalelfDisas *obj,
         return MALELF_SUCCESS;
 }
 
-static _u32 _malelf_disas32(MalelfDisas *obj, 
-                            MalelfBinary *bin, 
+static _u32 _malelf_disas32(MalelfDisas *obj,
+                            MalelfBinary *bin,
                             const char *section_name)
 {
         MalelfEhdr ehdr;
@@ -150,6 +150,7 @@ static _u32 _malelf_disas32(MalelfDisas *obj,
         _u32 shnum;
         _u32 shstrndx;
         char *sec_name;
+        _u8 found = 0;
 
         if (NULL == obj) {
                 return MALELF_ERROR;
@@ -177,28 +178,31 @@ static _u32 _malelf_disas32(MalelfDisas *obj,
                 }
 
                 if (NULL != section_name) {
-                        if (0 != strncmp(sec_name, 
-                                         section_name, 
+                        if (0 != strncmp(sec_name,
+                                         section_name,
                                          strlen(section_name))) {
                                 continue;
                         }
                 }
-                      
+
                 if (NULL != sec_name) {
+                        found = 1;
                         _u8* mem = bin->mem + s->sh_offset;
-                        ud_set_input_buffer(&obj->ud_obj, 
-                                            (unsigned char* )mem, 
+                        ud_set_input_buffer(&obj->ud_obj,
+                                            (unsigned char* )mem,
                                             s->sh_size);
                         while (ud_disassemble(&obj->ud_obj)) {
                                 printf("\t%s\n", ud_insn_asm(&obj->ud_obj));
                         }
                 }
         }
-        return MALELF_SUCCESS;
+
+        return found ? MALELF_SUCCESS : MALELF_ESECTION_NOT_FOUND;
 }
 
 _u32 malelf_disas(MalelfDisas *obj, MalelfBinary *bin, const char *section_name)
 {
+        _u32 result = MALELF_EINVALID_CLASS;
         if (NULL == obj) {
                 return MALELF_ERROR;
         }
@@ -209,12 +213,11 @@ _u32 malelf_disas(MalelfDisas *obj, MalelfBinary *bin, const char *section_name)
 
         switch (bin->class) {
         case MALELF_ELF32:
-                _malelf_disas32(obj, bin, section_name);
+                result = _malelf_disas32(obj, bin, section_name);
                 break;
         case MALELF_ELF64:
-                _malelf_disas64(obj, bin, section_name);
+                result = _malelf_disas64(obj, bin, section_name);
                 break;
         }
-        return MALELF_SUCCESS;
+        return result;
 }
-

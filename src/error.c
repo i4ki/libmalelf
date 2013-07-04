@@ -61,7 +61,8 @@ const char* malelf_strerr[] = {
         "binary.",
         "Offset in binary of Section Header String Table (shstrtab) is "
         "bigger than the size of binary. The file analysed could be "
-        "corrupted."
+        "corrupted.",
+        "The specified section wasn't found."
 };
 
 const char* malelf_strerror(int code)
