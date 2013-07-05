@@ -56,3 +56,5 @@ test/main_test
 /test/infected/uname
 /test/tmp/test
 /test/tmp/test.c
+/test/Makefile.am
+test/Makefile.am
