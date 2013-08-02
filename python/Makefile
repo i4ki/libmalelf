@@ -6,4 +6,4 @@ all:
 	 python setup.py build_ext -i
 
 clean:
-	rm -rf build/* malelf/*.c malelf/*.so
+	rm -rf build/* malelf/*.c malelf/*.so malelf/*.pyc
