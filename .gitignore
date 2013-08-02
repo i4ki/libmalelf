@@ -3,7 +3,6 @@
 *.lock
 *.DS_Store
 *.swp
-Makefile
 *.log
 *.status
 
