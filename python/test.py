@@ -1,5 +1,5 @@
-from binary import MalelfBinary
+from malelf.binary import MalelfBinary
 
-bin = MalelfBinary()
-print bin.open("/bin/ls")
-bin.close()
+binary = MalelfBinary()
+print binary.open("/bin/ls")
+binary.close()
