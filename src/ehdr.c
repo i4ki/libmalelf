@@ -73,7 +73,7 @@ static MalelfEhdrTable _me_machine[] = {
 
 /* static methods */
 
-static _i32 _malelf_ehdr_get_machine(MalelfEhdr *ehdr, _u8 *machine)
+static _u32 _malelf_ehdr_get_machine(MalelfEhdr *ehdr, _u8 *machine)
 {
         int error = MALELF_SUCCESS;
 
@@ -86,7 +86,7 @@ static _i32 _malelf_ehdr_get_machine(MalelfEhdr *ehdr, _u8 *machine)
 
 
 
-static _i32 _malelf_ehdr_get_type(MalelfEhdr *ehdr, _u16 *type)
+static _u32 _malelf_ehdr_get_type(MalelfEhdr *ehdr, _u16 *type)
 {
         int error = MALELF_SUCCESS;
         assert(NULL != ehdr);
@@ -95,7 +95,7 @@ static _i32 _malelf_ehdr_get_type(MalelfEhdr *ehdr, _u16 *type)
         return error;
 }
 
-static _i32 _malelf_ehdr_get_version(MalelfEhdr *ehdr, _u8 *version)
+static _u32 _malelf_ehdr_get_version(MalelfEhdr *ehdr, _u8 *version)
 {
         int error = MALELF_SUCCESS;
         assert(NULL != ehdr);
@@ -104,7 +104,7 @@ static _i32 _malelf_ehdr_get_version(MalelfEhdr *ehdr, _u8 *version)
         return error;
 }
 
-_i32 malelf_ehdr_get_version(MalelfEhdr *ehdr,
+_u32 malelf_ehdr_get_version(MalelfEhdr *ehdr,
                              MalelfEhdrTable *me_version)
 {
         int error = MALELF_SUCCESS;
@@ -130,7 +130,7 @@ _i32 malelf_ehdr_get_version(MalelfEhdr *ehdr,
         return error;
 }
 
-_i32 malelf_ehdr_get_type (MalelfEhdr *ehdr,
+_u32 malelf_ehdr_get_type (MalelfEhdr *ehdr,
                            MalelfEhdrTable *me_type)
 {
         int error = MALELF_SUCCESS;
@@ -175,7 +175,7 @@ _i32 malelf_ehdr_get_type (MalelfEhdr *ehdr,
 
 
 
-_i32 malelf_ehdr_get_machine(MalelfEhdr *ehdr,
+_u32 malelf_ehdr_get_machine(MalelfEhdr *ehdr,
                              MalelfEhdrTable *me_machine)
 {
         int error = MALELF_SUCCESS;
@@ -220,7 +220,7 @@ _i32 malelf_ehdr_get_machine(MalelfEhdr *ehdr,
 }
 
 
-_i32 malelf_ehdr_get_entry(MalelfEhdr *ehdr, _u32 *entry)
+_u32 malelf_ehdr_get_entry(MalelfEhdr *ehdr, _u32 *entry)
 {
         int error = MALELF_SUCCESS;
 
@@ -229,7 +229,7 @@ _i32 malelf_ehdr_get_entry(MalelfEhdr *ehdr, _u32 *entry)
         return error;
 }
 
-_i32 malelf_ehdr_get_phoff(MalelfEhdr *ehdr, _u32 *phoff)
+_u32 malelf_ehdr_get_phoff(MalelfEhdr *ehdr, _u32 *phoff)
 {
         int error = MALELF_SUCCESS;
 
@@ -237,14 +237,14 @@ _i32 malelf_ehdr_get_phoff(MalelfEhdr *ehdr, _u32 *phoff)
         return error;
 }
 
-_i32 malelf_ehdr_get_shoff(MalelfEhdr *ehdr, _u32 *shoff)
+_u32 malelf_ehdr_get_shoff(MalelfEhdr *ehdr, _u32 *shoff)
 {
         int error = MALELF_SUCCESS;
         *shoff = MALELF_ELF_FIELD(ehdr, e_shoff, error);
         return error;
 }
 
-_i32 malelf_ehdr_get_ehsize(MalelfEhdr *ehdr, _u32 *size)
+_u32 malelf_ehdr_get_ehsize(MalelfEhdr *ehdr, _u32 *size)
 {
         int error = MALELF_SUCCESS;
 
@@ -253,7 +253,7 @@ _i32 malelf_ehdr_get_ehsize(MalelfEhdr *ehdr, _u32 *size)
 }
 
 
-_i32 malelf_ehdr_get_phentsize(MalelfEhdr *ehdr, _u32 *phentsize)
+_u32 malelf_ehdr_get_phentsize(MalelfEhdr *ehdr, _u32 *phentsize)
 {
         int error = MALELF_SUCCESS;
         *phentsize = MALELF_ELF_FIELD(ehdr, e_phentsize, error);
@@ -261,7 +261,7 @@ _i32 malelf_ehdr_get_phentsize(MalelfEhdr *ehdr, _u32 *phentsize)
 }
 
 
-_i32 malelf_ehdr_get_phnum(MalelfEhdr *ehdr, _u32 *phnum)
+_u32 malelf_ehdr_get_phnum(MalelfEhdr *ehdr, _u32 *phnum)
 {
         int error = MALELF_SUCCESS;
         assert(ehdr != NULL);
@@ -270,7 +270,7 @@ _i32 malelf_ehdr_get_phnum(MalelfEhdr *ehdr, _u32 *phnum)
 }
 
 
-_i32 malelf_ehdr_get_shentsize(MalelfEhdr *ehdr, _u32 *shentsize)
+_u32 malelf_ehdr_get_shentsize(MalelfEhdr *ehdr, _u32 *shentsize)
 {
         int error = MALELF_SUCCESS;
         assert(NULL != ehdr);
@@ -280,7 +280,7 @@ _i32 malelf_ehdr_get_shentsize(MalelfEhdr *ehdr, _u32 *shentsize)
 }
 
 
-_i32 malelf_ehdr_get_shnum(MalelfEhdr *ehdr, _u32 *shnum)
+_u32 malelf_ehdr_get_shnum(MalelfEhdr *ehdr, _u32 *shnum)
 {
         int error = MALELF_SUCCESS;
         assert(NULL != ehdr);
@@ -290,7 +290,7 @@ _i32 malelf_ehdr_get_shnum(MalelfEhdr *ehdr, _u32 *shnum)
 }
 
 
-_i32 malelf_ehdr_get_shstrndx(MalelfEhdr *ehdr, _u32 *shstrndx)
+_u32 malelf_ehdr_get_shstrndx(MalelfEhdr *ehdr, _u32 *shstrndx)
 {
         int error = MALELF_SUCCESS;
         assert(NULL != ehdr);
@@ -300,7 +300,7 @@ _i32 malelf_ehdr_get_shstrndx(MalelfEhdr *ehdr, _u32 *shstrndx)
         return error;
 }
 
-_i32 malelf_ehdr_get_flags(MalelfEhdr *ehdr, _u32 *flags)
+_u32 malelf_ehdr_get_flags(MalelfEhdr *ehdr, _u32 *flags)
 {
         int error = MALELF_SUCCESS;
         assert(NULL != ehdr);
@@ -309,7 +309,7 @@ _i32 malelf_ehdr_get_flags(MalelfEhdr *ehdr, _u32 *flags)
         return error;
 }
 
-_i32 malelf_ehdr_set(MalelfEhdr* ehdr, _u8 *mem, _u32 size)
+_u32 malelf_ehdr_set(MalelfEhdr* ehdr, _u8 *mem, _u32 size)
 {
         assert(NULL != ehdr);
         assert(NULL != mem);

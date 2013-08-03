@@ -65,7 +65,7 @@ typedef struct {
  */
 typedef struct {
         _u16 name;
-        _i32 value;
+        _u32 value;
         char *meaning;
 } MalelfEhdrTable;
 
@@ -77,7 +77,7 @@ typedef struct {
  *  \return MALELF_SUCCESS if MalelfEhdrTable was successful set,
  *          otherwise returns MALELF_ERROR.
  */
-extern _i32 malelf_ehdr_get_type (MalelfEhdr *ehdr,
+extern _u32 malelf_ehdr_get_type (MalelfEhdr *ehdr,
                                   MalelfEhdrTable *me_type);
 
 
@@ -89,7 +89,7 @@ extern _i32 malelf_ehdr_get_type (MalelfEhdr *ehdr,
  *  \return MALELF_SUCCESS if MalelfEhdrTable was successful set,
  *          otherwise returns MALELF_ERROR.
  */
-extern _i32 malelf_ehdr_get_machine(MalelfEhdr *ehdr,
+extern _u32 malelf_ehdr_get_machine(MalelfEhdr *ehdr,
                                     MalelfEhdrTable *me_machine);
 
 
@@ -101,7 +101,7 @@ extern _i32 malelf_ehdr_get_machine(MalelfEhdr *ehdr,
  *  \return MALELF_SUCCESS if MalelfEhdrTable was successful set,
  *          otherwise returns MALELF_ERROR.
  */
-extern _i32 malelf_ehdr_get_version(MalelfEhdr *ehdr,
+extern _u32 malelf_ehdr_get_version(MalelfEhdr *ehdr,
                                     MalelfEhdrTable *version);
 
 
@@ -113,7 +113,7 @@ extern _i32 malelf_ehdr_get_version(MalelfEhdr *ehdr,
  *  \return MALELF_SUCCESS if shoff was successful saved,
  *          otherwise returns MALELF_ERROR.
  */
-extern _i32 malelf_ehdr_get_shoff(MalelfEhdr *ehdr,
+extern _u32 malelf_ehdr_get_shoff(MalelfEhdr *ehdr,
                                   _u32 *shoff);
 
 
@@ -125,7 +125,7 @@ extern _i32 malelf_ehdr_get_shoff(MalelfEhdr *ehdr,
  *  \return MALELF_SUCCESS if phoff was successful saved,
  *          otherwise returns MALELF_ERROR.
  */
-extern _i32 malelf_ehdr_get_phoff(MalelfEhdr *ehdr,
+extern _u32 malelf_ehdr_get_phoff(MalelfEhdr *ehdr,
                                   _u32 *pshoff);
 
 
@@ -137,7 +137,7 @@ extern _i32 malelf_ehdr_get_phoff(MalelfEhdr *ehdr,
  *  \return MALELF_SUCCESS if entry was successful saved,
  *          otherwise returns MALELF_ERROR.
  */
-extern _i32 malelf_ehdr_get_entry(MalelfEhdr *ehdr,
+extern _u32 malelf_ehdr_get_entry(MalelfEhdr *ehdr,
                                   _u32 *entry);
 
 
@@ -150,7 +150,7 @@ extern _i32 malelf_ehdr_get_entry(MalelfEhdr *ehdr,
  *  \return MALELF_SUCCESS if entry was successful saved,
  *          otherwise returns MALELF_ERROR.
  */
-extern _i32 malelf_ehdr_set(MalelfEhdr* ehdr,
+extern _u32 malelf_ehdr_set(MalelfEhdr* ehdr,
                             _u8 *mem,
                             _u32 size);
 
@@ -163,7 +163,7 @@ extern _i32 malelf_ehdr_set(MalelfEhdr* ehdr,
  *  \return MALELF_SUCCESS if ehsize was successful saved,
  *          otherwise returns MALELF_ERROR.
  */
-extern _i32 malelf_ehdr_get_ehsize(MalelfEhdr *ehdr,
+extern _u32 malelf_ehdr_get_ehsize(MalelfEhdr *ehdr,
                                    _u32 *ehsize);
 
 
@@ -175,7 +175,7 @@ extern _i32 malelf_ehdr_get_ehsize(MalelfEhdr *ehdr,
  *  \return MALELF_SUCCESS if phentsize was successful saved,
  *          otherwise returns MALELF_ERROR.
  */
-extern _i32 malelf_ehdr_get_phentsize(MalelfEhdr *ehdr,
+extern _u32 malelf_ehdr_get_phentsize(MalelfEhdr *ehdr,
                                       _u32 *phentsize);
 
 
@@ -187,7 +187,7 @@ extern _i32 malelf_ehdr_get_phentsize(MalelfEhdr *ehdr,
  *  \return MALELF_SUCCESS if phnum was successful saved,
  *          otherwise returns MALELF_ERROR.
  */
-extern _i32 malelf_ehdr_get_phnum(MalelfEhdr *ehdr,
+extern _u32 malelf_ehdr_get_phnum(MalelfEhdr *ehdr,
                                   _u32 *phnum);
 
 
@@ -199,7 +199,7 @@ extern _i32 malelf_ehdr_get_phnum(MalelfEhdr *ehdr,
  *  \return MALELF_SUCCESS if shentsize was successful saved,
  *          otherwise returns MALELF_ERROR.
  */
-extern _i32 malelf_ehdr_get_shentsize(MalelfEhdr *ehdr,
+extern _u32 malelf_ehdr_get_shentsize(MalelfEhdr *ehdr,
                                       _u32 *shentsize);
 
 
@@ -211,7 +211,7 @@ extern _i32 malelf_ehdr_get_shentsize(MalelfEhdr *ehdr,
  *  \return MALELF_SUCCESS if shnum was successful saved,
  *          otherwise returns MALELF_ERROR.
  */
-extern _i32 malelf_ehdr_get_shnum(MalelfEhdr *ehdr,
+extern _u32 malelf_ehdr_get_shnum(MalelfEhdr *ehdr,
                                   _u32 *shnum);
 
 
@@ -223,7 +223,7 @@ extern _i32 malelf_ehdr_get_shnum(MalelfEhdr *ehdr,
  *  \return MALELF_SUCCESS if shstrndx was successful saved,
  *          otherwise returns MALELF_ERROR.
  */
-extern _i32 malelf_ehdr_get_shstrndx(MalelfEhdr *ehdr,
+extern _u32 malelf_ehdr_get_shstrndx(MalelfEhdr *ehdr,
                                      _u32 *shstrndx);
 
 
@@ -235,7 +235,7 @@ extern _i32 malelf_ehdr_get_shstrndx(MalelfEhdr *ehdr,
  *  \return MALELF_SUCCESS if flags was successful saved,
  *          otherwise returns MALELF_ERROR.
  */
-extern _i32 malelf_ehdr_get_flags(MalelfEhdr *ehdr,
+extern _u32 malelf_ehdr_get_flags(MalelfEhdr *ehdr,
                                   _u32 *flags);
 
 
