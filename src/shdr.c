@@ -317,3 +317,207 @@ _u32 malelf_shdr_get_entsize(MalelfShdr *shdr,
 
         return MALELF_SUCCESS;
 }
+
+_u32 malelf_shdr_set_name(MalelfShdr *shdr, _u32 name, _u32 index)
+{
+        Elf32_Shdr *shdr32;
+        Elf64_Shdr *shdr64;
+
+        switch(shdr->class) {
+        case MALELF_ELF32:
+                shdr32 = shdr->uhdr.h32 + index;
+                shdr32->sh_name = name;
+                break;
+        case MALELF_ELF64:
+                shdr64 = shdr->uhdr.h64 + index;
+                shdr64->sh_name = name;
+                break;
+        default: return MALELF_ERROR;
+        }
+
+        return MALELF_SUCCESS;
+}
+
+_u32 malelf_shdr_set_type(MalelfShdr *shdr, _u32 type, _u32 index)
+{
+        Elf32_Shdr *shdr32;
+        Elf64_Shdr *shdr64;
+
+        switch(shdr->class) {
+        case MALELF_ELF32:
+                shdr32 = shdr->uhdr.h32 + index;
+                shdr32->sh_type = type;
+                break;
+        case MALELF_ELF64:
+                shdr64 = shdr->uhdr.h64 + index;
+                shdr64->sh_type = type;
+                break;
+        default: return MALELF_ERROR;
+        }
+
+        return MALELF_SUCCESS;
+}
+
+_u32 malelf_shdr_set_flags(MalelfShdr *shdr, _u32 flags, _u32 index)
+{
+        Elf32_Shdr *shdr32;
+        Elf64_Shdr *shdr64;
+
+        switch(shdr->class) {
+        case MALELF_ELF32:
+                shdr32 = shdr->uhdr.h32 + index;
+                shdr32->sh_flags = flags;
+                break;
+        case MALELF_ELF64:
+                shdr64 = shdr->uhdr.h64 + index;
+                shdr64->sh_flags = flags;
+                break;
+        default: return MALELF_ERROR;
+        }
+
+        return MALELF_SUCCESS;
+}
+
+_u32 malelf_shdr_set_addr(MalelfShdr *shdr, _u32 addr, _u32 index)
+{
+        Elf32_Shdr *shdr32;
+        Elf64_Shdr *shdr64;
+
+        switch(shdr->class) {
+        case MALELF_ELF32:
+                shdr32 = shdr->uhdr.h32 + index;
+                shdr32->sh_addr = addr;
+                break;
+        case MALELF_ELF64:
+                shdr64 = shdr->uhdr.h64 + index;
+                shdr64->sh_addr = addr;
+                break;
+        default: return MALELF_ERROR;
+        }
+
+        return MALELF_SUCCESS;
+}
+
+
+_u32 malelf_shdr_set_offset(MalelfShdr *shdr, _u32 offset, _u32 index)
+{
+        Elf32_Shdr *shdr32;
+        Elf64_Shdr *shdr64;
+
+        switch(shdr->class) {
+        case MALELF_ELF32:
+                shdr32 = shdr->uhdr.h32 + index;
+                shdr32->sh_offset = offset;
+                break;
+        case MALELF_ELF64:
+                shdr64 = shdr->uhdr.h64 + index;
+                shdr64->sh_offset = offset;
+                break;
+        default: return MALELF_ERROR;
+        }
+
+        return MALELF_SUCCESS;
+}
+
+
+_u32 malelf_shdr_set_size(MalelfShdr *shdr, _u32 size, _u32 index)
+{
+        Elf32_Shdr *shdr32;
+        Elf64_Shdr *shdr64;
+
+        switch(shdr->class) {
+        case MALELF_ELF32:
+                shdr32 = shdr->uhdr.h32 + index;
+                shdr32->sh_size = size;
+                break;
+        case MALELF_ELF64:
+                shdr64 = shdr->uhdr.h64 + index;
+                shdr64->sh_size = size;
+                break;
+        default: return MALELF_ERROR;
+        }
+
+        return MALELF_SUCCESS;
+}
+
+_u32 malelf_shdr_set_link(MalelfShdr *shdr, _u32 link, _u32 index)
+{
+        Elf32_Shdr *shdr32;
+        Elf64_Shdr *shdr64;
+
+        switch(shdr->class) {
+        case MALELF_ELF32:
+                shdr32 = shdr->uhdr.h32 + index;
+                shdr32->sh_link = link;
+                break;
+        case MALELF_ELF64:
+                shdr64 = shdr->uhdr.h64 + index;
+                shdr64->sh_link = link;
+                break;
+        default: return MALELF_ERROR;
+        }
+
+        return MALELF_SUCCESS;
+}
+
+_u32 malelf_shdr_set_info(MalelfShdr *shdr, _u32 info, _u32 index)
+{
+        Elf32_Shdr *shdr32;
+        Elf64_Shdr *shdr64;
+
+        switch(shdr->class) {
+        case MALELF_ELF32:
+                shdr32 = shdr->uhdr.h32 + index;
+                shdr32->sh_info = info;
+                break;
+        case MALELF_ELF64:
+                shdr64 = shdr->uhdr.h64 + index;
+                shdr64->sh_info = info;
+                break;
+        default: return MALELF_ERROR;
+        }
+
+        return MALELF_SUCCESS;
+}
+
+_u32 malelf_shdr_set_addralign(MalelfShdr *shdr, _u32 addralign, _u32 index)
+{
+        Elf32_Shdr *shdr32;
+        Elf64_Shdr *shdr64;
+
+        switch(shdr->class) {
+        case MALELF_ELF32:
+                shdr32 = shdr->uhdr.h32 + index;
+                shdr32->sh_addralign = addralign;
+                break;
+        case MALELF_ELF64:
+                shdr64 = shdr->uhdr.h64 + index;
+                shdr64->sh_addralign = addralign;
+                break;
+        default: return MALELF_ERROR;
+        }
+
+        return MALELF_SUCCESS;
+
+}
+
+_u32 malelf_shdr_set_entsize(MalelfShdr *shdr, _u32 entsize, _u32 index)
+{
+        Elf32_Shdr *shdr32;
+        Elf64_Shdr *shdr64;
+
+        switch(shdr->class) {
+        case MALELF_ELF32:
+                shdr32 = shdr->uhdr.h32 + index;
+                shdr32->sh_entsize = entsize;
+                break;
+        case MALELF_ELF64:
+                shdr64 = shdr->uhdr.h64 + index;
+                shdr64->sh_entsize = entsize;
+                break;
+        default: return MALELF_ERROR;
+        }
+
+        return MALELF_SUCCESS;
+
+}

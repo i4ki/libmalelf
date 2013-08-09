@@ -88,9 +88,19 @@ extern _u32 malelf_shdr_get_name(MalelfShdr *shdr, _u32 *name, _u32 index);
 extern _u32 malelf_shdr_get_type(MalelfShdr *shdr, _u32 *type, _u32 index);
 
 
+/*! Get object MalelfShdrType.
+ *
+ *  \param shdr A valid MalelfShdr object.
+ *  \param ms_type The MalelfShdrType saved.
+ *  \param index The index of section.
+ *
+ *  \return MALELF_SUCCESS if type was successful set,
+ *          otherwise returns MALELF_ERROR.
+ */
 extern _u32 malelf_shdr_get_mstype(MalelfShdr *shdr,
                                    MalelfShdrType *ms_type,
                                    _u32 index);
+
 
 /*! Get sh_flags member from Section Header Table.
  *
@@ -189,6 +199,130 @@ extern _u32 malelf_shdr_get_addralign(MalelfShdr *shdr,
  */
 extern _u32 malelf_shdr_get_entsize(MalelfShdr *shdr,
                                     _u32 *entsize,
+                                    _u32 index);
+
+
+/*! Set sh_name member on the Section Header Table.
+ *
+ *  \param shdr A valid MalelfShdr object.
+ *  \param name The new name.
+ *  \param index The index of section.
+ *
+ *  \return MALELF_SUCCESS if name was successful set,
+ *          otherwise returns MALELF_ERROR.
+ */
+extern _u32 malelf_shdr_set_name(MalelfShdr *shdr, _u32 name, _u32 index);
+
+
+/*! Set sh_type member on the Section Header Table.
+ *
+ *  \param shdr A valid MalelfShdr object.
+ *  \param type The new type.
+ *  \param index The index of section.
+ *
+ *  \return MALELF_SUCCESS if type was successful set,
+ *          otherwise returns MALELF_ERROR.
+ */
+extern _u32 malelf_shdr_set_type(MalelfShdr *shdr, _u32 type, _u32 index);
+
+
+/*! Set sh_flags member on the Section Header Table.
+ *
+ *  \param shdr A valid MalelfShdr object.
+ *  \param flags The new flags.
+ *  \param index The index of section.
+ *
+ *  \return MALELF_SUCCESS if flags was successful set,
+ *          otherwise returns MALELF_ERROR.
+ */
+extern _u32 malelf_shdr_set_flags(MalelfShdr *shdr, _u32 flags, _u32 index);
+
+
+/*! Set sh_addr member on the Section Header Table.
+ *
+ *  \param shdr A valid MalelfShdr object.
+ *  \param addr The new addr.
+ *  \param index The index of section.
+ *
+ *  \return MALELF_SUCCESS if addr was successful set,
+ *          otherwise returns MALELF_ERROR.
+ */
+extern _u32 malelf_shdr_set_addr(MalelfShdr *shdr, _u32 addr, _u32 index);
+
+
+/*! Set sh_offset member on the Section Header Table.
+ *
+ *  \param shdr A valid MalelfShdr object.
+ *  \param offset The new offset.
+ *  \param index The index of section.
+ *
+ *  \return MALELF_SUCCESS if offset was successful set,
+ *          otherwise returns MALELF_ERROR.
+ */
+extern _u32 malelf_shdr_set_offset(MalelfShdr *shdr, _u32 offset, _u32 index);
+
+
+/*! Set sh_size member on the Section Header Table.
+ *
+ *  \param shdr A valid MalelfShdr object.
+ *  \param size The new offset.
+ *  \param index The index of section.
+ *
+ *  \return MALELF_SUCCESS if offset was successful set,
+ *          otherwise returns MALELF_ERROR.
+ */
+extern _u32 malelf_shdr_set_size(MalelfShdr *shdr, _u32 size, _u32 index);
+
+
+/*! Set sh_link member on the Section Header Table.
+ *
+ *  \param shdr A valid MalelfShdr object.
+ *  \param link The new link.
+ *  \param index The index of section.
+ *
+ *  \return MALELF_SUCCESS if link was successful set,
+ *          otherwise returns MALELF_ERROR.
+ */
+extern _u32 malelf_shdr_set_link(MalelfShdr *shdr, _u32 link, _u32 index);
+
+
+/*! Set sh_info member on the Section Header Table.
+ *
+ *  \param shdr A valid MalelfShdr object.
+ *  \param info The new info.
+ *  \param index The index of section.
+ *
+ *  \return MALELF_SUCCESS if info was successful set,
+ *          otherwise returns MALELF_ERROR.
+ */
+extern _u32 malelf_shdr_set_info(MalelfShdr *shdr, _u32 info, _u32 index);
+
+
+/*! Set sh_addralign member on the Section Header Table.
+ *
+ *  \param shdr A valid MalelfShdr object.
+ *  \param addralign The new addralign.
+ *  \param index The index of section.
+ *
+ *  \return MALELF_SUCCESS if addralign was successful set,
+ *          otherwise returns MALELF_ERROR.
+ */
+extern _u32 malelf_shdr_set_addralign(MalelfShdr *shdr,
+                                      _u32 addralign,
+                                      _u32 index);
+
+
+/*! Set sh_entsize member on the Section Header Table.
+ *
+ *  \param shdr A valid MalelfShdr object.
+ *  \param entsize The new entsize.
+ *  \param index The index of section.
+ *
+ *  \return MALELF_SUCCESS if entsize was successful set,
+ *          otherwise returns MALELF_ERROR.
+ */
+extern _u32 malelf_shdr_set_entsize(MalelfShdr *shdr,
+                                    _u32 entsize,
                                     _u32 index);
 
 
