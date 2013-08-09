@@ -5,15 +5,6 @@
  *
  * Evil using this library is the responsibility of the programmer.
  *
- * Author:
- *         Tiago Natel de Moura <natel@secplus.com.br>
- *
- * Contributorss:
- *         Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
- *         Paulo Leonardo Benatto    <benatto@gmail.com>
- *
- * Copyright 2012, 2013 by Tiago Natel de Moura. All Rights Reserved.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
