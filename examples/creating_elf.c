@@ -98,7 +98,7 @@ int main(int argc, char **argv)
         phdr_phdr.p_vaddr = MALELF_ORIGIN + phdr_phdr.p_offset;
         phdr_phdr.p_paddr = phdr_phdr.p_vaddr;
         phdr_phdr.p_flags = PF_R | PF_X;
-        phdr_phdr.p_filesz = phdr_phdr.p_memsz = sizeof (Elf32_Phdr);
+        phdr_phdr.p_filesz = phdr_phdr.p_memsz = (sizeof (Elf32_Phdr) * 3) + phdr_phdr.p_offset;
         phdr_phdr.p_align = 0;
 
         error = malelf_binary_add_phdr32(&bin, &phdr_phdr);
@@ -156,6 +156,8 @@ int main(int argc, char **argv)
         memcpy(bin.mem + phdr_note.p_offset, message, phdr_note.p_filesz);
 
         malelf_ehdr_set_entry(&bin.ehdr, phdr_load.p_vaddr);
+
+        bin.size = phdr_note.p_offset + phdr_note.p_filesz;
 
         error = malelf_binary_write(&bin, argv[2], 1);
 
