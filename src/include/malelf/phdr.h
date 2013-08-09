@@ -3,17 +3,6 @@
  * developed with the intent to assist in the process of infecting
  * binaries and provide a safe way to analyze malwares.
  *
- * Evil using this library is the responsibility of the programmer.
- *
- * Author:
- *         Tiago Natel de Moura <natel@secplus.com.br>
- *
- * Contributorss:
- *         Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
- *         Paulo Leonardo Benatto    <benatto@gmail.com>
- *
- * Copyright 2012, 2013 by Tiago Natel de Moura. All Rights Reserved.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -166,6 +155,102 @@ extern _u32 malelf_phdr_get_flags(MalelfPhdr *phdr, _u32 *flags, _u32 index);
  *          otherwise returns MALELF_ERROR.
  */
 extern _u32 malelf_phdr_get_align(MalelfPhdr *phdr, _u32 *align, _u32 index);
+
+
+/*! Set new p_type on the Program Header Table.
+ *
+ *  \param phdr A valid MalelfPhdr object.
+ *  \param type New type.
+ *  \param index The index of segment.
+ *
+ *  \return MALELF_SUCCESS if new type was successful saved,
+ *          otherwise returns MALELF_ERROR.
+ */
+extern _u32 malelf_phdr_set_type(MalelfPhdr *phdr, _u32 type, _u32 index);
+
+
+/*! Set p_align on the Program Header Table.
+ *
+ *  \param phdr A valid MalelfPhdr object.
+ *  \param align New align.
+ *  \param index The index of segment.
+ *
+ *  \return MALELF_SUCCESS if new align was successful saved,
+ *          otherwise returns MALELF_ERROR.
+ */
+extern _u32 malelf_phdr_set_align(MalelfPhdr *phdr, _u32 align, _u32 index);
+
+
+/*! Set p_flags on the Program Header Table.
+ *
+ *  \param phdr A valid MalelfPhdr object.
+ *  \param align New flags.
+ *  \param index The index of segment.
+ *
+ *  \return MALELF_SUCCESS if new flags was successful saved,
+ *          otherwise returns MALELF_ERROR.
+ */
+extern _u32 malelf_phdr_set_flags(MalelfPhdr *phdr, _u32 flags, _u32 index);
+
+
+/*! Set p_memsz on the Program Header Table.
+ *
+ *  \param phdr A valid MalelfPhdr object.
+ *  \param align New memsz.
+ *  \param index The index of segment.
+ *
+ *  \return MALELF_SUCCESS if new memsz was successful saved,
+ *          otherwise returns MALELF_ERROR.
+ */
+extern _u32 malelf_phdr_set_memsz(MalelfPhdr *phdr, _u32 memsz, _u32 index);
+
+
+/*! Set p_offset on the Program Header Table.
+ *
+ *  \param phdr A valid MalelfPhdr object.
+ *  \param align New offset.
+ *  \param index The index of segment.
+ *
+ *  \return MALELF_SUCCESS if new offset was successful saved,
+ *          otherwise returns MALELF_ERROR.
+ */
+extern _u32 malelf_phdr_set_offset(MalelfPhdr *phdr, _u32 offset, _u32 index);
+
+
+/*! Set p_vaddr on the Program Header Table.
+ *
+ *  \param phdr A valid MalelfPhdr object.
+ *  \param align New vaddr.
+ *  \param index The index of segment.
+ *
+ *  \return MALELF_SUCCESS if new vaddr was successful saved,
+ *          otherwise returns MALELF_ERROR.
+ */
+extern _u32 malelf_phdr_set_vaddr(MalelfPhdr *phdr, _u32 vaddr, _u32 index);
+
+
+/*! Set p_paddr on the Program Header Table.
+ *
+ *  \param phdr A valid MalelfPhdr object.
+ *  \param align New paddr.
+ *  \param index The index of segment.
+ *
+ *  \return MALELF_SUCCESS if new paddr was successful saved,
+ *          otherwise returns MALELF_ERROR.
+ */
+extern _u32 malelf_phdr_set_paddr(MalelfPhdr *phdr, _u32 paddr, _u32 index);
+
+
+/*! Set p_filesz on the Program Header Table.
+ *
+ *  \param phdr A valid MalelfPhdr object.
+ *  \param align New filesz.
+ *  \param index The index of segment.
+ *
+ *  \return MALELF_SUCCESS if new filesz was successful saved,
+ *          otherwise returns MALELF_ERROR.
+ */
+extern _u32 malelf_phdr_set_filesz(MalelfPhdr *phdr, _u32 filesz, _u32 index);
 
 
 MALELF_END_DECLS

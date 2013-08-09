@@ -5,15 +5,6 @@
  *
  * Evil using this library is the responsibility of the programmer.
  *
- * Author:
- *         Tiago Natel de Moura <natel@secplus.com.br>
- *
- * Contributors:
- *         Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
- *         Paulo Leonardo Benatto    <benatto@gmail.com>
- *
- * Copyright 2012, 2013 by Tiago Natel de Moura. All Rights Reserved.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -216,3 +207,164 @@ _u32 malelf_phdr_get_align(MalelfPhdr *phdr, _u32 *align, _u32 index)
 
         return MALELF_SUCCESS;
 }
+
+_u32 malelf_phdr_set_type(MalelfPhdr *phdr, _u32 type, _u32 index)
+{
+        Elf32_Phdr *phdr32;
+        Elf64_Phdr *phdr64;
+
+        switch(phdr->class) {
+        case MALELF_ELF32:
+                phdr32 = phdr->uhdr.h32 + index;
+                phdr32->p_type = type;
+                break;
+        case MALELF_ELF64:
+                phdr64 = phdr->uhdr.h64 + index;
+                phdr64->p_type = type;
+                break;
+        default: return MALELF_ERROR;
+        }
+
+        return MALELF_SUCCESS;
+}
+
+_u32 malelf_phdr_set_align(MalelfPhdr *phdr, _u32 align, _u32 index)
+{
+        Elf32_Phdr *phdr32;
+        Elf64_Phdr *phdr64;
+
+        switch(phdr->class) {
+        case MALELF_ELF32:
+                phdr32 = phdr->uhdr.h32 + index;
+                phdr32->p_align = align;
+                break;
+        case MALELF_ELF64:
+                phdr64 = phdr->uhdr.h64 + index;
+                phdr64->p_align = align;
+                break;
+        default: return MALELF_ERROR;
+        }
+
+        return MALELF_SUCCESS;
+}
+
+_u32 malelf_phdr_set_flags(MalelfPhdr *phdr, _u32 flags, _u32 index)
+{
+        Elf32_Phdr *phdr32;
+        Elf64_Phdr *phdr64;
+
+        switch(phdr->class) {
+        case MALELF_ELF32:
+                phdr32 = phdr->uhdr.h32 + index;
+                phdr32->p_flags = flags;
+                break;
+        case MALELF_ELF64:
+                phdr64 = phdr->uhdr.h64 + index;
+                phdr64->p_flags = flags;
+                break;
+        default: return MALELF_ERROR;
+        }
+
+        return MALELF_SUCCESS;
+}
+
+_u32 malelf_phdr_set_memsz(MalelfPhdr *phdr, _u32 memsz, _u32 index)
+{
+        Elf32_Phdr *phdr32;
+        Elf64_Phdr *phdr64;
+
+        switch(phdr->class) {
+        case MALELF_ELF32:
+                phdr32 = phdr->uhdr.h32 + index;
+                phdr32->p_memsz = memsz;
+                break;
+        case MALELF_ELF64:
+                phdr64 = phdr->uhdr.h64 + index;
+                phdr64->p_memsz = memsz;
+                break;
+        default: return MALELF_ERROR;
+        }
+
+        return MALELF_SUCCESS;
+}
+
+_u32 malelf_phdr_set_offset(MalelfPhdr *phdr, _u32 offset, _u32 index)
+{
+        Elf32_Phdr *phdr32;
+        Elf64_Phdr *phdr64;
+
+        switch(phdr->class) {
+        case MALELF_ELF32:
+                phdr32 = phdr->uhdr.h32 + index;
+                phdr32->p_offset = offset;
+                break;
+        case MALELF_ELF64:
+                phdr64 = phdr->uhdr.h64 + index;
+                phdr64->p_offset = offset;
+                break;
+        default: return MALELF_ERROR;
+        }
+
+        return MALELF_SUCCESS;
+}
+
+_u32 malelf_phdr_set_vaddr(MalelfPhdr *phdr, _u32 vaddr, _u32 index)
+{
+        Elf32_Phdr *phdr32;
+        Elf64_Phdr *phdr64;
+
+        switch(phdr->class) {
+        case MALELF_ELF32:
+                phdr32 = phdr->uhdr.h32 + index;
+                phdr32->p_vaddr = vaddr;
+                break;
+        case MALELF_ELF64:
+                phdr64 = phdr->uhdr.h64 + index;
+                phdr64->p_vaddr = vaddr;
+                break;
+        default: return MALELF_ERROR;
+        }
+
+        return MALELF_SUCCESS;
+}
+
+_u32 malelf_phdr_set_paddr(MalelfPhdr *phdr, _u32 paddr, _u32 index)
+{
+        Elf32_Phdr *phdr32;
+        Elf64_Phdr *phdr64;
+
+        switch(phdr->class) {
+        case MALELF_ELF32:
+                phdr32 = phdr->uhdr.h32 + index;
+                phdr32->p_paddr = paddr;
+                break;
+        case MALELF_ELF64:
+                phdr64 = phdr->uhdr.h64 + index;
+                phdr64->p_paddr = paddr;
+                break;
+        default: return MALELF_ERROR;
+        }
+
+        return MALELF_SUCCESS;
+}
+
+_u32 malelf_phdr_set_filesz(MalelfPhdr *phdr, _u32 filesz, _u32 index)
+{
+        Elf32_Phdr *phdr32;
+        Elf64_Phdr *phdr64;
+
+        switch(phdr->class) {
+        case MALELF_ELF32:
+                phdr32 = phdr->uhdr.h32 + index;
+                phdr32->p_filesz = filesz;
+                break;
+        case MALELF_ELF64:
+                phdr64 = phdr->uhdr.h64 + index;
+                phdr64->p_filesz = filesz;
+                break;
+        default: return MALELF_ERROR;
+        }
+
+        return MALELF_SUCCESS;
+}
+
