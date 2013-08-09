@@ -5,15 +5,6 @@
  *
  * Evil using this library is the responsibility of the programmer.
  *
- * Author:
- *         Tiago Natel de Moura <natel@secplus.com.br>
- *
- * Contributors:
- *         Daniel Ricardo dos Santos <danielricardo.santos@gmail.com>
- *         Paulo Leonardo Benatto    <benatto@gmail.com>
- *
- * Copyright 2012, 2013 by Tiago Natel de Moura. All Rights Reserved.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -353,3 +344,185 @@ _u32 malelf_ehdr_set_entry(MalelfEhdr *ehdr, _u32 new_entry)
 
         return error;
 }
+
+_u32 malelf_ehdr_set_ehsize(MalelfEhdr *ehdr, _u32 ehsize)
+{
+        _u32 error = MALELF_SUCCESS;
+
+        switch (ehdr->class) {
+        case MALELF_ELF32:
+                ehdr->uhdr.h32->e_ehsize = ehsize;
+                break;
+        case MALELF_ELF64:
+                ehdr->uhdr.h64->e_ehsize = ehsize;
+                break;
+        default:
+                error = MALELF_EINVALID_CLASS;
+        }
+
+        return error;
+}
+
+_u32 malelf_ehdr_set_phoff(MalelfEhdr *ehdr, _u32 phoff)
+{
+        _u32 error = MALELF_SUCCESS;
+
+        switch (ehdr->class) {
+        case MALELF_ELF32:
+                ehdr->uhdr.h32->e_phoff = phoff;
+                break;
+        case MALELF_ELF64:
+                ehdr->uhdr.h64->e_phoff = phoff;
+                break;
+        default:
+                error = MALELF_EINVALID_CLASS;
+        }
+
+        return error;
+}
+
+_u32 malelf_ehdr_set_phnum(MalelfEhdr *ehdr, _u32 phnum)
+{
+        _u32 error = MALELF_SUCCESS;
+
+        switch (ehdr->class) {
+        case MALELF_ELF32:
+                ehdr->uhdr.h32->e_phnum = phnum;
+                break;
+        case MALELF_ELF64:
+                ehdr->uhdr.h64->e_phnum = phnum;
+                break;
+        default:
+                error = MALELF_EINVALID_CLASS;
+        }
+
+        return error;
+}
+
+_u32 malelf_ehdr_set_shoff(MalelfEhdr *ehdr, _u32 shoff)
+{
+        _u32 error = MALELF_SUCCESS;
+
+        switch (ehdr->class) {
+        case MALELF_ELF32:
+                ehdr->uhdr.h32->e_shoff = shoff;
+                break;
+        case MALELF_ELF64:
+                ehdr->uhdr.h64->e_shoff = shoff;
+                break;
+        default:
+                error = MALELF_EINVALID_CLASS;
+        }
+
+        return error;
+}
+
+_u32 malelf_ehdr_set_shnum(MalelfEhdr *ehdr, _u32 shnum)
+{
+        _u32 error = MALELF_SUCCESS;
+
+        switch (ehdr->class) {
+        case MALELF_ELF32:
+                ehdr->uhdr.h32->e_shnum = shnum;
+                break;
+        case MALELF_ELF64:
+                ehdr->uhdr.h64->e_shnum = shnum;
+                break;
+        default:
+                error = MALELF_EINVALID_CLASS;
+        }
+
+        return error;
+}
+
+_u32 malelf_ehdr_set_phentsize(MalelfEhdr *ehdr, _u32 phentsize)
+{
+        _u32 error = MALELF_SUCCESS;
+
+        switch (ehdr->class) {
+        case MALELF_ELF32:
+                ehdr->uhdr.h32->e_phentsize = phentsize;
+                break;
+        case MALELF_ELF64:
+                ehdr->uhdr.h64->e_phentsize = phentsize;
+                break;
+        default:
+                error = MALELF_EINVALID_CLASS;
+        }
+
+        return error;
+}
+
+_u32 malelf_ehdr_set_shentsize(MalelfEhdr *ehdr, _u32 shentsize)
+{
+        _u32 error = MALELF_SUCCESS;
+
+        switch (ehdr->class) {
+        case MALELF_ELF32:
+                ehdr->uhdr.h32->e_shentsize = shentsize;
+                break;
+        case MALELF_ELF64:
+                ehdr->uhdr.h64->e_shentsize = shentsize;
+                break;
+        default:
+                error = MALELF_EINVALID_CLASS;
+        }
+
+        return error;
+}
+
+_u32 malelf_ehdr_set_shstrndx(MalelfEhdr *ehdr, _u32 shstrndx)
+{
+        _u32 error = MALELF_SUCCESS;
+
+        switch (ehdr->class) {
+        case MALELF_ELF32:
+                ehdr->uhdr.h32->e_shstrndx = shstrndx;
+                break;
+        case MALELF_ELF64:
+                ehdr->uhdr.h64->e_shstrndx = shstrndx;
+                break;
+        default:
+                error = MALELF_EINVALID_CLASS;
+        }
+
+        return error;
+}
+
+_u32 malelf_ehdr_set_version(MalelfEhdr *ehdr, _u32 version)
+{
+        _u32 error = MALELF_SUCCESS;
+
+        switch (ehdr->class) {
+        case MALELF_ELF32:
+                ehdr->uhdr.h32->e_version = version;
+                break;
+        case MALELF_ELF64:
+                ehdr->uhdr.h64->e_version = version;
+                break;
+        default:
+                error = MALELF_EINVALID_CLASS;
+        }
+
+        return error;
+}
+
+_u32 malelf_ehdr_set_type(MalelfEhdr *ehdr, _u32 type)
+{
+        _u32 error = MALELF_SUCCESS;
+
+        switch (ehdr->class) {
+        case MALELF_ELF32:
+                ehdr->uhdr.h32->e_type = type;
+                break;
+        case MALELF_ELF64:
+                ehdr->uhdr.h64->e_type = type;
+                break;
+        default:
+                error = MALELF_EINVALID_CLASS;
+        }
+
+        return error;
+}
+
+
