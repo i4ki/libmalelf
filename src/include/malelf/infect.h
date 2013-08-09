@@ -26,27 +26,62 @@
 
 #include <malelf/binary.h>
 
+
+MALELF_BEGIN_DECLS
+
+
+/*! Infect ELF using Silio Cesare technique.
+ *
+ * \param input A valid MalelfBinary object.
+ * \param output The ELF infected output.
+ * \param parasite The malware user to infect.
+ * \param offset_entry_point Parasite entry point.
+ *
+ * \return MALELF_SUCCESS if the operation succeeded,
+ *         otherwise an ERROR.
+ */ 
 extern _u8 malelf_infect_silvio_padding(MalelfBinary* input,
                                         MalelfBinary* output,
                                         MalelfBinary* parasite,
                                         _u32 offset_entry_point,
                                         _u32 magic_bytes);
 
+
+/*! Infect ELF using Silio Cesare technique (32 bits).
+ *
+ * \param input A valid MalelfBinary object.
+ * \param output The ELF infected output.
+ * \param parasite The malware user to infect.
+ * \param offset_entry_point Parasite entry point.
+ *
+ * \return MALELF_SUCCESS if the operation succeeded,
+ *         otherwise an ERROR.
+ */ 
 extern _u32 malelf_infect_silvio_padding32(MalelfBinary *host,
                                            MalelfBinary *output,
                                            MalelfBinary *parasite,
                                            _u32 offset_entry_point,
                                            _u32 magic_bytes);
 
+
+/*! Infect ELF using Silio Cesare technique (64 bits).
+ *
+ * \param input A valid MalelfBinary object.
+ * \param output The ELF infected output.
+ * \param parasite The malware user to infect.
+ * \param offset_entry_point Parasite entry point.
+ *
+ * \return MALELF_SUCCESS if the operation succeeded,
+ *         otherwise an ERROR.
+ */ 
 extern _u32 malelf_infect_silvio_padding64(MalelfBinary *host,
                                            MalelfBinary *output,
                                            MalelfBinary *parasite,
                                            _u32 offset_entry_point,
                                            _u32 magic_bytes);
 
-/*extern _u8 malelf_infect_nop(MalelfBinary* input,
-                             MalelfBinary* output,
-                             MalelfBinary* parasite);*/
+
+MALELF_END_DECLS
 
 
 #endif

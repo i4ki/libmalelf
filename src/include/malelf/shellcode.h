@@ -25,27 +25,59 @@
 
 #include <malelf/binary.h>
 
+
 MALELF_BEGIN_DECLS
 
-/*
+
+/*!
+ * 
+ * \param bin A valid MalelfBinary object.
  *
- *
+ * \return MALELF_SUCCESS if the operation succeeded,
+ *         otherwise an ERROR.
  */
 extern _u32 malelf_shellcode_dump(MalelfBinary *bin);
 
 
-/*
+/*!
+ * 
+ * \param bin A valid MalelfBinary object.
+ * \param fp
  *
- *
+ * \return MALELF_SUCCESS if the operation succeeded,
+ *         otherwise an ERROR.
  */
 extern _u32 malelf_shellcode_get_c_string(FILE *fp, MalelfBinary *bin);
 
+
+/*!
+ *
+ * \param dest
+ * \param src
+ * \param magic_offset
+ * \param original_entry_point
+ * \param magic_bytes
+ *
+ * \return MALELF_SUCCESS if the operation succeeded,
+ *         otherwise an ERROR.
+ */
 extern _u32 malelf_shellcode_create_flat(MalelfBinary *dest,
                                          MalelfBinary *src,
                                          _u32 *magic_offset,
                                          unsigned long int original_entry_point,
                                          unsigned long int magic_bytes);
 
+
+/*!
+ *
+ * \param fd_o
+ * \param in_size
+ * \param fd_i
+ * \param original_entry_point
+ *
+ * \return MALELF_SUCCESS if the operation succeeded,
+ *         otherwise an ERROR.
+ */
 extern _i32 malelf_shellcode_create_c(FILE* fd_o,
                                       int in_size,
                                       FILE* fd_i,
@@ -53,5 +85,6 @@ extern _i32 malelf_shellcode_create_c(FILE* fd_o,
 
 
 MALELF_END_DECLS
+
 
 #endif

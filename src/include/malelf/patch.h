@@ -20,15 +20,41 @@
  *
  */
 
+#include "defines.h"
+
+
+MALELF_BEGIN_DECLS
+
+
 #ifndef MALELF_PATCH_H
 #define MALELF_PATCH_H
 
+/*! 
+ *
+ * \param binary A valid MalelfBinary object.
+ * \param magic_bytes
+ * \param value_addr
+ *
+ * \return MALELF_SUCCESS if the operation succeeded,
+ *         otherwise an ERROR.
+ */
 extern _u8 malelf_patch_at_magic_byte(MalelfBinary *binary,
-                                             _u32 magic_bytes,
-                                             _u32 value_addr);
+                                      _u32 magic_bytes,
+                                      _u32 value_addr);
 
-extern _u8 malelf_patch_at(MalelfBinary *bin,
-                                  _u32 offset,
-                                  unsigned value);
+/*! 
+ *
+ * \param binary A valid MalelfBinary object.
+ * \param magic_bytes
+ * \param value_addr
+ *
+ * \return MALELF_SUCCESS if the operation succeeded,
+ *         otherwise an ERROR.
+ */
+extern _u8 malelf_patch_at(MalelfBinary *bin, _u32 offset, unsigned value);
+
+
+MALELF_END_DECLS
+
 
 #endif

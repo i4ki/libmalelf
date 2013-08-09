@@ -26,6 +26,9 @@
 #include <stdbool.h>
 
 #include "types.h"
+#include "defines.h"
+
+MALELF_BEGIN_DECLS
 
 #define PIPE  '|'
 #define EMPTY ' '
@@ -207,5 +210,7 @@ extern _u32 malelf_table_set_nrows(MalelfTable *obj, unsigned int nrows);
  */
 extern _u32 malelf_table_set_ncolumns(MalelfTable *obj, unsigned int ncolumns);
 
+
+MALELF_END_DECLS
 
 #endif /* __MALELF_TABLE_H__ */

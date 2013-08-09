@@ -24,6 +24,7 @@
 #define MALELF_ERROR_H
 
 #include "util.h"
+#include "defines.h"
 
 
 MALELF_BEGIN_DECLS

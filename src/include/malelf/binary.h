@@ -31,6 +31,10 @@
 #include "shdr.h"
 #include "phdr.h"
 
+
+MALELF_BEGIN_DECLS
+
+
 typedef struct {
         char *fname;         /* Binary filename */
         char *bkpfile;       /* Filename of backup'ed file in case of
@@ -45,12 +49,14 @@ typedef struct {
         _u32 class;
 } MalelfBinary;
 
+
 /*! Initialize MalelfBinary objetc. This method must be called.
  *
  *  \param bin a valid malelfbinary object.
  *
  */
 extern void malelf_binary_init(MalelfBinary *bin);
+
 
 /*! Initialize a list of MalelfBinary objects passed by parameter.
  *
@@ -67,8 +73,6 @@ extern void malelf_binary_init_all(_u32 count, ...);
  */
 extern _i32 malelf_binary_close(MalelfBinary *bin);
 
-/* SETTERS */
-
 
 /*! Set the alloc type.
  *
@@ -77,9 +81,6 @@ extern _i32 malelf_binary_close(MalelfBinary *bin);
  *              (MALELF_ALLOC_MMAP or MALELF_ALLOC_MALLOC)
  */
 extern void malelf_binary_set_alloc_type(MalelfBinary *bin, _u8 alloc_type);
-
-
-/* GETTERS */
 
 
 /*! Get the architecture class type from binary file.
@@ -133,7 +134,7 @@ extern _u32 malelf_binary_get_shdr(MalelfBinary *bin, MalelfShdr *shdr);
 extern _u32 malelf_binary_get_alloc_type(MalelfBinary *bin, _u8 *alloc_type);
 
 
-/*! Load binary file.
+/*! Load binary file (READ-ONLY).
  *
  *  \param bin A valid MalelfBinary object.
  *  \param fname Binary file name.
@@ -142,6 +143,14 @@ extern _u32 malelf_binary_get_alloc_type(MalelfBinary *bin, _u8 *alloc_type);
  */
 extern _i32 malelf_binary_open(MalelfBinary *binary, char *fname);
 
+
+/*! Load binary file.
+ *
+ *  \param bin A valid MalelfBinary object.
+ *  \param fname Binary file name.
+ *
+ *  \return The malelf status.
+ */
 extern _i32 malelf_binary_openw(MalelfBinary *binary, char *fname);
 
 
@@ -154,15 +163,49 @@ extern _i32 malelf_binary_openw(MalelfBinary *binary, char *fname);
  */
 extern _i32 malelf_binary_open_mmap(MalelfBinary *binary, char *fname);
 
-extern _u32 malelf_binary_mmap_from(MalelfBinary *dest,
-                                    MalelfBinary *src);
 
-extern _u32 malelf_binary_malloc_from(MalelfBinary *dest,
-                                      MalelfBinary *src);
+/*!
+ * 
+ * \param 
+ * \param 
+ *
+ * \return
+ */
+extern _u32 malelf_binary_mmap_from(MalelfBinary *dest, MalelfBinary *src);
 
-extern _u32 malelf_binary_add_byte(MalelfBinary *bin,
-                                          void *byte);
 
+/*!
+ * 
+ * \param 
+ * \param 
+ *
+ * \return
+ *
+ */
+extern _u32 malelf_binary_malloc_from(MalelfBinary *dest, MalelfBinary *src);
+
+
+/*!
+ * 
+ * \param 
+ * \param 
+ *
+ * \return
+ *
+ */
+extern _u32 malelf_binary_add_byte(MalelfBinary *bin, void *byte);
+
+
+/*!
+ * 
+ * \param 
+ * \param 
+ * \param 
+ * \param 
+ *
+ * \return
+ *
+ */
 extern _u32 malelf_binary_copy_data(MalelfBinary *dest,
                                     MalelfBinary *src,
                                     _u32 offset_start,
@@ -245,6 +288,7 @@ extern _u32 malelf_binary_get_section(MalelfBinary *bin,
  */
 extern _u32 malelf_binary_write_elf(MalelfBinary *bin, const char *fname) __attribute__((deprecated));
 
+
 /*! Write a MalelfBinary file on disk.
  *
  *  \param bin A valid MalelfBinary object.
@@ -257,7 +301,17 @@ extern _u32 malelf_binary_write(MalelfBinary *bin,
                                 char *fname,
                                 _u8 overwrite);
 
+
+/*! Create an ELF binary.
+ *
+ *  \param output A valid MalelfBinary object.
+ *  \param overwrite If binary file exist overwrite it or not.
+ *
+ *  \return MALELF_SUCCESS if the operation succeeded,
+ *          otherwise MALELF_ERROR.
+ */ 
 extern _u32 malelf_binary_create(MalelfBinary *output, _u8 overwrite);
+
 
 /*! Crate executable file arch 32.
  *
@@ -296,6 +350,8 @@ extern _u32 malelf_binary_create_elf_exec(MalelfBinary *bin, _u8 class);
  */
 extern _u32 malelf_binary_add_phdr32(MalelfBinary *bin, Elf32_Phdr *phdr);
 
+
+MALELF_BEGIN_DECLS
 
 
 #endif /* MALELF_BINARY_H */
