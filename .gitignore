@@ -8,6 +8,7 @@
 
 # Object files
 *.o
+Makefile
 
 # Libraries
 *.lib
@@ -81,3 +82,6 @@ test/Makefile.am
 /test/hosts/uninfected_asm
 /test/main_test.trs
 /test/malwares/Makefile.in
+/python/malelf/__init__.pyc
+/python/malelf/defines.pyc
+/src/.#nop.c

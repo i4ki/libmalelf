@@ -12,7 +12,8 @@ bin_PROGRAMS = 	writing_binaries \
 		get_section_names \
 		show_ehdr_members \
 		disas_binary \
-		text_section
+		text_section \
+		infect
 
 # hack to force automake to don't link the assembled binary
 text_section_LINK = 	@cp text_section.o text_section.bin; \
@@ -24,6 +25,7 @@ creating_elf_SOURCES = creating_elf.c
 get_section_names_SOURCES = get_section_names.c
 show_ehdr_members_SOURCES = show_ehdr_members.c
 text_section_SOURCES = text_section.asm
+infect_SOURCES = infect.c
 
 AM_CFLAGS = -ggdb -Wall -Wextra -Werror -I../src/include
 LDADD = -L../src/.libs -lmalelf

