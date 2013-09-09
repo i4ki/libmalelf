@@ -55,7 +55,7 @@ typedef struct {
  *  e_machine and e_version member.
  */
 typedef struct {
-        _u16 name;
+        char *name;
         _u32 value;
         char *meaning;
 } MalelfEhdrTable;

@@ -45,15 +45,15 @@ int main()
         result = malelf_ehdr_get_phnum(&ehdr, &phnum);
         result = malelf_ehdr_get_shstrndx(&ehdr, &shstrndx);
 
-        printf("Version Name: %d\n", me_version.name);
+        printf("Version Name: %s\n", me_version.name);
         printf("Version Value: %d\n", me_version.value);
         printf("Version Description: %s\n", me_version.meaning);
 
-        printf("Type Name: %d\n", me_type.name);
+        printf("Type Name: %s\n", me_type.name);
         printf("Type Value: %d\n", me_type.value);
         printf("Type Description: %s\n", me_type.meaning);
 
-        printf("Machine Name: %d\n", me_machine.name);
+        printf("Machine Name: %s\n", me_machine.name);
         printf("Machine Value: %d\n", me_machine.value);
         printf("Machine Description: %s\n", me_machine.meaning);
 

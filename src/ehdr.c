@@ -37,29 +37,29 @@
 #include <malelf/ehdr.h>
 
 static MalelfEhdrTable _me_type[] = {
-        {ET_NONE,        0, "No filetype"},
-        {ET_REL,         1, "Relocatable file"},
-        {ET_EXEC,        2, "Executable file"},
-        {ET_DYN,         3, "Shared object file"},
-        {ET_CORE,        4, "Core file"},
-        {ET_LOPROC, 0xff00, "Processor-specific"},
-        {ET_HIPROC, 0xffff, "Processor-specific"}
+        {"ET_NONE",        0, "No filetype"},
+        {"ET_REL",         1, "Relocatable file"},
+        {"ET_EXEC",        2, "Executable file"},
+        {"ET_DYN",         3, "Shared object file"},
+        {"ET_CORE",        4, "Core file"},
+        {"ET_LOPROC", 0xff00, "Processor-specific"},
+        {"ET_HIPROC", 0xffff, "Processor-specific"}
 };
 
 static MalelfEhdrTable _me_version[] = {
-        {EV_NONE,    0, "Invalid version"},
-        {EV_CURRENT, 1, "Current Version"}
+        {"EV_NONE",    0, "Invalid version"},
+        {"EV_CURRENT", 1, "Current Version"}
 };
 
 static MalelfEhdrTable _me_machine[] = {
-        {EM_NONE,  0, "No machine"},
-        {EM_M32,   1, "AT&T WE 32100"},
-        {EM_SPARC, 2, "SPARC"},
-        {EM_386,   3, "Intel 80386"},
-        {EM_68K,   4, "Motorola 68000"},
-        {EM_88K,   5, "Motorola 88000"},
-        {EM_860,   7, "Intel 80860"},
-        {EM_MIPS,  8, "MIPS RS3000"}
+        {"EM_NONE",  0, "No machine"},
+        {"EM_M32",   1, "AT&T WE 32100"},
+        {"EM_SPARC", 2, "SPARC"},
+        {"EM_386",   3, "Intel 80386"},
+        {"EM_68K",   4, "Motorola 68000"},
+        {"EM_88K",   5, "Motorola 88000"},
+        {"EM_860",   7, "Intel 80860"},
+        {"EM_MIPS",  8, "MIPS RS3000"}
 };
 
 /* static methods */
