@@ -52,6 +52,7 @@ union {
 typedef struct {
        char *name;
        _u16 type;
+        _u32 addr;
        _u32 offset;
        _u32 size;
        MalelfShdr *shdr;

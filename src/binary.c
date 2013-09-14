@@ -798,6 +798,7 @@ static _u32 _malelf_binary_get_section32(_u32 section_idx,
         }
 
         section->offset = shdr32->sh_offset;
+        section->addr = shdr32->sh_addr;
         section->size = shdr32->sh_size;
         section->shdr = &ushdr;
         return MALELF_SUCCESS;
@@ -829,6 +830,7 @@ static _u32 _malelf_binary_get_section64(_u32 section_idx,
         }
 
         section->offset = shdr64->sh_offset;
+        section->addr = shdr64->sh_addr;
         section->size = shdr64->sh_size;
         return MALELF_SUCCESS;
 }
