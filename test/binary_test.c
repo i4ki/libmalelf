@@ -41,14 +41,16 @@
 #include <CUnit/Basic.h>
 #include <CUnit/CUnit.h>
 
-static void malelf_binary_open_mmap_TEST(void)
+static void _malelf_binary_open_success_TEST(char *fname, _u8 alloc_type)
 {
         MalelfBinary bin;
         _i32 result;
 
         malelf_binary_init(&bin);
 
-        result = malelf_binary_open(&bin, "hosts/uninfected");
+        malelf_binary_set_alloc_type(&bin, alloc_type);
+
+        result = malelf_binary_open(&bin, fname);
 
         CU_ASSERT(result == MALELF_SUCCESS);
         CU_ASSERT(NULL != bin.fname);
@@ -58,7 +60,7 @@ static void malelf_binary_open_mmap_TEST(void)
         CU_ASSERT(NULL != MALELF_ELF_DATA(&bin.ehdr));
         CU_ASSERT(NULL != MALELF_ELF_DATA(&bin.phdr));
         CU_ASSERT(NULL != MALELF_ELF_DATA(&bin.shdr));
-        CU_ASSERT(bin.alloc_type == MALELF_ALLOC_MMAP);
+        CU_ASSERT(bin.alloc_type == alloc_type);
         CU_ASSERT(bin.class == MALELF_ELF32 ||
                   bin.class == MALELF_ELF64);
         result = malelf_binary_close(&bin);
@@ -73,56 +75,18 @@ static void malelf_binary_open_mmap_TEST(void)
         CU_ASSERT(NULL == MALELF_ELF_DATA(&bin.shdr));
         CU_ASSERT(bin.alloc_type == MALELF_ALLOC_NONE);
         CU_ASSERT(bin.class == MALELF_ELFNONE);
-
-        malelf_binary_init(&bin);
-
-        /* Should fail */
-        result = malelf_binary_open(&bin, "/wrong/path/uninfected");
-        CU_ASSERT(result == MALELF_ENOENT);
-        CU_ASSERT(NULL == bin.fname);
-        CU_ASSERT(bin.fd == -1);
-        CU_ASSERT(NULL == bin.mem);
-        CU_ASSERT(bin.size == 0);
-        CU_ASSERT(NULL == MALELF_ELF_DATA(&bin.ehdr));
-        CU_ASSERT(NULL == MALELF_ELF_DATA(&bin.phdr));
-        CU_ASSERT(NULL == MALELF_ELF_DATA(&bin.shdr));
-        CU_ASSERT(bin.alloc_type == MALELF_ALLOC_MMAP);
-        CU_ASSERT(bin.class == MALELF_ELFNONE);
-
-        result = malelf_binary_close(&bin);
-
-        /* munmap on a non allocated memory area. */
-        CU_ASSERT(result == MALELF_EINVAL);
 }
 
-static void malelf_binary_open_malloc_TEST(void)
+static void _malelf_binary_open_fail_TEST(char *fname, _u8 alloc_type)
 {
         MalelfBinary bin;
-        _i32 result;
-
+        _u32 result;
         malelf_binary_init(&bin);
-        malelf_binary_set_alloc_type(&bin, MALELF_ALLOC_MALLOC);
 
-        result = malelf_binary_open(&bin, "hosts/uninfected");
-        CU_ASSERT(result == MALELF_SUCCESS);
-        CU_ASSERT(NULL != bin.fname);
-        CU_ASSERT(bin.fd > 2);
-        CU_ASSERT(NULL != bin.mem);
-        CU_ASSERT(bin.size > 0);
-        CU_ASSERT(NULL != MALELF_ELF_DATA(&bin.ehdr));
-        CU_ASSERT(NULL != MALELF_ELF_DATA(&bin.phdr));
-        CU_ASSERT(NULL != MALELF_ELF_DATA(&bin.shdr));
-        CU_ASSERT(bin.alloc_type == MALELF_ALLOC_MALLOC);
-        CU_ASSERT(bin.class == MALELF_ELF32 ||
-                  bin.class == MALELF_ELF64);
+        malelf_binary_set_alloc_type(&bin, alloc_type);
 
-        result = malelf_binary_close(&bin);
-        CU_ASSERT(result == MALELF_SUCCESS);
-
-        malelf_binary_init(&bin);
-        malelf_binary_set_alloc_type(&bin, MALELF_ALLOC_MALLOC);
-
-        result = malelf_binary_open(&bin, "/wrong/path/uninfected");
+        /* Should fail */
+        result = malelf_binary_open(&bin, fname);
         CU_ASSERT(result == MALELF_ENOENT);
         CU_ASSERT(NULL == bin.fname);
         CU_ASSERT(bin.fd == -1);
@@ -131,12 +95,46 @@ static void malelf_binary_open_malloc_TEST(void)
         CU_ASSERT(NULL == MALELF_ELF_DATA(&bin.ehdr));
         CU_ASSERT(NULL == MALELF_ELF_DATA(&bin.phdr));
         CU_ASSERT(NULL == MALELF_ELF_DATA(&bin.shdr));
-        CU_ASSERT(bin.alloc_type == MALELF_ALLOC_MALLOC);
+        CU_ASSERT(bin.alloc_type == alloc_type);
         CU_ASSERT(bin.class == MALELF_ELFNONE);
 
         result = malelf_binary_close(&bin);
-        CU_ASSERT(result == MALELF_SUCCESS);
 
+        if (alloc_type == MALELF_ALLOC_MMAP) {
+                /* munmap on a non allocated memory area. */
+                CU_ASSERT(result == MALELF_EINVAL);
+        } else {
+                CU_ASSERT(result == MALELF_SUCCESS);
+        }
+}
+
+static void _malelf_binary_open_shellcode_success_TEST(char *fname, _u8 alloc_type)
+{
+        MalelfBinary bin;
+        _i32 result;
+
+        malelf_binary_init(&bin);
+
+        malelf_binary_set_alloc_type(&bin, alloc_type);
+        bin.class = MALELF_FLAT;
+
+        result = malelf_binary_open(&bin, fname);
+
+        CU_ASSERT(result == MALELF_SUCCESS);
+        CU_ASSERT(NULL != bin.fname);
+        CU_ASSERT(bin.fd > 2);
+        CU_ASSERT(NULL != bin.mem);
+        CU_ASSERT(bin.size > 0);
+        CU_ASSERT(NULL == MALELF_ELF_DATA(&bin.ehdr));
+        CU_ASSERT(NULL == MALELF_ELF_DATA(&bin.phdr));
+        CU_ASSERT(NULL == MALELF_ELF_DATA(&bin.shdr));
+        CU_ASSERT(bin.alloc_type == alloc_type);
+        CU_ASSERT(bin.class == MALELF_FLAT ||
+                  bin.class == MALELF_FLAT32 ||
+                  bin.class == MALELF_FLAT64);
+        result = malelf_binary_close(&bin);
+
+        CU_ASSERT(result == MALELF_SUCCESS);
         CU_ASSERT(NULL == bin.fname);
         CU_ASSERT(bin.fd == -1);
         CU_ASSERT(NULL == bin.mem);
@@ -146,6 +144,52 @@ static void malelf_binary_open_malloc_TEST(void)
         CU_ASSERT(NULL == MALELF_ELF_DATA(&bin.shdr));
         CU_ASSERT(bin.alloc_type == MALELF_ALLOC_NONE);
         CU_ASSERT(bin.class == MALELF_ELFNONE);
+}
+
+static void _malelf_binary_open_shellcode_fail_TEST(char *fname, _u8 alloc_type)
+{
+        MalelfBinary bin;
+        _u32 result;
+
+        malelf_binary_init(&bin);
+        malelf_binary_set_alloc_type(&bin, alloc_type);
+        bin.class = MALELF_FLAT;
+
+        /* Should fail */
+        result = malelf_binary_open(&bin, fname);
+        CU_ASSERT(result == MALELF_ENOENT);
+        CU_ASSERT(NULL == bin.fname);
+        CU_ASSERT(bin.fd == -1);
+        CU_ASSERT(NULL == bin.mem);
+        CU_ASSERT(bin.size == 0);
+        CU_ASSERT(NULL == MALELF_ELF_DATA(&bin.ehdr));
+        CU_ASSERT(NULL == MALELF_ELF_DATA(&bin.phdr));
+        CU_ASSERT(NULL == MALELF_ELF_DATA(&bin.shdr));
+        CU_ASSERT(bin.alloc_type == alloc_type);
+        CU_ASSERT(bin.class == MALELF_FLAT);
+
+        result = malelf_binary_close(&bin);
+
+        if (alloc_type == MALELF_ALLOC_MMAP) {
+                /* munmap on a non allocated memory area. */
+                CU_ASSERT(result == MALELF_EINVAL);
+        } else {
+                CU_ASSERT(result == MALELF_SUCCESS);
+        }
+}
+
+static void malelf_binary_open_TEST()
+{
+        _malelf_binary_open_success_TEST("hosts/uninfected", MALELF_ALLOC_MMAP);
+        _malelf_binary_open_success_TEST("hosts/uninfected_asm", MALELF_ALLOC_MMAP);
+        _malelf_binary_open_fail_TEST("/wrong/path/uninfected", MALELF_ALLOC_MMAP);
+        _malelf_binary_open_success_TEST("hosts/uninfected", MALELF_ALLOC_MALLOC);
+        _malelf_binary_open_success_TEST("hosts/uninfected_asm", MALELF_ALLOC_MALLOC);
+        _malelf_binary_open_fail_TEST("/wrong/path/uninfected", MALELF_ALLOC_MALLOC);
+        _malelf_binary_open_shellcode_success_TEST("malwares/write_message.o", MALELF_ALLOC_MMAP);
+        _malelf_binary_open_shellcode_fail_TEST("/wrong/path/write_message.o", MALELF_ALLOC_MMAP);
+        _malelf_binary_open_shellcode_success_TEST("malwares/write_message.o", MALELF_ALLOC_MALLOC);
+        _malelf_binary_open_shellcode_fail_TEST("/wrong/path/write_message.o", MALELF_ALLOC_MALLOC);
 }
 
 static void malelf_binary_get_section_name_TEST()
@@ -156,23 +200,39 @@ static void malelf_binary_get_section_name_TEST()
 
         malelf_binary_init(&bin);
 
-        result = malelf_binary_open(&bin, "hosts/uninfected");
+        result = malelf_binary_open(&bin, "hosts/uninfected_asm");
 
         CU_ASSERT(result == MALELF_SUCCESS);
         CU_ASSERT(NULL != bin.fname);
 
-        result = malelf_binary_get_section_name(&bin, 1, &name);
-        CU_ASSERT(MALELF_SUCCESS == result);
+        if (bin.class == MALELF_ELF32) {
+                result = malelf_binary_get_section_name(&bin, 1, &name);
+                CU_ASSERT(MALELF_SUCCESS == result);
 
-        CU_ASSERT_STRING_EQUAL(".interp", name);
+                CU_ASSERT_STRING_EQUAL(".text", name);
 
-        result = malelf_binary_get_section_name(&bin, 2, &name);
-        CU_ASSERT(MALELF_SUCCESS == result);
-        CU_ASSERT_STRING_EQUAL(".note.ABI-tag", name);
+                result = malelf_binary_get_section_name(&bin, 2, &name);
+                CU_ASSERT(MALELF_SUCCESS == result);
+                CU_ASSERT_STRING_EQUAL(".data", name);
 
-        result = malelf_binary_get_section_name(&bin, 12, &name);
-        CU_ASSERT(MALELF_SUCCESS == result);
-        CU_ASSERT_STRING_EQUAL(".init", name);
+                result = malelf_binary_get_section_name(&bin, 3, &name);
+                CU_ASSERT(MALELF_SUCCESS == result);
+                CU_ASSERT_STRING_EQUAL(".shstrtab", name);
+        } else {
+                /* 64bit machine .data is before .text */
+                result = malelf_binary_get_section_name(&bin, 1, &name);
+                CU_ASSERT(MALELF_SUCCESS == result);
+
+                CU_ASSERT_STRING_EQUAL(".data", name);
+
+                result = malelf_binary_get_section_name(&bin, 2, &name);
+                CU_ASSERT(MALELF_SUCCESS == result);
+                CU_ASSERT_STRING_EQUAL(".text", name);
+
+                result = malelf_binary_get_section_name(&bin, 3, &name);
+                CU_ASSERT(MALELF_SUCCESS == result);
+                CU_ASSERT_STRING_EQUAL(".shstrtab", name);
+        }
 
         malelf_binary_close(&bin);
 }
@@ -185,31 +245,54 @@ static void malelf_binary_get_section_TEST()
 
         malelf_binary_init(&bin);
 
-        result = malelf_binary_open(&bin, "hosts/uninfected");
+        result = malelf_binary_open(&bin, "hosts/uninfected_asm");
 
         CU_ASSERT(result == MALELF_SUCCESS);
         CU_ASSERT(NULL != bin.fname);
 
-        result = malelf_binary_get_section(&bin, 1, &section);
-        CU_ASSERT(MALELF_SUCCESS == result);
-        CU_ASSERT_STRING_EQUAL(section.name, ".interp");
-        CU_ASSERT(section.offset == 0x134);
-        CU_ASSERT(section.size == 0x13);
-        CU_ASSERT(section.shdr != NULL);
+        if (bin.class == MALELF_ELF32) {
+                result = malelf_binary_get_section(&bin, 1, &section);
+                CU_ASSERT(MALELF_SUCCESS == result);
+                CU_ASSERT_STRING_EQUAL(section.name, ".text");
+                CU_ASSERT(section.offset == 0x80);
+                CU_ASSERT(section.size == 0x1d);
+                CU_ASSERT(section.shdr != NULL);
 
-        result = malelf_binary_get_section(&bin, 2, &section);
-        CU_ASSERT(MALELF_SUCCESS == result);
-        CU_ASSERT_STRING_EQUAL(section.name, ".note.ABI-tag");
-        CU_ASSERT(section.offset == 0x148);
-        CU_ASSERT(section.size == 0x20);
-        CU_ASSERT(section.shdr != NULL);
+                result = malelf_binary_get_section(&bin, 2, &section);
+                CU_ASSERT(MALELF_SUCCESS == result);
+                CU_ASSERT_STRING_EQUAL(section.name, ".data");
+                CU_ASSERT(section.offset == 0xa0);
+                CU_ASSERT(section.size == 0x12);
+                CU_ASSERT(section.shdr != NULL);
 
-        result = malelf_binary_get_section(&bin, 14, &section);
-        CU_ASSERT(MALELF_SUCCESS == result);
-        CU_ASSERT_STRING_EQUAL(section.name, ".text");
-        CU_ASSERT(section.offset == 0x320);
-        CU_ASSERT(section.size == 0x184);
-        CU_ASSERT(section.shdr != NULL);
+                result = malelf_binary_get_section(&bin, 3, &section);
+                CU_ASSERT(MALELF_SUCCESS == result);
+                CU_ASSERT_STRING_EQUAL(section.name, ".shstrtab");
+                CU_ASSERT(section.offset == 0xb2);
+                CU_ASSERT(section.size == 0x27);
+                CU_ASSERT(section.shdr != NULL);
+        } else if (bin.class == MALELF_ELF64) {
+                result = malelf_binary_get_section(&bin, 1, &section);
+                CU_ASSERT(MALELF_SUCCESS == result);
+                CU_ASSERT_STRING_EQUAL(section.name, ".data");
+                CU_ASSERT(section.offset == 0x200);
+                CU_ASSERT(section.size == 0x12);
+                CU_ASSERT(section.shdr != NULL);
+
+                result = malelf_binary_get_section(&bin, 2, &section);
+                CU_ASSERT(MALELF_SUCCESS == result);
+                CU_ASSERT_STRING_EQUAL(section.name, ".text");
+                CU_ASSERT(section.offset == 0x220);
+                CU_ASSERT(section.size == 0x1d);
+                CU_ASSERT(section.shdr != NULL);
+
+                result = malelf_binary_get_section(&bin, 3, &section);
+                CU_ASSERT(MALELF_SUCCESS == result);
+                CU_ASSERT_STRING_EQUAL(section.name, ".shstrtab");
+                CU_ASSERT(section.offset == 0x240);
+                CU_ASSERT(section.size == 0x32);
+                CU_ASSERT(section.shdr != NULL);
+        }
 
         malelf_binary_close(&bin);
 }
@@ -508,11 +591,8 @@ CU_ErrorCode binary_get_test_suite(CU_pSuite *rsuite)
         }
 
         if ((NULL == CU_add_test(suite,
-                                 "malelf_binary_open_mmap_TEST",
-                                 malelf_binary_open_mmap_TEST)) ||
-            (NULL == CU_add_test(suite,
-                                 "malelf_binary_open_malloc_TEST",
-                                 malelf_binary_open_malloc_TEST)) ||
+                                 "malelf_binary_open_TEST",
+                                 malelf_binary_open_TEST)) ||
             (NULL == CU_add_test(suite,
                                  "malelf_binary_get_section_name_TEST",
                                  malelf_binary_get_section_name_TEST)) ||
