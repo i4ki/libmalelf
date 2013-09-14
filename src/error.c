@@ -58,7 +58,14 @@ const char* malelf_strerr[] = {
 
 const char* malelf_strerror(int code)
 {
-        return malelf_strerr[(code - MALELF_ERROR)];
+        const char *error_message = "UNKNOWN ERROR";
+        if (code >= 0 && code < MALELF_LAST_ERRNO) {
+                error_message = strerror(code);
+        } else if (code >= 0 && code < MALELF_LAST_ERROR) {
+                error_message = malelf_strerr[(code - MALELF_ERROR)];
+        }
+
+        return error_message;
 }
 
 /* Private method */
@@ -69,13 +76,7 @@ void __malelf_perror(int code,
 {
         char * format_error = "[%s][function %s][line %d]"
                                     "[code %d] %s\n";
-        char * error_message = "UNKNOW ERROR";
-
-        if (code >= 0 && code < MALELF_LAST_ERRNO) {
-                error_message = strerror(code);
-        } else if (code >= 0 && code < MALELF_LAST_ERROR) {
-                error_message = (char *) malelf_strerror(code);
-        }
+        const char * error_message = malelf_strerror(code);
 
         MALELF_LOG_ERROR(format_error,
                          file,
