@@ -61,7 +61,7 @@ _u32 malelf_table_add_str_value(MalelfTable *obj, const char *value)
         if (NULL == obj) {
                 return MALELF_ERROR;
         }
- 
+
         if ((NULL == value) ||
             (strlen(value) > MALELF_TABLE_CONTENT_LEN)) {
                 return MALELF_ERROR;

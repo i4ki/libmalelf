@@ -43,12 +43,14 @@ static MalelfEhdrTable _me_type[] = {
         {"ET_DYN",         3, "Shared object file"},
         {"ET_CORE",        4, "Core file"},
         {"ET_LOPROC", 0xff00, "Processor-specific"},
-        {"ET_HIPROC", 0xffff, "Processor-specific"}
+        {"ET_HIPROC", 0xffff, "Processor-specific"},
+        {"UNKNOWN", 0, "UNKNOWN"}
 };
 
 static MalelfEhdrTable _me_version[] = {
         {"EV_NONE",    0, "Invalid version"},
-        {"EV_CURRENT", 1, "Current Version"}
+        {"EV_CURRENT", 1, "Current Version"},
+        {"UNKNOWN", 0, "UNKNOWN"}
 };
 
 static MalelfEhdrTable _me_machine[] = {
@@ -59,7 +61,8 @@ static MalelfEhdrTable _me_machine[] = {
         {"EM_68K",   4, "Motorola 68000"},
         {"EM_88K",   5, "Motorola 88000"},
         {"EM_860",   7, "Intel 80860"},
-        {"EM_MIPS",  8, "MIPS RS3000"}
+        {"EM_MIPS",  8, "MIPS RS3000"},
+        {"UNKNOWN", 0, "UNKNOWN"}
 };
 
 /* static methods */
@@ -115,6 +118,8 @@ _u32 malelf_ehdr_get_version(MalelfEhdr *ehdr,
                 *me_version = _me_version[1];
                 break;
         default:
+                *me_version = _me_version[2];
+                me_version->value = version;
                 error = MALELF_ERROR;
         }
 
@@ -157,7 +162,8 @@ _u32 malelf_ehdr_get_type (MalelfEhdr *ehdr,
                 *me_type = _me_type[6];
                 break;
         default:
-                me_type = NULL;
+                *me_type = _me_type[7];
+                me_type->value = type;
                 error = MALELF_ERROR;
         }
 
@@ -524,5 +530,3 @@ _u32 malelf_ehdr_set_type(MalelfEhdr *ehdr, _u32 type)
 
         return error;
 }
-
-
