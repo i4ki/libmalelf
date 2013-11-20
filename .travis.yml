@@ -1,0 +1,3 @@
+language: c
+script: ./autogen.sh && ./configure --enable-tests && make && make check
+
