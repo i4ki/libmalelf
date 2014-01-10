@@ -1,2 +1,9 @@
 language: c
+env:
+  matrix:
+  - BUILDTOOL=autotools
+  - BUILDTOOL=autotools_old_compilers
+install:
+- sudo apt-get update --fix-missing
+- sudo apt-get install libcunit1 libcunit1-dev
 script: ./autogen.sh && ./configure && make && make check
