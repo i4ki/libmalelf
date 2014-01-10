@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/SecPlus/libmalelf.png?branch=master)](https://travis-ci.org/SecPlus/libmalelf)
+
 libmalelf
 =========
 
