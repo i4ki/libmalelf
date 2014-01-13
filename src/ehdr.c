@@ -210,9 +210,11 @@ _u32 malelf_ehdr_get_machine(MalelfEhdr *ehdr,
                 *me_machine = _me_machine[7];
                 break;
         default:
-                me_machine = NULL;
+                *me_machine = _me_machine[8];
+                me_machine->value = machine;
                 error = MALELF_ERROR;
         }
+
         return error;
 }
 

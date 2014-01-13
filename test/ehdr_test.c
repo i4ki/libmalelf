@@ -67,6 +67,10 @@ static void malelf_ehdr_TEST(void)
         result = malelf_ehdr_get_machine(&ehdr, &me_machine);
         CU_ASSERT(result == MALELF_SUCCESS);
 
+        if (MALELF_SUCCESS != result) {
+                printf("Machine found: %d\n", me_machine.value);
+        }
+
         _u32 shoff;
         result = malelf_ehdr_get_shoff(&ehdr, &shoff);
         CU_ASSERT(result == MALELF_SUCCESS);
