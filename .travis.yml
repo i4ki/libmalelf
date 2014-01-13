@@ -8,4 +8,4 @@ install:
 - sudo apt-get install libcunit1 libcunit1-dev
 - sudo apt-get install nasm
 - git clone https://github.com/vmt/udis86.git && cd udis86 && ./autogen.sh && ./configure --prefix=/usr && make && sudo make install && cd ..
-script: ./autogen.sh && ./configure --enable-tests && make && make check
+script: uname -a && echo -n "architecture: " && uname -m && ./autogen.sh && ./configure --enable-tests && make && make check
