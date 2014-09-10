@@ -42,11 +42,11 @@ MALELF_BEGIN_DECLS
  */
 
 typedef struct {
-union {
-       Elf32_Shdr *h32;    /*!< 32-bits ELF Section Headers */
-       Elf64_Shdr *h64;    /*!< 64-bits ELF Section Headers */
-       } uhdr;
-    _u8 class;
+        union {
+                Elf32_Shdr *h32;    /*!< 32-bits ELF Section Headers */
+                Elf64_Shdr *h64;    /*!< 64-bits ELF Section Headers */
+        } uhdr;
+        _u8 class;
 } MalelfShdr;
 
 typedef struct {
