@@ -598,19 +598,17 @@ static _u32 _malelf_binary_get_segment_32(MalelfBinary *bin,
                                           _u32 segment_idx,
                                           MalelfSegment *segment)
 {
-        MalelfPhdr stphdr;
         Elf32_Phdr *phdr32;
         int error = MALELF_SUCCESS;
 
-        assert(bin != NULL && bin->mem != NULL);
+        assert(bin != NULL && bin->mem != NULL && segment != NULL && segment->phdr != NULL);
 
-        error = malelf_binary_get_phdr(bin, &stphdr);
+        error = malelf_binary_get_phdr(bin, segment->phdr);
         if (error != MALELF_SUCCESS) {
                 return error;
         }
 
-        phdr32 = stphdr.uhdr.h32;
-
+        phdr32 = segment->phdr->uhdr.h32;
         phdr32 += segment_idx;
 
         segment->type = phdr32->p_type;
@@ -619,7 +617,6 @@ static _u32 _malelf_binary_get_segment_32(MalelfBinary *bin,
         segment->size = phdr32->p_filesz;
         segment->offset = phdr32->p_offset;
         segment->mem = bin->mem + phdr32->p_offset;
-        segment->phdr = &stphdr;
 
         return MALELF_SUCCESS;
 }
@@ -628,17 +625,16 @@ static _u32 _malelf_binary_get_segment_64(MalelfBinary *bin,
                                           _u32 segment_idx,
                                           MalelfSegment *segment)
 {
-        MalelfPhdr stphdr;
         Elf64_Phdr *phdr64;
         int error = MALELF_SUCCESS;
 
-        assert(bin != NULL && bin->mem != NULL);
-        error = malelf_binary_get_phdr(bin, &stphdr);
+        assert(bin != NULL && bin->mem != NULL && segment != NULL && segment->phdr != NULL);
+        error = malelf_binary_get_phdr(bin, segment->phdr);
         if (error != MALELF_SUCCESS) {
                 return error;
         }
 
-        phdr64 = stphdr.uhdr.h64;
+        phdr64 = segment->phdr->uhdr.h64;
 
         phdr64 += segment_idx;
 
@@ -648,7 +644,6 @@ static _u32 _malelf_binary_get_segment_64(MalelfBinary *bin,
         segment->offset = phdr64->p_offset;
         segment->size = phdr64->p_filesz;
         segment->mem = bin->mem + phdr64->p_offset;
-        segment->phdr = &stphdr;
 
         return MALELF_SUCCESS;
 }
@@ -778,15 +773,15 @@ static _u32 _malelf_binary_get_section32(_u32 section_idx,
         _u32 error = MALELF_SUCCESS;
         Elf32_Shdr *shdr32;
 
-        MalelfShdr ushdr;
+        assert(bin != NULL && bin->mem != NULL && section != NULL && section->shdr != NULL);
 
-        error = malelf_binary_get_shdr(bin, &ushdr);
+        error = malelf_binary_get_shdr(bin, section->shdr);
 
         if (error != MALELF_SUCCESS) {
                 return error;
         }
 
-        shdr32 = ushdr.uhdr.h32;
+        shdr32 = section->shdr->uhdr.h32;
         shdr32 += section_idx;
 
         error = malelf_binary_get_section_name(bin,
@@ -800,7 +795,6 @@ static _u32 _malelf_binary_get_section32(_u32 section_idx,
         section->offset = shdr32->sh_offset;
         section->addr = shdr32->sh_addr;
         section->size = shdr32->sh_size;
-        section->shdr = &ushdr;
         return MALELF_SUCCESS;
 }
 
@@ -810,15 +804,15 @@ static _u32 _malelf_binary_get_section64(_u32 section_idx,
 {
         int error = MALELF_SUCCESS;
         Elf64_Shdr *shdr64;
-        MalelfShdr ushdr;
+        assert(bin != NULL && bin->mem != NULL && section != NULL && section->shdr != NULL);
 
-        error = malelf_binary_get_shdr(bin, &ushdr);
+        error = malelf_binary_get_shdr(bin, section->shdr);
 
         if (error != MALELF_SUCCESS) {
                 return error;
         }
 
-        shdr64 = ushdr.uhdr.h64;
+        shdr64 = section->shdr->uhdr.h64;
         shdr64 += section_idx;
 
         error = malelf_binary_get_section_name(bin,
@@ -956,12 +950,13 @@ _u32 _malelf_binary_get_section_by_name64(MalelfBinary *bin,
         return error;
 }
 
+// section->shdr must be initialized before calling this function.
 _u32 malelf_binary_get_section_by_name(MalelfBinary *bin,
                                        const char *name,
                                        MalelfSection *section)
 {
         int error = MALELF_SUCCESS;
-        assert(NULL != name && NULL != bin && NULL != bin->mem);
+        assert(NULL != name && NULL != bin && NULL != bin->mem && NULL != section && NULL != section->shdr);
 
 
         switch (bin->class) {
@@ -1278,21 +1273,31 @@ _u32 _malelf_binary_write_elf(MalelfBinary *bin)
                 _u32 last_size = 0;
                 /* writing binary content using the program headers */
                 for (i = 0; i < ehdr_phnum; i++) {
-                        MalelfSegment segment;
+                        MalelfSegment *segment;
 
-                        error = malelf_binary_get_segment(bin, i, &segment);
+                        segment = malelf_malloc(sizeof(MalelfSegment) + sizeof(MalelfPhdr));
+                        if (!segment) {
+                                return MALELF_EALLOC;
+                        }
 
-                        if (segment.type == PT_NULL)
+                        segment->phdr = (MalelfPhdr *)(segment + sizeof(MalelfSegment));
+
+                        error = malelf_binary_get_segment(bin, i, segment);
+
+                        if (segment->type == PT_NULL) {
+                                free(segment);
                                 continue;
+                        }
 
-                        last_offset = segment.offset;
-                        last_size = segment.size;
+                        last_offset = segment->offset;
+                        last_size = segment->size;
 
-                        lseek(bin->fd, segment.offset, SEEK_SET);
+                        lseek(bin->fd, segment->offset, SEEK_SET);
                         error = malelf_write(bin->fd,
-                                             bin->mem + segment.offset,
-                                             segment.size);
+                                             bin->mem + segment->offset,
+                                             segment->size);
 
+                        free(segment);
                         if (MALELF_SUCCESS != error) {
                                 return error;
                         }

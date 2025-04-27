@@ -49,9 +49,9 @@ void malelf_debug_init_TEST()
         setenv("MALELF_DEBUG_FILE", "tmp/check.log", 1);
 
         malelf_debug_init();
-        CU_ASSERT(MALELF_DEBUG_TEST("1") == 70);
-        CU_ASSERT(MALELF_DEBUG_TEST("12") == 71)
-        CU_ASSERT(MALELF_DEBUG_TEST("1234567890") == 79); // time + msg
+        CU_ASSERT(MALELF_DEBUG_TEST("1") == 71);
+        CU_ASSERT(MALELF_DEBUG_TEST("12") == 72)
+        CU_ASSERT(MALELF_DEBUG_TEST("1234567890") == 80); // time + msg
         CU_ASSERT(MALELF_DEBUG_TEST(
                           "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                           "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -90,10 +90,10 @@ void malelf_debug_init_TEST()
                           "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                           ) == 1023);  /* trying to overflow */
 
-        CU_ASSERT(MALELF_DEBUG_TEST("testing") == 76);
+        CU_ASSERT(MALELF_DEBUG_TEST("testing") == 77);
 
         setenv("MALELF_DEBUG", "4", 1);
-        CU_ASSERT(MALELF_DEBUG_TEST_ERROR("testing") == 76);
+        CU_ASSERT(MALELF_DEBUG_TEST_ERROR("testing") == 77);
 }
 
 void malelf_debug_cleanup()

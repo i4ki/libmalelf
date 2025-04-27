@@ -98,7 +98,6 @@ int __malelf_debug(_u8 logcode,
         char temp[256];
         char fmt_out[LOG_BUFSIZE];
         char stime[26];
-        int timelen;
         char *prefix;
 
         if (!_malelf_debug_ok) {
@@ -115,11 +114,8 @@ int __malelf_debug(_u8 logcode,
         localtime_r(&ltime, &result);
         asctime_r(&result, stime);
 
-        timelen = strlen(stime);
-
         strcat(temp, "[");
-        strncat(temp, stime, timelen);
-        temp[timelen] = 0;
+        strncat(temp, stime, 255);
         strcat(temp, "]");
         strcat(temp, "[%s][%s:%s] %s");
 

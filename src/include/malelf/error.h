@@ -95,7 +95,7 @@ typedef enum {
 
 
 #define MALELF_PERROR(code)\
-    __malelf_perror(code, __FUNCTION__, __FILE__, __LINE__)
+    __malelf_perror(code, __func__, __FILE__, __LINE__)
 
 #define MALELF_FATAL(code)\
     do {\

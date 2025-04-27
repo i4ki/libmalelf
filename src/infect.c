@@ -207,6 +207,8 @@ _u32 _malelf_infect_prepare_silvio_padding32(MalelfInfect *infector)
         host_ehdr = (Elf32_Ehdr *) MALELF_ELF_DATA(&host->ehdr);
         host_phdr = (Elf32_Phdr *) MALELF_ELF_DATA(&host->phdr);
 
+        assert(host_ehdr->e_phnum > 0);
+
         for (phdr = host_phdr, i = host_ehdr->e_phnum;
              i-- > 0;
              phdr++) {

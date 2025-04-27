@@ -62,6 +62,7 @@ static MalelfEhdrTable _me_machine[] = {
         {"EM_88K",   5, "Motorola 88000"},
         {"EM_860",   7, "Intel 80860"},
         {"EM_MIPS",  8, "MIPS RS3000"},
+        {"EM_X86_64", 64, "x86-64"},
         {"UNKNOWN", 0, "UNKNOWN"}
 };
 
@@ -185,7 +186,7 @@ _u32 malelf_ehdr_get_machine(MalelfEhdr *ehdr,
         }
 
         switch(machine) {
-        case EM_NONE:
+        case EM_NONE:   
                 *me_machine = _me_machine[0];
                 break;
         case EM_M32:
@@ -208,6 +209,9 @@ _u32 malelf_ehdr_get_machine(MalelfEhdr *ehdr,
                 break;
         case EM_MIPS:
                 *me_machine = _me_machine[7];
+                break;
+        case EM_X86_64:
+                *me_machine = _me_machine[8];
                 break;
         default:
                 *me_machine = _me_machine[8];

@@ -35,7 +35,7 @@
 
 #define _MALELF_DEBUG_TEST(code, ...)                           \
         __malelf_debug(code,                                    \
-                       __FUNCTION__,                            \
+                       __func__,                            \
                        __FILE__,                                \
                        TOSTRING(__LINE__),                      \
                        __VA_ARGS__)
