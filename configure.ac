@@ -11,6 +11,9 @@ AC_CONFIG_SRCDIR([src/binary.c])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])
 
+# Add compiler flags
+CFLAGS="$CFLAGS -Wpedantic"
+
 HAVE_TESTS="yes"
 dnl Enable unit-tests
 AC_ARG_ENABLE([tests],

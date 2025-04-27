@@ -5,6 +5,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <sys/wait.h>
+#include <limits.h>
 
 #include <CUnit/Basic.h>
 #include <CUnit/CUnit.h>
@@ -131,29 +132,36 @@ void test_malelf_infect_silvio_padding(char* malware_path,
 
         for (i = 0; i < sizeof(uninfected_files)/256; i++) {
                 //Preparing strings for the tests
-                strncpy(uninfected_path, uninfected_files[i], 255);
+                strncpy(uninfected_path, uninfected_files[i], sizeof(uninfected_path) - 1);
+                uninfected_path[sizeof(uninfected_path) - 1] = '\0';
 
-                strncpy(infected_path, infected_dir, 255);
-                strncat(infected_path, basename(uninfected_path), 255);
+                strncpy(infected_path, infected_dir, sizeof(infected_path) - 1);
+                infected_path[sizeof(infected_path) - 1] = '\0';
+                strncat(infected_path, basename(uninfected_path), sizeof(infected_path) - strlen(infected_path) - 1);
 
-                strncpy(infected_output_file, infected_path, 255);
-                strncat(infected_output_file, ".out", 255);
+                strncpy(infected_output_file, infected_path, sizeof(infected_output_file) - 1);
+                infected_output_file[sizeof(infected_output_file) - 1] = '\0';
+                strncat(infected_output_file, ".out", sizeof(infected_output_file) - strlen(infected_output_file) - 1);
 
-                strncpy(uninfected_output_file, uninfected_dir, 255);
-                strncat(uninfected_output_file, basename(uninfected_path), 255);
-                strncat(uninfected_output_file, ".out", 255);
+                strncpy(uninfected_output_file, uninfected_dir, sizeof(uninfected_output_file) - 1);
+                uninfected_output_file[sizeof(uninfected_output_file) - 1] = '\0';
+                strncat(uninfected_output_file, basename(uninfected_path), sizeof(uninfected_output_file) - strlen(uninfected_output_file) - 1);
+                strncat(uninfected_output_file, ".out", sizeof(uninfected_output_file) - strlen(uninfected_output_file) - 1);
 
-                strncpy(uninfected_exec, uninfected_path, 255);
-                strncat(uninfected_exec, redir, 255);
-                strncat(uninfected_exec, uninfected_output_file, 255);
+                strncpy(uninfected_exec, uninfected_path, sizeof(uninfected_exec) - 1);
+                uninfected_exec[sizeof(uninfected_exec) - 1] = '\0';
+                strncat(uninfected_exec, redir, sizeof(uninfected_exec) - strlen(uninfected_exec) - 1);
+                strncat(uninfected_exec, uninfected_output_file, sizeof(uninfected_exec) - strlen(uninfected_exec) - 1);
 
-                strncpy(infected_exec, "./", 255);
-                strncat(infected_exec, infected_path, 255);
-                strncat(infected_exec, redir, 255);
-                strncat(infected_exec, infected_output_file, 255);
+                strncpy(infected_exec, "./", sizeof(infected_exec) - 1);
+                infected_exec[sizeof(infected_exec) - 1] = '\0';
+                strncat(infected_exec, infected_path, sizeof(infected_exec) - strlen(infected_exec) - 1);
+                strncat(infected_exec, redir, sizeof(infected_exec) - strlen(infected_exec) - 1);
+                strncat(infected_exec, infected_output_file, sizeof(infected_exec) - strlen(infected_exec) - 1);
 
-                strncpy(chmod_str, "chmod +x ", 255);
-                strncat(chmod_str, infected_path, 255);
+                strncpy(chmod_str, "chmod +x ", sizeof(chmod_str) - 1);
+                chmod_str[sizeof(chmod_str) - 1] = '\0';
+                strncat(chmod_str, infected_path, sizeof(chmod_str) - strlen(chmod_str) - 1);
 
                 malelf_binary_init(&input);
                 malelf_binary_init(&output);
@@ -163,12 +171,17 @@ void test_malelf_infect_silvio_padding(char* malware_path,
                 //Preparing files for the tests
                 input.fname = uninfected_path;
                 output.fname = infected_path;
-                malware.fname = malware_path_gen;
-                malware.class = MALELF_FLAT32;
-                malware_in.class = MALELF_FLAT32;
 
                 error = malelf_binary_open(&input, uninfected_path);
                 CU_ASSERT(MALELF_SUCCESS == error);
+
+                malware.fname = malware_path_gen;
+                if (input.class == MALELF_ELF32) {
+                        malware.class = MALELF_FLAT32;
+                } else {
+                        malware.class = MALELF_FLAT64;
+                }
+                malware_in.class = malware.class;
 
                 error = malelf_binary_open(&malware_in, malware_path);
                 CU_ASSERT(MALELF_SUCCESS == error);
@@ -190,12 +203,19 @@ void test_malelf_infect_silvio_padding(char* malware_path,
                 CU_ASSERT(error == MALELF_SUCCESS);
 
                 //Testing ...
-                error = malelf_infect_silvio_padding32(&input,
-                                                       &output,
-                                                       &malware,
-                                                       0,
-                                                       magic_bytes);
-                CU_ASSERT(error == MALELF_SUCCESS);
+                if (input.class == MALELF_ELF32) {
+                        error = malelf_infect_silvio_padding32(&input,
+                                                               &output,
+                                                               &malware,
+                                                               0,
+                                                               magic_bytes);
+                } else {
+                        error = malelf_infect_silvio_padding64(&input,
+                                                               &output,
+                                                               &malware,
+                                                               0,
+                                                               magic_bytes);
+                }
 
                 if (error != MALELF_SUCCESS) {
                         MALELF_PERROR(error);
@@ -238,7 +258,11 @@ void test_malelf_infect_silvio_padding(char* malware_path,
 
 void malelf_infect_silvio_padding_TEST(void)
 {
-        test_malelf_infect_silvio_padding("malwares/write_message.o", "OWNED BY I4K");
+        if ((int)(CHAR_BIT * sizeof(void *)) == 32) {
+                test_malelf_infect_silvio_padding("malwares/write_message32.o", "OWNED BY I4K");
+        } else {
+                test_malelf_infect_silvio_padding("malwares/write_message64.o", "OWNED BY I4K");
+        }
 }
 
 CU_ErrorCode infect_get_test_suite(CU_pSuite *rsuite)

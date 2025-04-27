@@ -34,6 +34,8 @@
 
 MALELF_BEGIN_DECLS
 
+#define pointer_to(p, offset)                                             \
+    ((void *) ((char *) (p) + (offset)))
 
 typedef struct {
         char *fname;         /* Binary filename */

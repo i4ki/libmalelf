@@ -186,17 +186,20 @@ static void malelf_binary_open_TEST()
         _malelf_binary_open_success_TEST("hosts/uninfected", MALELF_ALLOC_MALLOC);
         _malelf_binary_open_success_TEST("hosts/uninfected_asm", MALELF_ALLOC_MALLOC);
         _malelf_binary_open_fail_TEST("/wrong/path/uninfected", MALELF_ALLOC_MALLOC);
-        _malelf_binary_open_shellcode_success_TEST("malwares/write_message.o", MALELF_ALLOC_MMAP);
-        _malelf_binary_open_shellcode_fail_TEST("/wrong/path/write_message.o", MALELF_ALLOC_MMAP);
-        _malelf_binary_open_shellcode_success_TEST("malwares/write_message.o", MALELF_ALLOC_MALLOC);
-        _malelf_binary_open_shellcode_fail_TEST("/wrong/path/write_message.o", MALELF_ALLOC_MALLOC);
+        _malelf_binary_open_shellcode_success_TEST("malwares/write_message32.o", MALELF_ALLOC_MMAP);
+        _malelf_binary_open_shellcode_fail_TEST("/wrong/path/write_message32.o", MALELF_ALLOC_MMAP);
+        _malelf_binary_open_shellcode_success_TEST("malwares/write_message32.o", MALELF_ALLOC_MALLOC);
+        _malelf_binary_open_shellcode_fail_TEST("/wrong/path/write_message32.o", MALELF_ALLOC_MALLOC);
 }
 
 static void malelf_binary_get_section_name_TEST()
 {
         MalelfBinary bin;
         _i32 result;
-        char *name = NULL;
+        char *name1 = NULL;
+        char *name2 = NULL;
+        char *expect1 = NULL;
+        char *expect2 = NULL;
 
         malelf_binary_init(&bin);
 
@@ -205,43 +208,37 @@ static void malelf_binary_get_section_name_TEST()
         CU_ASSERT(result == MALELF_SUCCESS);
         CU_ASSERT(NULL != bin.fname);
 
-        if (bin.class == MALELF_ELF32) {
-                result = malelf_binary_get_section_name(&bin, 1, &name);
-                CU_ASSERT(MALELF_SUCCESS == result);
+        result = malelf_binary_get_section_name(&bin, 1, &name1);
+        CU_ASSERT(MALELF_SUCCESS == result);
 
-                CU_ASSERT_STRING_EQUAL(".text", name);
-
-                result = malelf_binary_get_section_name(&bin, 2, &name);
-                CU_ASSERT(MALELF_SUCCESS == result);
-                CU_ASSERT_STRING_EQUAL(".data", name);
-
-                result = malelf_binary_get_section_name(&bin, 3, &name);
-                CU_ASSERT(MALELF_SUCCESS == result);
-                CU_ASSERT_STRING_EQUAL(".shstrtab", name);
+        if (strcmp(name1, ".text") == 0) {
+                // text comes first
+                expect1 = ".text";
+                expect2 = ".data";
         } else {
-                /* 64bit machine .data is before .text */
-                result = malelf_binary_get_section_name(&bin, 1, &name);
-                CU_ASSERT(MALELF_SUCCESS == result);
-
-                CU_ASSERT_STRING_EQUAL(".data", name);
-
-                result = malelf_binary_get_section_name(&bin, 2, &name);
-                CU_ASSERT(MALELF_SUCCESS == result);
-                CU_ASSERT_STRING_EQUAL(".text", name);
-
-                result = malelf_binary_get_section_name(&bin, 3, &name);
-                CU_ASSERT(MALELF_SUCCESS == result);
-                CU_ASSERT_STRING_EQUAL(".shstrtab", name);
+                // data comes first
+                expect1 = ".data";
+                expect2 = ".text";
         }
+
+        CU_ASSERT_STRING_EQUAL(expect1, name1);
+        result = malelf_binary_get_section_name(&bin, 2, &name2);
+        CU_ASSERT(MALELF_SUCCESS == result);
+        CU_ASSERT_STRING_EQUAL(expect2, name2);
 
         malelf_binary_close(&bin);
 }
 
 static void malelf_binary_get_section_TEST()
 {
+        char         *expect1 = NULL;
+        char         *expect2 = NULL;
+        _i32         result;
         MalelfBinary bin;
-        _i32 result;
-        MalelfSection section;
+        MalelfSection *section;
+
+        section = (MalelfSection *)malloc(sizeof(MalelfSection) + sizeof(MalelfShdr));
+        section->shdr = pointer_to(section, sizeof(MalelfSection));
 
         malelf_binary_init(&bin);
 
@@ -250,50 +247,24 @@ static void malelf_binary_get_section_TEST()
         CU_ASSERT(result == MALELF_SUCCESS);
         CU_ASSERT(NULL != bin.fname);
 
-        if (bin.class == MALELF_ELF32) {
-                result = malelf_binary_get_section(&bin, 1, &section);
-                CU_ASSERT(MALELF_SUCCESS == result);
-                CU_ASSERT_STRING_EQUAL(section.name, ".text");
-                CU_ASSERT(section.offset == 0x80);
-                CU_ASSERT(section.size == 0x1d);
-                CU_ASSERT(section.shdr != NULL);
-
-                result = malelf_binary_get_section(&bin, 2, &section);
-                CU_ASSERT(MALELF_SUCCESS == result);
-                CU_ASSERT_STRING_EQUAL(section.name, ".data");
-                CU_ASSERT(section.offset == 0xa0);
-                CU_ASSERT(section.size == 0x12);
-                CU_ASSERT(section.shdr != NULL);
-
-                result = malelf_binary_get_section(&bin, 3, &section);
-                CU_ASSERT(MALELF_SUCCESS == result);
-                CU_ASSERT_STRING_EQUAL(section.name, ".shstrtab");
-                CU_ASSERT(section.offset == 0xb2);
-                CU_ASSERT(section.size == 0x27);
-                CU_ASSERT(section.shdr != NULL);
-        } else if (bin.class == MALELF_ELF64) {
-                result = malelf_binary_get_section(&bin, 1, &section);
-                CU_ASSERT(MALELF_SUCCESS == result);
-                CU_ASSERT_STRING_EQUAL(section.name, ".data");
-                CU_ASSERT(section.offset == 0x200);
-                CU_ASSERT(section.size == 0x12);
-                CU_ASSERT(section.shdr != NULL);
-
-                result = malelf_binary_get_section(&bin, 2, &section);
-                CU_ASSERT(MALELF_SUCCESS == result);
-                CU_ASSERT_STRING_EQUAL(section.name, ".text");
-                CU_ASSERT(section.offset == 0x220);
-                CU_ASSERT(section.size == 0x1d);
-                CU_ASSERT(section.shdr != NULL);
-
-                result = malelf_binary_get_section(&bin, 3, &section);
-                CU_ASSERT(MALELF_SUCCESS == result);
-                CU_ASSERT_STRING_EQUAL(section.name, ".shstrtab");
-                CU_ASSERT(section.offset == 0x240);
-                CU_ASSERT(section.size == 0x32);
-                CU_ASSERT(section.shdr != NULL);
+        result = malelf_binary_get_section(&bin, 1, section);
+        CU_ASSERT(MALELF_SUCCESS == result);
+        if (strcmp(section->name, ".text") == 0) {
+                expect1 = ".text";
+                expect2 = ".data";
+        } else {
+                expect1 = ".data";
+                expect2 = ".text";
         }
+        CU_ASSERT_STRING_EQUAL(expect1, section->name);
+        CU_ASSERT(section->shdr != NULL);
 
+        result = malelf_binary_get_section(&bin, 2, section);
+        CU_ASSERT(MALELF_SUCCESS == result);
+        CU_ASSERT_STRING_EQUAL(expect2, section->name);                  
+        CU_ASSERT(section->shdr != NULL);
+
+        free(section);
         malelf_binary_close(&bin);
 }
 

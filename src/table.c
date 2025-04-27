@@ -68,7 +68,7 @@ _u32 malelf_table_add_str_value(MalelfTable *obj, const char *value)
         }
 
         if (obj->element < (obj->nrows * obj->ncolumns)) {
-                strncpy(obj->content[obj->element], value, strlen(value));
+                strncpy(obj->content[obj->element], value, MALELF_TABLE_CONTENT_LEN);
                 obj->element++;
         }
 
@@ -92,7 +92,7 @@ _u32 malelf_table_add_row(MalelfTable *obj, char **row)
                 if (obj->element < (obj->nrows * obj->ncolumns)) {
                         strncpy(obj->content[obj->element],
                                 row[i],
-                                strlen(row[i]));
+                                MALELF_TABLE_CONTENT_LEN);
                         obj->element++;
                 }
         }

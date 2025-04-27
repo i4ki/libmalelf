@@ -1,0 +1,115 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          autoconf \
+          automake \
+          libtool \
+          pkg-config \
+          build-essential \
+          libcunit1 \
+          libcunit1-dev \
+          wget \
+          zlib1g-dev \
+          libssl-dev \
+          libsqlite3-dev \
+          libreadline-dev \
+          libncurses5-dev \
+          libbz2-dev \
+          libffi-dev \
+          nasm \
+          gdb
+
+    - name: Enable core dumps
+      run: |
+        ulimit -c unlimited
+        sudo mkdir -p /cores
+        sudo chmod 777 /cores
+        echo "/cores/core.%e.%p" | sudo tee /proc/sys/kernel/core_pattern
+        sudo sysctl -w kernel.core_pattern=/cores/core.%e.%p
+
+    - name: Cache Python 2.7
+      uses: actions/cache@v3
+      id: python-cache
+      with:
+        path: /opt/python2.7
+        key: ${{ runner.os }}-python2.7-v1
+
+    - name: Build Python 2.7
+      if: steps.python-cache.outputs.cache-hit != 'true'
+      run: |
+        wget https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tgz
+        tar xzf Python-2.7.18.tgz
+        cd Python-2.7.18
+        ./configure --prefix=/opt/python2.7 --without-test-modules
+        make -j$(nproc)
+        sudo make install
+        cd ..
+
+    - name: Save Python 2.7 cache
+      if: steps.python-cache.outputs.cache-hit != 'true'
+      uses: actions/cache/save@v3
+      with:
+        path: /opt/python2.7
+        key: ${{ runner.os }}-python2.7-v1
+
+    - name: Download and build udis86 with -fPIC
+      run: |
+        wget https://github.com/vmt/udis86/archive/refs/tags/v1.7.2.tar.gz -O udis86-1.7.2.tar.gz
+        tar xzf udis86-1.7.2.tar.gz
+        cd udis86-1.7.2
+        autoreconf -i
+        CFLAGS="-fPIC" ./configure
+        make PYTHON=/opt/python2.7/bin/python2
+        sudo make install
+        cd ..
+
+    - name: Configure and build project
+      run: |
+        ./autogen.sh
+        CFLAGS="-Wno-stringop-truncation -g" ./configure --enable-tests
+        make
+
+    - name: Run tests
+      run: |
+        cd test
+        make check
+        cd ..
+
+    - name: Display test logs
+      if: always()
+      run: |
+        echo "=== Test Suite Log ==="
+        cat test/test-suite.log
+        echo "====================="
+
+    - name: Analyze core dumps
+      if: always()
+      run: |
+        echo "=== Core Dumps Analysis ==="
+        echo "Current directory: $(pwd)"
+        echo "Core dump directory contents:"
+        ls -la /cores/
+        for core in /cores/core.*; do
+          if [ -f "$core" ]; then
+            echo "Analyzing core dump: $core"
+            executable=$(echo $core | cut -d. -f2)
+            echo "Looking for executable: $executable"
+            find . -name "$executable" -type f
+            gdb -batch -ex "bt full" -ex "info threads" -ex "thread apply all bt" "./test/.libs/$executable" "$core"
+          fi
+        done
+        echo "========================" 
