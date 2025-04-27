@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/SecPlus/libmalelf.png?branch=master)](https://travis-ci.org/SecPlus/libmalelf)
+[![Build Status](https://github.com/i4ki/libmalelf/actions/workflows/ci.yml/badge.svg)](https://github.com/i4ki/libmalelf/actions/workflows/ci.yml)
 
 libmalelf
 =========
